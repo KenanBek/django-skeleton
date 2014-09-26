@@ -9,31 +9,31 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
+# Base configuration
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '=37nsotr=ct-bc5gwbbvo^@s3*w=hib%i^plnbzn8758n$4pz='
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 
 # Application definition
+
 INSTALLED_APPS = (
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'home',
 )
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -48,24 +48,141 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'files/documents/development.sqlite3'),
     }
 }
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+# Internationalization and Localization
+
+LANGUAGE_CODE = 'en'
+USE_TZ = True
+# TIME_ZONE = 'Asia/Baku'
 USE_I18N = True
 USE_L10N = True
-USE_TZ = True
+DATE_FORMAT = 'd/m/Y'
+DATETIME_FORMAT = 'd/m/Y P'
+SHORT_DATE_FORMAT = 'd/m/Y'
+SHORT_DATETIME_FORMAT = 'd/m/Y P'
+DATETIME_INPUT_FORMAT = (
+    '%Y-%m-%d %H:%M:%S',  # '2006-10-25 14:30:59'
+    '%Y-%m-%d %H:%M:%S.%f',  # '2006-10-25 14:30:59.000200'
+    '%Y-%m-%d %H:%M',  # '2006-10-25 14:30'
+    '%Y-%m-%d',  # '2006-10-25'
+    '%d/%m/%Y %H:%M:%S',  # '25/10/2006 14:30:59'
+    '%d/%m/%Y %H:%M:%S.%f',  # '25/10/2006 14:30:59.000200'
+    '%d/%m/%Y %H:%M',  # '25/10/2006 14:30'
+    '%d/%m/%Y',  # '25/10/2006'
+    '%d/%m/%y %H:%M:%S',  # '25/10/06 14:30:59'
+    '%d/%m/%y %H:%M:%S.%f',  # '25/10/06 14:30:59.000200'
+    '%d/%m/%y %H:%M',  # '25/10/06 14:30'
+    '%d/%m/%y',  # '25/10/06'
+)
+
+
+# Templates
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.eggs.Loader',
+)
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.request',
+    'django.contrib.messages.context_processors.messages'
+)
+TEMPLATE_DIRS = {
+    os.path.join(BASE_DIR, 'files/templates/'),
+}
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'files/static'),
+)
 STATIC_URL = '/static/'
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+)
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'files/publish')
+
+
+# Media files (user uploaded)
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'files/media')
+MEDIA_URL = '/media/'
+
+
+# Fixtures
+
+FIXTURE_DIRS = (
+    os.path.join(BASE_DIR, 'files/fixtures/'),
+)
+
+
+# Logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': "[%(asctime)s %(name)s-%(levelname)s (%(filename)s:%(lineno)s %(funcName)s)]: %(message)s",
+            'datefmt': "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '[%(asctime)s %(name)s-%(levelname)s]: %(message)s',
+            'datefmt': "%d/%b/%Y %H:%M:%S"
+        },
+    },
+    'handlers': {
+        'file-django': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'files/logs/django.log'),
+            'formatter': 'verbose'
+        },
+        'file-application': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'files/logs/application.log'),
+            'formatter': 'verbose'
+        },
+        'file-logic': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'files/logs/logic.log'),
+            'formatter': 'simple'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file-django'],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
+        'application': {
+            'handlers': ['file-application'],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
+        'logic': {
+            'handlers': ['file-logic'],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
+    }
+}
+
