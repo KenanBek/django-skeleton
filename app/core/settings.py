@@ -22,7 +22,6 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -46,7 +45,6 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'core.urls'
 WSGI_APPLICATION = 'core.wsgi.application'
 
-
 # Database
 
 DATABASES = {
@@ -56,12 +54,10 @@ DATABASES = {
     }
 }
 
-
 # Internationalization and Localization
 
 LANGUAGE_CODE = 'en'
 USE_TZ = True
-# TIME_ZONE = 'Asia/Baku'
 USE_I18N = True
 USE_L10N = True
 DATE_FORMAT = 'd/m/Y'
@@ -82,7 +78,6 @@ DATETIME_INPUT_FORMAT = (
     '%d/%m/%y %H:%M',  # '25/10/06 14:30'
     '%d/%m/%y',  # '25/10/06'
 )
-
 
 # Templates
 
@@ -118,19 +113,16 @@ STATICFILES_FINDERS = (
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'files/publish')
 
-
 # Media files (user uploaded)
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'files/media')
 MEDIA_URL = '/media/'
-
 
 # Fixtures
 
 FIXTURE_DIRS = (
     os.path.join(BASE_DIR, 'files/fixtures/'),
 )
-
 
 # Logging
 
@@ -185,4 +177,8 @@ LOGGING = {
         },
     }
 }
+
+# Grappelli
+
+GRAPPELLI_ADMIN_TITLE = "Administration"
 
