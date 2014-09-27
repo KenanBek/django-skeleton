@@ -15,9 +15,6 @@ class Command(NoArgsCommand):
             pass
         management.call_command('syncdb', interactive=False)
         management.call_command('createsuperuser', username='admin', email='admin@host.local')
-
-        #fixture_dir = settings.FIXTURE_DIRS[0]
-
         management.call_command('loaddata', "website_test")
         self.stdout.write('Successfully initialized')
 
