@@ -1,5 +1,5 @@
 import os
-import json
+
 from django.core import management
 from django.core.management.base import NoArgsCommand
 from django.conf import settings
