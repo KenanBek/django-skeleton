@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from core import models as core_models
 
 from models import Widget, Page, Category, Post
