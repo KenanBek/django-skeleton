@@ -1,4 +1,5 @@
 from django.contrib import admin
+from core import models as core_models
 
 from models import Widget, Page, Category, Post
 
@@ -6,7 +7,7 @@ from models import Widget, Page, Category, Post
 # Widget
 
 
-class WidgetAdmin(admin.ModelAdmin):
+class WidgetAdmin(core_models.ModelAdmin):
     list_display = ['title', 'related_page_names']
 
     def related_page_names(self, obj):
@@ -16,7 +17,7 @@ class WidgetAdmin(admin.ModelAdmin):
 # Page
 
 
-class PageAdmin(admin.ModelAdmin):
+class PageAdmin(core_models.ModelAdmin):
     list_display = ['slug', 'title', 'related_widget_names']
 
     def related_widget_names(self, obj):
@@ -26,7 +27,7 @@ class PageAdmin(admin.ModelAdmin):
 # Category
 
 
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(core_models.ModelAdmin):
     list_display = ['slug', 'title', 'related_post_names']
 
     def related_post_names(self, obj):
@@ -36,7 +37,7 @@ class CategoryAdmin(admin.ModelAdmin):
 # Post
 
 
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(core_models.ModelAdmin):
     list_display = ['slug', 'title', 'short_content', 'related_category_names']
 
     def related_category_names(self, obj):

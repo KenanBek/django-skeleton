@@ -14,6 +14,7 @@ class Command(NoArgsCommand):
         except OSError:
             pass
         management.call_command('syncdb', interactive=False)
-        management.call_command('createsuperuser')
+        management.call_command('createinitialrevisions', interactive=False)
+        management.call_command('createsuperuser', interactive=False)
         self.stdout.write('Successfully initialized.')
 
