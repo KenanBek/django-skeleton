@@ -15,6 +15,6 @@ class Command(NoArgsCommand):
             pass
         management.call_command('syncdb', interactive=False)
         management.call_command('createinitialrevisions', interactive=False)
-        management.call_command('createsuperuser', interactive=False)
+        management.call_command('createsuperuser')
         self.stdout.write('Successfully initialized.')
 
