@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'bootstrap3/layout.html' %}
 
-</body>
-</html>
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h1>Django Skeleton</h1>
+                <p>Project template for Django application.</p>
+                <p><a class="btn btn-primary btn-lg" role="button" href="{% url 'website_features' %}">See features</a>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <h2 class="sub-header">Pages</h2>
+            <div class="row placeholders">
+                {% for page in pages %}
+                    <div class="col-xs-6 col-sm-3 placeholder">
+                        <h4><a href="{% url 'website_page' page.slug %}">{{ page.title }}</a></h4>
+                        <span class="text-muted">{{ page.modified_at }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-12">
+            <h2 class="sub-header">Posts</h2>
+            {% for post in posts %}
+                <div class="list-group">
+                    <a href="{% url 'website_post' post.id post.slug %}" class="list-group-item">
+                        <h4 class="list-group-item-heading">{{ post.title }}</h4>
+                        <p class="list-group-item-text">{{ post.short_content }}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
