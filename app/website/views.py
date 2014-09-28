@@ -1,12 +1,11 @@
-from django.db.models import Q
 from django.shortcuts import render
 
-from models import Page, Post
+import logic
 
 
 def index(request, template='bootstrap3/website/index.html', context={}):
-    pages = Page.objects.all()
-    posts = Post.objects.all()
+    pages = logic.load_pages()
+    posts = logic.load_posts()
 
     context['pages'] = pages
     context['posts'] = posts
@@ -22,28 +21,21 @@ def about(request, template='bootstrap3/website/about.html', context={}):
 
 
 def page(request, page_slug, template='bootstrap3/website/page.html', context={}):
-    page_item = Page.objects.get(slug=page_slug)
-
-    context['page'] = page_item
+    context['page'] = logic.get_page(page_slug)
     return render(request, template, context)
 
 
 def post(request, post_id, post_slug, template='bootstrap3/website/post.html', context={}):
-    post_item = Post.objects.get(pk=post_id, slug=post_slug)
-
-    context['post'] = post_item
+    context['post'] = logic.get_post(post_id, post_slug)
     return render(request, template, context)
 
 
 def search(request, template='bootstrap3/website/search.html', context={}):
     term = request.GET['term']
-    pages = Page.objects.filter(Q(title__contains=term) | Q(content__contains=term))
-    posts = Post.objects.filter(Q(title__contains=term)
-                                | Q(short_content__contains=term)
-                                | Q(full_content__contains=term))
+    search_result = logic.search(term)
 
     context['term'] = term
-    context['pages'] = pages
-    context['posts'] = posts
+    context['pages'] = search_result.pages
+    context['posts'] = search_result.posts
     return render(request, template, context)
 

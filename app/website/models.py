@@ -1,6 +1,7 @@
 from django.db import models
 
 from core import models as core_models
+from core.models import MODEL_STATUS, PUBLISHED
 
 
 class Widget(core_models.Model):
@@ -12,10 +13,12 @@ class Widget(core_models.Model):
 
 
 class Page(core_models.Model):
+    status = models.CharField(max_length=9, choices=MODEL_STATUS, default=PUBLISHED)
     slug = models.SlugField(unique=True)
     title = models.CharField(max_length=32)
     content = models.TextField()
     widgets = models.ManyToManyField(Widget)
+    featured_image = models.ImageField(upload_to='website/page/', null=True, blank=True)
 
     def get_widgets(self):
         return self.widgets.all()
@@ -34,11 +37,13 @@ class Category(core_models.Model):
 
 
 class Post(core_models.Model):
+    status = models.CharField(max_length=9, choices=MODEL_STATUS, default=PUBLISHED)
     slug = models.SlugField(unique=True)
     title = models.CharField(max_length=32)
     short_content = models.CharField(max_length=512)
     full_content = models.TextField()
     categories = models.ManyToManyField(Category)
+    featured_image = models.ImageField(upload_to='website/post/', null=True, blank=True)
 
     def __str__(self):
         return self.title

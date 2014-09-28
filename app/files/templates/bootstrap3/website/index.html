@@ -18,6 +18,8 @@
                         <h4><a href="{% url 'website_page' page.slug %}">{{ page.title }}</a></h4>
                         <span class="text-muted">{{ page.modified_at }}</span>
                     </div>
+                {% empty %}
+                    <h4>No pages.</h4>
                 {% endfor %}
             </div>
         </div>
@@ -30,6 +32,8 @@
                         <p class="list-group-item-text">{{ post.short_content }}</p>
                     </a>
                 </div>
+            {% empty %}
+                <h4>No posts.</h4>
             {% endfor %}
         </div>
     </div>

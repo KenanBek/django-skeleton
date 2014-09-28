@@ -19,7 +19,8 @@ class WidgetAdmin(core_models.ModelAdmin):
 
 
 class PageAdmin(core_models.ModelAdmin):
-    list_display = ['slug', 'title', 'related_widget_names']
+    list_filter = ['status', ]
+    list_display = ['slug', 'title', 'related_widget_names', 'status']
 
     def related_widget_names(self, obj):
         return ",\n".join([widget.title for widget in obj.widgets.all()])
@@ -39,7 +40,8 @@ class CategoryAdmin(core_models.ModelAdmin):
 
 
 class PostAdmin(core_models.ModelAdmin):
-    list_display = ['slug', 'title', 'short_content', 'related_category_names']
+    list_filter = ['status', ]
+    list_display = ['slug', 'title', 'short_content', 'related_category_names', 'status']
 
     def related_category_names(self, obj):
         return ",\n".join([category.title for category in obj.categories.all()])
