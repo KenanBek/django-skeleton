@@ -15,6 +15,9 @@
             <div class="col-md-4">
                 <h2>{{ widget.title }}</h2>
                 <p>{{ widget.content }}</p>
+                {% if widget.link_title %}
+                    <a href="{{ widget.link_url }}" class="pull-right">{{ widget.link_title }}</a>
+                {% endif %}
             </div>
         {% endfor %}
     </div>

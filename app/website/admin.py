@@ -1,8 +1,6 @@
 from django.contrib import admin
 
-from core import models as core_models
-
-from models import Widget, Page, Category, Post
+from models import *
 
 
 # Widget
@@ -47,8 +45,22 @@ class PostAdmin(core_models.ModelAdmin):
         return ",\n".join([category.title for category in obj.categories.all()])
 
 
+# Slider
+
+
+class SlideInline(admin.StackedInline):
+    model = Slide
+    extra = 1
+
+
+class SliderAdmin(core_models.ModelAdmin):
+    list_display = ['title', 'status']
+    inlines = [SlideInline, ]
+
+
 admin.site.register(Widget, WidgetAdmin)
 admin.site.register(Page, PageAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Post, PostAdmin)
+admin.site.register(Slider, SliderAdmin)
 

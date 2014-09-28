@@ -7,6 +7,8 @@ from core.models import MODEL_STATUS, PUBLISHED
 class Widget(core_models.Model):
     title = models.CharField(max_length=32)
     content = models.TextField()
+    link_title = models.CharField(max_length=32)
+    link_url = models.URLField()
 
     def __str__(self):
         return self.title
@@ -44,6 +46,26 @@ class Post(core_models.Model):
     full_content = models.TextField()
     categories = models.ManyToManyField(Category)
     featured_image = models.ImageField(upload_to='website/post/', null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+
+class Slider(core_models.Model):
+    status = models.CharField(max_length=9, choices=MODEL_STATUS, default=PUBLISHED)
+    title = models.CharField(max_length=32)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+
+class Slide(core_models.Model):
+    status = models.CharField(max_length=9, choices=MODEL_STATUS, default=PUBLISHED)
+    title = models.CharField(max_length=32)
+    description = models.TextField()
+    featured_image = models.ImageField(upload_to='website/slider/', null=True, blank=True)
+    related_slider = models.ForeignKey(Slider)
 
     def __str__(self):
         return self.title
