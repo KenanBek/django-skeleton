@@ -1,4 +1,6 @@
+from django.db.models import Q
 from django.shortcuts import render
+
 from models import Page, Post
 
 
@@ -30,5 +32,18 @@ def post(request, post_id, post_slug, template='bootstrap3/website/post.html', c
     post_item = Post.objects.get(pk=post_id, slug=post_slug)
 
     context['post'] = post_item
+    return render(request, template, context)
+
+
+def search(request, template='bootstrap3/website/search.html', context={}):
+    term = request.GET['term']
+    pages = Page.objects.filter(Q(title__contains=term) | Q(content__contains=term))
+    posts = Post.objects.filter(Q(title__contains=term)
+                                | Q(short_content__contains=term)
+                                | Q(full_content__contains=term))
+
+    context['term'] = term
+    context['pages'] = pages
+    context['posts'] = posts
     return render(request, template, context)
 
