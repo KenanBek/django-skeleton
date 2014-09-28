@@ -3,7 +3,9 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <img src="{{ MEDIA_URL }}{{ page.featured_image }}" title="{{ page.title }}" />
+            {% if post.featured_image %}
+                <img src="{{ MEDIA_URL }}{{ page.featured_image }}" title="{{ page.title }}" />
+            {% endif %}
             <h1>{{ page.title }}</h1>
             <p>
                 {{ page.content }}
