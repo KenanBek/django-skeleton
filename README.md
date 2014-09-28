@@ -20,11 +20,11 @@ To install Django Skeleton on your machine run following commands:
     cd django-skeleton/app
     python manage.py inittest
 
-Last command will ask you enter password for super user. Command 'inittest' will create sample data. After you successfully entered required information you will be able to run application.
+Last command will ask you enter password for super user. Command **inittest** will create sample data. After you successfully entered required information you will be able to run application.
 
     python manage.py runserver
 
-Visit http://localhost:8000 for website, http://localhost:8000/admin for administration.
+Visit **http://localhost:8000** for website, **http://localhost:8000/admin** for administration.
 
 # License
 
