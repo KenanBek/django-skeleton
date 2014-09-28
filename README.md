@@ -5,7 +5,6 @@ Skeleton for Django projects.
 
 # Features
 
-
 - Reversion
 - Management commands for initial configuration
 - Website model (Widget, Page, Post and Category)
@@ -13,3 +12,6 @@ Skeleton for Django projects.
 - Pre configured specific folder of Django application (fixtures, media, static, etc.)
 - Logging
 
+# License
+
+Licensed under GNU GPL v3.0
