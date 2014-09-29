@@ -5,13 +5,14 @@ Skeleton for Django projects.
 
 # Features
 
+- Grappelli administration theme
 - Reversion
 - Management commands for initial configuration
 - Website model (Widget, Page, Post and Category)
-- Grappelli administration theme
 - Pre configured specific folder of Django application (fixtures, media, static, etc.)
 - Slider
 - Email subscription
+- Contact and Application database
 - Logging
 
 # Install

@@ -1,7 +1,8 @@
 from django.contrib import messages
-from django.http import HttpResponseRedirect
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+import forms
 
 import logic
 
@@ -55,6 +56,39 @@ def subscribe(request):
             messages.add_message(request, messages.INFO, 'You successfully subscribed.')
         except Exception as e:
             messages.add_message(request, messages.WARNING, 'You already have been subscribed.')
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    return redirect(request.META.get('HTTP_REFERER'))
 
+
+def contact(request, template="bootstrap3/website/contact.html", context={}):
+    contact_form = forms.ContactForm(request.POST or None)
+
+    if request.method == 'POST':
+        if contact_form.is_valid():
+            contact_form.save()
+            messages.add_message(request, messages.INFO, 'Your message successfully submitted.')
+            return redirect('/contact')
+        else:
+            messages.add_message(request, messages.WARNING, 'Please fix errors bellow.')
+
+    context['contact_form'] = contact_form
+    context['document_form'] = forms.DocumentForm()
+
+    return render(request, template, context)
+
+
+def document(request, template="bootstrap3/website/contact.html", context={}):
+    document_form = forms.DocumentForm(request.POST or None, request.FILES or None)
+
+    if request.method == 'POST':
+        if document_form.is_valid():
+            document_form.save()
+            messages.add_message(request, messages.INFO, 'Your application successfully submitted.')
+            return redirect('/contact')
+        else:
+            messages.add_message(request, messages.WARNING, 'Please fix errors bellow.')
+
+    context['contact_form'] = forms.ContactForm()
+    context['document_form'] = document_form
+
+    return render(request, template, context)
 

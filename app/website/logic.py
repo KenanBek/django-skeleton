@@ -1,22 +1,23 @@
 from django.db.models import Q
+from django.shortcuts import get_object_or_404
 
-from website.models import *
+import models
 
 
 def get_page(page_slug):
-    return Page.objects.get(slug=page_slug, status=PUBLISHED)
+    return get_object_or_404(models.Page, slug=page_slug, status=models.PUBLISHED)
 
 
 def load_pages():
-    return Page.objects.filter(status=PUBLISHED).all()
+    return models.Page.objects.filter(status=models.PUBLISHED).all()
 
 
 def get_post(post_id, post_slug):
-    return Post.objects.get(pk=post_id, slug=post_slug, status=PUBLISHED)
+    return get_object_or_404(models.Post, pk=post_id, slug=post_slug, status=models.PUBLISHED)
 
 
 def load_posts():
-    return Post.objects.filter(status=PUBLISHED).all()
+    return models.Post.objects.filter(status=models.PUBLISHED).all()
 
 
 class SearchResult:
@@ -29,16 +30,16 @@ class SearchResult:
 
 
 def search(term):
-    pages = Page.objects.filter(Q(title__contains=term) | Q(content__contains=term))
-    posts = Post.objects.filter((Q(title__contains=term)
+    pages = models.Page.objects.filter(Q(title__contains=term) | Q(content__contains=term))
+    posts = models.Post.objects.filter((Q(title__contains=term)
                                  | Q(short_content__contains=term)
                                  | Q(full_content__contains=term))
-                                & Q(status=PUBLISHED))
+                                & Q(status=models.PUBLISHED))
     return SearchResult(pages, posts)
 
 
 def subscribe(name, email):
-    subscriber = Subscriber()
+    subscriber = models.Subscriber()
     subscriber.name = name
     subscriber.email = email
     subscriber.save()

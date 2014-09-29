@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from models import *
+from app.core import models as core_models
+import models
 
 
 # Widget
@@ -49,7 +50,7 @@ class PostAdmin(core_models.ModelAdmin):
 
 
 class SlideInline(admin.StackedInline):
-    model = Slide
+    model = models.Slide
     extra = 1
 
 
@@ -58,17 +59,33 @@ class SliderAdmin(core_models.ModelAdmin):
     inlines = [SlideInline, ]
 
 
-# Subscriber
+# Subscriber & Document
 
 
 class SubscriberAdmin(core_models.ModelAdmin):
+    list_filter = ['email']
     list_display = ['name', 'email']
 
 
-admin.site.register(Widget, WidgetAdmin)
-admin.site.register(Page, PageAdmin)
-admin.site.register(Category, CategoryAdmin)
-admin.site.register(Post, PostAdmin)
-admin.site.register(Slider, SliderAdmin)
-admin.site.register(Subscriber, SubscriberAdmin)
+class DocumentAdmin(core_models.ModelAdmin):
+    list_filter = ['email']
+    list_display = ['name', 'email']
+
+
+# Contact
+
+
+class ContactAdmin(core_models.ModelAdmin):
+    list_filter = ['email']
+    list_display = ['name', 'email', 'subject']
+
+
+admin.site.register(models.Widget, WidgetAdmin)
+admin.site.register(models.Page, PageAdmin)
+admin.site.register(models.Category, CategoryAdmin)
+admin.site.register(models.Post, PostAdmin)
+admin.site.register(models.Slider, SliderAdmin)
+admin.site.register(models.Subscriber, SubscriberAdmin)
+admin.site.register(models.Document, DocumentAdmin)
+admin.site.register(models.Contact, ContactAdmin)
 
