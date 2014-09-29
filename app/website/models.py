@@ -10,7 +10,7 @@ from core.models import MODEL_STATUS, PUBLISHED
 class Slider(core_models.Model):
     status = models.CharField(max_length=9, choices=MODEL_STATUS, default=PUBLISHED)
     title = models.CharField(max_length=32)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -19,8 +19,8 @@ class Slider(core_models.Model):
 class Slide(core_models.Model):
     status = models.CharField(max_length=9, choices=MODEL_STATUS, default=PUBLISHED)
     title = models.CharField(max_length=32)
-    description = models.TextField()
-    featured_image = models.ImageField(upload_to='website/slider/', null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    image = models.ImageField(upload_to='website/slider/', null=True, blank=True)
     related_slider = models.ForeignKey(Slider)
 
     def __str__(self):

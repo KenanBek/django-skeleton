@@ -10,6 +10,9 @@
             <p>
                 {{ page.content }}
             </p>
+            {% if post.related_slider %}
+                {% include "bootstrap3/slider.html" with slider=post.related_slider %}
+            {% endif %}
         </div>
     </div>
     <div class="row">

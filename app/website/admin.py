@@ -18,8 +18,8 @@ class WidgetAdmin(core_models.ModelAdmin):
 
 
 class PageAdmin(core_models.ModelAdmin):
-    list_filter = ['status', ]
-    list_display = ['slug', 'title', 'related_widget_names', 'status']
+    list_filter = ['status']
+    list_display = ['slug', 'title', 'related_widget_names', 'related_slider', 'status']
 
     def related_widget_names(self, obj):
         return ",\n".join([widget.title for widget in obj.widgets.all()])
@@ -39,8 +39,8 @@ class CategoryAdmin(core_models.ModelAdmin):
 
 
 class PostAdmin(core_models.ModelAdmin):
-    list_filter = ['status', ]
-    list_display = ['slug', 'title', 'short_content', 'related_category_names', 'status']
+    list_filter = ['added_at', 'status']
+    list_display = ['added_at', 'slug', 'title', 'short_content', 'related_category_names', 'related_slider', 'status']
 
     def related_category_names(self, obj):
         return ",\n".join([category.title for category in obj.categories.all()])
@@ -63,21 +63,21 @@ class SliderAdmin(core_models.ModelAdmin):
 
 
 class SubscriberAdmin(core_models.ModelAdmin):
-    list_filter = ['email']
-    list_display = ['name', 'email']
+    list_filter = ['added_at', 'email']
+    list_display = ['added_at', 'name', 'email']
 
 
 class DocumentAdmin(core_models.ModelAdmin):
-    list_filter = ['email']
-    list_display = ['name', 'email']
+    list_filter = ['added_at', 'email']
+    list_display = ['added_at', 'name', 'email']
 
 
 # Contact
 
 
 class ContactAdmin(core_models.ModelAdmin):
-    list_filter = ['email']
-    list_display = ['name', 'email', 'subject']
+    list_filter = ['added_at', 'email']
+    list_display = ['added_at', 'name', 'email', 'subject']
 
 
 admin.site.register(models.Widget, WidgetAdmin)

@@ -9,9 +9,12 @@
                 {% endif %}
                 <h2 class="blog-post-title">{{ post.title }}</h2>
                 <p class="blog-post-meta">{{ post.modified_at }}</p>
-
-                {{ post.full_content }}
-
+                <p>
+                    {{ post.full_content }}
+                </p>
+                {% if post.related_slider %}
+                    {% include "bootstrap3/slider.html" with slider=post.related_slider %}
+                {% endif %}
                 <h3>Categories</h3>
                 {% for category in post.categories.all %}
                     <div class="col-md-3">
