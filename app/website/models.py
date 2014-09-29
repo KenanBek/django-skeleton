@@ -33,8 +33,9 @@ class Slide(core_models.Model):
 class Widget(core_models.Model):
     title = models.CharField(max_length=32)
     content = models.TextField()
-    link_title = models.CharField(max_length=32)
-    link_url = models.URLField()
+    featured_image = models.ImageField(upload_to='website/widget/', null=True, blank=True)
+    link_title = models.CharField(max_length=32, null=True, blank=True)
+    link_url = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -45,7 +46,7 @@ class Page(core_models.Model):
     slug = models.SlugField(unique=True)
     title = models.CharField(max_length=32)
     content = models.TextField()
-    widgets = models.ManyToManyField(Widget)
+    widgets = models.ManyToManyField(Widget, null=True, blank=True)
     featured_image = models.ImageField(upload_to='website/page/', null=True, blank=True)
     related_slider = models.ForeignKey(Slider, null=True, blank=True)
 
@@ -62,7 +63,7 @@ class Page(core_models.Model):
 class Category(core_models.Model):
     slug = models.SlugField(unique=True)
     title = models.CharField(max_length=32)
-    description = models.CharField(max_length=512)
+    description = models.CharField(max_length=512, null=True, blank=True)
 
     def __str__(self):
         return self.title
