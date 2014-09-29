@@ -73,7 +73,7 @@ class Slide(core_models.Model):
 
 class Subscriber(core_models.Model):
     name = models.CharField(max_length=32, null=True, blank=True)
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=True, null=False, blank=False)
 
     def __str__(self):
         return "{0} ({1})".format(self.name, self.email)

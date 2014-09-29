@@ -46,11 +46,15 @@ def search(request, template='bootstrap3/website/search.html', context={}):
 def subscribe(request):
     name = request.GET['name']
     email = request.GET['email']
-    try:
-        logic.subscribe(name, email)
-        messages.add_message(request, messages.INFO, 'You successfully subscribed.')
-    except Exception as e:
-        messages.add_message(request, messages.WARNING, 'Email is not unique.')
+
+    if not email:
+        messages.add_message(request, messages.WARNING, 'Please enter your email.')
+    else:
+        try:
+            logic.subscribe(name, email)
+            messages.add_message(request, messages.INFO, 'You successfully subscribed.')
+        except Exception as e:
+            messages.add_message(request, messages.WARNING, 'You already have been subscribed.')
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
