@@ -10,6 +10,8 @@ Skeleton for Django projects.
 - Website model (Widget, Page, Post and Category)
 - Grappelli administration theme
 - Pre configured specific folder of Django application (fixtures, media, static, etc.)
+- Slider
+- Email subscription
 - Logging
 
 # Install
