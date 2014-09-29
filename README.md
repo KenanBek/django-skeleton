@@ -29,6 +29,16 @@ Last command will ask you enter password for super user. Command **inittest** wi
 
 Visit **http://localhost:8000** for website, **http://localhost:8000/admin** for administration.
 
+
+# Demo
+
+Visit [Website](http://django-skeleton.bekonline.webfactional.com/) and [Admin](http://django-skeleton.bekonline.webfactional.com/admin) to try Django Skeleton on demand.
+
+Superuser login and password:
+
+    Login: admin
+    Password: admin
+
 # License
 
 Licensed under GNU GPL v3.0
