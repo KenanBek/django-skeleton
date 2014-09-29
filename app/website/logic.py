@@ -1,8 +1,6 @@
 from django.db.models import Q
 
-from website.models import PUBLISHED
-
-from website.models import Page, Post
+from website.models import *
 
 
 def get_page(page_slug):
@@ -37,4 +35,11 @@ def search(term):
                                  | Q(full_content__contains=term))
                                 & Q(status=PUBLISHED))
     return SearchResult(pages, posts)
+
+
+def subscribe(name, email):
+    subscriber = Subscriber()
+    subscriber.name = name
+    subscriber.email = email
+    subscriber.save()
 

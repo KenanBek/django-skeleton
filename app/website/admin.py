@@ -58,9 +58,17 @@ class SliderAdmin(core_models.ModelAdmin):
     inlines = [SlideInline, ]
 
 
+# Subscriber
+
+
+class SubscriberAdmin(core_models.ModelAdmin):
+    list_display = ['name', 'email']
+
+
 admin.site.register(Widget, WidgetAdmin)
 admin.site.register(Page, PageAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Slider, SliderAdmin)
+admin.site.register(Subscriber, SubscriberAdmin)
 

@@ -65,14 +65,30 @@
             </ul>
         </div>
         <div class="col-md-9 main">
+            {% if messages %}
+                <br />
+                {% for message in messages %}
+                    <div{% if message.tags %} class="alert alert-{{ message.tags }}" {% else %} class="alert" {% endif %} role="alert">{{ message }}</div>
+                {% endfor %}
+                <br />
+            {% endif %}
             {% block content %}
             {% endblock %}
         </div>
     </div>
     <hr>
     <footer>
-        <p>Licensed under GNU GPL v3.0. Author <a href="http://kenanbek.me" target="_blank">Kenan Bek</a>.</p>
+        <p class="pull-left">Licensed under GNU GPL v3.0. Author
+            <a href="http://kenanbek.me" target="_blank">Kenan Bek</a></p>
+        <form class="form-inline pull-right" role="form" action="{% url 'website_subscribe' %}" method="get">
+            <input id="name" name="name" type="text" class="form-control" placeholder="Your name...">
+            <input id="email" name="email" type="text" class="form-control" placeholder="Your email...">
+            <button type="submit" class="btn btn-default">Subscribe</button>
+        </form>
     </footer>
+    <br />
+    <br />
+    <br />
 </div>
 
 <!-- Bootstrap core JavaScript
