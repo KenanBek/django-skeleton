@@ -5,13 +5,11 @@ Base model classes. Used in other applications.
 from django.db import models
 import reversion
 
-DRAFT = "Draft"
 PUBLISHED = "Published"
 HIDDEN = "Hidden"
 MODEL_STATUS = (
-    (DRAFT, "Draft"),
     (PUBLISHED, "Published"),
-    (HIDDEN, "Hidden")
+    (HIDDEN, "Hidden"),
 )
 
 
