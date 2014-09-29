@@ -2,7 +2,6 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('website.views',
     url(r'^index/$', 'index', name='website_index'),
-    url(r'^features/$', 'features', name='website_features'),
     url(r'^about/$', 'about', name='website_about'),
     url(r'^contact/$', 'contact', name='website_contact'),
     url(r'^contact/document/$', 'document', name='website_document'),

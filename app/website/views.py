@@ -16,47 +16,8 @@ def index(request, template='bootstrap3/website/index.html', context={}):
     return render(request, template, context)
 
 
-def features(request, template='bootstrap3/website/features.html', context={}):
-    return render(request, template, context)
-
-
 def about(request, template='bootstrap3/website/about.html', context={}):
     return render(request, template, context)
-
-
-def page(request, page_slug, template='bootstrap3/website/page.html', context={}):
-    context['page'] = logic.get_page(page_slug)
-    return render(request, template, context)
-
-
-def post(request, post_id, post_slug, template='bootstrap3/website/post.html', context={}):
-    context['post'] = logic.get_post(post_id, post_slug)
-    return render(request, template, context)
-
-
-def search(request, template='bootstrap3/website/search.html', context={}):
-    term = request.GET['term']
-    search_result = logic.search(term)
-
-    context['term'] = term
-    context['pages'] = search_result.pages
-    context['posts'] = search_result.posts
-    return render(request, template, context)
-
-
-def subscribe(request):
-    name = request.GET['name']
-    email = request.GET['email']
-
-    if not email:
-        messages.add_message(request, messages.WARNING, 'Please enter your email.')
-    else:
-        try:
-            logic.subscribe(name, email)
-            messages.add_message(request, messages.INFO, 'You successfully subscribed.')
-        except Exception as e:
-            messages.add_message(request, messages.WARNING, 'You already have been subscribed.')
-    return redirect(request.META.get('HTTP_REFERER'))
 
 
 def contact(request, template="bootstrap3/website/contact.html", context={}):
@@ -90,5 +51,40 @@ def document(request, template="bootstrap3/website/contact.html", context={}):
     context['contact_form'] = forms.ContactForm()
     context['document_form'] = document_form
 
+    return render(request, template, context)
+
+
+def search(request, template='bootstrap3/website/search.html', context={}):
+    term = request.GET['term']
+    search_result = logic.search(term)
+
+    context['term'] = term
+    context['pages'] = search_result.pages
+    context['posts'] = search_result.posts
+    return render(request, template, context)
+
+
+def subscribe(request):
+    name = request.GET['name']
+    email = request.GET['email']
+
+    if not email:
+        messages.add_message(request, messages.WARNING, 'Please enter your email.')
+    else:
+        try:
+            logic.subscribe(name, email)
+            messages.add_message(request, messages.INFO, 'You successfully subscribed.')
+        except Exception as e:
+            messages.add_message(request, messages.WARNING, 'You already have been subscribed.')
+    return redirect(request.META.get('HTTP_REFERER'))
+
+
+def page(request, page_slug, template='bootstrap3/website/page.html', context={}):
+    context['page'] = logic.get_page(page_slug)
+    return render(request, template, context)
+
+
+def post(request, post_id, post_slug, template='bootstrap3/website/post.html', context={}):
+    context['post'] = logic.get_post(post_id, post_slug)
     return render(request, template, context)
 

@@ -1,1 +1,2 @@
-grappelli
+django-grappelli
+django-reversion
