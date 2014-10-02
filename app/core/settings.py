@@ -14,7 +14,6 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
 # Base configuration
 
 SECRET_KEY = '=37nsotr=ct-bc5gwbbvo^@s3*w=hib%i^plnbzn8758n$4pz='
@@ -25,7 +24,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    #'grappelli',
     'reversion',
     'django.contrib.admin',
     'django.contrib.auth',
