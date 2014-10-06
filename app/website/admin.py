@@ -1,8 +1,9 @@
+from django import forms
 from django.contrib import admin
 
 from app.core import models as core_models
+from ckeditor.widgets import CKEditorWidget
 import models
-
 
 # Widget
 
@@ -37,11 +38,16 @@ class CategoryAdmin(core_models.ModelAdmin):
 
 # Post
 
+class PostAdminForm(forms.ModelForm):
+    full_content = forms.CharField(widget=CKEditorWidget())
+    class Meta:
+        model = models.Post
+
 
 class PostAdmin(core_models.ModelAdmin):
     list_filter = ['added_at', 'status']
     list_display = ['added_at', 'slug', 'title', 'short_content', 'related_category_names', 'related_slider', 'status']
-
+    form = PostAdminForm
     def related_category_names(self, obj):
         return ",\n".join([category.title for category in obj.categories.all()])
 

@@ -9,7 +9,9 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
 import os
+
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
@@ -27,6 +29,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'suit',
     'reversion',
+    'ckeditor',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -187,7 +190,6 @@ SUIT_CONFIG = {
     'ADMIN_NAME': 'Administration',
     'HEADER_DATE_FORMAT': 'l, j. F Y',
     'HEADER_TIME_FORMAT': 'H:i',
-
     # forms
     # 'SHOW_REQUIRED_ASTERISK': True,  # Default True
     # 'CONFIRM_UNSAVED_CHANGES': True, # Default True
@@ -195,7 +197,7 @@ SUIT_CONFIG = {
     # menu
     # 'SEARCH_URL': '/admin/auth/user/',
     # 'MENU_ICONS': {
-    #    'sites': 'icon-leaf',
+    # 'sites': 'icon-leaf',
     #    'auth': 'icon-lock',
     # },
     # 'MENU_OPEN_FIRST_CHILD': True, # Default True
@@ -210,3 +212,18 @@ SUIT_CONFIG = {
     # misc
     # 'LIST_PER_PAGE': 15
 }
+
+# CKEDITOR
+
+CKEDITOR_UPLOAD_PATH = 'ckeditor/'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Full',
+        'height': 300,
+        'width': 300,
+    },
+    'awesome_ckeditor': {
+        'toolbar': 'Basic',
+    },
+}
+

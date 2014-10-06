@@ -12,6 +12,7 @@ admin.autodiscover()
 
 # Root url patterns
 urlpatterns = patterns('',
+    url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', RedirectView.as_view(url='/index', permanent=True)),
     url(r'^', include('website.urls')),

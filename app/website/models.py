@@ -1,7 +1,7 @@
 from django.db import models
 
-from core import models as core_models
-from core.models import MODEL_STATUS, PUBLISHED
+from app.core import models as core_models
+from app.core.models import MODEL_STATUS, PUBLISHED
 
 
 # Slider
