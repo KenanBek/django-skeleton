@@ -1,0 +1,14 @@
+language: python
+python:
+  - "2.7"
+# django environment
+env:
+  - DJANGO_VERSION=1.6.7
+# install dependencies
+install:
+  - pip install -r requirements.txt
+  - pip install -q Django==$DJANGO_VERSION
+# test
+script:
+  - cd app
+  - python setup.py test
