@@ -3,4 +3,5 @@ django-suit
 django-reversion
 django-ckeditor-updated
 --allow-external PIL
+--allow-unverified PIL
 
