@@ -20,6 +20,7 @@ To install Django Skeleton on your machine run following commands:
 
     git clone https://github.com/KenanBek/django-skeleton.git
     cd django-skeleton/app
+    pip install -r requirements.txt
     python manage.py inittest
 
 Last command will ask you enter password for super user. Command **inittest** will create sample data. After you successfully entered required information you will be able to run application.
