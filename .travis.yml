@@ -11,4 +11,5 @@ install:
 # test
 script:
   - cd app
-  - python setup.py test
+  - python manage.py inittest
+  - python manage.py runserver
