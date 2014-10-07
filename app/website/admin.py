@@ -3,7 +3,7 @@ from django.contrib import admin
 from ckeditor.widgets import CKEditorWidget
 from django_select2 import fields
 
-from app.core import models as core_models
+from core import models as core_models
 import models
 
 
