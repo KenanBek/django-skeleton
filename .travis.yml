@@ -8,8 +8,7 @@ env:
 install:
   - pip install -r requirements.txt
   - pip install -q Django==$DJANGO_VERSION
-#  - pip install PIL --allow-external PIL --allow-unverified PIL
-# test
+# run tests
 script:
   - cd app
   - python manage.py test
