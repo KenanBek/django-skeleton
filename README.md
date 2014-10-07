@@ -7,6 +7,7 @@ Skeleton for Django projects.
 
 # Features
 
+- Auto select for administration (Django Select2)
 - CKEditor with configured file upload
 - Reversion
 - Management commands for initial configuration

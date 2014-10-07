@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib import admin
 from ckeditor.widgets import CKEditorWidget
+from django_select2 import fields
 
 from app.core import models as core_models
 import models
@@ -50,16 +51,23 @@ class CategoryAdmin(core_models.ModelAdmin):
 
 # Post
 
+
+class CategoryChoice(fields.AutoModelSelect2MultipleField):
+    queryset = models.Category.objects
+    search_fields = ['title__icontains', ]
+
+
 class PostAdminForm(forms.ModelForm):
     short_content = forms.CharField(widget=forms.Textarea())
     full_content = forms.CharField(widget=CKEditorWidget())
+    categories = CategoryChoice()
 
     class Meta:
         model = models.Post
 
 
 class PostAdmin(core_models.ModelAdmin):
-    list_filter = ['added_at', 'status']
+    list_filter = ['added_at', 'status', 'categories']
     list_display = ['added_at', 'slug', 'title', 'short_content', 'related_category_names', 'related_slider', 'status']
 
     form = PostAdminForm

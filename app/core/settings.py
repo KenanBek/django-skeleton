@@ -30,6 +30,7 @@ INSTALLED_APPS = (
     'suit',
     'reversion',
     'ckeditor',
+    'django_select2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
