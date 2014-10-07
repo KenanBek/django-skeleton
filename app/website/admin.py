@@ -6,6 +6,8 @@ from app.core import models as core_models
 import models
 
 
+
+
 # Widget
 
 
@@ -19,9 +21,18 @@ class WidgetAdmin(core_models.ModelAdmin):
 # Page
 
 
+class PageAdminForm(forms.ModelForm):
+    content = forms.CharField(widget=CKEditorWidget())
+
+    class Meta:
+        model = models.Page
+
+
 class PageAdmin(core_models.ModelAdmin):
     list_filter = ['status']
     list_display = ['slug', 'title', 'related_widget_names', 'related_slider', 'status']
+
+    form = PageAdminForm
 
     def related_widget_names(self, obj):
         return ",\n".join([widget.title for widget in obj.widgets.all()])
@@ -40,6 +51,7 @@ class CategoryAdmin(core_models.ModelAdmin):
 # Post
 
 class PostAdminForm(forms.ModelForm):
+    short_content = forms.CharField(widget=forms.Textarea())
     full_content = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
@@ -49,6 +61,7 @@ class PostAdminForm(forms.ModelForm):
 class PostAdmin(core_models.ModelAdmin):
     list_filter = ['added_at', 'status']
     list_display = ['added_at', 'slug', 'title', 'short_content', 'related_category_names', 'related_slider', 'status']
+
     form = PostAdminForm
 
     def related_category_names(self, obj):

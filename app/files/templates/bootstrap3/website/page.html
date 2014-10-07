@@ -8,7 +8,7 @@
             {% endif %}
             <h1>{{ page.title }}</h1>
             <p>
-                {{ page.content }}
+                {{ page.content|safe }}
             </p>
             {% if post.related_slider %}
                 {% include "bootstrap3/slider.html" with slider=post.related_slider %}

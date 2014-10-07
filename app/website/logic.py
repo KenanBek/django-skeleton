@@ -17,7 +17,7 @@ def get_post(post_id, post_slug):
 
 
 def load_posts():
-    return models.Post.objects.filter(status=models.PUBLISHED).all()
+    return models.Post.objects.filter(status=models.PUBLISHED).order_by('-modified_at').all()
 
 
 class SearchResult:

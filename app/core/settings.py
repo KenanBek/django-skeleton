@@ -219,11 +219,13 @@ CKEDITOR_UPLOAD_PATH = 'ckeditor/'
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Full',
-        'height': 300,
-        'width': 300,
+        'height': '100%',
+        'width': '100%',
     },
-    'awesome_ckeditor': {
+    'basic': {
         'toolbar': 'Basic',
+        'height': '100%',
+        'width': '100%',
     },
 }
 

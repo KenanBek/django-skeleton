@@ -7,6 +7,7 @@ Skeleton for Django projects.
 
 # Features
 
+- CKEditor with configured file upload
 - Reversion
 - Management commands for initial configuration
 - Website model (Widget, Page, Post and Category)

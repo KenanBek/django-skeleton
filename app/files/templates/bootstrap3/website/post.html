@@ -10,7 +10,7 @@
                 <h2 class="blog-post-title">{{ post.title }}</h2>
                 <p class="blog-post-meta">{{ post.modified_at }}</p>
                 <p>
-                    {{ post.full_content }}
+                    {{ post.full_content|safe }}
                 </p>
                 {% if post.related_slider %}
                     {% include "bootstrap3/slider.html" with slider=post.related_slider %}

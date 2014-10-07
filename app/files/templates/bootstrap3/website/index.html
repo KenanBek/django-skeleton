@@ -29,7 +29,7 @@
                 <div class="list-group">
                     <a href="{% url 'website_post' post.id post.slug %}" class="list-group-item">
                         <h4 class="list-group-item-heading">{{ post.title }}</h4>
-                        <p class="list-group-item-text">{{ post.short_content }}</p>
+                        <p class="list-group-item-text">{{ post.short_content|safe }}</p>
                     </a>
                 </div>
             {% empty %}
