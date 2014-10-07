@@ -2,9 +2,13 @@ from django import forms
 from django.contrib import admin
 from ckeditor.widgets import CKEditorWidget
 from django_select2 import fields
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
 from core import models as core_models
 import models
+
+
 
 
 
@@ -66,10 +70,16 @@ class PostAdminForm(forms.ModelForm):
         model = models.Post
 
 
-class PostAdmin(core_models.ModelAdmin):
+class PostResource(resources.ModelResource):
+    class Meta:
+        model = models.Post
+
+
+class PostAdmin(ImportExportModelAdmin):
     list_filter = ['added_at', 'status', 'categories']
     list_display = ['added_at', 'slug', 'title', 'short_content', 'related_category_names', 'related_slider', 'status']
 
+    resource_class = PostResource
     form = PostAdminForm
 
     def related_category_names(self, obj):
