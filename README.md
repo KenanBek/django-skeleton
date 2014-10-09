@@ -3,6 +3,8 @@ django-skeleton
 
 Skeleton for Django projects.
 
+Current version: 1.0.0 (ongoing).
+
 [![Build Status](https://travis-ci.org/KenanBek/django-skeleton.svg?branch=master)](https://travis-ci.org/KenanBek/django-skeleton)
 
 # Features
