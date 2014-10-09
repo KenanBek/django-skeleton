@@ -9,13 +9,6 @@ from core import models as core_models
 import models
 
 
-
-
-
-
-# Widget
-
-
 class WidgetAdmin(core_models.ModelAdmin):
     list_display = ['title', 'related_page_names']
 
