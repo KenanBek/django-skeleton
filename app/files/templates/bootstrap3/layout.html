@@ -43,6 +43,9 @@
                 <li><a href="{% url 'website_index' %}">Dashboard</a></li>
                 <li><a href="{% url 'website_about' %}">About</a></li>
                 <li><a href="{% url 'website_contact' %}">Contact</a></li>
+                {% if user.is_active and user.is_staff %}
+                    <li class="color red"><a href="{% url 'admin:index' %}">Administration</a></li>
+                {% endif %}
             </ul>
             <form class="navbar-form navbar-right" action="{% url 'website_search' %}" method="get">
                 <input id="term" name="term" type="text" class="form-control" placeholder="Search..." value="{{ term }}">

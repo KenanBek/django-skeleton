@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^select2/', include('django_select2.urls')),
-    url(r'^$', RedirectView.as_view(url='/index', permanent=True)),
+    url(r'^$', RedirectView.as_view(url='/index', permanent=True), name='index'),
     url(r'^', include('website.urls')),
 )
 

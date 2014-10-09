@@ -10,10 +10,11 @@ Skeleton for Django projects.
 - Import and Export to most popular file formats (xml, csv, etc.)
 - Auto select for administration (Django Select2)
 - CKEditor with configured file upload
-- Reversion
+- Model history and reversion (possibility to back to old versions of the model)
 - Management commands for initial configuration
 - Website model (Widget, Page, Post and Category)
-- Pre configured specific folder of Django application (fixtures, media, static, etc.)
+- Customized Django Suit based administration
+- Pre configured specific folders of Django application (fixtures, media, static, etc.)
 - Slider
 - Email subscription
 - Contact and Application database
