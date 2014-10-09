@@ -43,8 +43,8 @@ class Widget(core_models.Model):
 
 class Page(core_models.Model):
     status = models.CharField(max_length=9, choices=MODEL_STATUS, default=PUBLISHED)
-    slug = models.SlugField(unique=True)
     title = models.CharField(max_length=32)
+    slug = models.SlugField(unique=True)
     content = models.TextField()
     widgets = models.ManyToManyField(Widget, null=True, blank=True)
     featured_image = models.ImageField(upload_to='website/page/', null=True, blank=True)
@@ -71,8 +71,8 @@ class Category(core_models.Model):
 
 class Post(core_models.Model):
     status = models.CharField(max_length=9, choices=MODEL_STATUS, default=PUBLISHED)
-    slug = models.SlugField(unique=True)
     title = models.CharField(max_length=32)
+    slug = models.SlugField(unique=True)
     short_content = models.CharField(max_length=512)
     full_content = models.TextField()
     categories = models.ManyToManyField(Category)
