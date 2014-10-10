@@ -201,7 +201,7 @@ SUIT_CONFIG = {
     # 'SEARCH_URL': '/admin/auth/user/',
     # 'MENU_ICONS': {
     # 'sites': 'icon-leaf',
-    #    'auth': 'icon-lock',
+    # 'auth': 'icon-lock',
     # },
     # 'MENU_OPEN_FIRST_CHILD': True, # Default True
     # 'MENU_EXCLUDE': ('auth.group',),
@@ -211,7 +211,35 @@ SUIT_CONFIG = {
     #     {'label': 'Settings', 'icon':'icon-cog', 'models': ('auth.user', 'auth.group')},
     #     {'label': 'Support', 'icon':'icon-question-sign', 'url': '/support/'},
     # ),
+    'MENU': (
+        'sites',
+        '-',
+        {'label': 'Account', 'icon': 'icon-lock', 'models': (
+            {'model': 'auth.group', 'label': 'Group'},
+            {'model': 'auth.user', 'label': 'User'},
+            {'model': 'account.profile', 'label': 'Profile'},
+        )},
+        '-',
+        {'label': 'Website', 'icon': 'icon-th', 'models': (
+            {'model': 'website.contact', 'label': 'Contacts'},
+            {'model': 'website.subscriber', 'label': 'Subscribers'},
+            {'model': 'website.document', 'label': 'Documents'},
+            {'model': 'website.slider', 'label': 'Sliders'},
+            {'model': 'website.slide', 'label': 'Slides'},
+        )},
+        {'label': 'Page', 'icon': 'icon-th', 'app': 'website', 'models': (
+            {'model': 'website.widget', 'label': 'Widgets'},
+            {'model': 'website.page', 'label': 'Pages'},
+        )},
+        {'label': 'Post', 'icon': 'icon-th', 'models': (
+            {'model': 'website.category', 'label': 'Categories'},
+            {'model': 'website.post', 'label': 'Posts'},
+        )},
 
+        #{'app': 'website'},
+        #{'label': 'Settings', 'icon': 'icon-cog', 'models': ('auth.user', 'auth.group')},
+        #{'label': 'Support', 'icon': 'icon-question-sign', 'url': '/support/'},
+    ),
     # misc
     # 'LIST_PER_PAGE': 15
 }
