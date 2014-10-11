@@ -8,7 +8,7 @@ from core import models as core_models
 class Profile(core_models.Model):
     user = models.OneToOneField(User)
     website = models.URLField(null=True, blank=True)
-    avatar = models.ImageField(upload_to='account/avatar')
+    avatar = models.ImageField(upload_to='account/avatar', null=True, blank=True)
 
     def __str__(self):
         return self.user.username

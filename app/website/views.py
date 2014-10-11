@@ -1,9 +1,8 @@
 from django.contrib import messages
-
+from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 
 import forms
-
 import logic
 
 
@@ -27,7 +26,7 @@ def contact(request, template="bootstrap3/website/contact.html", context={}):
         if contact_form.is_valid():
             contact_form.save()
             messages.add_message(request, messages.INFO, 'Your message successfully submitted.')
-            return redirect('/contact')
+            return redirect(reverse('website_contact'))
         else:
             messages.add_message(request, messages.WARNING, 'Please fix errors bellow.')
 
@@ -44,7 +43,7 @@ def document(request, template="bootstrap3/website/contact.html", context={}):
         if document_form.is_valid():
             document_form.save()
             messages.add_message(request, messages.INFO, 'Your application successfully submitted.')
-            return redirect('/contact')
+            return redirect(reverse('website_contact'))
         else:
             messages.add_message(request, messages.WARNING, 'Please fix errors bellow.')
 

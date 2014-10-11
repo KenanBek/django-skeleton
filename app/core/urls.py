@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     url(r'^select2/', include('django_select2.urls')),
     url(r'^$', RedirectView.as_view(url='/index', permanent=True), name='index'),
     url(r'^', include('website.urls')),
+    url(r'^account/', include('account.urls')),
 )
 
 # Serve static files
