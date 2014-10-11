@@ -39,17 +39,36 @@
             <a class="navbar-brand" href="{% url 'website_index' %}">Django Skeleton</a>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-left">
                 <li><a href="{% url 'website_index' %}">Dashboard</a></li>
                 <li><a href="{% url 'website_about' %}">About</a></li>
                 <li><a href="{% url 'website_contact' %}">Contact</a></li>
-                {% if user.is_active and user.is_staff %}
-                    <li class="color red"><a href="{% url 'admin:index' %}">Administration</a></li>
-                {% endif %}
             </ul>
             <form class="navbar-form navbar-right" action="{% url 'website_search' %}" method="get">
                 <input id="term" name="term" type="text" class="form-control" placeholder="Search..." value="{{ term }}">
             </form>
+            {% if user.is_active %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'account_index' %}">My Account</a></li>
+                            {% if user.is_staff %}
+                                <li class="divider"></li>
+                                <li><a href="{% url 'admin:index' %}">Go to Administration</a></li>
+                            {% endif %}
+                            <li class="divider"></li>
+                            <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            {% else %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'account_login' %}">Login</a></li>
+                    <li><a href="{% url 'account_register' %}">Register</a></li>
+                </ul>
+            {% endif %}
         </div>
     </div>
 </div>
@@ -71,7 +90,8 @@
             {% if messages %}
                 <br />
                 {% for message in messages %}
-                    <div{% if message.tags %} class="alert alert-{{ message.tags }}" {% else %} class="alert" {% endif %} role="alert">{{ message }}</div>
+                    <div
+                            {% if message.tags %} class="alert alert-{{ message.tags }}" {% else %} class="alert" {% endif %} role="alert">{{ message }}</div>
                 {% endfor %}
                 <br />
             {% endif %}

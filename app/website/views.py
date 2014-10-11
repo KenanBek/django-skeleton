@@ -1,9 +1,11 @@
-from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+from django.utils.translation import ugettext_lazy as _
+from django.contrib import messages
+from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 
 import forms
-
 import logic
 
 
@@ -26,10 +28,10 @@ def contact(request, template="bootstrap3/website/contact.html", context={}):
     if request.method == 'POST':
         if contact_form.is_valid():
             contact_form.save()
-            messages.add_message(request, messages.INFO, 'Your message successfully submitted.')
-            return redirect('/contact')
+            messages.add_message(request, messages.SUCCESS, _('Your message successfully submitted.'))
+            return redirect(reverse('website_contact'))
         else:
-            messages.add_message(request, messages.WARNING, 'Please fix errors bellow.')
+            messages.add_message(request, messages.ERROR, _('Please fix errors bellow.'))
 
     context['contact_form'] = contact_form
     context['document_form'] = forms.DocumentForm()
@@ -43,10 +45,10 @@ def document(request, template="bootstrap3/website/contact.html", context={}):
     if request.method == 'POST':
         if document_form.is_valid():
             document_form.save()
-            messages.add_message(request, messages.INFO, 'Your application successfully submitted.')
-            return redirect('/contact')
+            messages.add_message(request, messages.SUCCESS, _('Your application successfully submitted.'))
+            return redirect(reverse('website_contact'))
         else:
-            messages.add_message(request, messages.WARNING, 'Please fix errors bellow.')
+            messages.add_message(request, messages.ERROR, _('Please fix errors bellow.'))
 
     context['contact_form'] = forms.ContactForm()
     context['document_form'] = document_form
@@ -69,13 +71,13 @@ def subscribe(request):
     email = request.GET['email']
 
     if not email:
-        messages.add_message(request, messages.WARNING, 'Please enter your email.')
+        messages.add_message(request, messages.WARNING, _('Please enter your email.'))
     else:
         try:
             logic.subscribe(name, email)
-            messages.add_message(request, messages.INFO, 'You successfully subscribed.')
-        except Exception as e:
-            messages.add_message(request, messages.WARNING, 'You already have been subscribed.')
+            messages.add_message(request, messages.SUCCESS, _('You successfully subscribed.'))
+        except:
+            messages.add_message(request, messages.WARNING, _('You already have been subscribed.'))
     return redirect(request.META.get('HTTP_REFERER'))
 
 
@@ -84,6 +86,7 @@ def page(request, page_slug, template='bootstrap3/website/page.html', context={}
     return render(request, template, context)
 
 
+@login_required
 def post(request, post_id, post_slug, template='bootstrap3/website/post.html', context={}):
     context['post'] = logic.get_post(post_id, post_slug)
     return render(request, template, context)

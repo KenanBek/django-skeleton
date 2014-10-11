@@ -1,0 +1,10 @@
+{% extends 'bootstrap3/layout.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Please enter login and password:</h3>
+            {% include "bootstrap3/form.html" with form=login_form action=account_login method="post" %}
+        </div>
+    </div>
+{% endblock %}

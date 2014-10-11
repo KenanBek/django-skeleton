@@ -1,40 +1,13 @@
-<form class="form-horizontal" role="form" action="{{ action }}" method="{{ method }}" {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>
+<form class="form-horizontal" role="form" action="{{ action }}" method="{{ method }}" {% if form.is_multipart or forms %}enctype="multipart/form-data"{% endif %}>
     {% csrf_token %}
 
-    {# Include non field errors #}
-    {% if form.non_field_errors %}
-        <div class="notification notification-red">
-            {{ form.non_field_errors }}
-        </div>
+    {% if forms %}
+        {% for form_item in forms %}
+            {% include "bootstrap3/form_elements.html" with form=form_item %}
+        {%  endfor %}
+    {% else %}
+        {% include "bootstrap3/form_elements.html" with form=form %}
     {% endif %}
-
-    {# Include the hidden fields #}
-    {% for hidden in form.hidden_fields %}
-        {{ hidden }}
-    {% endfor %}
-
-    {# Include the visible fields #}
-    {% for field in form.visible_fields %}
-        <div class="form-group">
-            <label for="{{ field.id_for_label }}" class="col-sm-4">
-                {{ field.label }}
-            </label>
-            <div class="col-sm-8">
-                {{ field }}
-                {% if field.help_text %}
-                    <span class="help-block">{{ field.help_text }}</span>
-                {% endif %}
-                {% if field.errors %}
-                    {% for error in field.errors %}
-                        <p class="text-danger">
-                            {{ error }}
-                        </p>
-                    {% endfor %}
-                {% endif %}
-            </div>
-        </div>
-    {% endfor %}
-
     {# Include the visible fields #}
     <div class="form-group form-footer">
         <div class="col-sm-offset-4 col-sm-8">
