@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+from django.contrib.messages import constants as message_constants
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -52,6 +53,22 @@ MIDDLEWARE_CLASSES = (
 )
 ROOT_URLCONF = 'core.urls'
 WSGI_APPLICATION = 'core.wsgi.application'
+
+# Auth
+
+AUTH_PROFILE_MODULE = 'account.Profile'
+LOGIN_URL = '/account/login/'
+LOGOUT_URL = '/account/logout/'
+
+# Message
+
+MESSAGE_TAGS = {
+    message_constants.DEBUG: 'debug',
+    message_constants.INFO: 'info',
+    message_constants.SUCCESS: 'success',
+    message_constants.WARNING: 'warning',
+    message_constants.ERROR: 'danger'
+}
 
 # Database
 
@@ -106,7 +123,6 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
 TEMPLATE_DIRS = {
     os.path.join(BASE_DIR, 'files/templates/'),
 }
-
 
 # Static files (CSS, JavaScript, Images)
 
@@ -206,7 +222,7 @@ SUIT_CONFIG = {
     # 'MENU_OPEN_FIRST_CHILD': True, # Default True
     # 'MENU_EXCLUDE': ('auth.group',),
     # 'MENU': (
-    #     'sites',
+    # 'sites',
     #     {'app': 'auth', 'icon':'icon-lock', 'models': ('user', 'group')},
     #     {'label': 'Settings', 'icon':'icon-cog', 'models': ('auth.user', 'auth.group')},
     #     {'label': 'Support', 'icon':'icon-question-sign', 'url': '/support/'},

@@ -9,6 +9,8 @@ Current version: 1.0.0 (ongoing).
 
 # Features
 
+- Custom user authentication with user profile
+- Multiple form support
 - Import and Export to most popular file formats (xml, csv, etc.)
 - Auto select for administration (Django Select2)
 - CKEditor with configured file upload
