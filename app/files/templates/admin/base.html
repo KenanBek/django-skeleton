@@ -2,6 +2,9 @@
 <html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
     <title>{% block title %}{{ title }} | {{ 'ADMIN_NAME'|suit_conf }}{% endblock %}</title>
+    <meta name="description" content="django-skeleton">
+    <meta name="author" content="Kenan Bek">
+    <link rel="icon" href="{% static 'icon.png' %}">
     <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% endblock %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'suit/bootstrap/css/bootstrap.min.css' %}" media="all" />
     <link rel="stylesheet" type="text/css" href="{% static 'suit/css/suit.css' %}" media="all">

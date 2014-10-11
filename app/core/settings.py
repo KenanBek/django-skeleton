@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+from django.contrib.messages import constants as message_constants
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -39,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'system',
+    'account',
     'website',
 )
 MIDDLEWARE_CLASSES = (
@@ -51,6 +53,22 @@ MIDDLEWARE_CLASSES = (
 )
 ROOT_URLCONF = 'core.urls'
 WSGI_APPLICATION = 'core.wsgi.application'
+
+# Auth
+
+AUTH_PROFILE_MODULE = 'account.Profile'
+LOGIN_URL = '/account/login/'
+LOGOUT_URL = '/account/logout/'
+
+# Message
+
+MESSAGE_TAGS = {
+    message_constants.DEBUG: 'debug',
+    message_constants.INFO: 'info',
+    message_constants.SUCCESS: 'success',
+    message_constants.WARNING: 'warning',
+    message_constants.ERROR: 'danger'
+}
 
 # Database
 
@@ -105,7 +123,6 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
 TEMPLATE_DIRS = {
     os.path.join(BASE_DIR, 'files/templates/'),
 }
-
 
 # Static files (CSS, JavaScript, Images)
 
@@ -200,17 +217,45 @@ SUIT_CONFIG = {
     # 'SEARCH_URL': '/admin/auth/user/',
     # 'MENU_ICONS': {
     # 'sites': 'icon-leaf',
-    #    'auth': 'icon-lock',
+    # 'auth': 'icon-lock',
     # },
     # 'MENU_OPEN_FIRST_CHILD': True, # Default True
     # 'MENU_EXCLUDE': ('auth.group',),
     # 'MENU': (
-    #     'sites',
+    # 'sites',
     #     {'app': 'auth', 'icon':'icon-lock', 'models': ('user', 'group')},
     #     {'label': 'Settings', 'icon':'icon-cog', 'models': ('auth.user', 'auth.group')},
     #     {'label': 'Support', 'icon':'icon-question-sign', 'url': '/support/'},
     # ),
+    'MENU': (
+        'sites',
+        '-',
+        {'label': 'Account', 'icon': 'icon-lock', 'models': (
+            {'model': 'auth.group', 'label': 'Group'},
+            {'model': 'auth.user', 'label': 'User'},
+            {'model': 'account.profile', 'label': 'Profile'},
+        )},
+        '-',
+        {'label': 'Website', 'icon': 'icon-th', 'models': (
+            {'model': 'website.contact', 'label': 'Contacts'},
+            {'model': 'website.subscriber', 'label': 'Subscribers'},
+            {'model': 'website.document', 'label': 'Documents'},
+            {'model': 'website.slider', 'label': 'Sliders'},
+            {'model': 'website.slide', 'label': 'Slides'},
+        )},
+        {'label': 'Page', 'icon': 'icon-th', 'app': 'website', 'models': (
+            {'model': 'website.widget', 'label': 'Widgets'},
+            {'model': 'website.page', 'label': 'Pages'},
+        )},
+        {'label': 'Post', 'icon': 'icon-th', 'models': (
+            {'model': 'website.category', 'label': 'Categories'},
+            {'model': 'website.post', 'label': 'Posts'},
+        )},
 
+        #{'app': 'website'},
+        #{'label': 'Settings', 'icon': 'icon-cog', 'models': ('auth.user', 'auth.group')},
+        #{'label': 'Support', 'icon': 'icon-question-sign', 'url': '/support/'},
+    ),
     # misc
     # 'LIST_PER_PAGE': 15
 }
