@@ -9,6 +9,8 @@ Current version: 1.0.0 (ongoing).
 
 # Features
 
+## Version 1.0
+
 - Custom user authentication with user profile
 - Multiple form support
 - Import and Export to most popular file formats (xml, csv, etc.)
