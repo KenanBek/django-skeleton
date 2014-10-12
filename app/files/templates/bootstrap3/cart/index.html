@@ -1,0 +1,26 @@
+{% extends 'bootstrap3/layout.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="sub-header">Last Products</h2>
+            {% for product in last_products %}
+                <div class="col-md-4 portfolio-item">
+                    <a href="#">
+                        {% if product.image %}
+                            <img class="img-responsive" src="{{ MEDIA_URL }}/{{ product.image }}" alt="">
+                        {% else %}
+                            <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                        {% endif %}
+                    </a>
+                    <h3>
+                        <a href="#">{{ product.model }}</a>
+                    </h3>
+                    <p>{{ product.info|safe }}</p>
+                </div>
+            {% empty %}
+                <h4>No products.</h4>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

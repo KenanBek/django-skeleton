@@ -1,4 +1,6 @@
 from django.contrib import admin
+from ckeditor.widgets import CKEditorWidget
+from django import forms
 
 from core import models as core_models
 import models
@@ -16,10 +18,18 @@ class ProductImageInline(admin.StackedInline):
     extra = 4
 
 
+class ProductFormAdmin(forms.ModelForm):
+    info = forms.CharField(widget=CKEditorWidget())
+
+    class Meta:
+        model = models.Product
+
+
 class ProductAdmin(core_models.ModelAdmin):
     list_display = ['category', 'manufacturer', 'model', ]
     list_filter = ['category', 'manufacturer', ]
     inlines = [ProductAttributeInline, ProductImageInline, ]
+    form = ProductFormAdmin
     fieldsets = [
         ('Relations', {
             'classes': ('suit-tab suit-tab-general',),
@@ -29,12 +39,12 @@ class ProductAdmin(core_models.ModelAdmin):
         ('General', {
             'classes': ('suit-tab suit-tab-general',),
             'description': 'Product general information',
-            'fields': ['model', 'size', 'weight', ]
+            'fields': ['model', 'size', 'weight', 'info', ]
         }),
         ('Media', {
             'classes': ('suit-tab suit-tab-general',),
             'description': 'Related media sources',
-            'fields': ['video_code', ]
+            'fields': ['image', 'video_code', ]
         }),
     ]
     suit_form_tabs = (

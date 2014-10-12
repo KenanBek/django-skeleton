@@ -65,7 +65,9 @@ class Product(core_models.Model):
     model = models.CharField(max_length=256)
     size = models.CharField(max_length=128, null=True, blank=True)
     weight = models.CharField(max_length=128, null=True, blank=True)
+    info = models.CharField(max_length=1024, null=True, blank=True)
 
+    image = models.ImageField(upload_to='cart/product', null=True, blank=True)
     video_code = models.CharField(max_length=1024, null=True, blank=True)
 
     def __str__(self):

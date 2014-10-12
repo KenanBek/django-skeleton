@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^$', RedirectView.as_view(url='/index', permanent=True), name='index'),
     url(r'^', include('website.urls')),
     url(r'^account/', include('account.urls')),
+    url(r'^cart/', include('cart.urls')),
 )
 
 # Serve static files
