@@ -1,0 +1,291 @@
+[
+    {
+        "pk": 1,
+        "model": "cart.currency",
+        "fields": {
+            "modified_at": "2014-10-12T03:03:04.408Z",
+            "added_at": "2014-10-12T03:03:04.408Z",
+            "title": "AZN"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "cart.currency",
+        "fields": {
+            "modified_at": "2014-10-12T03:03:08.434Z",
+            "added_at": "2014-10-12T03:03:08.434Z",
+            "title": "USD"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "cart.currency",
+        "fields": {
+            "modified_at": "2014-10-12T03:03:12.124Z",
+            "added_at": "2014-10-12T03:03:12.124Z",
+            "title": "EURO"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "cart.manufacturer",
+        "fields": {
+            "info": "",
+            "title": "Sony",
+            "image": "",
+            "modified_at": "2014-10-12T03:03:20.259Z",
+            "added_at": "2014-10-12T03:03:20.259Z",
+            "slug": ""
+        }
+    },
+    {
+        "pk": 2,
+        "model": "cart.manufacturer",
+        "fields": {
+            "info": "",
+            "title": "LG",
+            "image": "",
+            "modified_at": "2014-10-12T03:03:23.737Z",
+            "added_at": "2014-10-12T03:03:23.737Z",
+            "slug": ""
+        }
+    },
+    {
+        "pk": 3,
+        "model": "cart.manufacturer",
+        "fields": {
+            "info": "",
+            "title": "Apple",
+            "image": "",
+            "modified_at": "2014-10-12T03:03:27.445Z",
+            "added_at": "2014-10-12T03:03:27.445Z",
+            "slug": ""
+        }
+    },
+    {
+        "pk": 4,
+        "model": "cart.manufacturer",
+        "fields": {
+            "info": "",
+            "title": "Samsung",
+            "image": "",
+            "modified_at": "2014-10-12T03:03:30.394Z",
+            "added_at": "2014-10-12T03:03:30.394Z",
+            "slug": ""
+        }
+    },
+    {
+        "pk": 1,
+        "model": "cart.category",
+        "fields": {
+            "info": "",
+            "modified_at": "2014-10-12T03:03:38.426Z",
+            "slug": "",
+            "added_at": "2014-10-12T03:03:38.426Z",
+            "title": "Phones"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "cart.category",
+        "fields": {
+            "info": "",
+            "modified_at": "2014-10-12T03:03:43.094Z",
+            "slug": "",
+            "added_at": "2014-10-12T03:03:43.093Z",
+            "title": "Tablets"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "cart.category",
+        "fields": {
+            "info": "",
+            "modified_at": "2014-10-12T03:04:04.316Z",
+            "slug": "",
+            "added_at": "2014-10-12T03:04:04.316Z",
+            "title": "PC and Notebooks"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "cart.attributegroup",
+        "fields": {
+            "modified_at": "2014-10-12T03:04:20.823Z",
+            "added_at": "2014-10-12T03:04:20.823Z",
+            "title": "Common characteristics"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "cart.attributegroup",
+        "fields": {
+            "modified_at": "2014-10-12T03:04:27.486Z",
+            "added_at": "2014-10-12T03:04:27.486Z",
+            "title": "Display"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "cart.attributegroup",
+        "fields": {
+            "modified_at": "2014-10-12T03:04:40.658Z",
+            "added_at": "2014-10-12T03:04:40.658Z",
+            "title": "Multimedia"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "cart.attributegroup",
+        "fields": {
+            "modified_at": "2014-10-12T03:04:47.119Z",
+            "added_at": "2014-10-12T03:04:47.119Z",
+            "title": "Cell"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "cart.attributegroup",
+        "fields": {
+            "modified_at": "2014-10-12T03:04:54.211Z",
+            "added_at": "2014-10-12T03:04:54.211Z",
+            "title": "Memory"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "cart.attribute",
+        "fields": {
+            "group": 1,
+            "modified_at": "2014-10-12T03:05:14.318Z",
+            "added_at": "2014-10-12T03:05:14.318Z",
+            "title": "Snatdard"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "cart.attribute",
+        "fields": {
+            "group": 1,
+            "modified_at": "2014-10-12T03:05:22.032Z",
+            "added_at": "2014-10-12T03:05:22.032Z",
+            "title": "Type"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "cart.attribute",
+        "fields": {
+            "group": 1,
+            "modified_at": "2014-10-12T03:05:27.139Z",
+            "added_at": "2014-10-12T03:05:27.139Z",
+            "title": "OS"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "cart.attribute",
+        "fields": {
+            "group": 2,
+            "modified_at": "2014-10-12T03:05:52.307Z",
+            "added_at": "2014-10-12T03:05:52.307Z",
+            "title": "Type"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "cart.attribute",
+        "fields": {
+            "group": 2,
+            "modified_at": "2014-10-12T03:06:14.159Z",
+            "added_at": "2014-10-12T03:06:14.159Z",
+            "title": "Touch screen type"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "cart.attribute",
+        "fields": {
+            "group": 3,
+            "modified_at": "2014-10-12T03:07:11.523Z",
+            "added_at": "2014-10-12T03:07:11.523Z",
+            "title": "Dict"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "cart.attribute",
+        "fields": {
+            "group": 3,
+            "modified_at": "2014-10-12T03:07:21.111Z",
+            "added_at": "2014-10-12T03:07:21.111Z",
+            "title": "Camera"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "cart.attribute",
+        "fields": {
+            "group": 3,
+            "modified_at": "2014-10-12T03:07:34.364Z",
+            "added_at": "2014-10-12T03:07:34.364Z",
+            "title": "Geo Tagging"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "cart.attribute",
+        "fields": {
+            "group": 4,
+            "modified_at": "2014-10-12T03:07:47.526Z",
+            "added_at": "2014-10-12T03:07:47.526Z",
+            "title": "USB Charger"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "cart.attribute",
+        "fields": {
+            "group": 4,
+            "modified_at": "2014-10-12T03:08:00.849Z",
+            "added_at": "2014-10-12T03:08:00.849Z",
+            "title": "Modem"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "cart.attribute",
+        "fields": {
+            "group": 5,
+            "modified_at": "2014-10-12T03:08:17.280Z",
+            "added_at": "2014-10-12T03:08:17.280Z",
+            "title": "Size"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "cart.shop",
+        "fields": {
+            "info": "",
+            "title": "World Telecom",
+            "modified_at": "2014-10-12T03:09:32.242Z",
+            "image": "",
+            "is_active": false,
+            "added_at": "2014-10-12T03:09:03.202Z",
+            "slug": "worldtelecom"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "cart.shop",
+        "fields": {
+            "info": "",
+            "title": "Bakunity",
+            "modified_at": "2014-10-12T03:09:23.679Z",
+            "image": "",
+            "is_active": false,
+            "added_at": "2014-10-12T03:09:23.679Z",
+            "slug": "bakunity"
+        }
+    }
+]

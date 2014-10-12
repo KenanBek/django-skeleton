@@ -261,8 +261,9 @@ SUIT_CONFIG = {
             {'model': 'cart.attribute', 'label': 'Attributes'},
         )},
         {'label': 'Shop', 'icon': 'icon-th', 'models': (
-            {'model': 'cart.shop', 'label': 'Shops'},
             {'model': 'cart.product', 'label': 'Products'},
+            {'model': 'cart.shop', 'label': 'Shops'},
+            {'model': 'cart.shopproduct', 'label': 'Shops and Products'},
         )},
         {'label': 'Orders', 'icon': 'icon-th', 'models': (
             {'model': 'cart.productreview', 'label': 'Product reviews'},
