@@ -14,7 +14,7 @@
                         {% endif %}
                     </a>
                     <h3>
-                        <a href="#">{{ product.model }}</a>
+                        <a href="{% url 'cart_product' product.id %}">{{ product.model }}</a>
                     </h3>
                     <p>{{ product.info|safe }}</p>
                 </div>
