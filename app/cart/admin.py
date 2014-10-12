@@ -73,7 +73,7 @@ class ShopAdmin(core_models.ModelAdmin):
 
 
 class ShopProductAdmin(core_models.ModelAdmin):
-    list_display = ['shop', 'product', 'currency', 'price', 'price', ]
+    list_display = ['shop', 'product', 'currency', 'price', 'quantity', ]
     list_filter = ['shop', 'product', ]
 
 
