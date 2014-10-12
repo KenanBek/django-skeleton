@@ -36,35 +36,69 @@
         <div class="col-lg-12">
             <h3 class="page-header">More photos</h3>
         </div>
-        <div class="col-sm-3 col-xs-6">
-            <a href="#">
-                <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-            </a>
-        </div>
-        <div class="col-sm-3 col-xs-6">
-            <a href="#">
-                <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-            </a>
-        </div>
-        <div class="col-sm-3 col-xs-6">
-            <a href="#">
-                <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-            </a>
-        </div>
-        <div class="col-sm-3 col-xs-6">
-            <a href="#">
-                <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-            </a>
-        </div>
-        <div class="col-sm-3 col-xs-6">
-            <a href="#">
-                <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-            </a>
-        </div>
-        <div class="col-sm-3 col-xs-6">
-            <a href="#">
-                <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-            </a>
+        {% if product_item.productimage_set %}
+            {% for product_image in product_item.productimage_set.all %}
+                <div class="col-sm-3 col-xs-6">
+                    <a href="#">
+                        <img class="img-responsive portfolio-item" src="{{ MEDIA_URL }}/{{ product_image.image }}" alt="">
+                    </a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active"><a href="#shops" role="tab" data-toggle="tab">Shops</a></li>
+                <li><a href="#characteristics" role="tab" data-toggle="tab">Characteristics</a></li>
+                <li><a href="#review" role="tab" data-toggle="tab">Review</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="shops">
+                    {% for shop_product in product_item.shopproduct_set.all %}
+                        {{ shop_product.price }}
+                    {% endfor %}
+                </div>
+                <div class="tab-pane" id="characteristics">
+                    {% for product_attribute in product_item.productattribute_set.all %}
+                        {{ product_attribute.attribute.title }}
+                    {% endfor %}
+                </div>
+
+                <div class="tab-pane" id="review">Review ...3</div>
+            </div>
         </div>
     </div>
 

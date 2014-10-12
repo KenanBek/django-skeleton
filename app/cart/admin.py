@@ -12,10 +12,18 @@ class ProductAttributeInline(admin.TabularInline):
     extra = 10
 
 
+class ProductImageFormAdmin(forms.ModelForm):
+    info = forms.CharField(widget=forms.Textarea(), required=False)
+
+    class Meta:
+        model = models.ProductImage
+
+
 class ProductImageInline(admin.StackedInline):
     model = models.ProductImage
     suit_classes = 'suit-tab suit-tab-images'
-    extra = 4
+    form = ProductImageFormAdmin
+    extra = 6
 
 
 class ProductFormAdmin(forms.ModelForm):
