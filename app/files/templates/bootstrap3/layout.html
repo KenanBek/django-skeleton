@@ -45,7 +45,7 @@
                 <li><a href="{% url 'website_contact' %}">Contact</a></li>
             </ul>
             <form class="navbar-form navbar-right" action="{% url 'website_search' %}" method="get">
-                <input id="term" name="term" type="text" class="form-control" placeholder="Search..." value="{{ term }}">
+                <input id="q" name="q" type="text" class="form-control" placeholder="Search..." value="{{ q }}">
             </form>
             {% if user.is_active %}
                 <ul class="nav navbar-nav navbar-right">

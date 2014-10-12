@@ -215,7 +215,7 @@ SUIT_CONFIG = {
     # 'CONFIRM_UNSAVED_CHANGES': True, # Default True
 
     # menu
-    # 'SEARCH_URL': '/admin/auth/user/',
+    'SEARCH_URL': '/search/',
     # 'MENU_ICONS': {
     # 'sites': 'icon-leaf',
     # 'auth': 'icon-lock',
@@ -269,15 +269,11 @@ SUIT_CONFIG = {
             {'model': 'cart.shopreview', 'label': 'Shop reviews'},
         )},
         '-',
-        {'label': 'Author', 'icon': 'icon-bookmark', 'url': 'http://kenanbek.me'},
+        {'label': 'Documentation', 'icon': 'icon-bookmark', 'url': 'https://github.com/KenanBek/django-skeleton/wiki'},
         {'label': 'Report a bug', 'icon': 'icon-comment', 'url': 'http://github.com/kenanbek/django-skeleton/issues'},
-
-        #{'app': 'website'},
-        #{'label': 'Settings', 'icon': 'icon-cog', 'models': ('auth.user', 'auth.group')},
-        #{'label': 'Support', 'icon': 'icon-question-sign', 'url': '/support/'},
     ),
     # misc
-    # 'LIST_PER_PAGE': 15
+    'LIST_PER_PAGE': 50
 }
 
 # CKEDITOR

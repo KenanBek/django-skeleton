@@ -57,18 +57,18 @@ def document(request, template="bootstrap3/website/contact.html", context={}):
 
 
 def search(request, template='bootstrap3/website/search.html', context={}):
-    term = request.GET['term']
-    search_result = logic.search(term)
+    q = request.GET.get('q', False)
+    search_result = logic.search(q)
 
-    context['term'] = term
+    context['q'] = q
     context['pages'] = search_result.pages
     context['posts'] = search_result.posts
     return render(request, template, context)
 
 
 def subscribe(request):
-    name = request.GET['name']
-    email = request.GET['email']
+    name = request.GET.get('name', False)
+    email = request.GET.get('email', False)
 
     if not email:
         messages.add_message(request, messages.WARNING, _('Please enter your email.'))
