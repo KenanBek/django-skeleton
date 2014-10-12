@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'system',
     'account',
     'website',
+    'cart',
 )
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -223,9 +224,9 @@ SUIT_CONFIG = {
     # 'MENU_EXCLUDE': ('auth.group',),
     # 'MENU': (
     # 'sites',
-    #     {'app': 'auth', 'icon':'icon-lock', 'models': ('user', 'group')},
-    #     {'label': 'Settings', 'icon':'icon-cog', 'models': ('auth.user', 'auth.group')},
-    #     {'label': 'Support', 'icon':'icon-question-sign', 'url': '/support/'},
+    # {'app': 'auth', 'icon':'icon-lock', 'models': ('user', 'group')},
+    # {'label': 'Settings', 'icon':'icon-cog', 'models': ('auth.user', 'auth.group')},
+    # {'label': 'Support', 'icon':'icon-question-sign', 'url': '/support/'},
     # ),
     'MENU': (
         'sites',
@@ -243,7 +244,7 @@ SUIT_CONFIG = {
             {'model': 'website.slider', 'label': 'Sliders'},
             {'model': 'website.slide', 'label': 'Slides'},
         )},
-        {'label': 'Page', 'icon': 'icon-th', 'app': 'website', 'models': (
+        {'label': 'Page', 'icon': 'icon-th', 'models': (
             {'model': 'website.widget', 'label': 'Widgets'},
             {'model': 'website.page', 'label': 'Pages'},
         )},
@@ -251,6 +252,25 @@ SUIT_CONFIG = {
             {'model': 'website.category', 'label': 'Categories'},
             {'model': 'website.post', 'label': 'Posts'},
         )},
+        '-',
+        {'label': 'Cart', 'icon': 'icon-th', 'models': (
+            {'model': 'cart.currency', 'label': 'Currencies'},
+            {'model': 'cart.manufacturer', 'label': 'Manufactureres'},
+            {'model': 'cart.category', 'label': 'Categories'},
+            {'model': 'cart.attributegroup', 'label': 'Attribute groups'},
+            {'model': 'cart.attribute', 'label': 'Attributes'},
+        )},
+        {'label': 'Shop', 'icon': 'icon-th', 'models': (
+            {'model': 'cart.shop', 'label': 'Shops'},
+            {'model': 'cart.product', 'label': 'Products'},
+        )},
+        {'label': 'Orders', 'icon': 'icon-th', 'models': (
+            {'model': 'cart.productreview', 'label': 'Product reviews'},
+            {'model': 'cart.shopreview', 'label': 'Shop reviews'},
+        )},
+        '-',
+        {'label': 'Author', 'icon': 'icon-bookmark', 'url': 'http://kenanbek.me'},
+        {'label': 'Report a bug', 'icon': 'icon-comment', 'url': 'http://github.com/kenanbek/django-skeleton/issues'},
 
         #{'app': 'website'},
         #{'label': 'Settings', 'icon': 'icon-cog', 'models': ('auth.user', 'auth.group')},
