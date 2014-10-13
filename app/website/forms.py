@@ -14,3 +14,8 @@ class ContactForm(forms.ModelForm):
         model = models.Contact
         fields = '__all__'
 
+
+class SubscriberForm(forms.ModelForm):
+    class Meta:
+        model = models.Subscriber
+        fields = ['name', 'email', ]
