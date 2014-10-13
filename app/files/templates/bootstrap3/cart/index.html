@@ -6,9 +6,9 @@
             <h2 class="sub-header">Last Products</h2>
             {% for product in last_products %}
                 <div class="col-md-4 portfolio-item">
-                    <a href="#">
+                    <a href="{% url 'cart_product' product.id %}">
                         {% if product.image %}
-                            <img class="img-responsive" src="{{ MEDIA_URL }}/{{ product.image }}" alt="">
+                            <img class="img-responsive" src="{{ MEDIA_URL }}{{ product.image }}" alt="">
                         {% else %}
                             <img class="img-responsive" src="http://placehold.it/700x400" alt="">
                         {% endif %}

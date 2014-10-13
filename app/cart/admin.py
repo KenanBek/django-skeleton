@@ -62,7 +62,7 @@ class ProductAdmin(core_models.ModelAdmin):
     )
 
 
-class ShopProductInline(admin.StackedInline):
+class ShopProductInline(admin.TabularInline):
     model = models.ShopProduct
     suit_classes = 'suit-tab suit-tab-products'
     exclude = ['url', ]

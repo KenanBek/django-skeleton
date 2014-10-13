@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{% url 'website_index' %}">Django Skeleton</a>
+            <a class="navbar-brand" href="{% url 'website_index' %}">{{ skeleton_config.title }}</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
@@ -77,9 +77,8 @@
     <div class="row">
         <div class="col-md-3 sidebar">
             <ul class="nav nav-sidebar">
-                <li><a href="{% url 'website_index' %}">Overview</a></li>
-                <li><a href="{% url 'website_about' %}">About</a></li>
-                <li><a href="{% url 'website_contact' %}">Contact</a></li>
+                <li><a href="{% url 'website_index' %}">Website</a></li>
+                <li><a href="{% url 'cart_index' %}">Cart</a></li>
             </ul>
             <ul class="nav nav-sidebar">
                 <li><a href="http://kenanbek.me" target="_blank">Author</a></li>
@@ -91,7 +90,8 @@
                 <br />
                 {% for message in messages %}
                     <div
-                            {% if message.tags %} class="alert alert-{{ message.tags }}" {% else %} class="alert" {% endif %} role="alert">{{ message }}</div>
+                            {% if message.tags %} class="alert alert-{{ message.tags }}" {% else %} class="alert" {% endif %} role="alert">{{ message }}
+                    </div>
                 {% endfor %}
                 <br />
             {% endif %}

@@ -119,7 +119,8 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     'django.core.context_processors.request',
-    'django.contrib.messages.context_processors.messages'
+    'django.contrib.messages.context_processors.messages',
+    'core.context.general',
 )
 TEMPLATE_DIRS = {
     os.path.join(BASE_DIR, 'files/templates/'),
@@ -201,6 +202,13 @@ LOGGING = {
             'level': 'DEBUG',
         },
     }
+}
+
+# Django Skeleton
+
+SKELETON_CONFIG = {
+    'title': 'Application',
+    'description': 'Project template for Django Application.',
 }
 
 # Django Suit configuration example
