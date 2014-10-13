@@ -34,9 +34,9 @@
 
     <br />
 
-    {% if product_item.productimage_set %}
+    {% if product_item.productimage_set.count > 0 %}
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-md-12">
                 <h3 class="page-header">More photos</h3>
             </div>
             {% for product_image in product_item.productimage_set.all %}
@@ -50,8 +50,21 @@
         </div>
     {% endif %}
 
+    {% if product_item.video_code %}
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="page-header">Video review</h3>
+                <div class="embed-responsive embed-responsive-16by9">
+                    {{ product_item.video_code|safe }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <br />
+
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-md-12">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="active"><a href="#shops" role="tab" data-toggle="tab">Shops</a></li>
                 <li><a href="#characteristics" role="tab" data-toggle="tab">Characteristics</a></li>
@@ -63,14 +76,18 @@
                         {% for shop_product in product_item.shopproduct_set.all %}
                             <li class="media">
                                 <a class="pull-left" href="#">
-                                    <img class="media-object" src="
-
-
-                                            {{ MEDIA_URL }}{{ shop_product.shop.image }}" alt="{{ shop_product.shop.title }}" width="128">
+                                    <img class="media-object" src="{{ MEDIA_URL }}{{ shop_product.shop.image }}" alt="{{ shop_product.shop.title }}" width="128">
                                 </a>
                                 <div class="media-body">
-                                    <h4 class="media-heading">{{ shop_product.shop.title }} - {{ shop_product.price }} {{ shop_product.currency.title }}</h4>
-                                    {{ shop_product.product.info|safe }}
+                                    <h4 class="media-heading">
+                                        {{ shop_product.shop.title }} - {{ shop_product.price }} {{ shop_product.currency.title }}
+                                        <small class="text-muted">{{ shop_product.modified_at }}</small>
+                                    </h4>
+                                    {% if shop_product.info %}
+                                        {{ shop_product.info|safe }}
+                                    {% else %}
+                                        {{ shop_product.product.info|safe }}
+                                    {% endif %}
                                 </div>
                             </li>
                         {% endfor %}
@@ -79,15 +96,11 @@
                 <div class="tab-pane" id="characteristics">
                     {% regroup product_item.productattribute_set.all by attribute.group.title as attribute_group_list %}
                     <table class="table">
-                        <thead>
-                        <th>Attribute</th>
-                        <th>Value</th>
-                        </thead>
                         <tbody>
                         {% for group in attribute_group_list %}
                             <tr>
                                 <td colspan="2">
-                                    <i>{{ group.grouper }}</i>
+                                    <b>{{ group.grouper }}</b>
                                 </td>
                             </tr>
                             {% for product_item_attribute in group.list %}

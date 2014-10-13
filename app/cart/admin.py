@@ -28,6 +28,7 @@ class ProductImageInline(admin.StackedInline):
 
 class ProductFormAdmin(forms.ModelForm):
     info = forms.CharField(widget=CKEditorWidget())
+    video_code = forms.CharField(widget=forms.Textarea())
 
     class Meta:
         model = models.Product
@@ -62,10 +63,15 @@ class ProductAdmin(core_models.ModelAdmin):
     )
 
 
-class ShopProductInline(admin.TabularInline):
+class ShopProductFormInline(forms.ModelForm):
+    info = forms.CharField(widget=forms.Textarea(), required=False)
+
+
+class ShopProductInline(admin.StackedInline):
     model = models.ShopProduct
     suit_classes = 'suit-tab suit-tab-products'
     exclude = ['url', ]
+    form = ShopProductFormInline
     extra = 20
 
 
