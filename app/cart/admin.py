@@ -12,7 +12,7 @@ class ProductAttributeInline(admin.TabularInline):
     extra = 10
 
 
-class ProductImageFormAdmin(forms.ModelForm):
+class ProductImageFormInline(forms.ModelForm):
     info = forms.CharField(widget=forms.Textarea(), required=False)
 
     class Meta:
@@ -22,7 +22,7 @@ class ProductImageFormAdmin(forms.ModelForm):
 class ProductImageInline(admin.StackedInline):
     model = models.ProductImage
     suit_classes = 'suit-tab suit-tab-images'
-    form = ProductImageFormAdmin
+    form = ProductImageFormInline
     extra = 6
 
 
@@ -75,6 +75,11 @@ class ShopProductInline(admin.StackedInline):
     extra = 20
 
 
+class ShopFormAdmin(forms.ModelForm):
+    info = forms.CharField(widget=forms.Textarea())
+
+
+
 class ShopAdmin(core_models.ModelAdmin):
     list_display = ['title', 'is_active', ]
     inlines = [ShopProductInline, ]
@@ -94,6 +99,7 @@ class ShopAdmin(core_models.ModelAdmin):
         ('general', 'General'),
         ('products', 'Products'),
     )
+    form = ShopFormAdmin
 
 
 class ShopProductAdmin(core_models.ModelAdmin):
