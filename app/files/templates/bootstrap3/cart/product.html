@@ -15,7 +15,8 @@
     <div class="row">
         <div class="col-md-6">
             {% if product_item.image %}
-                <img class="img-responsive" src="{{ MEDIA_URL }}{{ product_item.image }}" alt="{{ product_item.model }}" title="{{ product_item.model }}">
+                <img class="img-responsive" src="
+                        {{ MEDIA_URL }}{{ product_item.image }}" alt="{{ product_item.model }}" title="{{ product_item.model }}">
             {% else %}
                 <img class="img-responsive" src="http://placehold.it/750x500" alt="" title="">
             {% endif %}
@@ -43,7 +44,8 @@
             {% for product_image in product_item.productimage_set.all %}
                 <div class="col-sm-3 col-xs-6">
                     <a href="#">
-                        <img class="img-responsive portfolio-item" src="{{ MEDIA_URL }}{{ product_image.image }}" alt="{{ product_image.info }}" title="{{ product_image.info }}">
+                        <img class="img-responsive portfolio-item" src="
+                                {{ MEDIA_URL }}{{ product_image.image }}" alt="{{ product_image.info }}" title="{{ product_image.info }}">
                     </a>
                 </div>
             {% endfor %}
@@ -68,7 +70,7 @@
             <ul class="nav nav-tabs" role="tablist">
                 <li class="active"><a href="#shops" role="tab" data-toggle="tab">Shops</a></li>
                 <li><a href="#characteristics" role="tab" data-toggle="tab">Characteristics</a></li>
-                <li><a href="#review" role="tab" data-toggle="tab">Review</a></li>
+                <li><a href="#reviews" role="tab" data-toggle="tab">Reviews</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="shops">
@@ -77,6 +79,7 @@
                             <li class="media">
                                 <a class="pull-left" href="{% url 'cart_shop' shop_product.shop.id %}">
                                     <img class="media-object" width="128" src="
+
                                             {{ MEDIA_URL }}{{ shop_product.shop.image }}" alt="{{ shop_product.shop.title }}" title="{{ shop_product.shop.title }}">
                                 </a>
                                 <div class="media-body">
@@ -114,7 +117,9 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="tab-pane" id="review">Review ...3</div>
+                <div class="tab-pane" id="reviews">
+                    Reviews...3
+                </div>
             </div>
         </div>
     </div>
