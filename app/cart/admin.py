@@ -76,8 +76,7 @@ class ShopProductInline(admin.StackedInline):
 
 
 class ShopFormAdmin(forms.ModelForm):
-    info = forms.CharField(widget=forms.Textarea())
-
+    info = forms.CharField(widget=CKEditorWidget())
 
 
 class ShopAdmin(core_models.ModelAdmin):

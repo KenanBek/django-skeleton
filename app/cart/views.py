@@ -14,3 +14,16 @@ def product(request, product_id, template='bootstrap3/cart/product.html', contex
     context['product_item'] = product_item
     return render(request, template, context)
 
+
+def shop(request, shop_id, template='bootstrap3/cart/shop.html', context={}):
+    shop_item = models.Shop.objects.get(pk=shop_id)
+    shop_products = []
+    related_shop_products = models.ShopProduct.objects.filter(shop=shop_item)
+
+    for shop_product in related_shop_products:
+        shop_products.append(shop_product.product)
+
+    context['shop_item'] = shop_item
+    context['shop_products'] = shop_products
+    return render(request, template, context)
+

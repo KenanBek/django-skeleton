@@ -1,0 +1,18 @@
+{% for product in product_list %}
+    <div class="col-md-4 portfolio-item">
+        <a href="{% url 'cart_product' product.id %}">
+            {% if product.image %}
+                <img class="img-responsive" src="
+                        {{ MEDIA_URL }}{{ product.image }}" alt="{{ product.model }}" title="{{ product.model }}">
+            {% else %}
+                <img class="img-responsive" src="http://placehold.it/700x400" alt="" title="">
+            {% endif %}
+        </a>
+        <h3>
+            <a href="{% url 'cart_product' product.id %}">{{ product.model }}</a>
+        </h3>
+        <p>{{ product.info|safe }}</p>
+    </div>
+{% empty %}
+    <h4>No products.</h4>
+{% endfor %}

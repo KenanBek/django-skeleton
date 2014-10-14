@@ -6,5 +6,6 @@ urlpatterns = patterns('cart.views',
     url(r'^index/$', 'index', name='cart_index'),
 
     url(r'^product/(?P<product_id>[0-9]+)/$', 'product', name='cart_product'),
+    url(r'^shop/(?P<shop_id>[0-9]+)/$', 'shop', name='cart_shop'),
 )
 

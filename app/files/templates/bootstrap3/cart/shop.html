@@ -1,0 +1,35 @@
+{% extends 'bootstrap3/layout.html' %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="sub-header">
+                {{ shop_item.title }}
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            {% if shop_item.image %}
+                <img class="img-responsive" src="
+                        {{ MEDIA_URL }}{{ shop_item.image }}" alt="{{ shop_item.title }}" title="{{ shop_item.title }}">
+            {% else %}
+                <img class="img-responsive" src="http://placehold.it/750x500" alt="" title="">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <h3>Info</h3>
+            <p>{{ shop_item.info|safe }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="sub-header">Shop's Top Products</h2>
+            {% include 'bootstrap3/cart/product_list.html' with product_list=shop_products %}
+        </div>
+    </div>
+
+{% endblock %}
