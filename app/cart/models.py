@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 from core import models as core_models
@@ -77,6 +78,7 @@ class Product(core_models.Model):
 class ProductReview(core_models.Model):
     is_approved = models.BooleanField(default=False)
     product = models.ForeignKey(Product)
+    user = models.ForeignKey(User)
     rating = models.IntegerField(choices=RATE_LEVEL, default=RATE_NORMAL)
     comment = models.CharField(max_length=1024)
 
@@ -112,6 +114,7 @@ class Shop(core_models.Model):
 class ShopReview(core_models.Model):
     is_approved = models.BooleanField(default=False)
     shop = models.ForeignKey(Shop)
+    user = models.ForeignKey(User)
     rating = models.IntegerField(choices=RATE_LEVEL, default=RATE_NORMAL)
     comment = models.CharField(max_length=1024)
 
