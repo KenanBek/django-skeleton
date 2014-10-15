@@ -21,6 +21,7 @@
         </div>
         <div class="col-md-8">
             <h3>Info</h3>
+            {% include 'bootstrap3/cart/shop_rate.html' with rate=shop_rate %}
             <p>{{ shop_item.info|safe }}</p>
         </div>
     </div>
@@ -39,7 +40,10 @@
                     {% include 'bootstrap3/cart/product_list.html' with product_list=shop_products %}
                 </div>
                 <div class="tab-pane" id="reviews">
-                    {% include 'bootstrap3/form.html' with form=shopreview_form %}
+                    {% for shopreview in shop_item.shopreview_set.all %}
+                        {{ shopreview.comment }}
+                    {% endfor %}
+                    {% include 'bootstrap3/cart/shop_review.html' %}
                 </div>
                 <div class="tab-pane" id="news">
                     News...3

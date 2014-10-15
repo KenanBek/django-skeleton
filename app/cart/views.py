@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from cart import forms
 
 import models
 
@@ -21,13 +20,20 @@ def shop(request, shop_id, template='bootstrap3/cart/shop.html', context={}):
     shop_products = []
     related_shop_products = models.ShopProduct.objects.filter(shop=shop_item)
 
+    # calculate rate
+    shop_rate = 0
+    shop_rate_sum = 0
+    shop_rate_count = 0
+    for shopreview in shop_item.shopreview_set.all():
+        shop_rate_sum += shopreview.rating
+        shop_rate_count += 1
+        shop_rate = int(shop_rate_sum / shop_rate_count)
+
     for shop_product in related_shop_products:
         shop_products.append(shop_product.product)
 
-    shopreview_form = forms.ShopReviewForm()
-
     context['shop_item'] = shop_item
+    context['shop_rate'] = range(shop_rate)
     context['shop_products'] = shop_products
-    context['shopreview_form'] = shopreview_form
     return render(request, template, context)
 

@@ -2,17 +2,17 @@ from django.db import models
 
 from core import models as core_models
 
-VERY_BAD = "Very Bad"
-BAD = "Bad"
-NORMAL = "Normal"
-GOOD = "Good"
-VERY_GOOD = "Very Good"
+RATE_VERY_BAD = 1
+RATE_BAD = 2
+RATE_NORMAL = 3
+RATE_GOOD = 4
+RATE_VERY_GOOD = 5
 RATE_LEVEL = (
-    (VERY_BAD, "Very Bad"),
-    (BAD, "Bad"),
-    (NORMAL, "Normal"),
-    (GOOD, "Good"),
-    (VERY_GOOD, "Very Good"),
+    (RATE_VERY_BAD, "Very Bad"),
+    (RATE_BAD, "Bad"),
+    (RATE_NORMAL, "Normal"),
+    (RATE_GOOD, "Good"),
+    (RATE_VERY_GOOD, "Very Good"),
 )
 
 
@@ -77,7 +77,7 @@ class Product(core_models.Model):
 class ProductReview(core_models.Model):
     is_approved = models.BooleanField(default=False)
     product = models.ForeignKey(Product)
-    status = models.CharField(max_length=9, choices=RATE_LEVEL, default=NORMAL)
+    status = models.CharField(max_length=9, choices=RATE_LEVEL, default=RATE_NORMAL)
     comment = models.CharField(max_length=1024)
 
     class Meta:
@@ -112,7 +112,7 @@ class Shop(core_models.Model):
 class ShopReview(core_models.Model):
     is_approved = models.BooleanField(default=False)
     shop = models.ForeignKey(Shop)
-    rating = models.IntegerField()
+    rating = models.IntegerField(choices=RATE_LEVEL, default=RATE_NORMAL)
     comment = models.CharField(max_length=1024)
 
     class Meta:

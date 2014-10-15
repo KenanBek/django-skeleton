@@ -12,7 +12,7 @@ class ProductAttributeInline(admin.TabularInline):
     extra = 10
 
 
-class ProductImageFormInline(forms.ModelForm):
+class ProductImageInlineForm(forms.ModelForm):
     info = forms.CharField(widget=forms.Textarea(), required=False)
 
     class Meta:
@@ -22,11 +22,11 @@ class ProductImageFormInline(forms.ModelForm):
 class ProductImageInline(admin.StackedInline):
     model = models.ProductImage
     suit_classes = 'suit-tab suit-tab-images'
-    form = ProductImageFormInline
+    form = ProductImageInlineForm
     extra = 6
 
 
-class ProductFormAdmin(forms.ModelForm):
+class ProductAdminForm(forms.ModelForm):
     info = forms.CharField(widget=CKEditorWidget())
     video_code = forms.CharField(widget=forms.Textarea())
 
@@ -38,7 +38,7 @@ class ProductAdmin(core_models.ModelAdmin):
     list_display = ['category', 'manufacturer', 'model', ]
     list_filter = ['category', 'manufacturer', ]
     inlines = [ProductAttributeInline, ProductImageInline, ]
-    form = ProductFormAdmin
+    form = ProductAdminForm
     fieldsets = [
         ('Relations', {
             'classes': ('suit-tab suit-tab-general',),
@@ -63,20 +63,26 @@ class ProductAdmin(core_models.ModelAdmin):
     )
 
 
-class ShopProductFormInline(forms.ModelForm):
+class ShopProductInlineForm(forms.ModelForm):
     info = forms.CharField(widget=forms.Textarea(), required=False)
+
+    class Meta:
+        model = models.ShopProduct
 
 
 class ShopProductInline(admin.StackedInline):
     model = models.ShopProduct
+    form = ShopProductInlineForm
     suit_classes = 'suit-tab suit-tab-products'
     exclude = ['url', ]
-    form = ShopProductFormInline
     extra = 20
 
 
-class ShopFormAdmin(forms.ModelForm):
+class ShopAdminForm(forms.ModelForm):
     info = forms.CharField(widget=CKEditorWidget())
+
+    class Meta:
+        model = models.Shop
 
 
 class ShopAdmin(core_models.ModelAdmin):
@@ -98,7 +104,7 @@ class ShopAdmin(core_models.ModelAdmin):
         ('general', 'General'),
         ('products', 'Products'),
     )
-    form = ShopFormAdmin
+    form = ShopAdminForm
 
 
 class ShopProductAdmin(core_models.ModelAdmin):
@@ -109,15 +115,21 @@ class ShopProductAdmin(core_models.ModelAdmin):
 # Reviews
 
 class ProductReviewAdmin(core_models.ModelAdmin):
-    list_display = ['product', 'status', 'comment', 'is_approved', ]
+    list_display = ['is_approved', 'product', 'status', 'comment', 'is_approved', ]
     list_filter = ['is_approved', 'status', ]
-    exclude = ['is_approved', ]
+
+
+class ShopReviewAdminForm(forms.ModelForm):
+    comment = forms.CharField(widget=forms.Textarea())
+
+    class Meta:
+        model = models.ShopReview
 
 
 class ShopReviewAdmin(core_models.ModelAdmin):
+    form = ShopReviewAdminForm
     list_display = ['shop', 'rating', 'comment', 'is_approved', ]
-    list_filter = ['is_approved', 'rating', ]
-    exclude = ['is_approved', ]
+    list_filter = ['shop', 'rating', 'is_approved', ]
 
 
 admin.site.register(models.Currency)
