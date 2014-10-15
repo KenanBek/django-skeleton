@@ -115,8 +115,8 @@ class ProductReviewAdmin(core_models.ModelAdmin):
 
 
 class ShopReviewAdmin(core_models.ModelAdmin):
-    list_display = ['shop', 'status', 'comment', 'is_approved', ]
-    list_filter = ['is_approved', 'status', ]
+    list_display = ['shop', 'rating', 'comment', 'is_approved', ]
+    list_filter = ['is_approved', 'rating', ]
     exclude = ['is_approved', ]
 
 

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from cart import forms
 
 import models
 
@@ -23,7 +24,10 @@ def shop(request, shop_id, template='bootstrap3/cart/shop.html', context={}):
     for shop_product in related_shop_products:
         shop_products.append(shop_product.product)
 
+    shopreview_form = forms.ShopReviewForm()
+
     context['shop_item'] = shop_item
     context['shop_products'] = shop_products
+    context['shopreview_form'] = shopreview_form
     return render(request, template, context)
 
