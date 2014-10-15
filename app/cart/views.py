@@ -11,7 +11,18 @@ def index(request, template='bootstrap3/cart/index.html', context={}):
 
 def product(request, product_id, template='bootstrap3/cart/product.html', context={}):
     product_item = models.Product.objects.get(pk=product_id)
+
+    # product rate
+    product_rate = 0
+    product_rate_sum = 0
+    product_rate_count = 0
+    for productreview in product_item.productreview_set.all():
+        product_rate_sum += productreview.rating
+        product_rate_count += 1
+        product_rate = int(product_rate_sum / product_rate_count)
+
     context['product_item'] = product_item
+    context['product_rate'] = product_rate
     return render(request, template, context)
 
 
@@ -33,7 +44,7 @@ def shop(request, shop_id, template='bootstrap3/cart/shop.html', context={}):
         shop_products.append(shop_product.product)
 
     context['shop_item'] = shop_item
-    context['shop_rate'] = range(shop_rate)
+    context['shop_rate'] = shop_rate
     context['shop_products'] = shop_products
     return render(request, template, context)
 

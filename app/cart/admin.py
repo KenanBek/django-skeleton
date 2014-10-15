@@ -28,7 +28,7 @@ class ProductImageInline(admin.StackedInline):
 
 class ProductAdminForm(forms.ModelForm):
     info = forms.CharField(widget=CKEditorWidget())
-    video_code = forms.CharField(widget=forms.Textarea())
+    video_code = forms.CharField(widget=forms.Textarea(), required=False)
 
     class Meta:
         model = models.Product
@@ -114,9 +114,18 @@ class ShopProductAdmin(core_models.ModelAdmin):
 
 # Reviews
 
+
+class ProductReviewAdminForm(forms.ModelForm):
+    comment = forms.CharField(widget=forms.Textarea())
+
+    class Meta:
+        model = models.ProductReview
+
+
 class ProductReviewAdmin(core_models.ModelAdmin):
-    list_display = ['is_approved', 'product', 'status', 'comment', 'is_approved', ]
-    list_filter = ['is_approved', 'status', ]
+    form = ProductReviewAdminForm
+    list_display = ['product', 'rating', 'comment', 'is_approved', ]
+    list_filter = ['product', 'rating', 'is_approved', ]
 
 
 class ShopReviewAdminForm(forms.ModelForm):

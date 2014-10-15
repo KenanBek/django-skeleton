@@ -26,6 +26,10 @@
             <p>{{ product_item.info|safe }}</p>
             <h3>Details</h3>
             <dl class="dl-horizontal">
+                <dt>Rate</dt>
+                <dd>
+                    {% include 'bootstrap3/cart/rate.html' with rate=product_rate %}
+                </dd>
                 <dt>Size</dt>
                 <dd>{{ product_item.size|empty_text }}</dd>
                 <dt>Weight</dt>

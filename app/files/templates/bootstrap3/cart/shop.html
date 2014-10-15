@@ -21,8 +21,14 @@
         </div>
         <div class="col-md-8">
             <h3>Info</h3>
-            {% include 'bootstrap3/cart/shop_rate.html' with rate=shop_rate %}
-            <p>{{ shop_item.info|safe }}</p>
+            <dl class="dl-horizontal">
+                <dt>Rate</dt>
+                <dd>
+                    {% include 'bootstrap3/cart/rate.html' with rate=shop_rate %}
+                </dd>
+                <dt>Description</dt>
+                <dd>{{ shop_item.info|safe }}</dd>
+            </dl>
         </div>
     </div>
 

@@ -77,7 +77,7 @@ class Product(core_models.Model):
 class ProductReview(core_models.Model):
     is_approved = models.BooleanField(default=False)
     product = models.ForeignKey(Product)
-    status = models.CharField(max_length=9, choices=RATE_LEVEL, default=RATE_NORMAL)
+    rating = models.IntegerField(choices=RATE_LEVEL, default=RATE_NORMAL)
     comment = models.CharField(max_length=1024)
 
     class Meta:
