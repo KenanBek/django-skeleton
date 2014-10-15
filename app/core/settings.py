@@ -33,7 +33,6 @@ INSTALLED_APPS = (
     'ckeditor',
     'django_select2',
     'import_export',
-    'djangoratings',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

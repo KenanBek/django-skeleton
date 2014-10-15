@@ -1,5 +1,4 @@
 from django.db import models
-from djangoratings.fields import RatingField
 
 from core import models as core_models
 
@@ -113,7 +112,7 @@ class Shop(core_models.Model):
 class ShopReview(core_models.Model):
     is_approved = models.BooleanField(default=False)
     shop = models.ForeignKey(Shop)
-    rating = RatingField(range=5)
+    rating = models.IntegerField()
     comment = models.CharField(max_length=1024)
 
     class Meta:
