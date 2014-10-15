@@ -47,8 +47,13 @@
                 </div>
                 <div class="tab-pane" id="reviews">
                     {% include 'bootstrap3/cart/_productreview_list.html' with productreview_list=shop_item.shopreview_set.all %}
-                    <h3>Leave your own review:</h3>
-                    {% include 'bootstrap3/cart/_shopreview_form.html' %}
+                    {% if user.is_active %}
+                        <h3>Leave your own review:</h3>
+                        {% url 'cart_shop_review' shop_item.id as shop_review_url %}
+                        {% include 'bootstrap3/_form.html' with form=shopreview_form method='post' action=shop_review_url %}
+                    {% else %}
+                        <h3>Please login or register to give your own feedbacks.</h3>
+                    {% endif %}
                 </div>
                 <div class="tab-pane" id="news">
                     News...3

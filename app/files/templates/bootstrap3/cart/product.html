@@ -16,6 +16,7 @@
         <div class="col-md-6">
             {% if product_item.image %}
                 <img class="img-responsive" src="
+
                         {{ MEDIA_URL }}{{ product_item.image }}" alt="{{ product_item.model }}" title="{{ product_item.model }}">
             {% else %}
                 <img class="img-responsive" src="http://placehold.it/750x500" alt="" title="">
@@ -37,7 +38,6 @@
                 <dt>Weight</dt>
                 <dd>{{ product_item.weight|empty_text }}</dd>
 
-
             </dl>
         </div>
     </div>
@@ -53,6 +53,7 @@
                 <div class="col-sm-3 col-xs-6">
                     <a href="#">
                         <img class="img-responsive portfolio-item" src="
+
                                 {{ MEDIA_URL }}{{ product_image.image }}" alt="{{ product_image.info }}" title="{{ product_image.info }}">
                     </a>
                 </div>
@@ -87,6 +88,7 @@
                             <li class="media">
                                 <a class="pull-left" href="{% url 'cart_shop' shop_product.shop.id %}">
                                     <img class="media-object" width="128" src="
+
 
                                             {{ MEDIA_URL }}{{ shop_product.shop.image }}" alt="{{ shop_product.shop.title }}" title="{{ shop_product.shop.title }}">
                                 </a>
@@ -127,8 +129,13 @@
                 </div>
                 <div class="tab-pane" id="reviews">
                     {% include 'bootstrap3/cart/_productreview_list.html' with productreview_list=product_item.productreview_set.all %}
-                    <h3>Leave your own review:</h3>
-                    {% include 'bootstrap3/cart/_shopreview_form.html' %}
+                    {% if user.is_active %}
+                        <h3>Leave your own review:</h3>
+                        {% url 'cart_product_review' product_item.id as product_review_url %}
+                        {% include 'bootstrap3/_form.html' with form=productreview_form method='post' action=product_review_url %}
+                    {% else %}
+                        <h3>Please login or register to give your own feedbacks.</h3>
+                    {% endif %}
                 </div>
             </div>
         </div>

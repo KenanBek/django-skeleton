@@ -13,7 +13,7 @@
                     {{ post.full_content|safe }}
                 </p>
                 {% if post.related_slider %}
-                    {% include "bootstrap3/slider.html" with slider=post.related_slider %}
+                    {% include "bootstrap3/_slider.html" with slider=post.related_slider %}
                 {% endif %}
                 <h3>Categories</h3>
                 {% for category in post.categories.all %}
