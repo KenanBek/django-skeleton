@@ -37,7 +37,7 @@ def login(request, template="bootstrap3/account/login.html", context={}):
                     if next:
                         return redirect(next)
                     else:
-                        return redirect(reverse('website_index'))
+                        return redirect(reverse('index'))
                 else:
                     messages.add_message(request, messages.WARNING, _('Non active user.'))
             else:
@@ -87,5 +87,5 @@ def register(request, template="bootstrap3/account/register.html", context={}):
 def logout(request):
     auth_logout(request)
     messages.add_message(request, messages.SUCCESS, _('You have successfully logged out.'))
-    return redirect(reverse('website_index'))
+    return redirect(reverse('index'))
 

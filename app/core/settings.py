@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'system',
+    'error',
     'account',
     'website',
     'cart',
@@ -119,7 +120,8 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     'django.core.context_processors.request',
-    'django.contrib.messages.context_processors.messages'
+    'django.contrib.messages.context_processors.messages',
+    'core.context.general',
 )
 TEMPLATE_DIRS = {
     os.path.join(BASE_DIR, 'files/templates/'),
@@ -203,6 +205,13 @@ LOGGING = {
     }
 }
 
+# Django Skeleton
+
+SKELETON_CONFIG = {
+    'title': 'Application',
+    'description': 'Project template for Django Application.',
+}
+
 # Django Suit configuration example
 
 SUIT_CONFIG = {
@@ -215,7 +224,7 @@ SUIT_CONFIG = {
     # 'CONFIRM_UNSAVED_CHANGES': True, # Default True
 
     # menu
-    # 'SEARCH_URL': '/admin/auth/user/',
+    'SEARCH_URL': '/search/',
     # 'MENU_ICONS': {
     # 'sites': 'icon-leaf',
     # 'auth': 'icon-lock',
@@ -261,23 +270,20 @@ SUIT_CONFIG = {
             {'model': 'cart.attribute', 'label': 'Attributes'},
         )},
         {'label': 'Shop', 'icon': 'icon-th', 'models': (
-            {'model': 'cart.shop', 'label': 'Shops'},
             {'model': 'cart.product', 'label': 'Products'},
+            {'model': 'cart.shop', 'label': 'Shops'},
+            {'model': 'cart.shopproduct', 'label': 'Shops and Products'},
         )},
         {'label': 'Orders', 'icon': 'icon-th', 'models': (
             {'model': 'cart.productreview', 'label': 'Product reviews'},
             {'model': 'cart.shopreview', 'label': 'Shop reviews'},
         )},
         '-',
-        {'label': 'Author', 'icon': 'icon-bookmark', 'url': 'http://kenanbek.me'},
+        {'label': 'Documentation', 'icon': 'icon-bookmark', 'url': 'https://github.com/KenanBek/django-skeleton/wiki'},
         {'label': 'Report a bug', 'icon': 'icon-comment', 'url': 'http://github.com/kenanbek/django-skeleton/issues'},
-
-        #{'app': 'website'},
-        #{'label': 'Settings', 'icon': 'icon-cog', 'models': ('auth.user', 'auth.group')},
-        #{'label': 'Support', 'icon': 'icon-question-sign', 'url': '/support/'},
     ),
     # misc
-    # 'LIST_PER_PAGE': 15
+    'LIST_PER_PAGE': 50
 }
 
 # CKEDITOR

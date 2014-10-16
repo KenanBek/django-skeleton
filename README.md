@@ -9,8 +9,15 @@ Current version: 1.0.0 (ongoing).
 
 # Features
 
-## Version 1.0
+## Version 1.x.x
 
+- Cart application
+    - Product and Shop entities
+    - Product filter
+    - Different price for each Shop
+    - Product and Shop user review (5 star rating system)
+    - Shop news
+    - Product's image and video
 - Custom user authentication with user profile
 - Multiple form support
 - Import and Export to most popular file formats (xml, csv, etc.)

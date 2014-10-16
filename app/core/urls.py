@@ -2,7 +2,7 @@ from django.contrib import admin
 #from django.contrib.auth.models import User, Group
 from django.conf import settings
 from django.conf.urls import patterns, include, url
-from django.views.generic import RedirectView
+from django.views.generic import RedirectView, TemplateView
 
 #from reversion.helpers import patch_admin
 
@@ -15,9 +15,11 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^select2/', include('django_select2.urls')),
-    url(r'^$', RedirectView.as_view(url='/index', permanent=True), name='index'),
-    url(r'^', include('website.urls')),
+
+    url(r'^$', TemplateView.as_view(template_name='bootstrap3/home.html'), name='index'),
+    url(r'', include('website.urls')),
     url(r'^account/', include('account.urls')),
+    url(r'^cart/', include('cart.urls')),
 )
 
 # Serve static files
