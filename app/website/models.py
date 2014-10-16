@@ -87,16 +87,16 @@ class Post(core_models.Model):
 
 
 class Subscriber(core_models.Model):
-    name = models.CharField(max_length=32, null=True, blank=True)
-    email = models.EmailField(unique=True, null=False, blank=False)
+    name = models.CharField(max_length=32)
+    email = models.EmailField(unique=True)
 
     def __str__(self):
         return "{0} ({1})".format(self.name, self.email)
 
 
 class Document(core_models.Model):
-    name = models.CharField(max_length=32, null=True, blank=True)
-    email = models.EmailField(null=False, blank=False)
+    name = models.CharField(max_length=32)
+    email = models.EmailField()
     short_description = models.CharField(max_length=128)
     document_file = models.FileField(upload_to='website/document/')
 
@@ -105,8 +105,8 @@ class Document(core_models.Model):
 
 
 class Contact(core_models.Model):
-    name = models.CharField(max_length=32, null=True, blank=True)
-    email = models.EmailField(null=False, blank=False)
+    name = models.CharField(max_length=32)
+    email = models.EmailField()
     subject = models.CharField(max_length=32)
     message = models.TextField()
 

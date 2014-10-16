@@ -1,9 +1,12 @@
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ValidationError
 
+from django.db import IntegrityError
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
+from django import forms as django_forms
 
 import forms
 import logic
@@ -57,27 +60,31 @@ def document(request, template="bootstrap3/website/contact.html", context={}):
 
 
 def search(request, template='bootstrap3/website/search.html', context={}):
-    term = request.GET['term']
-    search_result = logic.search(term)
+    q = request.GET.get('q', False)
+    search_result = logic.search(q)
 
-    context['term'] = term
+    context['q'] = q
     context['pages'] = search_result.pages
     context['posts'] = search_result.posts
     return render(request, template, context)
 
 
 def subscribe(request):
-    name = request.GET['name']
-    email = request.GET['email']
+    name = request.GET.get('name', False)
+    email = request.GET.get('email', False)
 
-    if not email:
-        messages.add_message(request, messages.WARNING, _('Please enter your email.'))
+    if not name or not email:
+        messages.add_message(request, messages.ERROR, _('Please enter your name and email.'))
     else:
         try:
+            django_forms.EmailField().clean(email)
             logic.subscribe(name, email)
             messages.add_message(request, messages.SUCCESS, _('You successfully subscribed.'))
-        except:
-            messages.add_message(request, messages.WARNING, _('You already have been subscribed.'))
+        except ValidationError:
+            messages.add_message(request, messages.ERROR, _('Please enter correct email.'))
+        except IntegrityError:
+                messages.add_message(request, messages.WARNING, _('You already have been subscribed.'))
+
     return redirect(request.META.get('HTTP_REFERER'))
 
 
