@@ -11,8 +11,9 @@ install:
   - pip install coveralls
 # run tests
 script:
-  cd app
-  coverage run --source=system,error,account,website,cart manage.py test
+  - cd app
+  - coverage run --source=. manage.py test
+  - coverage report -m
 after_success:
-  coveralls
+  coveralls --verbose
 
