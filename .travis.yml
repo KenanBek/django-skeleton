@@ -8,8 +8,11 @@ env:
 install:
   - pip install -r requirements.txt
   - pip install -q Django==$DJANGO_VERSION
+  - pip install coveralls
 # run tests
 script:
-  - cd app
-  - python manage.py test
+  cd app
+  coverage run manage.py test
+after_success:
+  coveralls
 
