@@ -8,38 +8,45 @@ import forms
 
 
 def index(request, template='bootstrap3/cart/index.html', context={}):
-    last_products = models.Product.objects.all()
+    last_products = models.Product.objects.filter(is_active=True)[0:25]
     context['last_products'] = last_products
     return render(request, template, context)
 
 
 def product(request, product_id, template='bootstrap3/cart/product.html', context={}):
-    product_item = models.Product.objects.get(pk=product_id)
+    product_item = models.Product.objects.get(pk=product_id, is_active=True)
+
+    # shopproduct list
+    shopproduct_list = product_item.shopproduct_set.filter(shop__is_active=True)
 
     # lowest price
     product_lowest_price = None
     product_lowest_price_currency = ""
-    for shopproduct in product_item.shopproduct_set.all():
+    for shopproduct in shopproduct_list:
         if not product_lowest_price or shopproduct.price < product_lowest_price:
             product_lowest_price = shopproduct.price
             product_lowest_price_currency = shopproduct.currency.title
 
+    # productreview list
+    productreview_list = product_item.productreview_set.filter(is_approved=True)
 
     # product rate
     product_rate = 0
     product_rate_sum = 0
     product_rate_count = 0
-    for productreview in product_item.productreview_set.all():
+    for productreview in productreview_list:
         product_rate_sum += productreview.rating
         product_rate_count += 1
         product_rate = int(product_rate_sum / product_rate_count)
 
-    # product review form
+    # productreview form
     productreview_form = forms.ProductReviewForm()
 
     context['product_item'] = product_item
+    context['shopproduct_list'] = shopproduct_list
     context['product_price'] = product_lowest_price
     context['product_price_currency'] = product_lowest_price_currency
+    context['productreview_list'] = productreview_list
     context['product_rate'] = product_rate
     context['productreview_form'] = productreview_form
     return render(request, template, context)
@@ -64,15 +71,18 @@ def product_review(request, product_id):
 
 
 def shop(request, shop_id, template='bootstrap3/cart/shop.html', context={}):
-    shop_item = models.Shop.objects.get(pk=shop_id)
+    shop_item = models.Shop.objects.get(pk=shop_id, is_active=True)
     shop_products = []
-    related_shop_products = models.ShopProduct.objects.filter(shop=shop_item)
+    related_shop_products = models.ShopProduct.objects.filter(shop=shop_item, product__is_active=True)
+
+    # shopreview list
+    shopreview_list = shop_item.shopreview_set.filter(is_approved=True)
 
     # calculate rate
     shop_rate = 0
     shop_rate_sum = 0
     shop_rate_count = 0
-    for shopreview in shop_item.shopreview_set.all():
+    for shopreview in shopreview_list:
         shop_rate_sum += shopreview.rating
         shop_rate_count += 1
         shop_rate = int(shop_rate_sum / shop_rate_count)
@@ -84,6 +94,7 @@ def shop(request, shop_id, template='bootstrap3/cart/shop.html', context={}):
     shopreview_form = forms.ShopReviewForm()
 
     context['shop_item'] = shop_item
+    context['shopreview_list'] = shopreview_list
     context['shop_rate'] = shop_rate
     context['shop_products'] = shop_products
     context['shopreview_form'] = shopreview_form

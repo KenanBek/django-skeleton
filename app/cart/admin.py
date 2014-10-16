@@ -43,7 +43,7 @@ class ProductAdmin(core_models.ModelAdmin):
         ('Relations', {
             'classes': ('suit-tab suit-tab-general',),
             'description': 'Product relations',
-            'fields': ['category', 'manufacturer', ]
+            'fields': ['is_active', 'category', 'manufacturer', ]
         }),
         ('General', {
             'classes': ('suit-tab suit-tab-general',),
@@ -92,7 +92,7 @@ class ShopAdmin(core_models.ModelAdmin):
         ('General', {
             'classes': ('suit-tab suit-tab-general',),
             'description': 'Shop general information',
-            'fields': ['title', 'slug', 'info']
+            'fields': ['is_active', 'title', 'slug', 'info']
         }),
         ('Media', {
             'classes': ('suit-tab suit-tab-general',),
