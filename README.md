@@ -7,6 +7,8 @@ Current version: 1.0.0 (ongoing).
 
 [![Build Status](https://travis-ci.org/KenanBek/django-skeleton.svg?branch=master)](https://travis-ci.org/KenanBek/django-skeleton)
 
+[![Coverage Status](https://coveralls.io/repos/KenanBek/django-skeleton/badge.png)](https://coveralls.io/r/KenanBek/django-skeleton)
+
 # Features
 
 ## Version 1.x.x
