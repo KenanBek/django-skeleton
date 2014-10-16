@@ -6,6 +6,9 @@ from core import models as core_models
 import models
 
 
+# Product
+
+
 class ProductAttributeInline(admin.TabularInline):
     model = models.ProductAttribute
     suit_classes = 'suit-tab suit-tab-attributes'
@@ -14,7 +17,6 @@ class ProductAttributeInline(admin.TabularInline):
 
 class ProductImageInlineForm(forms.ModelForm):
     info = forms.CharField(widget=forms.Textarea(), required=False)
-
     class Meta:
         model = models.ProductImage
 
@@ -29,13 +31,12 @@ class ProductImageInline(admin.StackedInline):
 class ProductAdminForm(forms.ModelForm):
     info = forms.CharField(widget=CKEditorWidget())
     video_code = forms.CharField(widget=forms.Textarea(), required=False)
-
     class Meta:
         model = models.Product
 
 
 class ProductAdmin(core_models.ModelAdmin):
-    list_display = ['category', 'manufacturer', 'model', ]
+    list_display = ['category', 'manufacturer', 'model', 'is_active', ]
     list_filter = ['category', 'manufacturer', ]
     inlines = [ProductAttributeInline, ProductImageInline, ]
     form = ProductAdminForm
@@ -63,9 +64,11 @@ class ProductAdmin(core_models.ModelAdmin):
     )
 
 
+# Shop Product
+
+
 class ShopProductInlineForm(forms.ModelForm):
     info = forms.CharField(widget=forms.Textarea(), required=False)
-
     class Meta:
         model = models.ShopProduct
 
@@ -78,9 +81,16 @@ class ShopProductInline(admin.StackedInline):
     extra = 20
 
 
+class ShopProductAdmin(core_models.ModelAdmin):
+    list_display = ['shop', 'product', 'currency', 'price', 'quantity', ]
+    list_filter = ['shop', 'product', ]
+
+
+# Shop
+
+
 class ShopAdminForm(forms.ModelForm):
     info = forms.CharField(widget=CKEditorWidget())
-
     class Meta:
         model = models.Shop
 
@@ -107,17 +117,11 @@ class ShopAdmin(core_models.ModelAdmin):
     form = ShopAdminForm
 
 
-class ShopProductAdmin(core_models.ModelAdmin):
-    list_display = ['shop', 'product', 'currency', 'price', 'quantity', ]
-    list_filter = ['shop', 'product', ]
-
-
 # Reviews
 
 
 class ProductReviewAdminForm(forms.ModelForm):
     comment = forms.CharField(widget=forms.Textarea())
-
     class Meta:
         model = models.ProductReview
 
@@ -130,7 +134,6 @@ class ProductReviewAdmin(core_models.ModelAdmin):
 
 class ShopReviewAdminForm(forms.ModelForm):
     comment = forms.CharField(widget=forms.Textarea())
-
     class Meta:
         model = models.ShopReview
 
