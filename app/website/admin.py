@@ -26,11 +26,17 @@ class PageAdminForm(forms.ModelForm):
         model = models.Page
 
 
-class PageAdmin(core_models.ModelAdmin):
+class PageResource(resources.ModelResource):
+    class Meta:
+        model = models.Page
+
+
+class PageAdmin(core_models.ModelAdmin, ImportExportModelAdmin):
+    form = PageAdminForm
+    resource_class = PageResource
+
     list_filter = ['status']
     list_display = ['slug', 'title', 'related_widget_names', 'related_slider', 'status']
-
-    form = PageAdminForm
 
     def related_widget_names(self, obj):
         return ",\n".join([widget.title for widget in obj.widgets.all()])
@@ -48,6 +54,7 @@ class CategoryAdminForm(forms.ModelForm):
 
 class CategoryAdmin(core_models.ModelAdmin):
     form = CategoryAdminForm
+    
     list_display = ['title', 'slug', 'related_post_names']
 
     def related_post_names(self, obj):
@@ -77,11 +84,11 @@ class PostResource(resources.ModelResource):
 
 
 class PostAdmin(core_models.ModelAdmin, ImportExportModelAdmin):
+    form = PostAdminForm
+    resource_class = PostResource
+
     list_filter = ['added_at', 'status', 'categories']
     list_display = ['added_at', 'slug', 'title', 'short_content', 'related_category_names', 'related_slider', 'status']
-
-    resource_class = PostResource
-    form = PostAdminForm
 
     def related_category_names(self, obj):
         return ",\n".join([category.title for category in obj.categories.all()])
