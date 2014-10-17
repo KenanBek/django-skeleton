@@ -12,10 +12,11 @@ admin.autodiscover()
 
 # Root url patterns
 urlpatterns = patterns('',
+    # Admin and 3rd party applications
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^select2/', include('django_select2.urls')),
-
+    # Applications
     url(r'^$', TemplateView.as_view(template_name='bootstrap3/home.html'), name='index'),
     url(r'', include('website.urls')),
     url(r'^account/', include('account.urls')),
