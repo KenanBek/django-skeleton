@@ -146,8 +146,6 @@ class ShopReviewAdmin(core_models.ModelAdmin):
     list_display = ['shop', 'rating', 'comment', 'is_approved', ]
     list_filter = ['shop', 'rating', 'is_approved', ]
 
-# Register admin models
-
 
 admin.site.register(models.Currency)
 admin.site.register(models.Manufacturer)

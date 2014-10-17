@@ -1,12 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
-
 from django.db import IntegrityError
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from django import forms as django_forms
+import markdown2
 
 import forms
 import logic
@@ -22,6 +22,7 @@ def index(request, template='bootstrap3/website/index.html', context={}):
 
 
 def about(request, template='bootstrap3/website/about.html', context={}):
+    context['about_text'] = markdown2.markdown_path("readme.md")
     return render(request, template, context)
 
 
@@ -83,7 +84,7 @@ def subscribe(request):
         except ValidationError:
             messages.add_message(request, messages.ERROR, _('Please enter correct email.'))
         except IntegrityError:
-                messages.add_message(request, messages.WARNING, _('You already have been subscribed.'))
+            messages.add_message(request, messages.WARNING, _('You already have been subscribed.'))
 
     return redirect(request.META.get('HTTP_REFERER'))
 
