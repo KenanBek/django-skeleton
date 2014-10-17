@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, url, include
 
-json_urlpatterns = patterns('website.ajax',
-    url(r'^post/(?P<post_id>[0-9]+)-(?P<post_slug>[\w-]+)/$', 'post', name='website_json_post'),
+ajax_urlpatterns = patterns('website.ajax',
+    url(r'^post/(?P<post_id>[0-9]+)-(?P<post_slug>[\w-]+)/$', 'post', name='website_ajax_post'),
 )
 
 urlpatterns = patterns('website.views',
@@ -16,7 +16,7 @@ urlpatterns = patterns('website.views',
     url(r'^post/(?P<post_id>[0-9]+)-(?P<post_slug>[\w-]+)/$', 'post', name='website_post'),
     # Search
     url(r'^search/$', 'search', name='website_search'),
-    # JSON
-    url(r'^json/', include(json_urlpatterns)),
+    # AJAX
+    url(r'^ajax/', include(ajax_urlpatterns)),
 )
 

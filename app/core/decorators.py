@@ -35,14 +35,15 @@ def json(fn):
             # Executing function itself
             fn_result = fn(request, *args, **kwargs)
             # Prepare JSON dictionary for successful result
-            json_result = {'is_successful': True, 'message': None, 'data': fn_result}
+            json_result = {'is_successful': True, 'result': fn_result}
         except Exception as e:
             # If AJAX_DEBUG is enabled raise Exception
             if settings.AJAX_DEBUG:
                 raise e
             # Else prepare JSON result object with error message
-            json_result = {'is_successful': False, 'message': e.message, 'data': None}
+            json_result = {'is_successful': False, 'message': e.message, 'result': None}
         # Wrap result with JSON HTTPResponse and return
         return HttpResponse(jsonpickle.encode(json_result, unpicklable=False), mimetype='application/json')
 
     return wrapper
+
