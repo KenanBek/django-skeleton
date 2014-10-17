@@ -38,7 +38,7 @@ def convert_to_json(fn):
             json_result = {'is_successful': True, 'result': fn_result}
         except Exception as e:
             # If AJAX_DEBUG is enabled raise Exception
-            if settings.AJAX_DEBUG:
+            if settings.JSON_DEBUG:
                 raise e
             # Else prepare JSON result object with error message
             error_message = e.message.upper()

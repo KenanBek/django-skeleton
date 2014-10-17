@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '=37nsotr=ct-bc5gwbbvo^@s3*w=hib%i^plnbzn8758n$4pz='
 DEBUG = True
 TEMPLATE_DEBUG = True
-AJAX_DEBUG = False
+JSON_DEBUG = False
 ALLOWED_HOSTS = []
 
 # Application definition
