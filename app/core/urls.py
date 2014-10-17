@@ -1,14 +1,9 @@
 from django.contrib import admin
-#from django.contrib.auth.models import User, Group
 from django.conf import settings
 from django.conf.urls import patterns, include, url
-from django.views.generic import RedirectView, TemplateView
-
-#from reversion.helpers import patch_admin
+from django.views.generic import TemplateView
 
 admin.autodiscover()
-#patch_admin(User)
-#patch_admin(Group)
 
 # Root url patterns
 urlpatterns = patterns('',

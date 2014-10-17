@@ -4,6 +4,7 @@ from rest_framework.routers import DefaultRouter
 import api
 
 api_router = DefaultRouter()
+api_router.register(r'pages', api.PageViewSet)
 api_router.register(r'posts', api.PostViewSet)
 
 urlpatterns = patterns('website.views',

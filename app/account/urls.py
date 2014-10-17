@@ -1,10 +1,5 @@
-from django.conf.urls import patterns, url, include
+from django.conf.urls import patterns, url
 from django.views.generic import RedirectView
-
-
-ajax_urlpatterns = patterns('account.ajax',
-    url(r'^login/$', 'login', name='account_ajax_login'),
-)
 
 urlpatterns = patterns('account.views',
     # General
@@ -13,7 +8,5 @@ urlpatterns = patterns('account.views',
     url(r'^login/$', 'login', name='account_login'),
     url(r'^register/$', 'register', name='account_register'),
     url(r'^logout/$', 'logout', name='account_logout'),
-    # AJAX
-    url(r'^ajax/', include(ajax_urlpatterns)),
 )
 
