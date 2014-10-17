@@ -25,7 +25,7 @@ def anonymous_required(function):
     return wrap
 
 
-def json(fn):
+def convert_to_json(fn):
     """
     Gets view method response and returns it in JSON format.
     """
@@ -41,7 +41,8 @@ def json(fn):
             if settings.AJAX_DEBUG:
                 raise e
             # Else prepare JSON result object with error message
-            json_result = {'is_successful': False, 'message': e.message, 'result': None}
+            error_message = e.message.upper()
+            json_result = {'is_successful': False, 'message': error_message}
         # Wrap result with JSON HTTPResponse and return
         return HttpResponse(jsonpickle.encode(json_result, unpicklable=False), mimetype='application/json')
 

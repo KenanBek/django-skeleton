@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^select2/', include('django_select2.urls')),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # Applications
     url(r'^$', TemplateView.as_view(template_name='bootstrap3/home.html'), name='index'),
     url(r'', include('website.urls')),

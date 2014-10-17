@@ -1,8 +1,10 @@
 from django.conf.urls import patterns, url, include
+from rest_framework.routers import DefaultRouter
 
-ajax_urlpatterns = patterns('website.ajax',
-    url(r'^post/(?P<post_id>[0-9]+)-(?P<post_slug>[\w-]+)/$', 'post', name='website_ajax_post'),
-)
+import api
+
+api_router = DefaultRouter()
+api_router.register(r'posts', api.PostViewSet)
 
 urlpatterns = patterns('website.views',
     # General
@@ -16,7 +18,7 @@ urlpatterns = patterns('website.views',
     url(r'^post/(?P<post_id>[0-9]+)-(?P<post_slug>[\w-]+)/$', 'post', name='website_post'),
     # Search
     url(r'^search/$', 'search', name='website_search'),
-    # AJAX
-    url(r'^ajax/', include(ajax_urlpatterns)),
+    # API
+    url(r'^api/', include(api_router.urls)),
 )
 

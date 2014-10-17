@@ -3,7 +3,8 @@ Base model classes. Used in other applications.
 """
 
 from django.db import models
-import reversion
+from reversion import VersionAdmin
+from guardian.admin import GuardedModelAdmin
 
 PUBLISHED = "Published"
 HIDDEN = "Hidden"
@@ -21,6 +22,6 @@ class Model(models.Model):
         abstract = True
 
 
-class ModelAdmin(reversion.VersionAdmin):
+class ModelAdmin(VersionAdmin, GuardedModelAdmin):
     pass
 

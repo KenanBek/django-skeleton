@@ -68,7 +68,7 @@ class PostResource(resources.ModelResource):
         model = models.Post
 
 
-class PostAdmin(ImportExportModelAdmin):
+class PostAdmin(core_models.ModelAdmin, ImportExportModelAdmin):
     list_filter = ['added_at', 'status', 'categories']
     list_display = ['added_at', 'slug', 'title', 'short_content', 'related_category_names', 'related_slider', 'status']
 

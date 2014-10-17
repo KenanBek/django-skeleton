@@ -23,13 +23,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '=37nsotr=ct-bc5gwbbvo^@s3*w=hib%i^plnbzn8758n$4pz='
 DEBUG = True
 TEMPLATE_DEBUG = True
-AJAX_DEBUG = True
+AJAX_DEBUG = False
 ALLOWED_HOSTS = []
 
 # Application definition
 
 INSTALLED_APPS = (
     'suit',
+    'guardian',
+    'rest_framework',
     'reversion',
     'ckeditor',
     'django_select2',
@@ -54,6 +56,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',  # default
+    'guardian.backends.ObjectPermissionBackend',
+)
 ROOT_URLCONF = 'core.urls'
 WSGI_APPLICATION = 'core.wsgi.application'
 
@@ -62,6 +68,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 AUTH_PROFILE_MODULE = 'account.Profile'
 LOGIN_URL = '/account/login/'
 LOGOUT_URL = '/account/logout/'
+ANONYMOUS_USER_ID = -1
 
 # Message
 

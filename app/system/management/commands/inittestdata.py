@@ -16,7 +16,7 @@ class Command(NoArgsCommand):
         management.call_command('syncdb', interactive=False)
         management.call_command('createinitialrevisions', interactive=False)
         management.call_command('createsuperuser', username='admin', email='admin@host.local')
-        management.call_command('loaddata', "website_test")
-        management.call_command('loaddata', "cart_test")
+        #management.call_command('loaddata', "website_test")
+        #management.call_command('loaddata', "cart_test")
         self.stdout.write('Successfully initialized')
 
