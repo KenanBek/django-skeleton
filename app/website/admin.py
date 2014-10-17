@@ -39,8 +39,16 @@ class PageAdmin(core_models.ModelAdmin):
 # Category
 
 
+class CategoryAdminForm(forms.ModelForm):
+    description = forms.CharField(widget=forms.Textarea())
+
+    class Meta:
+        model = models.Category
+
+
 class CategoryAdmin(core_models.ModelAdmin):
-    list_display = ['slug', 'title', 'related_post_names']
+    form = CategoryAdminForm
+    list_display = ['title', 'slug', 'related_post_names']
 
     def related_post_names(self, obj):
         return ",\n".join([post.title for post in obj.post_set.all()])

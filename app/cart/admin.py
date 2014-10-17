@@ -6,9 +6,6 @@ from core import models as core_models
 import models
 
 
-# Product
-
-
 class ProductAttributeInline(admin.TabularInline):
     model = models.ProductAttribute
     suit_classes = 'suit-tab suit-tab-attributes'
@@ -17,7 +14,6 @@ class ProductAttributeInline(admin.TabularInline):
 
 class ProductImageInlineForm(forms.ModelForm):
     info = forms.CharField(widget=forms.Textarea(), required=False)
-
 
     class Meta:
         model = models.ProductImage
@@ -33,7 +29,6 @@ class ProductImageInline(admin.StackedInline):
 class ProductAdminForm(forms.ModelForm):
     info = forms.CharField(widget=CKEditorWidget())
     video_code = forms.CharField(widget=forms.Textarea(), required=False)
-
 
     class Meta:
         model = models.Product
@@ -74,7 +69,6 @@ class ProductAdmin(core_models.ModelAdmin):
 class ShopProductInlineForm(forms.ModelForm):
     info = forms.CharField(widget=forms.Textarea(), required=False)
 
-
     class Meta:
         model = models.ShopProduct
 
@@ -97,7 +91,6 @@ class ShopProductAdmin(core_models.ModelAdmin):
 
 class ShopAdminForm(forms.ModelForm):
     info = forms.CharField(widget=CKEditorWidget())
-
 
     class Meta:
         model = models.Shop
@@ -131,7 +124,6 @@ class ShopAdmin(core_models.ModelAdmin):
 class ProductReviewAdminForm(forms.ModelForm):
     comment = forms.CharField(widget=forms.Textarea())
 
-
     class Meta:
         model = models.ProductReview
 
@@ -145,7 +137,6 @@ class ProductReviewAdmin(core_models.ModelAdmin):
 class ShopReviewAdminForm(forms.ModelForm):
     comment = forms.CharField(widget=forms.Textarea())
 
-
     class Meta:
         model = models.ShopReview
 
@@ -154,7 +145,6 @@ class ShopReviewAdmin(core_models.ModelAdmin):
     form = ShopReviewAdminForm
     list_display = ['shop', 'rating', 'comment', 'is_approved', ]
     list_filter = ['shop', 'rating', 'is_approved', ]
-
 
 # Register admin models
 

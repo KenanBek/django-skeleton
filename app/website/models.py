@@ -61,8 +61,8 @@ class Page(core_models.Model):
 
 
 class Category(core_models.Model):
-    slug = models.SlugField(unique=True)
     title = models.CharField(max_length=32)
+    slug = models.SlugField(unique=True)
     description = models.CharField(max_length=512, null=True, blank=True)
 
     def __str__(self):
