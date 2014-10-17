@@ -6,6 +6,8 @@ django-reversion
 django-ckeditor-updated
 django-select2
 django-import-export
+django-filter
 django-guardian
 djangorestframework
+markdown
 

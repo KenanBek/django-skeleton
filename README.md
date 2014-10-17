@@ -7,7 +7,7 @@ Skeleton project for Django applications.
 
 # Features
 
-## Built in applications:
+**Built in applications**:
 
 - Cart application
     - Product and Shop entities
@@ -24,7 +24,7 @@ Skeleton project for Django applications.
     - Slider
     - Website API
 
-## Pre configured 3rd party packages
+**Pre configured 3rd party packages:**
 
 - REST Framework
 - Guardian (object based permissions)
@@ -32,7 +32,7 @@ Skeleton project for Django applications.
 - CKEditor (also configured to support file upload)
 - Django Select2 (Auto select for administration)
 
-## Pre configured Python/Django features
+**Pre configured Python/Django features:**
 
 - Custom user authentication with user profile
 - Multiple form support
