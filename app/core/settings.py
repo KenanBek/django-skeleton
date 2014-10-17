@@ -35,7 +35,6 @@ INSTALLED_APPS = (
     'reversion',
     'ckeditor',
     'django_select2',
-    'import_export',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
