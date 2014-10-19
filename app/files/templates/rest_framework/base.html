@@ -45,9 +45,10 @@
                         <ul class="nav pull-right">
                             {% block userlinks %}
                                 {% if user.is_authenticated %}
-                                    <li><a href="{% url 'index' %}">{% trans 'Website' %}</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="{% url 'admin:index' %}">{% trans 'Administration' %}</a></li>
+                                    {% if user.is_staff %}
+                                        <li><a href="{% url 'index' %}">{% trans 'Website' %}</a></li>
+                                        <li><a href="{% url 'admin:index' %}">{% trans 'Administration' %}</a></li>
+                                    {% endif %}
                                     {% optional_logout request user %}
                                 {% else %}
                                     {% optional_login request %}

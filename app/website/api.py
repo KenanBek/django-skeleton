@@ -11,7 +11,7 @@ class PageViewSet(viewsets.ModelViewSet):
     """
     queryset = models.Page.objects.all()
     serializer_class = serializers.PageSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    permission_classes = (permissions.IsAdminUser, )
 
     def pre_save(self, obj):
         obj.owner = self.request.user
@@ -24,7 +24,7 @@ class PostViewSet(viewsets.ModelViewSet):
     """
     queryset = models.Post.objects.all()
     serializer_class = serializers.PostSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    permission_classes = (permissions.IsAdminUser, )
 
     def pre_save(self, obj):
         obj.owner = self.request.user
