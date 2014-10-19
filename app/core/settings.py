@@ -35,6 +35,7 @@ INSTALLED_APPS = (
     'reversion',
     'ckeditor',
     'django_select2',
+    'easy_thumbnails',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -309,3 +310,13 @@ CKEDITOR_CONFIGS = {
     },
 }
 
+# EASY-THUMBNAILS
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'avatar': {'size': (50, 50), 'crop': True},
+        'small': {'size': (125, 125), 'crop': True},
+        'medium': {'size': (400, 400), 'crop': True},
+        'normal': {'size': (600, 600), 'crop': True},
+    },
+}

@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load thumbnail %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,10 +51,14 @@
             {% if user.is_active %}
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="{{ user.get_profile.avatar|thumbnail_url:'avatar' }}" height="20" alt="{{ user.username }} avatar" title="{{ user.username }} avatar" />
+                            {{ user.username }}
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'account_index' %}">My Account</a></li>
+                            <li>
+                                <a href="{% url 'account_index' %}">My Account</a>
+                            </li>
                             {% if user.is_staff %}
                                 <li class="divider"></li>
                                 <li><a href="{% url 'admin:index' %}">Administration</a></li>

@@ -1,10 +1,8 @@
 from django.contrib.auth.models import User
 from django.forms.util import ErrorList
-
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
@@ -12,7 +10,6 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 
 from core.decorators import anonymous_required
-
 import forms
 
 

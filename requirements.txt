@@ -10,4 +10,5 @@ django-guardian
 djangorestframework
 markdown
 markdown2
+easy-thumbnails
 

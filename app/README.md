@@ -31,6 +31,7 @@ Skeleton project for Django applications.
 - Import Export (Import and Export to and from most popular file formats such as xml, csv, etc.)
 - CKEditor (also configured to support file upload)
 - Django Select2 (Auto select for administration)
+- East Thumbnails
 
 **Pre configured Python/Django features:**
 
