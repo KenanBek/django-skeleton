@@ -57,7 +57,7 @@
                             {% if user.is_staff %}
                                 <li class="divider"></li>
                                 <li><a href="{% url 'admin:index' %}">Administration</a></li>
-                                <li><a href="/api">API</a></li>
+                                <li><a href="{% url 'api-root' %}">API</a></li>
                             {% endif %}
                             <li class="divider"></li>
                             <li><a href="{% url 'account_logout' %}">Logout</a></li>

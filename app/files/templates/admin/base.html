@@ -85,7 +85,9 @@
                                         <a href="{{ docsroot }}">{% trans 'Documentation' %}</a>
                                         <span class="separator">|</span>
                                     {% endif %}
-                                    <a href="{% url 'index' %}">{% trans 'Go to Website' %}</a>
+                                    <a href="{% url 'index' %}">{% trans 'Website' %}</a>
+                                    <span class="separator">|</span>
+                                    <a href="{% url 'index' %}">{% trans 'API' %}</a>
                                     <span class="separator">|</span>
                                     <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a>
                                     <span class="separator">|</span>
@@ -123,7 +125,6 @@
 
                         {% block messages %}
                             {% if messages %}
-
                                 {% for message in messages %}
                                     <div class="alert alert-{% firstof message.tags 'info' %}">
                                         <button class="close" data-dismiss="alert">×</button>
@@ -205,7 +206,7 @@
 
                 <div class="branding">{% block footer_branding %}
                     {% with 'ADMIN_NAME'|suit_conf as admin_name %}
-                        {{ admin_name }}
+                        Django Skeleton | {{ admin_name }}
                     {% endwith %}
                 {% endblock %}</div>
             </div>
