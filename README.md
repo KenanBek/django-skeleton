@@ -16,7 +16,7 @@ Skeleton project for Django applications.
     - Product and Shop user review (5 star rating system)
     - Shop news
     - Product's image and video
-- Website aplications
+- Website application
     - Widgets
     - Static pages
     - Posts
@@ -50,8 +50,9 @@ Skeleton project for Django applications.
 To install Django Skeleton on your machine run following commands:
 
     git clone https://github.com/KenanBek/django-skeleton.git
-    cd django-skeleton/app
+    cd django-skeleton
     pip install -r requirements.txt
+    cd app
     python manage.py inittestdata
 
 Last command will ask you enter password for super user. Command **inittest** will create sample data. After you successfully entered required information you will be able to run application.
