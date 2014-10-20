@@ -86,3 +86,47 @@ def logout(request):
     messages.add_message(request, messages.SUCCESS, _('You have successfully logged out.'))
     return redirect(reverse('index'))
 
+
+def login_facebook(request, template="bootstrap3/account/login_facebook.html", context={}):
+    return render(request, template, context)
+
+
+@anonymous_required
+def auth(request, template="bootstrap3/account/auth.html", context={}):
+    login_form = forms.LoginForm(request.POST or None)
+    register_form = forms.RegisterForm(request.POST or None)
+
+    context['login_form'] = login_form
+    context['register_form'] = register_form
+    return render(request, template, context)
+
+
+@anonymous_required
+def auth_login(request, template="bootstrap3/account/auth_login.html", context={}):
+    pass
+
+
+@anonymous_required
+def auth_register(request, template="bootstrap3/account/auth_register.html", context={}):
+    pass
+
+
+@anonymous_required
+def auth_google(request, template="bootstrap3/account/auth_login.html", context={}):
+    pass
+
+
+@anonymous_required
+def auth_facebook(request, template="bootstrap3/account/auth_facebook.html", context={}):
+    pass
+
+
+@anonymous_required
+def auth_twitter(request, template="bootstrap3/account/auth_twitter.html", context={}):
+    pass
+
+
+@anonymous_required
+def auth_logout(request, template="bootstrap3/account/auth_logout.html", context={}):
+    pass
+

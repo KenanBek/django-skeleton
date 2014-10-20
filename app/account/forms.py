@@ -9,6 +9,14 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput())
 
 
+class RegisterForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    class Meta:
+        model = auth_models.User
+        fields = ('username', 'email', 'password')
+
+
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
 

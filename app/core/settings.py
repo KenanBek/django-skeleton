@@ -218,6 +218,9 @@ LOGGING = {
 SKELETON_CONFIG = {
     'title': 'Application',
     'description': 'Project template for Django Application.',
+    'google_id': 'google-id',
+    'facebook_id': '1520447268200947',
+    'twitter_id': 'twitter-id',
 }
 
 # Django Suit configuration example
