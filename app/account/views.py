@@ -3,9 +3,7 @@ from django.forms.util import ErrorList
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate
-from django.contrib.auth import login as auth_login
-from django.contrib.auth import logout as auth_logout
+import django.contrib.auth as django_auth
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 
@@ -26,12 +24,12 @@ def login(request, template="bootstrap3/account/login.html", context={}):
         if login_form.is_valid():
             username = login_form.cleaned_data['username']
             password = login_form.cleaned_data['password']
-            user = authenticate(username=username, password=password)
+            user = django_auth.authenticate(username=username, password=password)
             if user is not None:
                 if user.is_active:
-                    auth_login(request, user)
+                    django_auth.login(request, user)
                     messages.add_message(request, messages.SUCCESS, _('You have successfully logged in.'))
-                    if next:
+                    if next_url:
                         return redirect(next_url)
                     else:
                         return redirect(reverse('index'))
@@ -67,8 +65,8 @@ def register(request, template="bootstrap3/account/register.html", context={}):
                 profile.user = user
                 profile.save()
                 messages.add_message(request, messages.SUCCESS, _('You have successfully registered.'))
-                user = authenticate(username=user_username, password=user_password)
-                auth_login(request, user)
+                user = django_auth.authenticate(username=user_username, password=user_password)
+                django_auth.login(request, user)
                 return redirect(reverse('account_index'))
         else:
             messages.add_message(request, messages.ERROR, _('Please fix errors bellow.'))
@@ -82,7 +80,7 @@ def register(request, template="bootstrap3/account/register.html", context={}):
 
 @login_required
 def logout(request):
-    auth_logout(request)
+    django_auth.logout(request)
     messages.add_message(request, messages.SUCCESS, _('You have successfully logged out.'))
     return redirect(reverse('index'))
 
@@ -93,40 +91,35 @@ def login_facebook(request, template="bootstrap3/account/login_facebook.html", c
 
 @anonymous_required
 def auth(request, template="bootstrap3/account/auth.html", context={}):
-    login_form = forms.LoginForm(request.POST or None)
-    register_form = forms.RegisterForm(request.POST or None)
-
-    context['login_form'] = login_form
-    context['register_form'] = register_form
     return render(request, template, context)
 
 
 @anonymous_required
 def auth_login(request, template="bootstrap3/account/auth_login.html", context={}):
-    pass
+    return render(request, template, context)
 
 
 @anonymous_required
 def auth_register(request, template="bootstrap3/account/auth_register.html", context={}):
-    pass
+    return render(request, template, context)
 
 
 @anonymous_required
 def auth_google(request, template="bootstrap3/account/auth_login.html", context={}):
-    pass
+    return render(request, template, context)
 
 
 @anonymous_required
 def auth_facebook(request, template="bootstrap3/account/auth_facebook.html", context={}):
-    pass
+    return render(request, template, context)
 
 
 @anonymous_required
 def auth_twitter(request, template="bootstrap3/account/auth_twitter.html", context={}):
-    pass
+    return render(request, template, context)
 
 
 @anonymous_required
 def auth_logout(request, template="bootstrap3/account/auth_logout.html", context={}):
-    pass
+    return render(request, template, context)
 

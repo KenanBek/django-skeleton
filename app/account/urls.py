@@ -9,8 +9,8 @@ urlpatterns = patterns('account.views',
     url(r'^register/$', 'register', name='account_register'),
     url(r'^logout/$', 'logout', name='account_logout'),
 
-    url(r'^login/facebook/$', 'login_facebook', name='account_login_facebook'),
 
+    url(r'^login/facebook/$', 'login_facebook', name='account_login_facebook'),
     url(r'^auth/$', 'auth', name='account_auth'),
     url(r'^auth/login/$', 'auth_login', name='account_auth_login'),
     url(r'^auth/register/$', 'auth_register', name='account_auth_register'),

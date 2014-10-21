@@ -4,6 +4,7 @@
     <div class="row">
         <div class="col-md-12">
             <h3>Please enter login and password:</h3>
+            {% url 'account_login' as account_login %}
             {% include "bootstrap3/_form.html" with form=login_form action=account_login method="post" %}
             <p>
                 ...or register <a href="{% url 'account_register' %}">here</a>.

@@ -8,5 +8,6 @@ def empty_text(value):
     """Render 'emtpy' string if given value is empty"""
     return value if value else _('not entered')
 
+
 register.filter('empty_text', empty_text)
 
