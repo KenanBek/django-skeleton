@@ -1,20 +1,23 @@
 {% extends 'bootstrap3/layout.html' %}
+{% load thumbnail %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-12 blog-main">
             <div class="blog-post">
                 {% if post.featured_image %}
-                    <img src="{{ MEDIA_URL }}{{ post.featured_image }}" title="{{ post.title }}" />
+                    <img src="{{ post.featured_image|thumbnail_url:'medium' }}" title="{{ post.title }}" />
                 {% endif %}
                 <h2 class="blog-post-title">{{ post.title }}</h2>
                 <p class="blog-post-meta">{{ post.modified_at }}</p>
                 <p>
                     {{ post.full_content|safe }}
                 </p>
+
                 {% if post.related_slider %}
                     {% include "bootstrap3/_slider.html" with slider=post.related_slider %}
                 {% endif %}
+
                 <h3>Categories</h3>
                 {% for category in post.categories.all %}
                     <div class="col-md-3">

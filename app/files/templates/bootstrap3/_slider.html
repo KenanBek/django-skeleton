@@ -1,4 +1,6 @@
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+{% load thumbnail %}
+
+<div id="django-skeleton-carousel" class="carousel slide" data-ride="carousel" style="height: 600px;">
     <!-- Indicators -->
     <ol class="carousel-indicators">
         {% for slide in slider.slide_set.all %}
@@ -11,7 +13,7 @@
     <div class="carousel-inner">
         {% for slide in slider.slide_set.all %}
             <div {% if forloop.counter0 == 0 %} class="item active" {% else %} class="item" {% endif %}>
-                <img src="{{ MEDIA_URL }}{{ slide.image }}" alt="{{ slide.title }}" title="{{ slide.title }}" />
+                <img src="{{ slide.image|thumbnail_url:'medium' }}" alt="{{ slide.title }}" title="{{ slide.title }}" />
                 <div class="carousel-caption">
                     <h3>{{ slide.title }}</h3>
                     <p>{{ slide.description }}</p>
@@ -21,10 +23,10 @@
     </div>
 
     <!-- Controls -->
-    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <a class="left carousel-control" href="#django-skeleton-carousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
     </a>
-    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <a class="right carousel-control" href="#django-skeleton-carousel" role="button" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right"></span>
     </a>
 </div>

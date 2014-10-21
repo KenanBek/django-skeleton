@@ -55,7 +55,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{{ user.get_profile.avatar|thumbnail_url:'avatar' }}" height="20" alt="{{ user.username }} avatar" title="{{ user.username }} avatar" />
+                            <img src="{{ MEDIA_URL }}{{ user.get_profile.avatar|thumbnail_url:'avatar' }}" height="20" alt="{{ user.username }} avatar" title="{{ user.username }} avatar" />
                             {{ user.username }}
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">

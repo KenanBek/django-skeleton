@@ -1,0 +1,21 @@
+{% load thumbnail %}
+
+<ul class="media-list">
+    {% for post in post_list %}
+        {% url 'website_post' post.id post.slug as post_url %}
+        <li class="media">
+            <a class="pull-left" href="{{ post_url }}">
+                <img class="media-object" width="128" src="{{ post.featured_image|thumbnail_url:'small' }}" alt="{{ post.title }}" title="{{ post.title }}" />
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">
+                    <a href="{{ post_url }}">{{ post.title }}</a>
+                    <small class="text-muted">{{ post.modified_at }}</small>
+                </h4>
+                {{ post.short_content }}
+            </div>
+        </li>
+    {% empty %}
+        <h4>No posts.</h4>
+    {% endfor %}
+</ul>

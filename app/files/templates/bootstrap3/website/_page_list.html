@@ -1,0 +1,16 @@
+{% load thumbnail %}
+
+<div class="row placeholders">
+    {% for page in page_list %}
+        <div class="col-xs-6 col-sm-3 placeholder">
+            <a href="{% url 'website_page' page.slug %}">
+                <img src="{{ page.featured_image|thumbnail_url:'small' }}" alt="{{ page.title }}" title="{{ page.title }}" />
+                <h4>{{ page.title }}</h4>
+            </a>
+            <br />
+            <span class="text-muted">{{ page.modified_at }}</span>
+        </div>
+    {% empty %}
+        <h4>No pages.</h4>
+    {% endfor %}
+</div>
