@@ -1,0 +1,13 @@
+[
+    {
+        "pk": 1,
+        "model": "account.profile",
+        "fields": {
+            "website": "https://github.com/KenanBek/django-skeleton",
+            "modified_at": "2014-10-21T20:58:28.610Z",
+            "user": 0,
+            "added_at": "2014-10-21T20:58:28.610Z",
+            "avatar": "account/avatar/admin.png"
+        }
+    }
+]

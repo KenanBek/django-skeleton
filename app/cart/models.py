@@ -128,7 +128,7 @@ class ShopProduct(core_models.Model):
     shop = models.ForeignKey(Shop)
     product = models.ForeignKey(Product)
     currency = models.ForeignKey(Currency)
-    price = models.DecimalField(max_digits=5, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.IntegerField()
     info = models.CharField(max_length=1024, null=True, blank=True)
     url = models.URLField(null=True, blank=True)
