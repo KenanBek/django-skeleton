@@ -5,6 +5,8 @@ from django import forms
 from core import models as core_models
 import models
 
+''' Product '''
+
 
 class ProductAttributeInline(admin.TabularInline):
     model = models.ProductAttribute
@@ -63,7 +65,7 @@ class ProductAdmin(core_models.ModelAdmin):
     )
 
 
-# Shop Product
+''' Shop Product '''
 
 
 class ShopProductInlineForm(forms.ModelForm):
@@ -86,7 +88,7 @@ class ShopProductAdmin(core_models.ModelAdmin):
     list_filter = ['shop', 'product', ]
 
 
-# Shop
+''' Shop '''
 
 
 class ShopAdminForm(forms.ModelForm):
@@ -118,7 +120,7 @@ class ShopAdmin(core_models.ModelAdmin):
     form = ShopAdminForm
 
 
-# Reviews
+''' Reviews '''
 
 
 class ProductReviewAdminForm(forms.ModelForm):
@@ -146,6 +148,8 @@ class ShopReviewAdmin(core_models.ModelAdmin):
     list_display = ['shop', 'rating', 'comment', 'is_approved', ]
     list_filter = ['shop', 'rating', 'is_approved', ]
 
+
+''' Registration of Admin models '''
 
 admin.site.register(models.Currency)
 admin.site.register(models.Manufacturer)
