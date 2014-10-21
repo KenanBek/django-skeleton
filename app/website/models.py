@@ -3,8 +3,7 @@ from django.db import models
 from core import models as core_models
 from core.models import MODEL_STATUS, PUBLISHED
 
-
-# Slider
+''' Slider '''
 
 
 class Slider(core_models.Model):
@@ -27,7 +26,7 @@ class Slide(core_models.Model):
         return self.title
 
 
-# Page
+''' Page '''
 
 
 class Widget(core_models.Model):
@@ -57,7 +56,7 @@ class Page(core_models.Model):
         return self.title
 
 
-# Post
+''' Post '''
 
 
 class Category(core_models.Model):
@@ -83,7 +82,7 @@ class Post(core_models.Model):
         return self.title
 
 
-# Subscriber & Document
+''' Subscriber & Document '''
 
 
 class Subscriber(core_models.Model):
@@ -101,7 +100,7 @@ class Document(core_models.Model):
     document_file = models.FileField(upload_to='website/document/')
 
 
-# Contact
+''' Contact '''
 
 
 class Contact(core_models.Model):
