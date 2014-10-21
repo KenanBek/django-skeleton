@@ -19,7 +19,7 @@ def index(request, template="bootstrap3/account/index.html", context={}):
 
 @anonymous_required
 def login(request, template="bootstrap3/account/login.html", context={}):
-    next = request.GET.get('next', False)
+    next_url = request.GET.get('next', False)
     login_form = forms.LoginForm(request.POST or None)
 
     if request.method == 'POST':
@@ -32,7 +32,7 @@ def login(request, template="bootstrap3/account/login.html", context={}):
                     auth_login(request, user)
                     messages.add_message(request, messages.SUCCESS, _('You have successfully logged in.'))
                     if next:
-                        return redirect(next)
+                        return redirect(next_url)
                     else:
                         return redirect(reverse('index'))
                 else:
