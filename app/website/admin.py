@@ -38,7 +38,7 @@ class PageAdmin(core_models.ModelAdmin):
 
 
 class CategoryAdminForm(forms.ModelForm):
-    description = forms.CharField(widget=forms.Textarea())
+    description = forms.CharField(widget=forms.Textarea(), required=False)
 
     class Meta:
         model = models.Category
