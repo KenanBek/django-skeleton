@@ -99,6 +99,9 @@ class Document(core_models.Model):
     short_description = models.CharField(max_length=128)
     document_file = models.FileField(upload_to='website/document/')
 
+    def __str__(self):
+        return "'{0}' attached document with '{1}' description".format(self.name, self.short_description)
+
 
 ''' Contact '''
 
@@ -108,4 +111,7 @@ class Contact(core_models.Model):
     email = models.EmailField()
     subject = models.CharField(max_length=32)
     message = models.TextField()
+
+    def __str__(self):
+        return "'{0}' submit contact with '{1}' subject".format(self.name, self.subject)
 

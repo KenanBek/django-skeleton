@@ -3,18 +3,22 @@ from django.db import models
 
 from core import models as core_models
 
-RATE_VERY_BAD = 1
-RATE_BAD = 2
-RATE_NORMAL = 3
-RATE_GOOD = 4
-RATE_VERY_GOOD = 5
-RATE_LEVEL = (
-    (RATE_VERY_BAD, "Very Bad"),
-    (RATE_BAD, "Bad"),
-    (RATE_NORMAL, "Normal"),
-    (RATE_GOOD, "Good"),
-    (RATE_VERY_GOOD, "Very Good"),
+''' Choices '''
+
+RATING_VERY_BAD = 1
+RATING_BAD = 2
+RATING_NORMAL = 3
+RATING_GOOD = 4
+RATING_VERY_GOOD = 5
+REVIEW_RATING_CHOICES = (
+    (RATING_VERY_BAD, "Very Bad"),
+    (RATING_BAD, "Bad"),
+    (RATING_NORMAL, "Normal"),
+    (RATING_GOOD, "Good"),
+    (RATING_VERY_GOOD, "Very Good"),
 )
+
+''' Base objects '''
 
 
 class Currency(core_models.Model):
@@ -58,6 +62,9 @@ class Attribute(core_models.Model):
         return "{0} - {1}".format(self.group.title, self.title)
 
 
+''' Product '''
+
+
 class Product(core_models.Model):
     is_active = models.BooleanField(default=False)
     category = models.ForeignKey(Category)
@@ -72,15 +79,19 @@ class Product(core_models.Model):
     video_code = models.CharField(max_length=1024, null=True, blank=True)
 
     def __str__(self):
-        return "{0} {1} {2}".format(self.category, self.manufacturer, self.model)
+        return "{0} {1} {2}".format(str(self.category), str(self.manufacturer), self.model)
 
 
 class ProductReview(core_models.Model):
     is_approved = models.BooleanField(default=False)
     product = models.ForeignKey(Product)
     user = models.ForeignKey(User)
-    rating = models.IntegerField(choices=RATE_LEVEL, default=RATE_NORMAL)
+    rating = models.IntegerField(choices=REVIEW_RATING_CHOICES, default=RATING_NORMAL)
     comment = models.CharField(max_length=1024)
+
+    def __str__(self):
+        return "User '{0}' reviewed product '{1}' with '{2}' rating".format(str(self.user), str(self.product),
+            REVIEW_RATING_CHOICES[self.rating][1])
 
     class Meta:
         permissions = (
@@ -93,11 +104,20 @@ class ProductAttribute(core_models.Model):
     attribute = models.ForeignKey(Attribute)
     value = models.CharField(max_length=128)
 
+    def __str__(self):
+        return "".format()
+
 
 class ProductImage(core_models.Model):
     product = models.ForeignKey(Product)
     image = models.ImageField(upload_to='cart/product')
     info = models.CharField(max_length=1024, null=True, blank=True)
+
+    def __str__(self):
+        return "Image for {0}".format(str(self.product))
+
+
+''' Shop '''
 
 
 class Shop(core_models.Model):
@@ -115,8 +135,12 @@ class ShopReview(core_models.Model):
     is_approved = models.BooleanField(default=False)
     shop = models.ForeignKey(Shop)
     user = models.ForeignKey(User)
-    rating = models.IntegerField(choices=RATE_LEVEL, default=RATE_NORMAL)
+    rating = models.IntegerField(choices=REVIEW_RATING_CHOICES, default=RATING_NORMAL)
     comment = models.CharField(max_length=1024)
+
+    def __str__(self):
+        return "User '{0}' reviewed shop '{1}' with '{2}' rating".format(str(self.user), str(self.product),
+            REVIEW_RATING_CHOICES[self.rating][1])
 
     class Meta:
         permissions = (
@@ -132,4 +156,8 @@ class ShopProduct(core_models.Model):
     quantity = models.IntegerField()
     info = models.CharField(max_length=1024, null=True, blank=True)
     url = models.URLField(null=True, blank=True)
+
+    def __str__(self):
+        return "Product '{0}' attached to '{1}' shop with '{2} {3}' price".format(str(self.product), str(self.shop),
+            self.price, self.currency.title)
 
