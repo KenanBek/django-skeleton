@@ -12,7 +12,7 @@ install:
 # run tests
 script:
   - cd app
-  - coverage run --source=. manage.py test
+  - coverage run --source=account,cart,core,system,website manage.py test
   - coverage report -m
 after_success:
   coveralls --verbose
