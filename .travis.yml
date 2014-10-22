@@ -12,7 +12,8 @@ install:
 # run tests
 script:
   - cd app
-  - coverage run --source=account,cart,core,system,website manage.py test
+  - export PYTHONPATH=$PYTHONPATH:./
+  - coverage run manage.py test
   - coverage report -m
 after_success:
   coveralls --verbose
