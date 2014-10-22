@@ -461,6 +461,45 @@
         }
     },
     {
+        "pk": 11,
+        "model": "cart.productreview",
+        "fields": {
+            "comment": "It is very good phone.",
+            "rating": 4,
+            "product": 6,
+            "is_approved": true,
+            "modified_at": "2014-10-21T22:12:14.259Z",
+            "added_at": "2014-10-21T22:11:52.526Z",
+            "user": 0
+        }
+    },
+    {
+        "pk": 12,
+        "model": "cart.productreview",
+        "fields": {
+            "comment": "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.",
+            "rating": 4,
+            "product": 3,
+            "is_approved": true,
+            "modified_at": "2014-10-21T23:39:16.356Z",
+            "added_at": "2014-10-21T23:39:16.356Z",
+            "user": 0
+        }
+    },
+    {
+        "pk": 13,
+        "model": "cart.productreview",
+        "fields": {
+            "comment": "Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante.",
+            "rating": 2,
+            "product": 3,
+            "is_approved": true,
+            "modified_at": "2014-10-21T23:40:44.872Z",
+            "added_at": "2014-10-21T23:40:44.872Z",
+            "user": 0
+        }
+    },
+    {
         "pk": 1,
         "model": "cart.productattribute",
         "fields": {
