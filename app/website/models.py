@@ -1,4 +1,5 @@
 from django.db import models
+import slugify
 
 from core import models as core_models
 from core.models import MODEL_STATUS, PUBLISHED
@@ -55,6 +56,11 @@ class Page(core_models.Model):
     def __str__(self):
         return self.title
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify.slugify(self.title)
+        super(Page, self).save(*args, **kwargs)
+
 
 ''' Post '''
 
@@ -66,6 +72,11 @@ class Category(core_models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify.slugify(self.title)
+        super(Category, self).save(*args, **kwargs)
 
 
 class Post(core_models.Model):
@@ -80,6 +91,11 @@ class Post(core_models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify.slugify(self.title)
+        super(Post, self).save(*args, **kwargs)
 
 
 ''' Subscriber & Document '''

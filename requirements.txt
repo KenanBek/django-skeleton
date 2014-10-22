@@ -11,4 +11,5 @@ djangorestframework
 markdown
 markdown2
 easy-thumbnails
+slugify
 
