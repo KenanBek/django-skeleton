@@ -12,4 +12,7 @@ install:
 # run tests
 script:
   - coverage run --source=app/ app/manage.py test
+  - coverage report --include=app/ -m
+after_success:
+  coveralls --verbose
 
