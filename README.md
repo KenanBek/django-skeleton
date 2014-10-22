@@ -41,9 +41,10 @@ Skeleton project for Django applications.
 - Management commands for initial configuration
 - Customized Django Suit based administration
 - Pre configured specific folders of Django application (fixtures, media, static, etc.)
-- Slider
 - Email subscription
 - Contact and Application database
+- Using thumbnail for images
+- Slider
 - Logging
 
 # Install
