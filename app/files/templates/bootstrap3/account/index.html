@@ -21,9 +21,9 @@
                 <dt>Name</dt>
                 <dd>{{ user.first_name|empty_text }} {{ user.last_name|empty_text }}</dd>
                 <dt>Email</dt>
-                <dd>{{ user.email }}</dd>
+                <dd>{{ user.email|empty_text }}</dd>
                 <dt>Website</dt>
-                <dd>{{ user.get_profile.website }}</dd>
+                <dd>{{ user.get_profile.website|empty_text }}</dd>
             </dl>
         </div>
     </div>
