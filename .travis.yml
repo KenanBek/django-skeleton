@@ -11,10 +11,5 @@ install:
   - pip install coveralls
 # run tests
 script:
-  - cd app
-  - export PYTHONPATH=$PYTHONPATH:./
-  - coverage run manage.py test
-  - coverage report -m
-after_success:
-  coveralls --verbose
+  - coverage run --source=app/ app/manage.py test
 
