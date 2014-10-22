@@ -1,9 +1,30 @@
 {% extends 'bootstrap3/layout.html' %}
+{% load thumbnail %}
+{% load format %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h1>Hello {{ user }}</h1>
+            <h1>Hello, {{ user }}!</h1>
+
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{{ user.get_profile.avatar|thumbnail_url:'small' }}">
+        </div>
+        <div class="col-md-9">
+            <dl>
+                <dt>Name</dt>
+                <dd>{{ user.first_name|empty_text }} {{ user.last_name|empty_text }}</dd>
+                <dt>Email</dt>
+                <dd>{{ user.email }}</dd>
+                <dt>Website</dt>
+                <dd>{{ user.get_profile.website }}</dd>
+            </dl>
         </div>
     </div>
 {% endblock %}
