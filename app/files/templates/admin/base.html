@@ -12,6 +12,7 @@
     {% if LANGUAGE_BIDI %}
         <link rel="stylesheet" type="text/css" href="
                 {% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}" />{% endif %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/admin/main.css' %}" media="all">
     <script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% static "admin/" %}{% endfilter %}";</script>
     <script src="{% static 'suit/js/jquery-1.8.3.min.js' %}"></script>
     <script type="text/javascript">var Suit = { $: $.noConflict() };
@@ -27,7 +28,7 @@
     {% endif %}
     {% block extrahead %}{% endblock %}
     {% block blockbots %}
-        <meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+    <meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
 </head>
 {% load i18n %}
 

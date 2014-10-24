@@ -19,6 +19,7 @@ class ProductImageInlineForm(forms.ModelForm):
 
     class Meta:
         model = models.ProductImage
+        fields = '__all__'
 
 
 class ProductImageInline(admin.StackedInline):
@@ -34,13 +35,14 @@ class ProductAdminForm(forms.ModelForm):
 
     class Meta:
         model = models.Product
+        fields = '__all__'
 
 
 class ProductAdmin(core_models.ModelAdmin):
+    form = ProductAdminForm
     list_display = ['category', 'manufacturer', 'model', 'is_active', ]
     list_filter = ['category', 'manufacturer', ]
     inlines = [ProductAttributeInline, ProductImageInline, ]
-    form = ProductAdminForm
     fieldsets = [
         ('Relations', {
             'classes': ('suit-tab suit-tab-general',),
@@ -73,6 +75,7 @@ class ShopProductInlineForm(forms.ModelForm):
 
     class Meta:
         model = models.ShopProduct
+        fields = '__all__'
 
 
 class ShopProductInline(admin.StackedInline):
@@ -96,9 +99,11 @@ class ShopAdminForm(forms.ModelForm):
 
     class Meta:
         model = models.Shop
+        fields = '__all__'
 
 
 class ShopAdmin(core_models.ModelAdmin):
+    form = ShopAdminForm
     list_display = ['title', 'is_active', ]
     inlines = [ShopProductInline, ]
     fieldsets = [
@@ -117,7 +122,6 @@ class ShopAdmin(core_models.ModelAdmin):
         ('general', 'General'),
         ('products', 'Products'),
     )
-    form = ShopAdminForm
 
 
 ''' Reviews '''
@@ -128,6 +132,7 @@ class ProductReviewAdminForm(forms.ModelForm):
 
     class Meta:
         model = models.ProductReview
+        fields = '__all__'
 
 
 class ProductReviewAdmin(core_models.ModelAdmin):
@@ -141,6 +146,7 @@ class ShopReviewAdminForm(forms.ModelForm):
 
     class Meta:
         model = models.ShopReview
+        fields = '__all__'
 
 
 class ShopReviewAdmin(core_models.ModelAdmin):

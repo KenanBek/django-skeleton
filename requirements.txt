@@ -1,6 +1,6 @@
+django==1.7.1
 jsonpickle
 pillow
-django==1.6.7
 django-suit
 django-reversion
 django-ckeditor-updated

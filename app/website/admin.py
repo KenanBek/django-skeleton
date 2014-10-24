@@ -22,6 +22,7 @@ class PageAdminForm(forms.ModelForm):
 
     class Meta:
         model = models.Page
+        fields = '__all__'
 
 
 class PageAdmin(core_models.ModelAdmin):
@@ -42,6 +43,7 @@ class CategoryAdminForm(forms.ModelForm):
 
     class Meta:
         model = models.Category
+        fields = '__all__'
 
 
 class CategoryAdmin(core_models.ModelAdmin):
@@ -68,6 +70,7 @@ class PostAdminForm(forms.ModelForm):
 
     class Meta:
         model = models.Post
+        fields = '__all__'
 
 
 class PostAdmin(core_models.ModelAdmin):

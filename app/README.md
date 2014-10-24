@@ -5,6 +5,8 @@ Skeleton project for Django applications.
 
 [![Build Status](https://travis-ci.org/KenanBek/django-skeleton.svg?branch=master)](https://travis-ci.org/KenanBek/django-skeleton) [![Coverage Status](https://coveralls.io/repos/KenanBek/django-skeleton/badge.png?branch=master)](https://coveralls.io/r/KenanBek/django-skeleton?branch=master)
 
+Django version: 1.7.1
+
 # Features
 
 **Built in applications**:

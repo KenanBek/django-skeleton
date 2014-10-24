@@ -14,7 +14,7 @@
 
     <div class="row">
         <div class="col-md-3">
-            <img src="{{ user.get_profile.avatar|thumbnail_url:'small' }}">
+            <img src="{{ user.profile.avatar|thumbnail_url:'small' }}">
         </div>
         <div class="col-md-9">
             <dl>
@@ -23,7 +23,7 @@
                 <dt>Email</dt>
                 <dd>{{ user.email|empty_text }}</dd>
                 <dt>Website</dt>
-                <dd>{{ user.get_profile.website|empty_text }}</dd>
+                <dd>{{ user.profile.website|empty_text }}</dd>
             </dl>
         </div>
     </div>
