@@ -1,24 +1,16 @@
-from core.decorators import convert_to_json
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.utils import translation
 
 
-@convert_to_json
-def request_info(request):
-    info = {
-        "GET": request.GET,
-        "POST": request.POST,
-        "REQUEST": request.REQUEST,
-        "COOKIES": request.COOKIES,
-        "META": request.META,
+def localization(request, template='bootstrap3/system/localization.html', context={}):
+    return render(request, template, context)
 
-        "body": request.body,
-        "environ": request.environ,
-        "encoding": request.encoding,
-        "method": request.method,
-        "path": request.path,
-        "path_info": request.path_info,
-        "session": request.session,
-        "user": request.user,
-        "scheme": request.scheme,
-    }
-    return info
+"""
+def language(request, lang):
+    translation.activate(lang)
+    response = HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    response.set_cookie(settings.LANGUAGE_COOKIE_NAME, user_language)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+"""
 

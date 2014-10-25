@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+from django.utils.translation import ugettext_lazy as _
 from django.contrib.messages import constants as message_constants
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
@@ -50,6 +50,7 @@ INSTALLED_APPS = (
 )
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -92,6 +93,11 @@ DATABASES = {
 # Internationalization and Localization
 
 LANGUAGE_CODE = 'en'
+LANGUAGES = (
+    ('az', _('Azerbaijan')),
+    ('ru', _('Russian')),
+    ('en', _('English')),
+)
 USE_TZ = True
 USE_I18N = True
 USE_L10N = True
@@ -129,6 +135,7 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.static',
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.i18n',
     'core.context.general',
 )
 TEMPLATE_DIRS = {
@@ -324,3 +331,4 @@ THUMBNAIL_ALIASES = {
         'large': {'size': (800, 800), 'crop': True},
     },
 }
+
