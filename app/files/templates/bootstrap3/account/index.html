@@ -21,6 +21,8 @@
             <dl>
                 <dt>Name</dt>
                 <dd>{{ user.first_name|empty_text }} {{ user.last_name|empty_text }}</dd>
+                <dt>Registered at</dt>
+                <dd>{{ user.profile.added_at|empty_text }}</dd>
                 <dt>Email</dt>
                 <dd>{{ user.email|empty_text }}</dd>
                 <dt>Website</dt>
