@@ -10,6 +10,10 @@ https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
 import os
 import socket
 
+from core import configuration as core_configuration
+
+core_configuration.configure()
+
 if socket.gethostname() == "web381.webfaction.com":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings_webfaction")
 else:

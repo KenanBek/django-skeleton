@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     url(r'', include('website.urls')),
     url(r'^account/', include('account.urls')),
     url(r'^cart/', include('cart.urls')),
+    url(r'^system/', include('system.urls')),
 )
 
 # Serve static files

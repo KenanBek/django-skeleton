@@ -44,7 +44,7 @@ def convert_to_json(fn):
             error_message = e.message.upper()
             json_result = {'is_successful': False, 'message': error_message}
         # Wrap result with JSON HTTPResponse and return
-        return HttpResponse(jsonpickle.encode(json_result, unpicklable=False), mimetype='application/json')
+        return HttpResponse(jsonpickle.encode(json_result, unpicklable=False), content_type='application/json')
 
     return wrapper
 
