@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
     'suit',
-    'guardian',
+    #'guardian',
     'rest_framework',
     'reversion',
     'ckeditor',
@@ -59,7 +59,7 @@ MIDDLEWARE_CLASSES = (
 )
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'guardian.backends.ObjectPermissionBackend',
+    #'guardian.backends.ObjectPermissionBackend',
 )
 ROOT_URLCONF = 'core.urls'
 WSGI_APPLICATION = 'core.wsgi.application'
@@ -97,6 +97,9 @@ LANGUAGES = (
     ('az', _('Azerbaijan')),
     ('ru', _('Russian')),
     ('en', _('English')),
+)
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'files/locale/'),
 )
 USE_TZ = True
 USE_I18N = True
@@ -224,7 +227,7 @@ LOGGING = {
 
 SKELETON_CONFIG = {
     'title': 'Application',
-    'description': 'Project template for Django Application.',
+    'description': _('Project template for Django Application.'),
     'google_id': 'google-id',
     'facebook_id': '1520447268200947',
     'twitter_id': 'twitter-id',

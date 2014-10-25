@@ -1,0 +1,1352 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-10-25 15:42-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: account/views.py:31
+msgid "You have successfully logged in."
+msgstr ""
+
+#: account/views.py:37
+msgid "Non active user."
+msgstr ""
+
+#: account/views.py:39
+msgid "Wrong username or password."
+msgstr ""
+
+#: account/views.py:59
+msgid "User with this Email already exists."
+msgstr ""
+
+#: account/views.py:60 account/views.py:72 cart/views.py:66 cart/views.py:115
+#: website/views.py:38 website/views.py:55
+msgid "Please fix errors bellow."
+msgstr ""
+
+#: account/views.py:67
+msgid "You have successfully registered."
+msgstr ""
+
+#: account/views.py:84
+msgid "You have successfully logged out."
+msgstr ""
+
+#: cart/views.py:64 cart/views.py:113
+msgid "Your review has successfully submitted for approve."
+msgstr ""
+
+#: cart/views.py:68 cart/views.py:117
+msgid "Please post review data."
+msgstr ""
+
+#: core/decorators.py:20
+msgid "You are already registered and logged in."
+msgstr ""
+
+#: core/settings.py:97
+msgid "Azerbaijan"
+msgstr ""
+
+#: core/settings.py:98
+msgid "Russian"
+msgstr ""
+
+#: core/settings.py:99
+msgid "English"
+msgstr ""
+
+#: core/settings.py:230
+msgid "Project template for Django Application."
+msgstr ""
+
+#: files/templates/403.html:4
+msgid "forbidden"
+msgstr ""
+
+#: files/templates/403.html:6 files/templates/404.html:6
+#: files/templates/500.html:6 files/templates/suit/error_base.html:76
+msgid "error"
+msgstr ""
+
+#: files/templates/403.html:9
+msgid "We're sorry, but the requested action is forbidden"
+msgstr ""
+
+#: files/templates/404.html:4 files/templates/admin/404.html:4
+#: files/templates/admin/404.html.py:8
+msgid "Page not found"
+msgstr ""
+
+#: files/templates/404.html:9 files/templates/admin/404.html:10
+msgid "We're sorry, but the requested page could not be found."
+msgstr ""
+
+#: files/templates/500.html:4
+msgid "Server Error"
+msgstr ""
+
+#: files/templates/500.html:9
+msgid ""
+"There's been an error. It's been reported to the site administrators via e-"
+"mail and should be fixed shortly. Thanks for your patience."
+msgstr ""
+
+#: files/templates/admin/500.html:6 files/templates/admin/app_index.html:8
+#: files/templates/admin/auth/user/change_password.html:19
+#: files/templates/admin/base.html:115
+#: files/templates/admin/change_form.html:61
+#: files/templates/admin/change_list.html:42
+#: files/templates/admin/cms/page/change_form.html:46
+#: files/templates/admin/cms/page/change_list.html:8
+#: files/templates/admin/cms/page/plugin_change_form.html:82
+#: files/templates/admin/delete_confirmation.html:7
+#: files/templates/admin/delete_selected_confirmation.html:7
+#: files/templates/admin/filer/breadcrumbs.html:5
+#: files/templates/admin/filer/folder/change_form.html:8
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage.html:8
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage_group.html:10
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage_user.html:10
+#: files/templates/admin/guardian/model/obj_perms_manage.html:13
+#: files/templates/admin/guardian/model/obj_perms_manage_group.html:10
+#: files/templates/admin/guardian/model/obj_perms_manage_user.html:10
+#: files/templates/admin/import_export/base.html:10
+#: files/templates/admin/invalid_setup.html:6
+#: files/templates/admin/object_history.html:7
+#: files/templates/registration/logged_out.html:6
+#: files/templates/registration/password_change_done.html:6
+#: files/templates/registration/password_change_form.html:26
+#: files/templates/registration/password_reset_complete.html:6
+#: files/templates/registration/password_reset_confirm.html:6
+#: files/templates/registration/password_reset_done.html:6
+#: files/templates/registration/password_reset_form.html:6
+#: files/templates/reversion/recover_form.html:8
+#: files/templates/reversion/recover_list.html:8
+#: files/templates/reversion/revision_form.html:8
+#: files/templates/suit/menu.html:10
+msgid "Home"
+msgstr ""
+
+#: files/templates/admin/500.html:7
+msgid "Server error"
+msgstr ""
+
+#: files/templates/admin/500.html:11
+msgid "Server error (500)"
+msgstr ""
+
+#: files/templates/admin/500.html:14
+msgid "Server Error <em>(500)</em>"
+msgstr ""
+
+#: files/templates/admin/500.html:15
+msgid ""
+"There's been an error. It's been reported to the site administrators via "
+"email and should be fixed shortly. Thanks for your patience."
+msgstr ""
+
+#: files/templates/admin/actions.html:14
+#: files/templates/admin/filer/actions.html:5
+msgid "Run the selected action"
+msgstr ""
+
+#: files/templates/admin/actions.html:14
+#: files/templates/admin/filer/actions.html:5
+msgid "Go"
+msgstr ""
+
+#: files/templates/admin/actions.html:22
+#: files/templates/admin/filer/actions.html:14
+msgid "Click here to select the objects across all pages"
+msgstr ""
+
+#: files/templates/admin/actions.html:23
+#, python-format
+msgid ""
+"Select all %(total_count)s\n"
+"                    %(module_name)s"
+msgstr ""
+
+#: files/templates/admin/actions.html:26
+#: files/templates/admin/filer/actions.html:16
+msgid "Clear selection"
+msgstr ""
+
+#: files/templates/admin/app_index.html:11
+#, python-format
+msgid "%(name)s"
+msgstr ""
+
+#: files/templates/admin/auth/user/add_form.html:6
+msgid ""
+"First, enter a username and password. Then, you'll be able to edit more user "
+"options."
+msgstr ""
+
+#: files/templates/admin/auth/user/add_form.html:8
+msgid "Enter a username and password."
+msgstr ""
+
+#: files/templates/admin/auth/user/change_password.html:32
+#: files/templates/admin/auth/user/change_password.html:75
+#: files/templates/admin/base.html:93
+#: files/templates/registration/password_change_done.html:3
+#: files/templates/registration/password_change_form.html:19
+msgid "Change password"
+msgstr ""
+
+#: files/templates/admin/auth/user/change_password.html:45
+#: files/templates/admin/change_form.html:141
+#: files/templates/admin/change_list.html:86
+#: files/templates/admin/cms/page/change_form.html:137
+#: files/templates/admin/cms/page/plugin_change_form.html:99
+#: files/templates/admin/filer/folder/new_folder_form.html:10
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage.html:21
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage.html:82
+#: files/templates/admin/login.html:27
+#: files/templates/registration/password_change_form.html:44
+msgid "Please correct the error below."
+msgid_plural " Please correct the errors below."
+msgstr[0] ""
+msgstr[1] ""
+
+#: files/templates/admin/auth/user/change_password.html:48
+#, python-format
+msgid "Enter a new password for the user <strong>%(username)s</strong>."
+msgstr ""
+
+#: files/templates/admin/auth/user/change_password.html:54
+#: files/templates/admin/login.html:48
+msgid "Password"
+msgstr ""
+
+#: files/templates/admin/auth/user/change_password.html:64
+#: files/templates/registration/password_change_form.html:77
+msgid "Password (again)"
+msgstr ""
+
+#: files/templates/admin/auth/user/change_password.html:68
+msgid "Enter the same password as above, for verification."
+msgstr ""
+
+#: files/templates/admin/base.html:78
+msgid "Welcome,"
+msgstr ""
+
+#: files/templates/admin/base.html:86
+#: files/templates/registration/password_change_done.html:3
+#: files/templates/registration/password_change_form.html:15
+msgid "Documentation"
+msgstr ""
+
+#: files/templates/admin/base.html:89
+#: files/templates/rest_framework/base.html:49
+msgid "Website"
+msgstr ""
+
+#: files/templates/admin/base.html:91
+msgid "API"
+msgstr ""
+
+#: files/templates/admin/base.html:95
+#: files/templates/registration/password_change_done.html:3
+#: files/templates/registration/password_change_form.html:21
+msgid "Log out"
+msgstr ""
+
+#: files/templates/admin/change_form.html:21
+msgid "You have unsaved changes"
+msgstr ""
+
+#: files/templates/admin/change_form.html:50
+#: files/templates/admin/change_form.html:76
+#: files/templates/admin/cms/page/change_form.html:53
+#: files/templates/admin/cms/page/plugin_change_form.html:85
+#: files/templates/admin/index.html:34
+msgid "Add"
+msgstr ""
+
+#: files/templates/admin/change_form.html:98
+#: files/templates/admin/filer/image/change_form.html:7
+msgid "tools"
+msgstr ""
+
+#: files/templates/admin/change_form.html:102
+#: files/templates/admin/cms/page/change_form.html:105
+#: files/templates/admin/filer/folder/change_form.html:33
+#: files/templates/admin/filer/image/change_form.html:10
+#: files/templates/admin/object_history.html:15
+#: files/templates/reversion/revision_form.html:16
+msgid "History"
+msgstr ""
+
+#: files/templates/admin/change_form.html:107
+#: files/templates/admin/cms/page/change_form.html:104
+#: files/templates/admin/edit_inline/stacked.html:9
+#: files/templates/admin/filer/folder/change_form.html:37
+#: files/templates/admin/filer/image/change_form.html:15
+msgid "View on site"
+msgstr ""
+
+#: files/templates/admin/change_form.html:113
+#: files/templates/admin/change_list.html:68
+#: files/templates/admin/change_list.html:116
+#: files/templates/admin/cms/page/change_form.html:108
+#: files/templates/admin/cms/page/change_list.html:113
+#: files/templates/admin/cms/page/change_list.html:141
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: files/templates/admin/change_list.html:110
+msgid "Nothing found"
+msgstr ""
+
+#: files/templates/admin/change_list.html:112
+msgid "Reset search and filters"
+msgstr ""
+
+#: files/templates/admin/change_list.html:114
+#, python-format
+msgid "%(name_plural)s are not created yet"
+msgstr ""
+
+#: files/templates/admin/change_list_results.html:19
+#, python-format
+msgid "Sorting priority: %(priority_number)s"
+msgstr ""
+
+#: files/templates/admin/change_list_results.html:20
+msgid "Toggle sorting"
+msgstr ""
+
+#: files/templates/admin/change_list_results.html:22
+msgid "Remove from sorting"
+msgstr ""
+
+#: files/templates/admin/cms/page/change_form.html:4
+msgid "Change a page"
+msgstr ""
+
+#: files/templates/admin/cms/page/change_form.html:64
+msgid "Confirm delete"
+msgstr ""
+
+#: files/templates/admin/cms/page/change_form.html:65
+msgid "Remove delete request"
+msgstr ""
+
+#: files/templates/admin/cms/page/change_form.html:68
+msgid "Confirm page deletion"
+msgstr ""
+
+#: files/templates/admin/cms/page/change_form.html:93
+msgid "actions"
+msgstr ""
+
+#: files/templates/admin/cms/page/change_form.html:97
+#: files/templates/admin/cms/page/change_list.html:78
+msgid "Publish"
+msgstr ""
+
+#: files/templates/admin/cms/page/change_form.html:97
+#: files/templates/admin/cms/page/change_form.html:98
+msgid "draft"
+msgstr ""
+
+#: files/templates/admin/cms/page/change_form.html:98
+#: files/templates/admin/import_export/import.html:51
+msgid "Preview"
+msgstr ""
+
+#: files/templates/admin/cms/page/change_form.html:100
+msgid "Revert to public"
+msgstr ""
+
+#: files/templates/admin/cms/page/change_form.html:157
+msgid "All permissions"
+msgstr ""
+
+#: files/templates/admin/cms/page/change_form.html:158
+#: files/templates/admin/cms/page/change_form.html:169
+msgid "Loading..."
+msgstr ""
+
+#: files/templates/admin/cms/page/change_form.html:168
+msgid "Page states"
+msgstr ""
+
+#: files/templates/admin/cms/page/change_list.html:3
+msgid "List of pages"
+msgstr ""
+
+#: files/templates/admin/cms/page/change_list.html:69
+msgid "Successfully moved"
+msgstr ""
+
+#: files/templates/admin/cms/page/change_list.html:87
+msgid "An error occured. Please reload the page"
+msgstr ""
+
+#: files/templates/admin/cms/page/change_list.html:110
+#: files/templates/reversion/change_list.html:8
+#: files/templates/reversion/recover_form.html:14
+#: files/templates/reversion/recover_list.html:14
+#, python-format
+msgid "Recover deleted %(name)s"
+msgstr ""
+
+#: files/templates/admin/cms/page/change_list.html:125
+msgid "Pages on:"
+msgstr ""
+
+#: files/templates/admin/cms/page/plugin_change_form.html:128
+#: files/templates/admin/filer/folder/new_folder_form.html:43
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage_group.html:45
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage_user.html:45
+#: files/templates/admin/guardian/model/obj_perms_manage_group.html:37
+#: files/templates/admin/guardian/model/obj_perms_manage_user.html:37
+#: files/templates/admin/page_submit_line.html:3
+#: files/templates/admin/pagination.html:4
+#: files/templates/admin/submit_line.html:3
+#: files/templates/bootstrap3/account/index.html:42
+msgid "Save"
+msgstr ""
+
+#: files/templates/admin/cms/page/plugin_change_form.html:129
+msgid "Cancel"
+msgstr ""
+
+#: files/templates/admin/delete_confirmation.html:18
+#: files/templates/admin/delete_confirmation.html:49
+#: files/templates/admin/filer/folder/directory_table.html:42
+#: files/templates/admin/import_export/import.html:69
+#: files/templates/admin/page_submit_line.html:8
+#: files/templates/admin/submit_line.html:8
+msgid "Delete"
+msgstr ""
+
+#: files/templates/admin/delete_confirmation.html:26
+#: files/templates/admin/filer/delete_confirmation.html:12
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+
+#: files/templates/admin/delete_confirmation.html:36
+#: files/templates/admin/filer/delete_confirmation.html:21
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
+"following protected related objects:"
+msgstr ""
+
+#: files/templates/admin/delete_confirmation.html:51
+#: files/templates/admin/filer/delete_confirmation.html:31
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+
+#: files/templates/admin/delete_confirmation.html:57
+#: files/templates/admin/delete_selected_confirmation.html:61
+#: files/templates/admin/filer/delete_confirmation.html:36
+#: files/templates/admin/filer/delete_selected_files_confirmation.html:47
+msgid "Yes, I'm sure"
+msgstr ""
+
+#: files/templates/admin/delete_selected_confirmation.html:15
+msgid "Delete multiple objects"
+msgstr ""
+
+#: files/templates/admin/delete_selected_confirmation.html:23
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+
+#: files/templates/admin/delete_selected_confirmation.html:33
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
+msgstr ""
+
+#: files/templates/admin/delete_selected_confirmation.html:51
+msgid "Confirm deletion"
+msgstr ""
+
+#: files/templates/admin/delete_selected_confirmation.html:54
+#, python-format
+msgid ""
+"Are you sure you want to delete the selected %(objects_name)s? All of the "
+"following objects and their related items will be deleted:"
+msgstr ""
+
+#: files/templates/admin/edit_inline/stacked.html:67
+#: files/templates/admin/edit_inline/tabular.html:120
+#, python-format
+msgid "Add another %(verbose_name)s"
+msgstr ""
+
+#: files/templates/admin/edit_inline/stacked.html:70
+#: files/templates/admin/edit_inline/tabular.html:123
+msgid "Remove"
+msgstr ""
+
+#: files/templates/admin/edit_inline/tabular.html:17
+msgid "Delete?"
+msgstr ""
+
+#: files/templates/admin/filer/actions.html:14
+#, python-format
+msgid "Select all %(total_count)s files and/or folders"
+msgstr ""
+
+#: files/templates/admin/filer/breadcrumbs.html:5
+msgid "Go back to admin homepage"
+msgstr ""
+
+#: files/templates/admin/filer/breadcrumbs.html:8
+msgid "Go back to Filer app"
+msgstr ""
+
+#: files/templates/admin/filer/breadcrumbs.html:8
+#: files/templates/admin/filer/folder/change_form.html:12
+msgid "Filer"
+msgstr ""
+
+#: files/templates/admin/filer/breadcrumbs.html:12
+msgid "Go back to root folder"
+msgstr ""
+
+#: files/templates/admin/filer/breadcrumbs.html:12
+#: files/templates/admin/filer/folder/change_form.html:15
+#: files/templates/admin/filer/folder/directory_listing.html:80
+msgid "root"
+msgstr ""
+
+#: files/templates/admin/filer/breadcrumbs.html:17
+#: files/templates/admin/filer/breadcrumbs.html:23
+#: files/templates/admin/filer/folder/change_form.html:19
+#, python-format
+msgid "Go back to '%(folder_name)s' folder"
+msgstr ""
+
+#: files/templates/admin/filer/change_form.html:30
+msgid "duplicates"
+msgstr ""
+
+#: files/templates/admin/filer/delete_selected_files_confirmation.html:11
+msgid ""
+"Deleting the selected files and/or folders would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+
+#: files/templates/admin/filer/delete_selected_files_confirmation.html:20
+msgid ""
+"Deleting the selected files and/or folders would require deleting the "
+"following protected related objects:"
+msgstr ""
+
+#: files/templates/admin/filer/delete_selected_files_confirmation.html:30
+msgid ""
+"<p>Are you sure you want to delete the selected files and/or folders? All of "
+"the following objects and their related items will be deleted:</p>"
+msgstr ""
+
+#: files/templates/admin/filer/folder/change_form.html:8
+#: files/templates/admin/filer/folder/change_form.html:12
+#: files/templates/admin/filer/folder/change_form.html:15
+#: files/templates/admin/filer/folder/directory_listing.html:80
+msgid "Go back to"
+msgstr ""
+
+#: files/templates/admin/filer/folder/change_form.html:8
+msgid "admin homepage"
+msgstr ""
+
+#: files/templates/admin/filer/folder/change_form.html:15
+#: files/templates/admin/filer/folder/directory_listing.html:80
+#: files/templates/admin/filer/folder/new_folder_form.html:4
+#: files/templates/admin/filer/tools/clipboard/clipboard.html:15
+msgid "folder"
+msgstr ""
+
+#: files/templates/admin/filer/folder/change_form.html:24
+#: files/templates/admin/filer/folder/directory_listing.html:86
+#: files/templates/admin/filer/folder/directory_table.html:27
+#: files/templates/admin/filer/folder/directory_table.html:43
+#: files/templates/admin/index.html:26
+msgid "Change"
+msgstr ""
+
+#: files/templates/admin/filer/folder/change_form.html:50
+#: files/templates/admin/filer/folder/directory_listing.html:81
+#: files/templates/admin/filer/folder/directory_listing.html:91
+#: files/templates/admin/filer/folder/directory_table.html:23
+msgid "Folder Icon"
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_copy_destination.html:12
+msgid ""
+"Your account doesn't have permissions to copy all of the selected files and/"
+"or folders."
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_copy_destination.html:15
+#: files/templates/admin/filer/folder/choose_move_destination.html:15
+msgid "There are no destination folders available."
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_copy_destination.html:18
+msgid "There are no files and/or folders available to copy."
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_copy_destination.html:21
+msgid ""
+"The following files and/or folders will be copied to a destination folder "
+"(retaining their tree structure):"
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_copy_destination.html:31
+#: files/templates/admin/filer/folder/choose_move_destination.html:32
+msgid "Destination folder:"
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_copy_destination.html:38
+msgid "Copy"
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_images_resize_options.html:12
+msgid ""
+"Your account doesn't have permissions to resize all of the selected images."
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_images_resize_options.html:15
+msgid "There are no images available to resize."
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_images_resize_options.html:18
+msgid "The following images will be resized:"
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_images_resize_options.html:29
+msgid "Choose an existing thumbnail option or enter resize parameters:"
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_images_resize_options.html:32
+msgid "Choose resize parameters:"
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_images_resize_options.html:35
+msgid ""
+"Warning: Images will be resized in-place and originals will be lost. Maybe "
+"first make a copy of them to retain the originals."
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_images_resize_options.html:36
+msgid "Resize"
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_move_destination.html:12
+msgid ""
+"Your account doesn't have permissions to move all of the selected files and/"
+"or folders."
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_move_destination.html:18
+msgid "There are no files and/or folders available to move."
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_move_destination.html:21
+msgid ""
+"The following files and/or folders will be moved to a destination folder "
+"(retaining their tree structure):"
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_move_destination.html:38
+msgid "Move"
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_rename_format.html:12
+msgid ""
+"Your account doesn't have permissions to rename all of the selected files."
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_rename_format.html:15
+msgid "There are no files available to rename."
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_rename_format.html:18
+msgid ""
+"The following files will be renamed (they will stay in their folders and "
+"keep original filename, only displayed filename will be changed):"
+msgstr ""
+
+#: files/templates/admin/filer/folder/choose_rename_format.html:31
+msgid "Rename"
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_listing.html:71
+msgid "Adds a new Folder"
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_listing.html:71
+msgid "New Folder"
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_listing.html:72
+msgid "upload files"
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_listing.html:72
+msgid "Upload"
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_listing.html:80
+msgid "Go back to the parent folder"
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_listing.html:82
+#: files/templates/admin/filer/folder/directory_table.html:30
+#: files/templates/admin/filer/tools/search_form.html:19
+#, python-format
+msgid "1 folder"
+msgid_plural "%(counter)s folders"
+msgstr[0] ""
+msgstr[1] ""
+
+#: files/templates/admin/filer/folder/directory_listing.html:82
+#: files/templates/admin/filer/folder/directory_table.html:30
+#: files/templates/admin/filer/tools/search_form.html:20
+#, python-format
+msgid "1 file"
+msgid_plural "%(counter)s files"
+msgstr[0] ""
+msgstr[1] ""
+
+#: files/templates/admin/filer/folder/directory_listing.html:86
+msgid "Change current folder details"
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_table.html:13
+msgid "Name"
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_table.html:23
+#: files/templates/admin/filer/folder/directory_table.html:27
+#: files/templates/admin/filer/folder/directory_table.html:29
+#, python-format
+msgid "Change '%(item_label)s' folder details"
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_table.html:30
+#: files/templates/admin/filer/folder/directory_table.html:45
+msgid "Owner"
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_table.html:37
+msgid "Select this file"
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_table.html:39
+#: files/templates/admin/filer/folder/directory_table.html:43
+#: files/templates/admin/filer/folder/directory_table.html:44
+#, python-format
+msgid "Change '%(item_label)s' details"
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_table.html:42
+#, python-format
+msgid "Delete '%(item_label)s'"
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_table.html:45
+msgid "Permissions"
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_table.html:45
+msgid "disabled"
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_table.html:45
+msgid "enabled"
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_table.html:49
+msgid "Move to clipboard"
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_table.html:57
+msgid "there are no files or subfolders"
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_table.html:64
+msgid "previous"
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_table.html:68
+#, python-format
+msgid ""
+"\n"
+"            Page %(number)s of %(num_pages)s\n"
+"            "
+msgstr ""
+
+#: files/templates/admin/filer/folder/directory_table.html:74
+msgid "next"
+msgstr ""
+
+#: files/templates/admin/filer/folder/new_folder_form.html:4
+msgid "Add new"
+msgstr ""
+
+#: files/templates/admin/filer/image/change_form.html:31
+msgid "Full size preview"
+msgstr ""
+
+#: files/templates/admin/filer/tools/clipboard/clipboard.html:4
+msgid "Clipboard"
+msgstr ""
+
+#: files/templates/admin/filer/tools/clipboard/clipboard.html:15
+msgid "discard"
+msgstr ""
+
+#: files/templates/admin/filer/tools/clipboard/clipboard.html:15
+msgid "Move all clipboard files to"
+msgstr ""
+
+#: files/templates/admin/filer/tools/clipboard/clipboard.html:15
+msgid "unfiled files"
+msgstr ""
+
+#: files/templates/admin/filer/tools/clipboard/clipboard.html:24
+msgid "Paste all items here"
+msgstr ""
+
+#: files/templates/admin/filer/tools/clipboard/clipboard.html:63
+msgid "the clipboard is empty"
+msgstr ""
+
+#: files/templates/admin/filer/tools/clipboard/clipboard_item_rows.html:10
+msgid "upload failed"
+msgstr ""
+
+#: files/templates/admin/filer/tools/search_form.html:11
+msgid "Enter your search phrase here"
+msgstr ""
+
+#: files/templates/admin/filer/tools/search_form.html:12
+#: files/templates/admin/search_form.html:26
+msgid "Search"
+msgstr ""
+
+#: files/templates/admin/filer/tools/search_form.html:12
+msgid "Click here to"
+msgstr ""
+
+#: files/templates/admin/filer/tools/search_form.html:12
+msgid "run search for entered phrase"
+msgstr ""
+
+#: files/templates/admin/filer/tools/search_form.html:15
+msgid "Check it to"
+msgstr ""
+
+#: files/templates/admin/filer/tools/search_form.html:15
+msgid "limit the search to current folder"
+msgstr ""
+
+#: files/templates/admin/filer/tools/search_form.html:19
+msgid "found"
+msgstr ""
+
+#: files/templates/admin/filer/tools/search_form.html:19
+msgid "and"
+msgstr ""
+
+#: files/templates/admin/filer/tools/search_form.html:20
+msgid "cancel search"
+msgstr ""
+
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage.html:12
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage_group.html:14
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage_group.html:25
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage_user.html:14
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage_user.html:25
+#: files/templates/admin/guardian/model/change_form.html:5
+#: files/templates/admin/guardian/model/obj_perms_manage.html:17
+#: files/templates/admin/guardian/model/obj_perms_manage_group.html:14
+#: files/templates/admin/guardian/model/obj_perms_manage_group.html:25
+#: files/templates/admin/guardian/model/obj_perms_manage_user.html:14
+#: files/templates/admin/guardian/model/obj_perms_manage_user.html:25
+msgid "Object permissions"
+msgstr ""
+
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage.html:25
+#: files/templates/admin/guardian/model/obj_perms_manage.html:32
+msgid "Users"
+msgstr ""
+
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage.html:28
+#: files/templates/admin/guardian/model/obj_perms_manage.html:38
+msgid "User permissions"
+msgstr ""
+
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage.html:33
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage_user.html:34
+#: files/templates/admin/guardian/model/obj_perms_manage.html:41
+#: files/templates/admin/guardian/model/obj_perms_manage_user.html:30
+#: files/templates/admin/object_history.html:28
+#: files/templates/reversion/object_history.html:16
+msgid "User"
+msgstr ""
+
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage.html:37
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage.html:98
+#: files/templates/admin/guardian/model/obj_perms_manage.html:45
+#: files/templates/admin/guardian/model/obj_perms_manage.html:99
+#: files/templates/admin/object_history.html:29
+msgid "Action"
+msgstr ""
+
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage.html:54
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage.html:115
+#: files/templates/admin/guardian/model/obj_perms_manage.html:62
+#: files/templates/admin/guardian/model/obj_perms_manage.html:116
+msgid "Edit"
+msgstr ""
+
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage.html:70
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage_user.html:15
+#: files/templates/admin/guardian/model/obj_perms_manage.html:73
+#: files/templates/admin/guardian/model/obj_perms_manage_user.html:15
+msgid "Manage user"
+msgstr ""
+
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage.html:86
+#: files/templates/admin/guardian/model/obj_perms_manage.html:86
+msgid "Groups"
+msgstr ""
+
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage.html:89
+#: files/templates/admin/guardian/model/obj_perms_manage.html:92
+msgid "Group permissions"
+msgstr ""
+
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage.html:94
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage_group.html:34
+#: files/templates/admin/guardian/model/obj_perms_manage.html:95
+#: files/templates/admin/guardian/model/obj_perms_manage_group.html:30
+msgid "Group"
+msgstr ""
+
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage.html:132
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage_group.html:15
+#: files/templates/admin/guardian/model/obj_perms_manage.html:127
+#: files/templates/admin/guardian/model/obj_perms_manage_group.html:15
+msgid "Manage group"
+msgstr ""
+
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage_group.html:28
+#: files/templates/admin/guardian/contrib/grappelli/obj_perms_manage_user.html:28
+#: files/templates/admin/guardian/model/obj_perms_manage_group.html:27
+#: files/templates/admin/guardian/model/obj_perms_manage_user.html:27
+msgid "Object"
+msgstr ""
+
+#: files/templates/admin/guardian/model/obj_perms_manage.html:28
+#: files/templates/admin/guardian/model/obj_perms_manage.html:82
+msgid "Please correct the errors below."
+msgstr ""
+
+#: files/templates/admin/import_export/change_list_export.html:5
+#: files/templates/admin/import_export/change_list_import_export.html:6
+#: files/templates/admin/import_export/export.html:5
+#: files/templates/admin/import_export/export.html:12
+msgid "Export"
+msgstr ""
+
+#: files/templates/admin/import_export/change_list_import.html:5
+#: files/templates/admin/import_export/change_list_import_export.html:5
+#: files/templates/admin/import_export/import.html:6
+#: files/templates/admin/import_export/import.html:25
+msgid "Import"
+msgstr ""
+
+#: files/templates/admin/import_export/import.html:17
+msgid "This importer will import the following fields: "
+msgstr ""
+
+#: files/templates/admin/import_export/import.html:34
+msgid "Errors"
+msgstr ""
+
+#: files/templates/admin/import_export/import.html:42
+msgid "Line number"
+msgstr ""
+
+#: files/templates/admin/import_export/import.html:65
+msgid "New"
+msgstr ""
+
+#: files/templates/admin/import_export/import.html:67
+msgid "Skipped"
+msgstr ""
+
+#: files/templates/admin/import_export/import.html:71
+msgid "Update"
+msgstr ""
+
+#: files/templates/admin/import_export/import.html:90
+msgid "Confirm import"
+msgstr ""
+
+#: files/templates/admin/index.html:19
+#, python-format
+msgid "Models available in the %(name)s application."
+msgstr ""
+
+#: files/templates/admin/index.html:45
+msgid "You don't have permission to edit anything."
+msgstr ""
+
+#: files/templates/admin/index.html:54
+msgid "My Actions"
+msgstr ""
+
+#: files/templates/admin/index.html:59
+msgid "None available"
+msgstr ""
+
+#: files/templates/admin/index.html:68
+msgid "added"
+msgstr ""
+
+#: files/templates/admin/index.html:69
+msgid "changed"
+msgstr ""
+
+#: files/templates/admin/index.html:70
+msgid "deleted"
+msgstr ""
+
+#: files/templates/admin/index.html:76
+msgid "Unknown content"
+msgstr ""
+
+#: files/templates/admin/invalid_setup.html:12
+msgid ""
+"Something's wrong with your database installation. Make sure the appropriate "
+"database tables have been created, and make sure the database is readable by "
+"the appropriate user."
+msgstr ""
+
+#: files/templates/admin/login.html:56
+msgid "Forgotten your password or username?"
+msgstr ""
+
+#: files/templates/admin/login.html:60
+#: files/templates/registration/password_reset_complete.html:19
+msgid "Log in"
+msgstr ""
+
+#: files/templates/admin/object_history.html:27
+#: files/templates/reversion/object_history.html:15
+#: files/templates/reversion/recover_list.html:27
+msgid "Date/time"
+msgstr ""
+
+#: files/templates/admin/object_history.html:43
+#: files/templates/reversion/object_history.html:36
+msgid ""
+"This object doesn't have a change history. It probably wasn't added via this "
+"admin site."
+msgstr ""
+
+#: files/templates/admin/page_submit_line.html:4
+#: files/templates/admin/submit_line.html:4
+msgid "Save and continue editing"
+msgstr ""
+
+#: files/templates/admin/page_submit_line.html:5
+#: files/templates/admin/submit_line.html:5
+msgid "Save as new"
+msgstr ""
+
+#: files/templates/admin/page_submit_line.html:6
+#: files/templates/admin/submit_line.html:6
+msgid "Save and add another"
+msgstr ""
+
+#: files/templates/admin/page_submit_line.html:14
+#, python-format
+msgid "Delete %(language)s translation"
+msgstr ""
+
+#: files/templates/admin/pagination.html:26
+msgid "Show all"
+msgstr ""
+
+#: files/templates/admin/search_form.html:8
+msgid "keyword"
+msgstr ""
+
+#: files/templates/admin/search_form.html:29
+#, python-format
+msgid "%(counter)s result"
+msgid_plural "%(counter)s results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: files/templates/admin/search_form.html:31
+#, python-format
+msgid "%(full_result_count)s total"
+msgstr ""
+
+#: files/templates/bootstrap3/account/index.html:9
+msgid "Hello"
+msgstr ""
+
+#: files/templates/bootstrap3/account/index.html:10
+msgid "Here you can configure your account settings."
+msgstr ""
+
+#: files/templates/bootstrap3/system/localization.html:12
+msgid "Testing of localization."
+msgstr ""
+
+#: files/templates/registration/logged_out.html:9
+msgid "Thanks for spending some quality time with the Web site today."
+msgstr ""
+
+#: files/templates/registration/logged_out.html:12
+msgid "Log in again"
+msgstr ""
+
+#: files/templates/registration/password_change_done.html:7
+#: files/templates/registration/password_change_form.html:28
+#: files/templates/registration/password_change_form.html:32
+msgid "Password change"
+msgstr ""
+
+#: files/templates/registration/password_change_done.html:11
+#: files/templates/registration/password_change_done.html:15
+msgid "Password change successful"
+msgstr ""
+
+#: files/templates/registration/password_change_done.html:17
+msgid "Your password was changed."
+msgstr ""
+
+#: files/templates/registration/password_change_form.html:40
+msgid ""
+"Please enter your old password, for security's sake, and then enter your new "
+"password twice so we can verify you typed it in correctly."
+msgstr ""
+
+#: files/templates/registration/password_change_form.html:55
+msgid "Old password"
+msgstr ""
+
+#: files/templates/registration/password_change_form.html:66
+msgid "New password"
+msgstr ""
+
+#: files/templates/registration/password_change_form.html:88
+#: files/templates/registration/password_reset_confirm.html:26
+msgid "Change my password"
+msgstr ""
+
+#: files/templates/registration/password_reset_complete.html:7
+#: files/templates/registration/password_reset_confirm.html:11
+#: files/templates/registration/password_reset_done.html:7
+#: files/templates/registration/password_reset_form.html:7
+#: files/templates/registration/password_reset_form.html:11
+#: files/templates/registration/password_reset_form.html:15
+msgid "Password reset"
+msgstr ""
+
+#: files/templates/registration/password_reset_complete.html:11
+#: files/templates/registration/password_reset_complete.html:15
+msgid "Password reset complete"
+msgstr ""
+
+#: files/templates/registration/password_reset_complete.html:17
+msgid "Your password has been set.  You may go ahead and log in now."
+msgstr ""
+
+#: files/templates/registration/password_reset_confirm.html:7
+msgid "Password reset confirmation"
+msgstr ""
+
+#: files/templates/registration/password_reset_confirm.html:17
+msgid "Enter new password"
+msgstr ""
+
+#: files/templates/registration/password_reset_confirm.html:19
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+
+#: files/templates/registration/password_reset_confirm.html:23
+msgid "New password:"
+msgstr ""
+
+#: files/templates/registration/password_reset_confirm.html:25
+msgid "Confirm password:"
+msgstr ""
+
+#: files/templates/registration/password_reset_confirm.html:31
+msgid "Password reset unsuccessful"
+msgstr ""
+
+#: files/templates/registration/password_reset_confirm.html:33
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+
+#: files/templates/registration/password_reset_done.html:11
+#: files/templates/registration/password_reset_done.html:15
+msgid "Password reset successful"
+msgstr ""
+
+#: files/templates/registration/password_reset_done.html:17
+msgid ""
+"We've emailed you instructions for setting your password. You should be "
+"receiving them shortly."
+msgstr ""
+
+#: files/templates/registration/password_reset_done.html:19
+msgid ""
+"If you don't receive an email, please make sure you've entered the address "
+"you registered with, and check your spam folder."
+msgstr ""
+
+#: files/templates/registration/password_reset_email.html:2
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+
+#: files/templates/registration/password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: files/templates/registration/password_reset_email.html:8
+msgid "Your username, in case you've forgotten:"
+msgstr ""
+
+#: files/templates/registration/password_reset_email.html:10
+msgid "Thanks for using our site!"
+msgstr ""
+
+#: files/templates/registration/password_reset_email.html:12
+#, python-format
+msgid "The %(site_name)s team"
+msgstr ""
+
+#: files/templates/registration/password_reset_form.html:17
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll email "
+"instructions for setting a new one."
+msgstr ""
+
+#: files/templates/registration/password_reset_form.html:21
+msgid "Email address:"
+msgstr ""
+
+#: files/templates/registration/password_reset_form.html:21
+msgid "Reset my password"
+msgstr ""
+
+#: files/templates/rest_framework/base.html:50
+msgid "Administration"
+msgstr ""
+
+#: files/templates/reversion/object_history.html:8
+msgid ""
+"Choose a date from the list below to revert to a previous version of this "
+"object."
+msgstr ""
+
+#: files/templates/reversion/object_history.html:17
+msgid "Comment"
+msgstr ""
+
+#: files/templates/reversion/recover_form.html:22
+msgid "Press the save button below to recover this version of the object."
+msgstr ""
+
+#: files/templates/reversion/recover_list.html:21
+msgid ""
+"Choose a date from the list below to recover a deleted version of an object."
+msgstr ""
+
+#: files/templates/reversion/recover_list.html:41
+msgid "There are no deleted objects to recover."
+msgstr ""
+
+#: files/templates/reversion/revision_form.html:18
+#, python-format
+msgid "Revert %(verbose_name)s"
+msgstr ""
+
+#: files/templates/reversion/revision_form.html:31
+msgid "Press the save button below to revert to this version of the object."
+msgstr ""
+
+#: system/templatetags/format.py:9
+msgid "not entered"
+msgstr ""
+
+#: website/views.py:35
+msgid "Your message successfully submitted."
+msgstr ""
+
+#: website/views.py:52
+msgid "Your application successfully submitted."
+msgstr ""
+
+#: website/views.py:78
+msgid "Please enter your name and email."
+msgstr ""
+
+#: website/views.py:83
+msgid "You successfully subscribed."
+msgstr ""
+
+#: website/views.py:85
+msgid "Please enter correct email."
+msgstr ""
+
+#: website/views.py:87
+msgid "You already have been subscribed."
+msgstr ""
