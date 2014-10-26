@@ -20,3 +20,4 @@ def request_info(request):
         "scheme": request.scheme,
     }
     return info
+
