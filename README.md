@@ -37,6 +37,7 @@ Django version: 1.7.1
 
 **Pre configured Python/Django features:**
 
+- Localization
 - Custom user authentication with user profile
 - Multiple form support
 - Model history and reversion (possibility to back to old versions of the model)
