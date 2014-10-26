@@ -24,7 +24,9 @@ SECRET_KEY = '=37nsotr=ct-bc5gwbbvo^@s3*w=hib%i^plnbzn8758n$4pz='
 DEBUG = True
 TEMPLATE_DEBUG = True
 JSON_DEBUG = False
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost'
+]
 
 # Application definition
 
@@ -49,6 +51,8 @@ INSTALLED_APPS = (
     'cart',
 )
 MIDDLEWARE_CLASSES = (
+    'django.middleware.gzip.GZipMiddleware',
+    'htmlmin.middleware.HtmlMinifyMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',

@@ -12,4 +12,5 @@ markdown
 markdown2
 easy-thumbnails
 slugify
+django-htmlmin
 
