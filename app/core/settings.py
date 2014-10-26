@@ -232,9 +232,9 @@ LOGGING = {
     }
 }
 
-# Django Skeleton
+# Django Skeleton based Application config
 
-SKELETON_CONFIG = {
+APPLICATION_CONFIG = {
     'title': 'Application',
     'description': _('Project template for Django Application.'),
     'google_id': 'google-id',

@@ -20,7 +20,7 @@
 
         window.fbAsyncInit = function () {
             FB.init({
-                appId: '{{ skeleton_config.facebook_id }}',
+                appId: '{{ application_config.facebook_id }}',
                 cookie: true,
                 xfbml: true,
                 version: 'v2.1'
@@ -50,7 +50,7 @@
         <div class="col-md-12">
             <h3>Facebook Application ID</h3>
             <p>
-                {{ skeleton_config.facebook_id }}
+                {{ application_config.facebook_id }}
             </p>
         </div>
     </div>
