@@ -32,12 +32,13 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = (
     'suit',
-    #'guardian',
+    # 'guardian',
     'rest_framework',
     'reversion',
     'ckeditor',
     'django_select2',
     'easy_thumbnails',
+    'debreach',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,11 +52,13 @@ INSTALLED_APPS = (
     'cart',
 )
 MIDDLEWARE_CLASSES = (
-    'django.middleware.gzip.GZipMiddleware',
-    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'django.middleware.gzip.GZipMiddleware',  # must be at the start
+    'htmlmin.middleware.HtmlMinifyMiddleware',  # must be at the start but after gzip middleware
+    'debreach.middleware.RandomCommentMiddleware',  # must be at the start but after compression middleware
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # must be before common and after session middleware
     'django.middleware.common.CommonMiddleware',
+    'debreach.middleware.CSRFCryptMiddleware',  # must be before default csrf middleware
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -64,7 +67,7 @@ MIDDLEWARE_CLASSES = (
 )
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    #'guardian.backends.ObjectPermissionBackend',
+    # 'guardian.backends.ObjectPermissionBackend',
 )
 ROOT_URLCONF = 'core.urls'
 WSGI_APPLICATION = 'core.wsgi.application'
@@ -145,6 +148,7 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.i18n',
     'core.context.general',
+    'debreach.context_processors.csrf',  # must be at the end
 )
 TEMPLATE_DIRS = {
     os.path.join(BASE_DIR, 'files/templates/'),

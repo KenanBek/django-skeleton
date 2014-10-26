@@ -37,6 +37,7 @@ Django version: 1.7.1
 
 **Pre configured Python/Django features:**
 
+- Data compression (with installed security debreach package)
 - Localization
 - Custom user authentication with user profile
 - Multiple form support
