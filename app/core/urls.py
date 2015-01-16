@@ -32,8 +32,8 @@ urlpatterns += patterns('',
 )
 
 # Configure error handlers
-handler400 = 'error.views.error_400'  # Request cannot be fulfilled due to bad syntax
-handler403 = 'error.views.error_403'  # Server refuses to respond to request
-handler404 = 'error.views.error_404'  # Requested resource could not be found
-handler500 = 'error.views.error_500'  # Server generic error message
+handler400 = 'system.views.error_400'  # Request cannot be fulfilled due to bad syntax
+handler403 = 'system.views.error_403'  # Server refuses to respond to request
+handler404 = 'system.views.error_404'  # Requested resource could not be found
+handler500 = 'system.views.error_500'  # Server generic error message
 

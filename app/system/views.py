@@ -1,16 +1,20 @@
-from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.utils import translation
+
+''' Error pages '''
 
 
-def localization(request, template='bootstrap3/system/localization.html', context={}):
+def error_400(request, template='bootstrap3/system/error_400.html', context={}):
     return render(request, template, context)
 
-"""
-def language(request, lang):
-    translation.activate(lang)
-    response = HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    response.set_cookie(settings.LANGUAGE_COOKIE_NAME, user_language)
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-"""
+
+def error_403(request, template='bootstrap3/system/error_403.html', context={}):
+    return render(request, template, context)
+
+
+def error_404(request, template='bootstrap3/system/error_404.html', context={}):
+    return render(request, template, context)
+
+
+def error_500(request, template='bootstrap3/system/error_500.html', context={}):
+    return render(request, template, context)
 
