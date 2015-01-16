@@ -1,4 +1,4 @@
-{% extends 'bootstrap3/layout.html' %}
+{% extends 'user/layout.html' %}
 {% load thumbnail %}
 
 {% block content %}
@@ -15,7 +15,7 @@
                 </p>
 
                 {% if post.related_slider %}
-                    {% include "bootstrap3/_slider.html" with slider=post.related_slider %}
+                    {% include "user/_slider.html" with slider=post.related_slider %}
                 {% endif %}
 
                 <h3>Categories</h3>

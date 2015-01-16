@@ -2,7 +2,7 @@
     {% for review in productreview_list %}
         <div class="list-group-item">
             <h4 class="list-group-item-heading">{{ review.user.username }}</h4>
-            <small>{% include 'bootstrap3/cart/_rate.html' with rate=review.rating %}</small>
+            <small>{% include 'user/cart/_rate.html' with rate=review.rating %}</small>
             <p class="list-group-item-text">{{ review.comment }}</p>
         </div>
     {% empty %}

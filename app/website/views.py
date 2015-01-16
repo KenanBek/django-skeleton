@@ -12,7 +12,7 @@ import forms
 import logic
 
 
-def index(request, template='bootstrap3/website/index.html', context={}):
+def index(request, template='user/website/index.html', context={}):
     pages = logic.load_pages()
     posts = logic.load_posts()
 
@@ -21,12 +21,12 @@ def index(request, template='bootstrap3/website/index.html', context={}):
     return render(request, template, context)
 
 
-def about(request, template='bootstrap3/website/about.html', context={}):
+def about(request, template='user/website/about.html', context={}):
     context['about_text'] = markdown2.markdown_path("readme.md")
     return render(request, template, context)
 
 
-def contact(request, template="bootstrap3/website/contact.html", context={}):
+def contact(request, template="user/website/contact.html", context={}):
     contact_form = forms.ContactForm(request.POST or None)
 
     if request.method == 'POST':
@@ -43,7 +43,7 @@ def contact(request, template="bootstrap3/website/contact.html", context={}):
     return render(request, template, context)
 
 
-def document(request, template="bootstrap3/website/contact.html", context={}):
+def document(request, template="user/website/contact.html", context={}):
     document_form = forms.DocumentForm(request.POST or None, request.FILES or None)
 
     if request.method == 'POST':
@@ -60,7 +60,7 @@ def document(request, template="bootstrap3/website/contact.html", context={}):
     return render(request, template, context)
 
 
-def search(request, template='bootstrap3/website/search.html', context={}):
+def search(request, template='user/website/search.html', context={}):
     q = request.GET.get('q', False)
     search_result = logic.search(q)
 
@@ -89,13 +89,13 @@ def subscribe(request):
     return redirect(request.META.get('HTTP_REFERER'))
 
 
-def page(request, page_slug, template='bootstrap3/website/page.html', context={}):
+def page(request, page_slug, template='user/website/page.html', context={}):
     context['page'] = logic.get_page(page_slug)
     return render(request, template, context)
 
 
 @login_required
-def post(request, post_id, post_slug, template='bootstrap3/website/post.html', context={}):
+def post(request, post_id, post_slug, template='user/website/post.html', context={}):
     context['post'] = logic.get_post(post_id, post_slug)
     return render(request, template, context)
 

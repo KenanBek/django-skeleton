@@ -7,13 +7,13 @@ import models
 import forms
 
 
-def index(request, template='bootstrap3/cart/index.html', context={}):
+def index(request, template='user/cart/index.html', context={}):
     last_products = models.Product.objects.filter(is_active=True)[0:25]
     context['last_products'] = last_products
     return render(request, template, context)
 
 
-def product(request, product_id, template='bootstrap3/cart/product.html', context={}):
+def product(request, product_id, template='user/cart/product.html', context={}):
     product_item = models.Product.objects.get(pk=product_id, is_active=True)
 
     # shopproduct list
@@ -70,7 +70,7 @@ def product_review(request, product_id):
     return redirect(reverse('cart_product', args=(product_id, )))
 
 
-def shop(request, shop_id, template='bootstrap3/cart/shop.html', context={}):
+def shop(request, shop_id, template='user/cart/shop.html', context={}):
     shop_item = models.Shop.objects.get(pk=shop_id, is_active=True)
     shop_products = []
     related_shop_products = models.ShopProduct.objects.filter(shop=shop_item, product__is_active=True)

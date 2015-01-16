@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     url(r'^select2/', include('django_select2.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # Applications
-    url(r'^$', TemplateView.as_view(template_name='bootstrap3/home.html'), name='index'),
+    url(r'^$', TemplateView.as_view(template_name='user/home.html'), name='index'),
     url(r'', include('website.urls')),
     url(r'^account/', include('account.urls')),
     url(r'^cart/', include('cart.urls')),

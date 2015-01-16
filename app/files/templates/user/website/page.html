@@ -1,4 +1,4 @@
-{% extends 'bootstrap3/layout.html' %}
+{% extends 'user/layout.html' %}
 {% load thumbnail %}
 
 {% block content %}
@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-md-12">
             {% if page.related_slider %}
-                {% include "bootstrap3/_slider.html" with slider=page.related_slider %}
+                {% include "user/_slider.html" with slider=page.related_slider %}
             {% endif %}
         </div>
     </div>

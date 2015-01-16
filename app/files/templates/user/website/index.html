@@ -1,15 +1,15 @@
-{% extends 'bootstrap3/layout.html' %}
+{% extends 'user/layout.html' %}
 {% load thumbnail %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-12">
             <h2 class="sub-header">Pages</h2>
-            {% include 'bootstrap3/website/_page_list.html' with page_list=pages %}
+            {% include 'user/website/_page_list.html' with page_list=pages %}
         </div>
         <div class="col-md-12">
             <h2 class="sub-header">Posts</h2>
-            {% include 'bootstrap3/website/_post_list.html' with post_list=posts %}
+            {% include 'user/website/_post_list.html' with post_list=posts %}
         </div>
     </div>
 {% endblock %}

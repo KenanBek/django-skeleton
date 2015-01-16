@@ -11,12 +11,12 @@ from core.decorators import anonymous_required
 import forms
 
 
-def index(request, template="bootstrap3/account/index.html", context={}):
+def index(request, template="user/account/index.html", context={}):
     return render(request, template, context)
 
 
 @anonymous_required
-def login(request, template="bootstrap3/account/login.html", context={}):
+def login(request, template="user/account/login.html", context={}):
     next_url = request.GET.get('next', False)
     login_form = forms.LoginForm(request.POST or None)
 
@@ -43,7 +43,7 @@ def login(request, template="bootstrap3/account/login.html", context={}):
 
 
 @anonymous_required
-def register(request, template="bootstrap3/account/register.html", context={}):
+def register(request, template="user/account/register.html", context={}):
     user_form = forms.UserForm(request.POST or None)
     profile_form = forms.ProfileForm(request.POST or None, request.FILES or None)
 
@@ -85,41 +85,41 @@ def logout(request):
     return redirect(reverse('index'))
 
 
-def login_facebook(request, template="bootstrap3/account/login_facebook.html", context={}):
+def login_facebook(request, template="user/account/login_facebook.html", context={}):
     return render(request, template, context)
 
 
 @anonymous_required
-def auth(request, template="bootstrap3/account/auth.html", context={}):
+def auth(request, template="user/account/auth.html", context={}):
     return render(request, template, context)
 
 
 @anonymous_required
-def auth_login(request, template="bootstrap3/account/auth_login.html", context={}):
+def auth_login(request, template="user/account/auth_login.html", context={}):
     return render(request, template, context)
 
 
 @anonymous_required
-def auth_register(request, template="bootstrap3/account/auth_register.html", context={}):
+def auth_register(request, template="user/account/auth_register.html", context={}):
     return render(request, template, context)
 
 
 @anonymous_required
-def auth_google(request, template="bootstrap3/account/auth_login.html", context={}):
+def auth_google(request, template="user/account/auth_login.html", context={}):
     return render(request, template, context)
 
 
 @anonymous_required
-def auth_facebook(request, template="bootstrap3/account/auth_facebook.html", context={}):
+def auth_facebook(request, template="user/account/auth_facebook.html", context={}):
     return render(request, template, context)
 
 
 @anonymous_required
-def auth_twitter(request, template="bootstrap3/account/auth_twitter.html", context={}):
+def auth_twitter(request, template="user/account/auth_twitter.html", context={}):
     return render(request, template, context)
 
 
 @anonymous_required
-def auth_logout(request, template="bootstrap3/account/auth_logout.html", context={}):
+def auth_logout(request, template="user/account/auth_logout.html", context={}):
     return render(request, template, context)
 

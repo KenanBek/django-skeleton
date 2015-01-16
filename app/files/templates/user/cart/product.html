@@ -1,4 +1,4 @@
-{% extends 'bootstrap3/layout.html' %}
+{% extends 'user/layout.html' %}
 {% load format %}
 {% load thumbnail %}
 
@@ -30,7 +30,7 @@
                 <dd>{{ product_price }} {{ product_price_currency }}</dd>
                 <dt>Rate</dt>
                 <dd>
-                    {% include 'bootstrap3/cart/_rate.html' with rate=product_rate %}
+                    {% include 'user/cart/_rate.html' with rate=product_rate %}
                 </dd>
                 <dt>Size</dt>
                 <dd>{{ product_item.size|empty_text }}</dd>
@@ -119,11 +119,11 @@
                     </table>
                 </div>
                 <div class="tab-pane" id="reviews">
-                    {% include 'bootstrap3/cart/_review_list.html' with productreview_list=productreview_list %}
+                    {% include 'user/cart/_review_list.html' with productreview_list=productreview_list %}
                     {% if user.is_active %}
                         <h3>Leave your own review:</h3>
                         {% url 'cart_product_review' product_item.id as product_review_url %}
-                        {% include 'bootstrap3/_form.html' with form=productreview_form method='post' action=product_review_url %}
+                        {% include 'user/_form.html' with form=productreview_form method='post' action=product_review_url %}
                     {% else %}
                         <h3>Please login or register to give your own feedbacks.</h3>
                     {% endif %}

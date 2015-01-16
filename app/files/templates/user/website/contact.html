@@ -1,18 +1,18 @@
-{% extends 'bootstrap3/layout.html' %}
+{% extends 'user/layout.html' %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-12">
             <h1 class="sub-header">Contact us</h1>
             {% url 'website_contact' as website_contact %}
-            {% include "bootstrap3/_form.html" with form=contact_form action=website_contact method="post" %}
+            {% include "user/_form.html" with form=contact_form action=website_contact method="post" %}
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <h3>Also you can submit your application:</h3>
             {% url 'website_document' as website_document %}
-            {% include "bootstrap3/_form.html" with form=document_form action=website_document method="post" %}
+            {% include "user/_form.html" with form=document_form action=website_document method="post" %}
         </div>
     </div>
 {% endblock %}

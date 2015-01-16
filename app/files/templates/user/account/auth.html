@@ -1,14 +1,14 @@
-{% extends 'bootstrap3/layout.html' %}
+{% extends 'user/layout.html' %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-4">
             <h3>Please Login...</h3>
-            {% include "bootstrap3/_form.html" with form=login_form action=account_login method="post" %}
+            {% include "user/_form.html" with form=login_form action=account_login method="post" %}
         </div>
         <div class="col-md-4">
             <h3>or Register...</h3>
-            {% include "bootstrap3/_form.html" with form=register_form action=account_register method="post" %}
+            {% include "user/_form.html" with form=register_form action=account_register method="post" %}
         </div>
         <div class="col-md-4">
             <h3>or use Social Accounts...</h3>
