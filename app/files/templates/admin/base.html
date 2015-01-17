@@ -1,10 +1,12 @@
 {% load admin_static %}{% load suit_tags %}{% load url from future %}<!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
-    <title>{% block title %}{{ title }} | {{ 'ADMIN_NAME'|suit_conf }}{% endblock %}</title>
-    <meta name="description" content="django-skeleton">
-    <meta name="author" content="Kenan Bek">
-    <link rel="icon" href="{% static 'icon.png' %}">
+    <meta charset="utf-8">
+    <title>{% block title %}{{ title }} | {{ application_config.admin_title }}{% endblock %}</title>
+    <meta name="author" content="{{ application_config.page_default_author }}">
+    <meta name="description" content="{{ application_config.page_default_description }}">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% endblock %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'suit/bootstrap/css/bootstrap.min.css' %}" media="all" />
     <link rel="stylesheet" type="text/css" href="{% static 'suit/css/suit.css' %}" media="all">
@@ -12,7 +14,7 @@
     {% if LANGUAGE_BIDI %}
         <link rel="stylesheet" type="text/css" href="
                 {% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}" />{% endif %}
-    <link rel="stylesheet" type="text/css" href="{% static 'app/admin/main.css' %}" media="all">
+    <link rel="stylesheet" type="text/css" href="{% static 'suit/css/customelements.css' %}" media="all">
     <script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% static "admin/" %}{% endfilter %}";</script>
     <script src="{% static 'suit/js/jquery-1.8.3.min.js' %}"></script>
     <script type="text/javascript">var Suit = { $: $.noConflict() };
@@ -28,7 +30,7 @@
     {% endif %}
     {% block extrahead %}{% endblock %}
     {% block blockbots %}
-    <meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+        <meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
 </head>
 {% load i18n %}
 
@@ -87,8 +89,6 @@
                                         <span class="separator">|</span>
                                     {% endif %}
                                     <a href="{% url 'index' %}">{% trans 'Website' %}</a>
-                                    <span class="separator">|</span>
-                                    <a href="{% url 'index' %}">{% trans 'API' %}</a>
                                     <span class="separator">|</span>
                                     <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a>
                                     <span class="separator">|</span>
@@ -161,6 +161,11 @@
                                 {% with 'SEARCH_URL'|suit_conf as search_url %}
                                     {% if search_url %}
                                         <form class="form-search nav-quick-search" autocomplete="off" action="
+
+
+
+
+
                                                 {% if '/' in search_url %}{{ search_url }}{% else %}{% url search_url %}{% endif %}" method="GET">
                                             <input type="text" name="q" class="input-medium search-query" id="quick-search">
                                             <i class="input-icon icon-search"></i>
@@ -191,25 +196,9 @@
     {% if not is_popup %}
         <div id="footer" class="footer">
             <div class="content">
-                <div class="tools">
-                    {% block footer_links %}
-                        <a href="https://github.com/KenanBek/django-skeleton" target="_blank" class="icon"><i class="icon-bookmark"></i>Django Skeleton</a>
-                    {% endblock %}
-                </div>
-
                 <div class="copyright">
-                    {% block copyright %}
-                        Based on <a href="http://djangosuit.com" target="_blank">DjangoSuit.com</a>
-                        <br />
-                        Developed by <a href="http://kenanbek.me" target="_blank">Kenan Bek</a>
-                    {% endblock %}
+                    {{ application_config.copyright|safe }}
                 </div>
-
-                <div class="branding">{% block footer_branding %}
-                    {% with 'ADMIN_NAME'|suit_conf as admin_name %}
-                        Django Skeleton | {{ admin_name }}
-                    {% endwith %}
-                {% endblock %}</div>
             </div>
         </div>
     {% endif %}

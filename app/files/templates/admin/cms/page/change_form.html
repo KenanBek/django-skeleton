@@ -102,7 +102,6 @@
       {% endif %}
       <ul class="box menu-box">
         {% if page.publisher_public %}<li><a href="preview/?public=1&language={{ language }}"><i class="icon-globe icon-alpha75"></i>{% trans "View on site" %}</a></li>{% endif%}
-      <li><a href="history/" class="historylink"><i class="icon-time icon-alpha75"></i>{% trans "History" %}</a></li>
         {% if has_add_permission %}
           <li>
             <a href="../add/"><i class="icon-plus-sign icon-alpha75"></i>{% blocktrans with opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}

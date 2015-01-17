@@ -231,17 +231,30 @@ LOGGING = {
     }
 }
 
-# Django Skeleton based Application config
+# Application Configuration
 
+APPLICATION_URL = 'http://localhost:8000'
 APPLICATION_CONFIG = {
-    'title': 'Application',
-    'description': _('Project template for Django Application.'),
+    'title': 'Project Title',
+    'description': _('Project Description.'),
+    'copyright': '&copy; 2015 ProjectDomain.com',
+    'author': 'ProjectDomain.com',
+    'admin_title': 'Project Title',
+    'page_default_author': 'ProjectDomain.com',
+    'page_default_description': 'Project Description',
     'google_id': 'google-id',
     'facebook_id': '1520447268200947',
     'twitter_id': 'twitter-id',
+    'date_format': 'dd/mm/yyyy'
 }
+APPLICATION_CONTENT_COUNT = 10
+APPLICATION_CONTENT_MAXIMUM_COUNT = 20
+APPLICATION_DUMMY_DATA_COUNT = 7
+APPLICATION_FROM_EMAIL = 'Project Title <noreply@projectdomain.com>'
+APPLICATION_EMAIL_MANUAL_TIMEOUT = 3  # In minutes
+APPLICATION_SYSTEM_STORE_USER_REQUESTS = DEBUG
 
-# Django Suit configuration example
+# DJANGO SUIT
 
 SUIT_CONFIG = {
     # header
