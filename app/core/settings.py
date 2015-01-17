@@ -161,11 +161,11 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
 )
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-STATIC_ROOT = os.path.join(BASE_DIR, 'files/publish')
+STATIC_ROOT = os.path.join(BASE_DIR, 'files/public/content')
 
 # Media files (user uploaded)
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'files/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'files/media/uploads')
 MEDIA_URL = '/media/'
 
 # Fixtures
