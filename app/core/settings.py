@@ -32,9 +32,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = (
     'suit',
-    # 'guardian',
     'rest_framework',
-    'reversion',
     'ckeditor',
     'django_select2',
     'easy_thumbnails',
@@ -66,7 +64,6 @@ MIDDLEWARE_CLASSES = (
 )
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    # 'guardian.backends.ObjectPermissionBackend',
 )
 ROOT_URLCONF = 'core.urls'
 WSGI_APPLICATION = 'core.wsgi.application'
