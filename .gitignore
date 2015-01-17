@@ -1,3 +1,6 @@
+# Temporary migrations files
+migrations
+
 # Mac files
 .DS_Store
 
