@@ -2,14 +2,18 @@
 {% load compress %}
 
 <meta charset="utf-8">
+<title>
+    {% block title %}
+        {{ application_config.slogan }}
+    {% endblock %}
+    - {{ application_config.title }}
+</title>
+<meta name="author" content="{{ application_config.author }}">
+<meta name="description" content="{{ application_config.description }}">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="{{ application_config.description }}">
-<meta name="author" content="{{ application_config.author }}">
 <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
 <link rel="icon" href="{% static 'favicon.ico' %}">
-
-<title>{{ application_config.title }}</title>
 
 {# Styles #}
 {% compress css %}
