@@ -244,6 +244,7 @@ APPLICATION_CONFIG = {
     'author': 'Kenan Bek, http://kenanbek.me',
     'slogan': 'Code Code Code',
     'description': _('Project Description.'),
+    'keywords': _('django, project, template, skeleton, base'),
     'copyright': '&copy; 2015 ProjectDomain.com',
     'google_id': 'google-id',
     'facebook_id': '1520447268200947',
