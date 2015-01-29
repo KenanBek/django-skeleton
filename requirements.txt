@@ -1,5 +1,5 @@
 pytz
-django==1.7.1
+django==1.7.3
 jsonpickle
 pillow
 django-suit
