@@ -3,7 +3,7 @@
 {% load format %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE|default:"en" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
     {% include 'user/layout_head.html' %}
 </head>

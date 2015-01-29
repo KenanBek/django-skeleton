@@ -4,7 +4,7 @@
 {% load url from future %}
 
 <!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<html lang="{{ LANGUAGE_CODE|default:"en" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
     <meta charset="utf-8">
     <title>{% block title %}{{ title }} - {{ application_config.title }}{% endblock %}</title>
