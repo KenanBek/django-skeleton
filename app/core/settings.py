@@ -22,6 +22,16 @@ ALLOWED_HOSTS = [
     'localhost'
 ]
 
+# Email configuration
+
+EMAIL_HOST = 'host'
+EMAIL_HOST_USER = 'user'
+EMAIL_HOST_PASSWORD = 'password'
+ADMINS = (
+    ('Kenan Bek', 'mail@kenanbek.me'),
+)
+MANAGERS = ADMINS
+
 # Application definition
 
 INSTALLED_APPS = (
