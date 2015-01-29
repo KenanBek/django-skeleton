@@ -8,6 +8,7 @@ django-select2
 django-filter
 django-htmlmin
 django-debreach
+django_compressor
 djangorestframework
 markdown
 markdown2

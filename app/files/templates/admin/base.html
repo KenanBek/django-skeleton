@@ -1,36 +1,49 @@
-{% load admin_static %}{% load suit_tags %}{% load url from future %}<!DOCTYPE html>
+{% load compress %}
+{% load admin_static %}
+{% load suit_tags %}
+{% load url from future %}
+
+<!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}{{ title }} | {{ application_config.admin_title }}{% endblock %}</title>
-    <meta name="author" content="{{ application_config.page_default_author }}">
-    <meta name="description" content="{{ application_config.page_default_description }}">
-    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
-    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <title>{% block title %}{{ title }} - {{ application_config.title }}{% endblock %}</title>
+    <meta name="author" content="{{ application_config.author }}">
+    <meta name="description" content="{{ application_config.description }}">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+
     <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% endblock %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'suit/bootstrap/css/bootstrap.min.css' %}" media="all" />
-    <link rel="stylesheet" type="text/css" href="{% static 'suit/css/suit.css' %}" media="all">
+    {% compress css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'suit/bootstrap/css/bootstrap.min.css' %}" media="all" />
+        <link rel="stylesheet" type="text/css" href="{% static 'suit/css/suit.css' %}" media="all">
+    {% endcompress %}
+
     {% block extrastyle %}{% endblock %}
     {% if LANGUAGE_BIDI %}
         <link rel="stylesheet" type="text/css" href="
                 {% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}" />{% endif %}
-    <link rel="stylesheet" type="text/css" href="{% static 'suit/css/customelements.css' %}" media="all">
-    <script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% static "admin/" %}{% endfilter %}";</script>
-    <script src="{% static 'suit/js/jquery-1.8.3.min.js' %}"></script>
-    <script type="text/javascript">var Suit = { $: $.noConflict() };
-    if (!$) $ = Suit.$; </script>
-    <script src="{% static 'suit/bootstrap/js/bootstrap.min.js' %}"></script>
-    {% if 'SHOW_REQUIRED_ASTERISK'|suit_conf %}
-        <style type="text/css">.required:after {
-            content:  '*';
-            margin:   0 0 0 5px;
-            position: absolute;
-            color:    #ccc;
-        }</style>
-    {% endif %}
+
+    {% compress js %}
+        <script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% static "admin/" %}{% endfilter %}";</script>
+        <script src="{% static 'suit/js/jquery-1.8.3.min.js' %}"></script>
+        <script type="text/javascript">var Suit = { $: $.noConflict() };
+        if (!$) $ = Suit.$; </script>
+        <script src="{% static 'suit/bootstrap/js/bootstrap.min.js' %}"></script>
+        {% if 'SHOW_REQUIRED_ASTERISK'|suit_conf %}
+            <style type="text/css">.required:after {
+                content:  '*';
+                margin:   0 0 0 5px;
+                position: absolute;
+                color:    #ccc;
+            }</style>
+        {% endif %}
+    {% endcompress %}
+
     {% block extrahead %}{% endblock %}
     {% block blockbots %}
-        <meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+        <meta name="robots" content="NONE,NOARCHIVE" />
+    {% endblock %}
 </head>
 {% load i18n %}
 
@@ -161,6 +174,7 @@
                                 {% with 'SEARCH_URL'|suit_conf as search_url %}
                                     {% if search_url %}
                                         <form class="form-search nav-quick-search" autocomplete="off" action="
+
 
 
 

@@ -233,12 +233,11 @@ LOGGING = {
 APPLICATION_URL = 'http://localhost:8000'
 APPLICATION_CONFIG = {
     'title': 'Project Title',
+    'short_title': 'PT',
+    'author': 'Kenan Bek, http://kenanbek.me',
+    'slogan': 'Code Code Code',
     'description': _('Project Description.'),
     'copyright': '&copy; 2015 ProjectDomain.com',
-    'author': 'ProjectDomain.com',
-    'admin_title': 'Project Title',
-    'page_default_author': 'ProjectDomain.com',
-    'page_default_description': 'Project Description',
     'google_id': 'google-id',
     'facebook_id': '1520447268200947',
     'twitter_id': 'twitter-id',
