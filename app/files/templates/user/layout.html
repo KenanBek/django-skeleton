@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load staticfiles %}
 {% load format %}
 
@@ -15,7 +16,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
+                <span class="sr-only">{% blocktrans %}Toggle navigation{% endblocktrans %}</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -24,12 +25,12 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
-                <li><a href="{% url 'index' %}">Dashboard</a></li>
-                <li><a href="{% url 'website_about' %}">About</a></li>
-                <li><a href="{% url 'website_contact' %}">Contact</a></li>
+                <li><a href="{% url 'index' %}">{% trans "Dashboard" %}</a></li>
+                <li><a href="{% url 'website_about' %}">{% trans "About" %}</a></li>
+                <li><a href="{% url 'website_contact' %}">{% trans "Contact" %}</a></li>
             </ul>
             <form class="navbar-form navbar-right" action="{% url 'website_search' %}" method="get">
-                <input id="q" name="q" type="text" class="form-control" placeholder="Search..." value="{{ q|default:"" }}">
+                <input id="q" name="q" type="text" class="form-control" placeholder="{% trans "Search..." %}" value="{{ q|default:"" }}">
             </form>
             {% include 'user/layout_user.html' %}
         </div>
@@ -42,10 +43,10 @@
             <div class="col-md-3 sidebar">
                 {% block sidebar %}
                     <ul class="nav nav-sidebar">
-                        <li><a href="{% url 'website_index' %}">Website</a></li>
-                        <li><a href="{% url 'cart_index' %}">Cart</a></li>
+                        <li><a href="{% url 'website_index' %}">{% trans "Website" %}</a></li>
+                        <li><a href="{% url 'cart_index' %}">{% trans "Cart" %}</a></li>
                         <li class="nav-divider"></li>
-                        <li><a href="http://kenanbek.me" target="_blank">Author</a></li>
+                        <li><a href="http://kenanbek.me" target="_blank">{% trans "Author" %}</a></li>
                         <li><a href="https://github.com/kenanbek/django-skeleton" target="_blank">Django Skeleton</a>
                         </li>
                     </ul>

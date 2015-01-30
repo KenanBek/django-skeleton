@@ -1,29 +1,30 @@
+{% load i18n %}
 {% load thumbnail %}
 
 {% if user.is_active %}
     <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="{{ user.profile.avatar|thumbnail_url:'avatar' }}" height="20" alt="{{ user.username }} avatar" title="{{ user.username }} avatar" />
+                <img src="{{ user.profile.avatar|thumbnail_url:'avatar' }}" height="20" alt="{{ user.username }} avatar" title="{% trans "Avatar" %}" />
                 {{ user.username }}
                 <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                 <li>
-                    <a href="{% url 'account_index' %}">My Account</a>
+                    <a href="{% url 'account_index' %}">{% blocktrans %}My Account{% endblocktrans %}</a>
                 </li>
                 {% if user.is_staff %}
                     <li class="divider"></li>
-                    <li><a href="{% url 'admin:index' %}">Administration</a></li>
-                    <li><a href="{% url 'api-root' %}">API</a></li>
+                    <li><a href="{% url 'admin:index' %}">{% trans "Administration" %}</a></li>
+                    <li><a href="{% url 'api-root' %}">{% trans "API" %}</a></li>
                 {% endif %}
                 <li class="divider"></li>
-                <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                <li><a href="{% url 'account_logout' %}">{% trans "Logout" %}</a></li>
             </ul>
         </li>
     </ul>
 {% else %}
     <ul class="nav navbar-nav navbar-right">
-        <li><a href="{% url 'account_login' %}">Login</a></li>
-        <li><a href="{% url 'account_register' %}">Register</a></li>
+        <li><a href="{% url 'account_login' %}">{% trans "Login" %}</a></li>
+        <li><a href="{% url 'account_register' %}">{% trans "Register" %}</a></li>
     </ul>
 {% endif %}

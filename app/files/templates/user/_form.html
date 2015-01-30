@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <form class="form-horizontal" role="form" action="{{ action }}" method="{{ method }}" {% if form.is_multipart or forms %}enctype="multipart/form-data"{% endif %}>
     {% csrf_token %}
 
@@ -11,8 +13,7 @@
 
     <div class="form-group form-footer">
         <div class="col-sm-offset-4 col-sm-8">
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="reset" class="btn btn-default">Reset</button>
+            <button type="submit" class="btn btn-primary">{% trans 'Submit' %}</button>
         </div>
     </div>
 </form>
