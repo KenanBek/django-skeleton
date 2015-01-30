@@ -1,13 +1,14 @@
 {% extends 'user/layout.html' %}
+{% load i18n %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h1>Search result for "{{ q }}":</h1>
+            <h1>"{{ q }}" {% blocktrans %}search result:{% endblocktrans %}</h1>
         </div>
     </div>
     <div class="col-md-12">
-        <h2 class="sub-header">Pages</h2>
+        <h2 class="sub-header">{% trans "Pages" %}</h2>
         <div class="row placeholders">
             {% for page in pages %}
                 <div class="col-xs-6 col-sm-3 placeholder">
@@ -15,12 +16,12 @@
                     <span class="text-muted">{{ page.modified_at }}</span>
                 </div>
             {% empty %}
-                <h4>No pages found.</h4>
+                <h4>{% blocktrans %}No pages found.{% endblocktrans %}</h4>
             {% endfor %}
         </div>
     </div>
     <div class="col-md-12">
-        <h2 class="sub-header">Posts</h2>
+        <h2 class="sub-header">{% trans "Posts" %}</h2>
         {% for post in posts %}
             <div class="list-group">
                 <a href="{% url 'website_post' post.id post.slug %}" class="list-group-item">
@@ -29,7 +30,7 @@
                 </a>
             </div>
         {% empty %}
-            <h4>No posts found.</h4>
+            <h4>{% blocktrans %}No posts found.{% endblocktrans %}</h4>
         {% endfor %}
     </div>
 {% endblock %}

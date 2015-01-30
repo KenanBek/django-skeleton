@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load thumbnail %}
 
 <ul class="media-list">
@@ -16,6 +17,6 @@
             </div>
         </li>
     {% empty %}
-        <h4>No posts.</h4>
+        <h4>{% blocktrans %}No posts.{% endblocktrans %}</h4>
     {% endfor %}
 </ul>

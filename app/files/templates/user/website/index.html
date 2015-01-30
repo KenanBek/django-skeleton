@@ -1,14 +1,15 @@
 {% extends 'user/layout.html' %}
+{% load i18n %}
 {% load thumbnail %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h2 class="sub-header">Pages</h2>
+            <h2 class="sub-header">{% trans "Pages" %}</h2>
             {% include 'user/website/_page_list.html' with page_list=pages %}
         </div>
         <div class="col-md-12">
-            <h2 class="sub-header">Posts</h2>
+            <h2 class="sub-header">{% trans "Posts" %}</h2>
             {% include 'user/website/_post_list.html' with post_list=posts %}
         </div>
     </div>

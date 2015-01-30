@@ -1,4 +1,5 @@
 {% extends 'user/layout.html' %}
+{% load i18n %}
 {% load thumbnail %}
 
 {% block content %}
@@ -18,7 +19,7 @@
                     {% include "user/website/_slider.html" with slider=post.related_slider %}
                 {% endif %}
 
-                <h3>Categories</h3>
+                <h3>{% trans "Categories" %}</h3>
                 {% for category in post.categories.all %}
                     <div class="col-md-3">
                         <h4>{{ category.title }}</h4>
