@@ -8,7 +8,10 @@
             <div class="jumbotron well">
                 <h1>{{ application_config.title }}</h1>
                 <p>{{ application_config.description }}</p>
-                <p><a class="btn btn-primary btn-lg" role="button" href="{% url 'website_about' %}">Read more</a>
+                <p>
+                    <a class="btn btn-primary btn-lg" role="button" href="{% url 'website_about' %}">
+                        {% trans 'Load more' %}
+                    </a>
                 </p>
             </div>
         </div>

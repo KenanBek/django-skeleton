@@ -15,10 +15,10 @@ urlpatterns = patterns('',
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # Applications
     url(r'^$', TemplateView.as_view(template_name='user/home.html'), name='index'),
-    url(r'', include('website.urls')),
-    url(r'^account/', include('account.urls')),
-    url(r'^cart/', include('cart.urls')),
     url(r'^system/', include('system.urls')),
+    url(r'^account/', include('account.urls')),
+    url(r'website/', include('website.urls')),
+    url(r'^cart/', include('cart.urls')),
 )
 
 # Serve static files
