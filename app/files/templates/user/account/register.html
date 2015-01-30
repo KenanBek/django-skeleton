@@ -1,9 +1,10 @@
 {% extends 'user/layout.html' %}
+{% load i18n %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h3>Please enter your profile information:</h3>
+            <h3>{% blocktrans %}Please enter your profile information:{% endblocktrans %}</h3>
             {% include "user/_form.html" with forms=forms action=account_register method="post" %}
         </div>
     </div>

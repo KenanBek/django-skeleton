@@ -1,13 +1,14 @@
 {% extends 'user/layout.html' %}
+{% load i18n %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h3>Please enter login and password:</h3>
+            <h3>{% blocktrans %}Please enter login and password:{% endblocktrans %}</h3>
             {% url 'account_login' as account_login %}
             {% include "user/_form.html" with form=login_form action=account_login method="post" %}
             <p>
-                ...or register <a href="{% url 'account_register' %}">here</a>.
+                {% blocktrans %}...or register{% endblocktrans %} <a href="{% url 'account_register' %}">here</a>.
             </p>
         </div>
     </div>

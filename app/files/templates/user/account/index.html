@@ -19,15 +19,15 @@
         </div>
         <div class="col-md-9">
             <dl>
-                <dt>Name</dt>
+                <dt>{% trans "Name" %}</dt>
                 <dd>{{ user.first_name|empty_text }} {{ user.last_name|empty_text }}</dd>
-                <dt>Registered at</dt>
+                <dt>{% blocktrans %}Registered at{% endblocktrans %}</dt>
                 <dd>{{ user.profile.added_at|empty_text }}</dd>
-                <dt>Email</dt>
+                <dt>{% trans "Email" %}</dt>
                 <dd>{{ user.email|empty_text }}</dd>
-                <dt>Website</dt>
+                <dt>{% trans "Website" %}</dt>
                 <dd>{{ user.profile.website|empty_text }}</dd>
-                <dt>Language</dt>
+                <dt>{% trans "Language" %}</dt>
                 <dd>
                     <form action="{% url 'set_language' %}" method="post">
                         {% csrf_token %}
