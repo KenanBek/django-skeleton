@@ -64,30 +64,35 @@
 </div>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-3 sidebar">
-            <ul class="nav nav-sidebar">
-                <li><a href="{% url 'website_index' %}">Website</a></li>
-                <li><a href="{% url 'cart_index' %}">Cart</a></li>
-                <li class="nav-divider"></li>
-                <li><a href="http://kenanbek.me" target="_blank">Author</a></li>
-                <li><a href="https://github.com/kenanbek/django-skeleton" target="_blank">Django Skeleton</a></li>
-            </ul>
+    {% block container %}
+        <div class="row">
+            <div class="col-md-3 sidebar">
+                {% block sidebar %}
+                    <ul class="nav nav-sidebar">
+                        <li><a href="{% url 'website_index' %}">Website</a></li>
+                        <li><a href="{% url 'cart_index' %}">Cart</a></li>
+                        <li class="nav-divider"></li>
+                        <li><a href="http://kenanbek.me" target="_blank">Author</a></li>
+                        <li><a href="https://github.com/kenanbek/django-skeleton" target="_blank">Django Skeleton</a>
+                        </li>
+                    </ul>
+                {% endblock %}
+            </div>
+            <div class="col-md-9 main">
+                {% if messages %}
+                    <br />
+                    {% for message in messages %}
+                        <div
+                                {% if message.tags %} class="alert alert-{{ message.tags }}" {% else %} class="alert" {% endif %} role="alert">{{ message }}
+                        </div>
+                    {% endfor %}
+                    <br />
+                {% endif %}
+                {% block content %}
+                {% endblock %}
+            </div>
         </div>
-        <div class="col-md-9 main">
-            {% if messages %}
-                <br />
-                {% for message in messages %}
-                    <div
-                            {% if message.tags %} class="alert alert-{{ message.tags }}" {% else %} class="alert" {% endif %} role="alert">{{ message }}
-                    </div>
-                {% endfor %}
-                <br />
-            {% endif %}
-            {% block content %}
-            {% endblock %}
-        </div>
-    </div>
+    {% endblock %}
     <footer>
         <hr>
         <p class="pull-left">Licensed under GNU GPL v3.0. Author
