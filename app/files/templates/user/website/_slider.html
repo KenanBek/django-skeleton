@@ -1,7 +1,7 @@
 {% load thumbnail %}
 
 <div id="application-bootstrap-carousel" class="carousel slide" data-ride="carousel" style="height: 600px;">
-    <!-- Indicators -->
+    {# Indicators #}
     <ol class="carousel-indicators">
         {% for slide in slider.slide_set.all %}
             <li data-target="#slide-{{ forloop.counter0 }}" data-slide-to="{{ forloop.counter0 }}"
@@ -9,7 +9,7 @@
         {% endfor %}
     </ol>
 
-    <!-- Wrapper for slides -->
+    {# Wrapper for slides #}
     <div class="carousel-inner">
         {% for slide in slider.slide_set.all %}
             <div {% if forloop.counter0 == 0 %} class="item active" {% else %} class="item" {% endif %}>
@@ -22,7 +22,7 @@
         {% endfor %}
     </div>
 
-    <!-- Controls -->
+    {# Controlls #}
     <a class="left carousel-control" href="#application-bootstrap-carousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
     </a>
