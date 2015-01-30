@@ -1,11 +1,12 @@
 {% extends 'user/layout.html' %}
+{% load i18n %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h1 class="page-header">Error 403</h1>
+            <h1 class="page-header">{% blocktrans %}Error 403{% endblocktrans %}</h1>
             <p>
-                Server refuses to respond to request.
+                {% blocktrans %}Server refuses to respond to request.{% endblocktrans %}
             </p>
         </div>
     </div>

@@ -1,11 +1,12 @@
 {% extends 'user/layout.html' %}
+{% load i18n %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h1 class="page-header">Error 404</h1>
+            <h1 class="page-header">{% blocktrans %}Error 404{% endblocktrans %}</h1>
             <p>
-                Requested resource could not be found.
+                {% blocktrans %}Requested resource could not be found.{% endblocktrans %}
             </p>
         </div>
     </div>
