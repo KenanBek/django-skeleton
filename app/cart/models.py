@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
+
 import slugify
 
 from core import models as core_models
@@ -106,7 +108,7 @@ class ProductReview(core_models.Model):
 
     class Meta:
         permissions = (
-            ('can_approve', 'Can approve review'),
+            ('can_approve', _('Can approve review')),
         )
 
 
@@ -160,7 +162,7 @@ class ShopReview(core_models.Model):
 
     class Meta:
         permissions = (
-            ('can_approve', 'Can approve review'),
+            ('can_approve', _('Can approve review')),
         )
 
 

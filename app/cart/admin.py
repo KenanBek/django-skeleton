@@ -1,6 +1,7 @@
 from django.contrib import admin
-from ckeditor.widgets import CKEditorWidget
 from django import forms
+from django.utils.translation import ugettext_lazy as _
+from ckeditor.widgets import CKEditorWidget
 
 from core import models as core_models
 import models
@@ -46,17 +47,17 @@ class ProductAdmin(core_models.ModelAdmin):
     fieldsets = [
         ('Relations', {
             'classes': ('suit-tab suit-tab-general',),
-            'description': 'Product relations',
+            'description': _('Product relations'),
             'fields': ['is_active', 'category', 'manufacturer', ]
         }),
         ('General', {
             'classes': ('suit-tab suit-tab-general',),
-            'description': 'Product general information',
+            'description': _('Product general information'),
             'fields': ['model', 'size', 'weight', 'info', ]
         }),
         ('Media', {
             'classes': ('suit-tab suit-tab-general',),
-            'description': 'Related media sources',
+            'description': _('Related media sources'),
             'fields': ['image', 'video_code', ]
         }),
     ]
@@ -109,12 +110,12 @@ class ShopAdmin(core_models.ModelAdmin):
     fieldsets = [
         ('General', {
             'classes': ('suit-tab suit-tab-general',),
-            'description': 'Shop general information',
+            'description': _('Shop general information'),
             'fields': ['is_active', 'title', 'slug', 'info']
         }),
         ('Media', {
             'classes': ('suit-tab suit-tab-general',),
-            'description': 'Shop media files',
+            'description': _('Shop media files'),
             'fields': ['image', ]
         }),
     ]
