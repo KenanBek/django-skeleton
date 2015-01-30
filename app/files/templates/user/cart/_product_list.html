@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load thumbnail %}
 
 {% for product in product_list %}
@@ -15,5 +16,5 @@
         <p>{{ product.info|safe }}</p>
     </div>
 {% empty %}
-    <h4>No products.</h4>
+    <h4>{% blocktrans %}No products.{% endblocktrans %}</h4>
 {% endfor %}

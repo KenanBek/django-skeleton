@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <div class="list-group">
     {% for review in productreview_list %}
         <div class="list-group-item">
@@ -6,6 +8,6 @@
             <p class="list-group-item-text">{{ review.comment }}</p>
         </div>
     {% empty %}
-        <h4>No reviews.</h4>
+        <h4>{% blocktrans %}No reviews.{% endblocktrans %}</h4>
     {% endfor %}
 </div>

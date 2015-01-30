@@ -1,9 +1,9 @@
 {% extends 'user/layout.html' %}
+{% load i18n %}
 {% load format %}
 {% load thumbnail %}
 
 {% block content %}
-
     <div class="row">
         <div class="col-md-12">
             <h1 class="sub-header">
@@ -12,7 +12,6 @@
             </h1>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-6">
             {% if product_item.image %}
@@ -22,30 +21,28 @@
             {% endif %}
         </div>
         <div class="col-md-6">
-            <h3>Description</h3>
+            <h3>{% trans "Description" %}</h3>
             <p>{{ product_item.info|safe }}</p>
-            <h3>Details</h3>
+            <h3>{% trans "Details" %}</h3>
             <dl class="dl-horizontal">
-                <dt>Price</dt>
+                <dt>{% trans "Price" %}</dt>
                 <dd>{{ product_price }} {{ product_price_currency }}</dd>
-                <dt>Rate</dt>
+                <dt>{% trans "Rate" %}</dt>
                 <dd>
                     {% include 'user/cart/_rate.html' with rate=product_rate %}
                 </dd>
-                <dt>Size</dt>
+                <dt>{% trans "Size" %}</dt>
                 <dd>{{ product_item.size|empty_text }}</dd>
-                <dt>Weight</dt>
+                <dt>{% trans "Weight" %}</dt>
                 <dd>{{ product_item.weight|empty_text }}</dd>
             </dl>
         </div>
     </div>
-
     <br />
-
     {% if product_item.productimage_set.count > 0 %}
         <div class="row">
             <div class="col-md-12">
-                <h3 class="page-header">More photos</h3>
+                <h3 class="page-header">{% blocktrans %}More photos{% endblocktrans %}</h3>
             </div>
             {% for product_image in product_item.productimage_set.all %}
                 <div class="col-sm-3 col-xs-6">
@@ -54,26 +51,23 @@
             {% endfor %}
         </div>
     {% endif %}
-
     {% if product_item.video_code %}
         <div class="row">
             <div class="col-md-12">
-                <h3 class="page-header">Video review</h3>
+                <h3 class="page-header">{% blocktrans %}Video review{% endblocktrans %}</h3>
                 <div class="embed-responsive embed-responsive-16by9">
                     {{ product_item.video_code|safe }}
                 </div>
             </div>
         </div>
     {% endif %}
-
     <br />
-
     <div class="row">
         <div class="col-md-12">
             <ul class="nav nav-tabs" role="tablist">
-                <li class="active"><a href="#shops" role="tab" data-toggle="tab">Shops</a></li>
-                <li><a href="#characteristics" role="tab" data-toggle="tab">Characteristics</a></li>
-                <li><a href="#reviews" role="tab" data-toggle="tab">Reviews</a></li>
+                <li class="active"><a href="#shops" role="tab" data-toggle="tab">{% trans "Shops" %}</a></li>
+                <li><a href="#characteristics" role="tab" data-toggle="tab">{% trans "Characteristics" %}</a></li>
+                <li><a href="#reviews" role="tab" data-toggle="tab">{% trans "Reviews" %}</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="shops">
@@ -121,15 +115,14 @@
                 <div class="tab-pane" id="reviews">
                     {% include 'user/cart/_review_list.html' with productreview_list=productreview_list %}
                     {% if user.is_active %}
-                        <h3>Leave your own review:</h3>
+                        <h3>{% blocktrans %}Leave your own review:{% endblocktrans %}</h3>
                         {% url 'cart_product_review' product_item.id as product_review_url %}
                         {% include 'user/_form.html' with form=productreview_form method='post' action=product_review_url %}
                     {% else %}
-                        <h3>Please login or register to give your own feedbacks.</h3>
+                        <h3>{% blocktrans %}Please login or register to give your own feedbacks.{% endblocktrans %}</h3>
                     {% endif %}
                 </div>
             </div>
         </div>
     </div>
-
 {% endblock %}

@@ -1,8 +1,8 @@
 {% extends 'user/layout.html' %}
+{% load i18n %}
 {% load thumbnail %}
 
 {% block content %}
-
     <div class="row">
         <div class="col-md-12">
             <h1 class="sub-header">
@@ -10,7 +10,6 @@
             </h1>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-4">
             {% if shop_item.image %}
@@ -20,26 +19,24 @@
             {% endif %}
         </div>
         <div class="col-md-8">
-            <h3>Info</h3>
+            <h3>{% trans "Info" %}</h3>
             <dl class="dl-horizontal">
-                <dt>Rate</dt>
+                <dt>{% trans "Rate" %}</dt>
                 <dd>
                     {% include 'user/cart/_rate.html' with rate=shop_rate %}
                 </dd>
-                <dt>Description</dt>
+                <dt>{% trans "Description" %}</dt>
                 <dd>{{ shop_item.info|safe }}</dd>
             </dl>
         </div>
     </div>
-
     <br />
-
     <div class="row">
         <div class="col-md-12">
             <ul class="nav nav-tabs" role="tablist">
-                <li class="active"><a href="#products" role="tab" data-toggle="tab">Products</a></li>
-                <li><a href="#reviews" role="tab" data-toggle="tab">Reviews</a></li>
-                <li><a href="#announcements" role="tab" data-toggle="tab">Announcements</a></li>
+                <li class="active"><a href="#products" role="tab" data-toggle="tab">{% trans "Products" %}</a></li>
+                <li><a href="#reviews" role="tab" data-toggle="tab">{% trans "Reviews" %}</a></li>
+                <li><a href="#announcements" role="tab" data-toggle="tab">{% trans "Announcements" %}</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="products">
@@ -48,18 +45,17 @@
                 <div class="tab-pane" id="reviews">
                     {% include 'user/cart/_review_list.html' with productreview_list=shopreview_list %}
                     {% if user.is_active %}
-                        <h3>Leave your own review:</h3>
+                        <h3>{% blocktrans %}Leave your own review:{% endblocktrans %}</h3>
                         {% url 'cart_shop_review' shop_item.id as shop_review_url %}
                         {% include 'user/_form.html' with form=shopreview_form method='post' action=shop_review_url %}
                     {% else %}
-                        <h3>Please login or register to give your own feedbacks.</h3>
+                        <h3>{% blocktrans %}Please login or register to give your own feedbacks.{% endblocktrans %}</h3>
                     {% endif %}
                 </div>
                 <div class="tab-pane" id="announcements">
-                    Announcements
+                    {% trans "Announcements" %}
                 </div>
             </div>
         </div>
     </div>
-
 {% endblock %}
