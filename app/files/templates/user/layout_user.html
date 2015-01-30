@@ -1,0 +1,29 @@
+{% load thumbnail %}
+
+{% if user.is_active %}
+    <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="{{ user.profile.avatar|thumbnail_url:'avatar' }}" height="20" alt="{{ user.username }} avatar" title="{{ user.username }} avatar" />
+                {{ user.username }}
+                <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                    <a href="{% url 'account_index' %}">My Account</a>
+                </li>
+                {% if user.is_staff %}
+                    <li class="divider"></li>
+                    <li><a href="{% url 'admin:index' %}">Administration</a></li>
+                    <li><a href="{% url 'api-root' %}">API</a></li>
+                {% endif %}
+                <li class="divider"></li>
+                <li><a href="{% url 'account_logout' %}">Logout</a></li>
+            </ul>
+        </li>
+    </ul>
+{% else %}
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'account_login' %}">Login</a></li>
+        <li><a href="{% url 'account_register' %}">Register</a></li>
+    </ul>
+{% endif %}

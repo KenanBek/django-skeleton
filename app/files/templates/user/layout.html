@@ -1,5 +1,4 @@
 {% load staticfiles %}
-{% load thumbnail %}
 {% load format %}
 
 <!DOCTYPE html>
@@ -32,33 +31,7 @@
             <form class="navbar-form navbar-right" action="{% url 'website_search' %}" method="get">
                 <input id="q" name="q" type="text" class="form-control" placeholder="Search..." value="{{ q|default:"" }}">
             </form>
-            {% if user.is_active %}
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{{ user.profile.avatar|thumbnail_url:'avatar' }}" height="20" alt="{{ user.username }} avatar" title="{{ user.username }} avatar" />
-                            {{ user.username }}
-                            <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{% url 'account_index' %}">My Account</a>
-                            </li>
-                            {% if user.is_staff %}
-                                <li class="divider"></li>
-                                <li><a href="{% url 'admin:index' %}">Administration</a></li>
-                                <li><a href="{% url 'api-root' %}">API</a></li>
-                            {% endif %}
-                            <li class="divider"></li>
-                            <li><a href="{% url 'account_logout' %}">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            {% else %}
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{% url 'account_login' %}">Login</a></li>
-                    <li><a href="{% url 'account_register' %}">Register</a></li>
-                </ul>
-            {% endif %}
+            {% include 'user/layout_user.html' %}
         </div>
     </div>
 </div>
@@ -79,31 +52,18 @@
                 {% endblock %}
             </div>
             <div class="col-md-9 main">
-                {% if messages %}
-                    <br />
-                    {% for message in messages %}
-                        <div
-                                {% if message.tags %} class="alert alert-{{ message.tags }}" {% else %} class="alert" {% endif %} role="alert">{{ message }}
-                        </div>
-                    {% endfor %}
-                    <br />
-                {% endif %}
+                {% include 'user/layout_messages.html' %}
                 {% block content %}
                 {% endblock %}
             </div>
         </div>
     {% endblock %}
-    <footer>
-        <hr>
-        <p class="pull-left">Licensed under GNU GPL v3.0. Author
-            <a href="http://kenanbek.me" target="_blank">Kenan Bek</a></p>
-    </footer>
+    {% include 'user/layout_footer.html' %}
     <br />
     <br />
     <br />
 </div>
 
 {% include 'user/layout_end.html' %}
-
 </body>
 </html>
