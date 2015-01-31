@@ -16,7 +16,7 @@ ITEM_STATUS_CHOICES = (
 
 
 class Slider(core_models.Model):
-    status = models.CharField(max_length=9, choices=MODEL_STATUS, default=PUBLISHED)
+    status = models.CharField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
     description = models.TextField(null=True, blank=True)
 
@@ -25,7 +25,7 @@ class Slider(core_models.Model):
 
 
 class Slide(core_models.Model):
-    status = models.CharField(max_length=9, choices=MODEL_STATUS, default=PUBLISHED)
+    status = models.CharField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='website/slider/', null=True, blank=True)
