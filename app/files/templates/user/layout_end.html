@@ -2,7 +2,7 @@
 {% load compress %}
 
 {# Scripts #}
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="{% static 'user/js/jquery-1.11.1.min.js' %}"></script>
 {% compress js %}
     <script src="{% static 'user/js/bootstrap.min.js' %}"></script>
 {% endcompress %}
