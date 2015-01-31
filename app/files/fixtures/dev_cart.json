@@ -340,7 +340,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:42:25.849Z",
             "added_at": "2014-10-21T20:42:25.849Z",
-            "user": 0
+            "user": 1
         }
     },
     {
@@ -353,7 +353,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:42:41.710Z",
             "added_at": "2014-10-21T20:42:41.710Z",
-            "user": 0
+            "user": 1
         }
     },
     {
@@ -366,7 +366,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:42:54.152Z",
             "added_at": "2014-10-21T20:42:54.152Z",
-            "user": 0
+            "user": 1
         }
     },
     {
@@ -379,7 +379,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:43:10.665Z",
             "added_at": "2014-10-21T20:43:10.665Z",
-            "user": 0
+            "user": 1
         }
     },
     {
@@ -392,7 +392,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:43:28.854Z",
             "added_at": "2014-10-21T20:43:28.854Z",
-            "user": 0
+            "user": 1
         }
     },
     {
@@ -405,7 +405,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:43:41.871Z",
             "added_at": "2014-10-21T20:43:41.871Z",
-            "user": 0
+            "user": 1
         }
     },
     {
@@ -418,7 +418,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:44:48.179Z",
             "added_at": "2014-10-21T20:43:54.357Z",
-            "user": 0
+            "user": 1
         }
     },
     {
@@ -431,7 +431,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:44:06.748Z",
             "added_at": "2014-10-21T20:44:06.748Z",
-            "user": 0
+            "user": 1
         }
     },
     {
@@ -444,7 +444,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:44:18.172Z",
             "added_at": "2014-10-21T20:44:18.172Z",
-            "user": 0
+            "user": 1
         }
     },
     {
@@ -457,7 +457,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:44:41.301Z",
             "added_at": "2014-10-21T20:44:41.301Z",
-            "user": 0
+            "user": 1
         }
     },
     {
@@ -470,7 +470,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T22:12:14.259Z",
             "added_at": "2014-10-21T22:11:52.526Z",
-            "user": 0
+            "user": 1
         }
     },
     {
@@ -483,7 +483,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T23:39:16.356Z",
             "added_at": "2014-10-21T23:39:16.356Z",
-            "user": 0
+            "user": 1
         }
     },
     {
@@ -496,7 +496,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T23:40:44.872Z",
             "added_at": "2014-10-21T23:40:44.872Z",
-            "user": 0
+            "user": 1
         }
     },
     {
@@ -1260,7 +1260,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:49:38.498Z",
             "added_at": "2014-10-21T20:49:38.498Z",
-            "user": 0,
+            "user": 1,
             "comment": "The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators."
         }
     },
@@ -1273,7 +1273,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:49:49.584Z",
             "added_at": "2014-10-21T20:49:49.584Z",
-            "user": 0,
+            "user": 1,
             "comment": "To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words."
         }
     },
@@ -1286,7 +1286,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:50:00.826Z",
             "added_at": "2014-10-21T20:50:00.826Z",
-            "user": 0,
+            "user": 1,
             "comment": "If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages."
         }
     },
@@ -1299,7 +1299,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:50:16.301Z",
             "added_at": "2014-10-21T20:50:16.301Z",
-            "user": 0,
+            "user": 1,
             "comment": "It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is."
         }
     },
@@ -1312,7 +1312,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:50:28.997Z",
             "added_at": "2014-10-21T20:50:28.997Z",
-            "user": 0,
+            "user": 1,
             "comment": "The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary."
         }
     },
@@ -1325,7 +1325,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:50:40.400Z",
             "added_at": "2014-10-21T20:50:40.400Z",
-            "user": 0,
+            "user": 1,
             "comment": "The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators."
         }
     },
@@ -1338,7 +1338,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:50:51.584Z",
             "added_at": "2014-10-21T20:50:51.584Z",
-            "user": 0,
+            "user": 1,
             "comment": "To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages."
         }
     },
@@ -1351,7 +1351,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:51:01.502Z",
             "added_at": "2014-10-21T20:51:01.502Z",
-            "user": 0,
+            "user": 1,
             "comment": "The new common language will be more simple and regular than the existing European languages. It will be as simple as Occidental; in fact, it will be Occidental."
         }
     },
@@ -1364,7 +1364,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:51:14.944Z",
             "added_at": "2014-10-21T20:51:14.944Z",
-            "user": 0,
+            "user": 1,
             "comment": "To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is. The European languages are members of the same family. Their separate existence is a myth."
         }
     },
@@ -1377,7 +1377,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:51:38.505Z",
             "added_at": "2014-10-21T20:51:38.504Z",
-            "user": 0,
+            "user": 1,
             "comment": "A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart."
         }
     },
@@ -1390,7 +1390,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:51:52.272Z",
             "added_at": "2014-10-21T20:51:52.272Z",
-            "user": 0,
+            "user": 1,
             "comment": "I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine."
         }
     },
@@ -1403,7 +1403,7 @@
             "is_approved": true,
             "modified_at": "2014-10-21T20:52:09.803Z",
             "added_at": "2014-10-21T20:52:09.803Z",
-            "user": 0,
+            "user": 1,
             "comment": "I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never was a greater artist than now."
         }
     },
@@ -1416,7 +1416,7 @@
             "is_approved": false,
             "modified_at": "2014-10-21T20:52:28.819Z",
             "added_at": "2014-10-21T20:52:28.819Z",
-            "user": 0,
+            "user": 1,
             "comment": "I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents."
         }
     },
