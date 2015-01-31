@@ -2,7 +2,15 @@ from django.db import models
 import slugify
 
 from core import models as core_models
-from core.models import MODEL_STATUS, PUBLISHED
+
+''' Types '''
+
+ITEM_STATUS_PUBLISHED = 1
+ITEM_STATUS_HIDDEN = 2
+ITEM_STATUS_CHOICES = (
+    (ITEM_STATUS_PUBLISHED, "Published"),
+    (ITEM_STATUS_HIDDEN, "Hidden"),
+)
 
 ''' Slider '''
 
@@ -42,7 +50,7 @@ class Widget(core_models.Model):
 
 
 class Page(core_models.Model):
-    status = models.CharField(max_length=9, choices=MODEL_STATUS, default=PUBLISHED)
+    status = models.CharField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
     slug = models.SlugField(unique=True)
     content = models.TextField()
@@ -80,7 +88,7 @@ class Category(core_models.Model):
 
 
 class Post(core_models.Model):
-    status = models.CharField(max_length=9, choices=MODEL_STATUS, default=PUBLISHED)
+    status = models.CharField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
     slug = models.SlugField(unique=True)
     short_content = models.CharField(max_length=512)
