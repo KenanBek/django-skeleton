@@ -24,14 +24,14 @@ REVIEW_RATING_CHOICES = (
 ''' Base objects '''
 
 
-class Currency(core_models.Model):
+class Currency(core_models.ModelAbstract):
     title = models.CharField(max_length=128)
 
     def __str__(self):
         return self.title
 
 
-class Manufacturer(core_models.Model):
+class Manufacturer(core_models.ModelAbstract):
     title = models.CharField(max_length=256)
     slug = models.SlugField(null=True, blank=True)
     info = models.CharField(max_length=1024, null=True, blank=True)
@@ -46,7 +46,7 @@ class Manufacturer(core_models.Model):
         super(Manufacturer, self).save(*args, **kwargs)
 
 
-class Category(core_models.Model):
+class Category(core_models.ModelAbstract):
     title = models.CharField(max_length=256)
     slug = models.SlugField(null=True, blank=True)
     info = models.CharField(max_length=1024, null=True, blank=True)
@@ -60,14 +60,14 @@ class Category(core_models.Model):
         super(Category, self).save(*args, **kwargs)
 
 
-class AttributeGroup(core_models.Model):
+class AttributeGroup(core_models.ModelAbstract):
     title = models.CharField(max_length=256)
 
     def __str__(self):
         return self.title
 
 
-class Attribute(core_models.Model):
+class Attribute(core_models.ModelAbstract):
     group = models.ForeignKey(AttributeGroup)
     title = models.CharField(max_length=256)
 
@@ -78,7 +78,7 @@ class Attribute(core_models.Model):
 ''' Product '''
 
 
-class Product(core_models.Model):
+class Product(core_models.ModelAbstract):
     is_active = models.BooleanField(default=False)
     category = models.ForeignKey(Category)
     manufacturer = models.ForeignKey(Manufacturer)
@@ -95,7 +95,7 @@ class Product(core_models.Model):
         return "{0} {1} {2}".format(str(self.category), str(self.manufacturer), self.model)
 
 
-class ProductReview(core_models.Model):
+class ProductReview(core_models.ModelAbstract):
     is_approved = models.BooleanField(default=False)
     product = models.ForeignKey(Product)
     user = models.ForeignKey(User)
@@ -112,7 +112,7 @@ class ProductReview(core_models.Model):
         )
 
 
-class ProductAttribute(core_models.Model):
+class ProductAttribute(core_models.ModelAbstract):
     product = models.ForeignKey(Product)
     attribute = models.ForeignKey(Attribute)
     value = models.CharField(max_length=128)
@@ -121,7 +121,7 @@ class ProductAttribute(core_models.Model):
         return "".format()
 
 
-class ProductImage(core_models.Model):
+class ProductImage(core_models.ModelAbstract):
     product = models.ForeignKey(Product)
     image = models.ImageField(upload_to='cart/product')
     info = models.CharField(max_length=1024, null=True, blank=True)
@@ -133,7 +133,7 @@ class ProductImage(core_models.Model):
 ''' Shop '''
 
 
-class Shop(core_models.Model):
+class Shop(core_models.ModelAbstract):
     is_active = models.BooleanField(default=False)
     title = models.CharField(max_length=32)
     slug = models.SlugField(unique=True, null=True, blank=True)
@@ -149,7 +149,7 @@ class Shop(core_models.Model):
         super(Shop, self).save(*args, **kwargs)
 
 
-class ShopReview(core_models.Model):
+class ShopReview(core_models.ModelAbstract):
     is_approved = models.BooleanField(default=False)
     shop = models.ForeignKey(Shop)
     user = models.ForeignKey(User)
@@ -166,7 +166,7 @@ class ShopReview(core_models.Model):
         )
 
 
-class ShopProduct(core_models.Model):
+class ShopProduct(core_models.ModelAbstract):
     shop = models.ForeignKey(Shop)
     product = models.ForeignKey(Product)
     currency = models.ForeignKey(Currency)

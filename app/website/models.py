@@ -15,7 +15,7 @@ ITEM_STATUS_CHOICES = (
 ''' Slider '''
 
 
-class Slider(core_models.Model):
+class Slider(core_models.ModelAbstract):
     status = models.CharField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
     description = models.TextField(null=True, blank=True)
@@ -24,7 +24,7 @@ class Slider(core_models.Model):
         return self.title
 
 
-class Slide(core_models.Model):
+class Slide(core_models.ModelAbstract):
     status = models.CharField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
     description = models.TextField(null=True, blank=True)
@@ -38,7 +38,7 @@ class Slide(core_models.Model):
 ''' Page '''
 
 
-class Widget(core_models.Model):
+class Widget(core_models.ModelAbstract):
     title = models.CharField(max_length=32)
     content = models.TextField()
     featured_image = models.ImageField(upload_to='website/widget/', null=True, blank=True)
@@ -49,7 +49,7 @@ class Widget(core_models.Model):
         return self.title
 
 
-class Page(core_models.Model):
+class Page(core_models.ModelAbstract):
     status = models.CharField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
     slug = models.SlugField(unique=True)
@@ -73,7 +73,7 @@ class Page(core_models.Model):
 ''' Post '''
 
 
-class Category(core_models.Model):
+class Category(core_models.ModelAbstract):
     title = models.CharField(max_length=32)
     slug = models.SlugField(unique=True)
     description = models.CharField(max_length=512, null=True, blank=True)
@@ -87,7 +87,7 @@ class Category(core_models.Model):
         super(Category, self).save(*args, **kwargs)
 
 
-class Post(core_models.Model):
+class Post(core_models.ModelAbstract):
     status = models.CharField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
     slug = models.SlugField(unique=True)
@@ -109,7 +109,7 @@ class Post(core_models.Model):
 ''' Subscriber & Document '''
 
 
-class Subscriber(core_models.Model):
+class Subscriber(core_models.ModelAbstract):
     name = models.CharField(max_length=32)
     email = models.EmailField(unique=True)
 
@@ -117,7 +117,7 @@ class Subscriber(core_models.Model):
         return "{0} ({1})".format(self.name, self.email)
 
 
-class Document(core_models.Model):
+class Document(core_models.ModelAbstract):
     name = models.CharField(max_length=32)
     email = models.EmailField()
     short_description = models.CharField(max_length=128)
@@ -130,7 +130,7 @@ class Document(core_models.Model):
 ''' Contact '''
 
 
-class Contact(core_models.Model):
+class Contact(core_models.ModelAbstract):
     name = models.CharField(max_length=32)
     email = models.EmailField()
     subject = models.CharField(max_length=32)
