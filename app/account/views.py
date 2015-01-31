@@ -8,7 +8,8 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 
 from core.decorators import anonymous_required
-import forms
+from account import models
+from account import forms
 
 
 def index(request, template="user/account/index.html", context={}):
@@ -83,4 +84,35 @@ def logout(request):
     django_auth.logout(request)
     messages.add_message(request, messages.SUCCESS, _('You have successfully logged out.'))
     return redirect(reverse('index'))
+
+
+def modify_account(request, template="user/account/account_modify.html", context={}):
+    user_form = None
+    profile_form = None
+
+    if not hasattr(request.user, 'profile'):
+        request.user.profile = models.Profile()
+
+    if request.method == 'POST':
+        user_form = forms.ModifyUserForm(request.POST or None, instance=request.user)
+        profile_form = forms.ModifyProfileForm(request.POST or None, request.FILES or None,
+            instance=request.user.profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.add_message(request, messages.SUCCESS, _('Your account successfully modified.'))
+            return redirect(reverse('account_index'))
+        else:
+            messages.add_message(request, messages.ERROR, _('Some errors occurred. Please fix errors bellow.'))
+    else:
+        user = request.user
+        user_form = forms.ModifyUserForm(instance=user)
+        profile_form = forms.ModifyProfileForm(instance=user.profile)
+
+    context['user_form'] = user_form
+    context['profile_form'] = profile_form
+    context['forms'] = (user_form, profile_form, )
+
+    return render(request, template, context)
 

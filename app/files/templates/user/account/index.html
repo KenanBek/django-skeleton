@@ -10,9 +10,7 @@
             <p>{% trans 'Here you can configure your account settings.' %}</p>
         </div>
     </div>
-
     <br />
-
     <div class="row">
         <div class="col-md-3">
             <img src="{{ user.profile.avatar|thumbnail_url:'small' }}">
@@ -45,6 +43,7 @@
                     </form>
                 </dd>
             </dl>
+            <a class="btn btn-default" href="{% url 'account_modify' %}">{% trans 'Modify' %}</a>
         </div>
     </div>
 {% endblock %}

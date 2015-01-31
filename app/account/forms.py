@@ -3,6 +3,8 @@ import django.contrib.auth.models as auth_models
 
 import models
 
+''' Login and Registration forms '''
+
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=30)
@@ -30,3 +32,17 @@ class ProfileForm(forms.ModelForm):
         model = models.Profile
         fields = ('website', 'avatar')
 
+
+''' User modify forms '''
+
+
+class ModifyUserForm(forms.ModelForm):
+    class Meta:
+        model = auth_models.User
+        fields = ('first_name', 'last_name', )
+
+
+class ModifyProfileForm(forms.ModelForm):
+    class Meta:
+        model = models.Profile
+        fields = ('website', 'avatar', )
