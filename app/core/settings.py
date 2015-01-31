@@ -64,7 +64,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'core.middleware.ClientMiddleware',
+    'core.middleware.CoreMiddleware',
+    'system.middleware.SystemMiddleware',
 )
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
@@ -322,6 +323,12 @@ SUIT_CONFIG = {
         {'label': 'Orders', 'icon': 'icon-th', 'models': (
             {'model': 'cart.productreview', 'label': 'Product reviews'},
             {'model': 'cart.shopreview', 'label': 'Shop reviews'},
+        )},
+        '-',
+        {'label': 'System', 'icon': 'icon-th', 'models': (
+            {'model': 'system.event', 'label': 'Events'},
+            {'model': 'system.log', 'label': 'Logs'},
+            {'model': 'system.userrequest', 'label': 'User Requests'},
         )},
         '-',
         {'label': 'Documentation', 'icon': 'icon-bookmark', 'url': 'https://github.com/KenanBek/django-skeleton/wiki'},
