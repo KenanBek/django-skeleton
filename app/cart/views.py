@@ -3,8 +3,8 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from django.utils.translation import ugettext_lazy as _
 
-import models
-import forms
+from cart import models
+from cart import forms
 
 
 def index(request, template='user/cart/index.html', context={}):

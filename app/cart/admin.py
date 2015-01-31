@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from ckeditor.widgets import CKEditorWidget
 
 from core import models as core_models
-import models
+from cart import models
 
 ''' Product '''
 
@@ -39,7 +39,7 @@ class ProductAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
-class ProductAdmin(core_models.ModelAdmin):
+class ProductAdminAbstract(core_models.ModelAdminAbstract):
     form = ProductAdminForm
     list_display = ['category', 'manufacturer', 'model', 'is_active', ]
     list_filter = ['category', 'manufacturer', ]
@@ -87,7 +87,7 @@ class ShopProductInline(admin.StackedInline):
     extra = 20
 
 
-class ShopProductAdmin(core_models.ModelAdmin):
+class ShopProductAdminAbstract(core_models.ModelAdminAbstract):
     list_display = ['shop', 'product', 'currency', 'price', 'quantity', ]
     list_filter = ['shop', 'product', ]
 
@@ -103,7 +103,7 @@ class ShopAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
-class ShopAdmin(core_models.ModelAdmin):
+class ShopAdminAbstract(core_models.ModelAdminAbstract):
     form = ShopAdminForm
     list_display = ['title', 'is_active', ]
     inlines = [ShopProductInline, ]
@@ -136,7 +136,7 @@ class ProductReviewAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
-class ProductReviewAdmin(core_models.ModelAdmin):
+class ProductReviewAdminAbstract(core_models.ModelAdminAbstract):
     form = ProductReviewAdminForm
     list_display = ['product', 'rating', 'comment', 'is_approved', ]
     list_filter = ['product', 'rating', 'is_approved', ]
@@ -150,7 +150,7 @@ class ShopReviewAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
-class ShopReviewAdmin(core_models.ModelAdmin):
+class ShopReviewAdminAbstract(core_models.ModelAdminAbstract):
     form = ShopReviewAdminForm
     list_display = ['shop', 'rating', 'comment', 'is_approved', ]
     list_filter = ['shop', 'rating', 'is_approved', ]
@@ -163,10 +163,10 @@ admin.site.register(models.Manufacturer)
 admin.site.register(models.Category)
 admin.site.register(models.AttributeGroup)
 admin.site.register(models.Attribute)
-admin.site.register(models.Product, ProductAdmin)
-admin.site.register(models.Shop, ShopAdmin)
-admin.site.register(models.ShopProduct, ShopProductAdmin)
+admin.site.register(models.Product, ProductAdminAbstract)
+admin.site.register(models.Shop, ShopAdminAbstract)
+admin.site.register(models.ShopProduct, ShopProductAdminAbstract)
 
-admin.site.register(models.ProductReview, ProductReviewAdmin)
-admin.site.register(models.ShopReview, ShopReviewAdmin)
+admin.site.register(models.ProductReview, ProductReviewAdminAbstract)
+admin.site.register(models.ShopReview, ShopReviewAdminAbstract)
 

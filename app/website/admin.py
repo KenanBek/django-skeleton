@@ -4,10 +4,10 @@ from ckeditor.widgets import CKEditorWidget
 from django_select2 import fields
 
 from core import models as core_models
-import models
+from website import models
 
 
-class WidgetAdmin(core_models.ModelAdmin):
+class WidgetAdminAbstract(core_models.ModelAdminAbstract):
     list_display = ['title', 'related_page_names']
 
     def related_page_names(self, obj):
@@ -25,7 +25,7 @@ class PageAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
-class PageAdmin(core_models.ModelAdmin):
+class PageAdminAbstract(core_models.ModelAdminAbstract):
     form = PageAdminForm
 
     list_filter = ['status']
@@ -46,7 +46,7 @@ class CategoryAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
-class CategoryAdmin(core_models.ModelAdmin):
+class CategoryAdminAbstract(core_models.ModelAdminAbstract):
     form = CategoryAdminForm
 
     list_display = ['title', 'slug', 'related_post_names']
@@ -73,7 +73,7 @@ class PostAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
-class PostAdmin(core_models.ModelAdmin):
+class PostAdminAbstract(core_models.ModelAdminAbstract):
     form = PostAdminForm
 
     list_filter = ['added_at', 'status', 'categories']
@@ -91,7 +91,7 @@ class SlideInline(admin.StackedInline):
     extra = 1
 
 
-class SliderAdmin(core_models.ModelAdmin):
+class SliderAdminAbstract(core_models.ModelAdminAbstract):
     list_display = ['title', 'status']
     inlines = [SlideInline, ]
 
@@ -99,12 +99,12 @@ class SliderAdmin(core_models.ModelAdmin):
 # Subscriber & Document
 
 
-class SubscriberAdmin(core_models.ModelAdmin):
+class SubscriberAdminAbstract(core_models.ModelAdminAbstract):
     list_filter = ['added_at', 'email']
     list_display = ['added_at', 'name', 'email']
 
 
-class DocumentAdmin(core_models.ModelAdmin):
+class DocumentAdminAbstract(core_models.ModelAdminAbstract):
     list_filter = ['added_at', 'email']
     list_display = ['added_at', 'name', 'email']
 
@@ -112,17 +112,17 @@ class DocumentAdmin(core_models.ModelAdmin):
 # Contact
 
 
-class ContactAdmin(core_models.ModelAdmin):
+class ContactAdminAbstract(core_models.ModelAdminAbstract):
     list_filter = ['added_at', 'email']
     list_display = ['added_at', 'name', 'email', 'subject']
 
 
-admin.site.register(models.Widget, WidgetAdmin)
-admin.site.register(models.Page, PageAdmin)
-admin.site.register(models.Category, CategoryAdmin)
-admin.site.register(models.Post, PostAdmin)
-admin.site.register(models.Slider, SliderAdmin)
-admin.site.register(models.Subscriber, SubscriberAdmin)
-admin.site.register(models.Document, DocumentAdmin)
-admin.site.register(models.Contact, ContactAdmin)
+admin.site.register(models.Widget, WidgetAdminAbstract)
+admin.site.register(models.Page, PageAdminAbstract)
+admin.site.register(models.Category, CategoryAdminAbstract)
+admin.site.register(models.Post, PostAdminAbstract)
+admin.site.register(models.Slider, SliderAdminAbstract)
+admin.site.register(models.Subscriber, SubscriberAdminAbstract)
+admin.site.register(models.Document, DocumentAdminAbstract)
+admin.site.register(models.Contact, ContactAdminAbstract)
 

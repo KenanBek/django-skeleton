@@ -1,7 +1,7 @@
 from rest_framework import viewsets, permissions
 
-import models
-import serializers
+from website import models
+from website import serializers
 
 
 class PageViewSet(viewsets.ModelViewSet):

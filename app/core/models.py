@@ -1,7 +1,6 @@
 """
 Base model classes. Used in other applications.
 """
-
 from django.db import models
 from django.contrib import admin
 
@@ -14,6 +13,6 @@ class ModelAbstract(models.Model):
         abstract = True
 
 
-class ModelAdmin(admin.ModelAdmin):
+class ModelAdminAbstract(admin.ModelAdmin):
     pass
 

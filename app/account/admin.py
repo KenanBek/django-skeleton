@@ -16,11 +16,11 @@ class UserAdmin(UserAdmin):
     inlines = (ProfileInline, )
 
 
-class ProfileAdmin(core_models.ModelAdmin):
+class ProfileAdminAbstract(core_models.ModelAdminAbstract):
     list_display = ('user', 'website', )
 
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
-admin.site.register(Profile, ProfileAdmin)
+admin.site.register(Profile, ProfileAdminAbstract)
 

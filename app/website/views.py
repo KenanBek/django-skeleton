@@ -8,8 +8,8 @@ from django.shortcuts import render, redirect
 from django import forms as django_forms
 import markdown2
 
-import forms
-import logic
+from website import forms
+from website import logic
 
 
 def index(request, template='user/website/index.html', context={}):
