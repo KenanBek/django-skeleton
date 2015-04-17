@@ -5,11 +5,11 @@ Skeleton project for Django applications.
 
 [![Build Status](https://travis-ci.org/KenanBek/django-skeleton.svg?branch=master)](https://travis-ci.org/KenanBek/django-skeleton) [![Coverage Status](https://coveralls.io/repos/KenanBek/django-skeleton/badge.png?branch=master)](https://coveralls.io/r/KenanBek/django-skeleton?branch=master)
 
-Django version: 1.7.1
+Django version: 1.7.3
 
 # Features
 
-**Built in applications**:
+**Built in modules**:
 
 - Cart application
     - Product and Shop entities
@@ -57,6 +57,8 @@ To install Django Skeleton on your machine run following commands:
 
     git clone https://github.com/KenanBek/django-skeleton.git
     cd django-skeleton
+    virtualenv venv
+    .\venv\Scripts\activate
     pip install -r requirements.txt
     cd app
     python manage.py inittestdata
