@@ -1,5 +1,4 @@
 # Project specific
-venv/
 migrations
 
 # Mac files
