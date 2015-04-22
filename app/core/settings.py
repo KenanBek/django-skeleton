@@ -168,11 +168,11 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-STATIC_ROOT = os.path.join(BASE_DIR, 'files/public/content')
+STATIC_ROOT = os.path.join(BASE_DIR, 'files/public/static')
 
 # Media files (user uploaded)
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'files/media/uploads')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'files/public/media')
 MEDIA_URL = '/media/'
 
 # Fixtures

@@ -1,0 +1,1 @@
+Root for media and static files.
