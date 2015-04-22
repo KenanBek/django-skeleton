@@ -2,7 +2,13 @@ from django.core.urlresolvers import reverse
 from django.db import models
 import slugify
 
+from core import utils
 from core import models as core_models
+
+
+def get_website_file_name(instance, filename):
+    return utils.get_file_filename(instance, filename, "website")
+
 
 ''' Types '''
 
@@ -29,7 +35,7 @@ class Slide(core_models.ModelAbstract):
     status = models.CharField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
     description = models.TextField(null=True, blank=True)
-    image = models.ImageField(upload_to='website/slider/', null=True, blank=True)
+    image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_website_file_name)
     related_slider = models.ForeignKey(Slider)
 
     def __str__(self):
@@ -42,7 +48,7 @@ class Slide(core_models.ModelAbstract):
 class Widget(core_models.ModelAbstract):
     title = models.CharField(max_length=32)
     content = models.TextField()
-    featured_image = models.ImageField(upload_to='website/widget/', null=True, blank=True)
+    featured_image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_website_file_name)
     link_title = models.CharField(max_length=32, null=True, blank=True)
     link_url = models.URLField(null=True, blank=True)
 
@@ -56,7 +62,7 @@ class Page(core_models.ModelAbstract):
     slug = models.SlugField(unique=True)
     content = models.TextField()
     widgets = models.ManyToManyField(Widget, null=True, blank=True)
-    featured_image = models.ImageField(upload_to='website/page/', null=True, blank=True)
+    featured_image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_website_file_name)
     related_slider = models.ForeignKey(Slider, null=True, blank=True)
 
     def get_widgets(self):
@@ -95,7 +101,7 @@ class Post(core_models.ModelAbstract):
     short_content = models.CharField(max_length=512)
     full_content = models.TextField()
     categories = models.ManyToManyField(Category)
-    featured_image = models.ImageField(upload_to='website/post/', null=True, blank=True)
+    featured_image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_website_file_name)
     related_slider = models.ForeignKey(Slider, null=True, blank=True)
 
     def __str__(self):

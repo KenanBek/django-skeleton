@@ -3,7 +3,13 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 import slugify
 
+from core import utils
 from core import models as core_models
+
+
+def get_cart_file_name(instance, filename):
+    return utils.get_file_filename(instance, filename, "profile")
+
 
 ''' Choices '''
 
@@ -12,7 +18,7 @@ RATING_BAD = 2
 RATING_NORMAL = 3
 RATING_GOOD = 4
 RATING_VERY_GOOD = 5
-REVIEW_RATING_CHOICES = (
+RATING_CHOICES = (
     (RATING_VERY_BAD, "Very Bad"),
     (RATING_BAD, "Bad"),
     (RATING_NORMAL, "Normal"),
@@ -34,7 +40,7 @@ class Manufacturer(core_models.ModelAbstract):
     title = models.CharField(max_length=256)
     slug = models.SlugField(null=True, blank=True)
     info = models.CharField(max_length=1024, null=True, blank=True)
-    image = models.ImageField(upload_to='cart/manufacturer', null=True, blank=True)
+    image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_cart_file_name)
 
     def __str__(self):
         return self.title
@@ -87,7 +93,7 @@ class Product(core_models.ModelAbstract):
     weight = models.CharField(max_length=128, null=True, blank=True)
     info = models.CharField(max_length=1024, null=True, blank=True)
 
-    image = models.ImageField(upload_to='cart/product', null=True, blank=True)
+    image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_cart_file_name)
     video_code = models.CharField(max_length=1024, null=True, blank=True)
 
     def __str__(self):
@@ -98,12 +104,12 @@ class ProductReview(core_models.ModelAbstract):
     is_approved = models.BooleanField(default=False)
     product = models.ForeignKey(Product)
     user = models.ForeignKey(User)
-    rating = models.IntegerField(choices=REVIEW_RATING_CHOICES, default=RATING_NORMAL)
+    rating = models.IntegerField(choices=RATING_CHOICES, default=RATING_NORMAL)
     comment = models.CharField(max_length=1024)
 
     def __str__(self):
         return "User '{0}' reviewed product '{1}' with '{2}' rating".format(str(self.user), str(self.product),
-            REVIEW_RATING_CHOICES[self.rating][1])
+            RATING_CHOICES[self.rating][1])
 
     class Meta:
         permissions = (
@@ -122,7 +128,7 @@ class ProductAttribute(core_models.ModelAbstract):
 
 class ProductImage(core_models.ModelAbstract):
     product = models.ForeignKey(Product)
-    image = models.ImageField(upload_to='cart/product')
+    image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_cart_file_name)
     info = models.CharField(max_length=1024, null=True, blank=True)
 
     def __str__(self):
@@ -137,7 +143,7 @@ class Shop(core_models.ModelAbstract):
     title = models.CharField(max_length=32)
     slug = models.SlugField(unique=True, null=True, blank=True)
     info = models.CharField(max_length=1024, null=True, blank=True)
-    image = models.ImageField(upload_to='cart/shop', null=True, blank=True)
+    image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_cart_file_name)
 
     def __str__(self):
         return self.title
@@ -152,12 +158,12 @@ class ShopReview(core_models.ModelAbstract):
     is_approved = models.BooleanField(default=False)
     shop = models.ForeignKey(Shop)
     user = models.ForeignKey(User)
-    rating = models.IntegerField(choices=REVIEW_RATING_CHOICES, default=RATING_NORMAL)
+    rating = models.IntegerField(choices=RATING_CHOICES, default=RATING_NORMAL)
     comment = models.CharField(max_length=1024)
 
     def __str__(self):
         return "User '{0}' reviewed shop '{1}' with '{2}' rating".format(str(self.user), str(self.product),
-            REVIEW_RATING_CHOICES[self.rating][1])
+            RATING_CHOICES[self.rating][1])
 
     class Meta:
         permissions = (
