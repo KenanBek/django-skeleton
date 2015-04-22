@@ -111,6 +111,7 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'files/locale/'),
 )
 USE_TZ = True
+TIME_ZONE = 'Asia/Baku'
 USE_I18N = True
 USE_L10N = True
 DATE_FORMAT = 'd/m/Y'
@@ -239,13 +240,13 @@ LOGGING = {
 
 APPLICATION_URL = 'http://localhost:8000'
 APPLICATION_CONFIG = {
-    'title': 'Project Title',
-    'short_title': 'PT',
+    'title': _('Project Title'),
+    'short_title': _('PT'),
     'author': 'Kenan Bek, http://kenanbek.me',
-    'slogan': 'Code Code Code',
+    'slogan': _('Code while alive!'),
     'description': _('Project Description.'),
     'keywords': _('django, project, template, skeleton, base'),
-    'copyright': '&copy; 2015 ProjectDomain.com',
+    'copyright': "&copy; 2015 <a href='http://example.com'>Example Co.</a>",
     'google_id': 'google-id',
     'facebook_id': '1520447268200947',
     'twitter_id': 'twitter-id',
@@ -254,9 +255,9 @@ APPLICATION_CONFIG = {
 APPLICATION_CONTENT_COUNT = 10
 APPLICATION_CONTENT_MAXIMUM_COUNT = 20
 APPLICATION_DUMMY_DATA_COUNT = 7
-APPLICATION_FROM_EMAIL = 'Project Title <noreply@projectdomain.com>'
+APPLICATION_FROM_EMAIL = 'Title <noreply@projectdomain.com>'
 APPLICATION_EMAIL_MANUAL_TIMEOUT = 3  # In minutes
-APPLICATION_SYSTEM_STORE_USER_REQUESTS = DEBUG
+APPLICATION_MONITORING = DEBUG
 
 # DJANGO SUIT
 

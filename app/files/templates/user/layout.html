@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE|default:"en" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
-    {% include 'user/layout_head.html' %}
+    {% include 'user/layout.head.html' %}
 </head>
 
 <body>
@@ -32,7 +32,7 @@
             <form class="navbar-form navbar-right" action="{% url 'website_search' %}" method="get">
                 <input id="q" name="q" type="text" class="form-control" placeholder="{% trans "Search..." %}" value="{{ q|default:"" }}">
             </form>
-            {% include 'user/layout_user.html' %}
+            {% include 'user/layout.user.html' %}
         </div>
     </div>
 </div>
@@ -53,18 +53,18 @@
                 {% endblock %}
             </div>
             <div class="col-md-9 main">
-                {% include 'user/layout_messages.html' %}
+                {% include 'user/layout.messages.html' %}
                 {% block content %}
                 {% endblock %}
             </div>
         </div>
     {% endblock %}
-    {% include 'user/layout_footer.html' %}
+    {% include 'user/layout.footer.html' %}
     <br />
     <br />
     <br />
 </div>
 
-{% include 'user/layout_end.html' %}
+{% include 'user/layout.end.html' %}
 </body>
 </html>

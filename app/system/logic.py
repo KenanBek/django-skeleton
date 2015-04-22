@@ -5,7 +5,7 @@ from system import models
 
 
 def store_user_request(request):
-    if not settings.APPLICATION_SYSTEM_STORE_USER_REQUESTS:
+    if not settings.APPLICATION_MONITORING or request.user.is_staff:
         return
     user_request = models.UserRequest()
 
