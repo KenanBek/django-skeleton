@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 import slugify
 
@@ -50,7 +51,7 @@ class Widget(core_models.ModelAbstract):
 
 
 class Page(core_models.ModelAbstract):
-    status = models.CharField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
+    status = models.IntegerField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
     slug = models.SlugField(unique=True)
     content = models.TextField()
@@ -88,7 +89,7 @@ class Category(core_models.ModelAbstract):
 
 
 class Post(core_models.ModelAbstract):
-    status = models.CharField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
+    status = models.IntegerField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
     slug = models.SlugField(unique=True)
     short_content = models.CharField(max_length=512)
@@ -104,6 +105,9 @@ class Post(core_models.ModelAbstract):
         if not self.slug:
             self.slug = slugify.slugify(self.title)
         super(Post, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('website_post', kwargs={'post_id': self.pk, 'post_slug': self.slug})
 
 
 ''' Subscriber & Document '''

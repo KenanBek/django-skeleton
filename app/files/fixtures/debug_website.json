@@ -3,7 +3,7 @@
         "pk": 1,
         "model": "website.slider",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "modified_at": "2014-10-21T21:11:40.276Z",
             "description": "A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.",
             "added_at": "2014-10-21T21:11:40.276Z",
@@ -14,7 +14,7 @@
         "pk": 2,
         "model": "website.slider",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "modified_at": "2014-10-21T21:31:16.281Z",
             "description": "Great men ever born on earth.",
             "added_at": "2014-10-21T21:31:16.281Z",
@@ -25,7 +25,7 @@
         "pk": 1,
         "model": "website.slide",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "description": "Lorem dolor sit.",
             "title": "One",
             "image": "website/slider/one.jpg",
@@ -38,7 +38,7 @@
         "pk": 2,
         "model": "website.slide",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "description": "Sit amet dolor.",
             "title": "Two",
             "image": "website/slider/two.jpeg",
@@ -51,7 +51,7 @@
         "pk": 3,
         "model": "website.slide",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "description": "Amet amet lorem.",
             "title": "Three",
             "image": "website/slider/three.jpg",
@@ -64,7 +64,7 @@
         "pk": 4,
         "model": "website.slide",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "description": "Ipsum lorem sit.",
             "title": "Four",
             "image": "website/slider/four.jpg",
@@ -77,7 +77,7 @@
         "pk": 5,
         "model": "website.slide",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "description": "Sit amet lorem.",
             "title": "Five",
             "image": "website/slider/five.jpg",
@@ -90,7 +90,7 @@
         "pk": 6,
         "model": "website.slide",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "description": "Lorem ipsum dolor sit amet.",
             "title": "Einsten",
             "image": "website/slider/einstein.jpg",
@@ -103,7 +103,7 @@
         "pk": 7,
         "model": "website.slide",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "description": "Lorem ipsum dolor sit amet.",
             "title": "Newton",
             "image": "website/slider/newton.jpg",
@@ -116,7 +116,7 @@
         "pk": 8,
         "model": "website.slide",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "description": "Lorem ipsum dolor sit amet.",
             "title": "Galileo",
             "image": "website/slider/galileo.jpg",
@@ -129,7 +129,7 @@
         "pk": 9,
         "model": "website.slide",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "description": "Lorem ipsum dolor sit amet.",
             "title": "Da Vinci",
             "image": "website/slider/davinci.jpg",
@@ -142,7 +142,7 @@
         "pk": 10,
         "model": "website.slide",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "description": "Lorem ipsum dolor sit amet.",
             "title": "Darwin",
             "image": "website/slider/darwin.jpg",
@@ -155,7 +155,7 @@
         "pk": 11,
         "model": "website.slide",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "description": "Lorem ipsum dolor sit amet.",
             "title": "Dostoevsky",
             "image": "website/slider/dostoevsky.jpg",
@@ -233,7 +233,7 @@
         "pk": 1,
         "model": "website.page",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "title": "Five dogs",
             "modified_at": "2014-10-21T21:13:29.526Z",
             "related_slider": 1,
@@ -248,7 +248,7 @@
         "pk": 2,
         "model": "website.page",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "title": "My friend",
             "modified_at": "2014-10-21T23:02:46.975Z",
             "related_slider": null,
@@ -362,7 +362,7 @@
         "pk": 1,
         "model": "website.post",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "title": "Einstein",
             "modified_at": "2014-10-21T21:32:06.737Z",
             "short_content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.",
@@ -378,7 +378,7 @@
         "pk": 2,
         "model": "website.post",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "title": "Newton",
             "modified_at": "2014-10-21T21:32:02.735Z",
             "short_content": "Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.",
@@ -394,7 +394,7 @@
         "pk": 3,
         "model": "website.post",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "title": "Darwin",
             "modified_at": "2014-10-21T21:31:58.632Z",
             "short_content": "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.",
@@ -410,7 +410,7 @@
         "pk": 4,
         "model": "website.post",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "title": "Da Vinci",
             "modified_at": "2014-10-21T21:31:53.472Z",
             "short_content": "Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante.",
@@ -426,7 +426,7 @@
         "pk": 5,
         "model": "website.post",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "title": "Galileo",
             "modified_at": "2014-10-21T21:31:48.083Z",
             "short_content": "Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus.",
@@ -442,7 +442,7 @@
         "pk": 6,
         "model": "website.post",
         "fields": {
-            "status": "Published",
+            "status": 1,
             "title": "Dostoevsky",
             "modified_at": "2014-10-21T23:31:27.202Z",
             "short_content": "Nullam accumsan lorem in dui. Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.",
