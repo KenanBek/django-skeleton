@@ -17,9 +17,11 @@ SECRET_KEY = '=37nsotr=ct-bc5gwbbvo^@s3*w=hib%i^plnbzn8758n$4pz='
 DEBUG = True
 TEMPLATE_DEBUG = True
 JSON_DEBUG = False
+SITE_ID = 1
 ALLOWED_HOSTS = [
     'localhost'
 ]
+
 
 # Email configuration
 
@@ -47,6 +49,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.humanize',
     'system',
     'account',
     'website',
