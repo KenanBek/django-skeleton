@@ -1,4 +1,5 @@
-# Temporary migrations files
+# Project specific
+venv/
 migrations
 
 # Mac files
