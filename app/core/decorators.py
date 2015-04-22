@@ -1,12 +1,12 @@
+import json
+
+import jsonpickle
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.utils.translation import ugettext_lazy as _
-
 from django.contrib import messages
 from django.shortcuts import redirect
-
 from django.conf import settings
-import jsonpickle
 
 
 def anonymous_required(function):
@@ -25,7 +25,7 @@ def anonymous_required(function):
     return wrap
 
 
-def convert_to_json(fn):
+def convert_to_json_by_jsonpickle(fn):
     """
     Gets view method response and returns it in JSON format.
     """
@@ -45,6 +45,30 @@ def convert_to_json(fn):
             json_result = {'is_successful': False, 'message': error_message}
         # Wrap result with JSON HTTPResponse and return
         return HttpResponse(jsonpickle.encode(json_result, unpicklable=False), content_type='application/json')
+
+    return wrapper
+
+
+def convert_to_json_by_json(fn):
+    """
+    Gets view method response and returns it in JSON format.
+    """
+
+    def wrapper(request, *args, **kwargs):
+        try:
+            # Executing function itself
+            fn_result = fn(request, *args, **kwargs)
+            # Prepare JSON dictionary for successful result
+            json_result = {'is_successful': True, 'data': fn_result}
+        except Exception as e:
+            # If AJAX_DEBUG is enabled raise Exception
+            if settings.JSON_DEBUG:
+                raise
+            # Else prepare JSON result object with error message
+            error_message = e.message.strip()
+            json_result = {'is_successful': False, 'message': error_message}
+        # Wrap result with JSON HTTPResponse and return
+        return HttpResponse(json.dumps(json_result), content_type='application/json')
 
     return wrapper
 
