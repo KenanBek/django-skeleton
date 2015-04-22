@@ -49,14 +49,16 @@ class Command(NoArgsCommand):
         management.call_command('makemigrations', 'cart')
         management.call_command('migrate', interactive=False)
 
-        # DEBUG: Load fixtures
-        management.call_command('loaddata', 'debug_account.json')
-        management.call_command('loaddata', 'debug_website.json')
-        management.call_command('loaddata', 'debug_cart.json')
 
-        # DEBUG: Superuser
+        # DEBUG: Superuser and Fixtures
         if settings.DEBUG:
+            # Superuser
             management.call_command('createsuperuser', username='admin', email='admin@host.local')
+            # Fixtures
+            management.call_command('loaddata', 'debug_account.json')
+            management.call_command('loaddata', 'debug_website.json')
+            management.call_command('loaddata', 'debug_cart.json')
+
 
         # DEBUG: Collect static
         if not settings.DEBUG:
