@@ -13,8 +13,6 @@ class Command(NoArgsCommand):
         self.helper = CommandHelper(self)
 
     def handle_noargs(self, **options):
-        self.helper.makemigrations_and_migrate()
-
         # NOT DEBUG: Collect static files
         if not settings.DEBUG:
             management.call_command('collectstatic', interactive=False)

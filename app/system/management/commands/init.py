@@ -39,36 +39,19 @@ class Command(NoArgsCommand):
                 self.helper.ds_print('Error on removing static, media and log files')
                 self.helper.ds_print('ERROR: ' + str(e))
 
-        # DEBUG: Remove migration files
+        # DEBUG: Migrate, Superuser and Fixtures
         if settings.DEBUG:
             try:
-                self.helper.ds_print('Trying to remove migration files...')
-                self.helper.remove_migrations()
-                self.helper.ds_print('Migration files removed')
-            except Exception as e:
-                self.helper.ds_print('Error on removing migration files')
-                self.helper.ds_print('ERROR: ' + str(e))
-
-        # Create (or recreate in case of DEBUG) initial migration files
-        try:
-            self.helper.ds_print('Trying to create migration scripts and migrate...')
-            self.helper.makemigrations_and_migrate()
-            self.helper.ds_print('Migration scripts created')
-        except Exception as e:
-            self.helper.ds_print('Error on creating migration scripts and migrate')
-            self.helper.ds_print('ERROR: ' + str(e))
-
-        # DEBUG: Superuser and Fixtures
-        if settings.DEBUG:
-            try:
-                self.helper.ds_print('Trying to create superuser and load development fixtures...')
+                self.helper.ds_print('Trying to migrate, create superuser and load development fixtures...')
+                # Migrate
+                management.call_command('migrate', interactive=False)
                 # Superuser
                 management.call_command('createsuperuser', username='admin', email='admin@host.local')
                 # Fixtures
                 self.helper.load_fixtures()
-                self.helper.ds_print('Superuser created and fixtures loaded')
+                self.helper.ds_print('Migrated, superuser created and fixtures loaded')
             except Exception as e:
-                self.helper.ds_print('Error on superuser and fixtures creation')
+                self.helper.ds_print('Error on migrate, superuser and fixtures creation')
                 self.helper.ds_print('ERROR: ' + str(e))
 
 
