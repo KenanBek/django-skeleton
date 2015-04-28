@@ -1,12 +1,11 @@
 from django.contrib import admin
 
-from core import models as core_models
-from system import models
+from . import models
 
 ''' Event '''
 
 
-class EventAdminAbstract(core_models.ModelAdminAbstract):
+class EventAdminAbstract(models.ModelAdminAbstract):
     list_filter = ['added_at', 'uuid', 'title', 'identifier']
     list_display = ['added_at', 'uuid', 'title', 'identifier', 'logs', ]
 
@@ -14,7 +13,7 @@ class EventAdminAbstract(core_models.ModelAdminAbstract):
         return obj.log_set.count()
 
 
-class LogAdminAbstract(core_models.ModelAdminAbstract):
+class LogAdminAbstract(models.ModelAdminAbstract):
     list_filter = ['added_at', 'level', ]
     list_display = ['added_at', 'event', 'level', 'text', ]
 
@@ -22,10 +21,10 @@ class LogAdminAbstract(core_models.ModelAdminAbstract):
 admin.site.register(models.Event, EventAdminAbstract)
 admin.site.register(models.Log, LogAdminAbstract)
 
-''' UserRequest '''
+''' Request '''
 
 
-class UserRequestAdmin(core_models.ModelAdminAbstract):
+class RequestAdmin(models.ModelAdminAbstract):
     list_filter = ('user_username', 'user_is_staff', 'user_is_active', 'client_real_ip',
                    'scheme', 'method', 'is_ajax', )
     list_display = ('added_at', 'user_username', 'user_is_staff', 'user_is_active',
@@ -36,5 +35,5 @@ class UserRequestAdmin(core_models.ModelAdminAbstract):
                     'is_ajax',)
 
 
-admin.site.register(models.UserRequest, UserRequestAdmin)
+admin.site.register(models.Request, RequestAdmin)
 

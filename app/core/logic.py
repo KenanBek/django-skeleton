@@ -1,13 +1,15 @@
 from django.conf import settings
 from ipware.ip import get_real_ip, get_ip
 
-from system import models
+from . import models
 
 
 def store_user_request(request):
-    if not settings.APPLICATION_MONITORING or request.user.is_staff:
+    if not settings.APPLICATION_MONITORING:
         return
-    user_request = models.UserRequest()
+    if not settings.APPLICATION_MONITOR_STUFF_USERS and request.user.is_staff:
+        return
+    user_request = models.Request()
 
     user_request.server_name = request.META.get('SERVER_NAME', '')
     user_request.server_host = request.META.get('HTTP_HOST', '')

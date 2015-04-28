@@ -6,7 +6,7 @@ from django.templatetags.static import static
 from django.contrib import admin
 from django.contrib.sitemaps import views as sitemaps_views
 
-from core import sitemaps as application_sitemaps
+from . import sitemaps as core_sitemaps
 
 admin.autodiscover()
 
@@ -21,8 +21,12 @@ urlpatterns = patterns('',
     # Static
     url(r'^$', TemplateView.as_view(template_name='user/home.html'), name='index'),
     url(r'^about/$', TemplateView.as_view(template_name='user/home.html'), name='about'),
+    # Core
+    url(r'^error/400/$', 'core.views.error_400', name='error_400'),
+    url(r'^error/403/$', 'core.views.error_403', name='error_403'),
+    url(r'^error/404/$', 'core.views.error_404', name='error_404'),
+    url(r'^error/500/$', 'core.views.error_500', name='error_500'),
     # Applications
-    url(r'^system/', include('system.urls')),
     url(r'^account/', include('account.urls')),
     url(r'^website/', include('website.urls')),
     url(r'^cart/', include('cart.urls')),
@@ -31,10 +35,10 @@ urlpatterns = patterns('',
     url(r'^robots\.txt$', RedirectView.as_view(url=static('robots.txt'), permanent=True), name="robots.txt"),
     url(r'^sitemap\.xml$',
         cache_page(10000)(sitemaps_views.index),
-        {'sitemaps': application_sitemaps.sitemaps_dict}),
+        {'sitemaps': core_sitemaps.sitemaps_dict}),
     url(r'^sitemap-(?P<section>.+)\.xml$',
         cache_page(10000)(sitemaps_views.sitemap),
-        {'sitemaps': application_sitemaps.sitemaps_dict}),
+        {'sitemaps': core_sitemaps.sitemaps_dict}),
 )
 
 # Serve static files
@@ -48,8 +52,8 @@ urlpatterns += patterns('',
 )
 
 # Configure error handlers
-handler400 = 'system.views.error_400'  # Request cannot be fulfilled due to bad syntax
-handler403 = 'system.views.error_403'  # Server refuses to respond to request
-handler404 = 'system.views.error_404'  # Requested resource could not be found
-handler500 = 'system.views.error_500'  # Server generic error message
+handler400 = 'core.views.error_400'  # Request cannot be fulfilled due to bad syntax
+handler403 = 'core.views.error_403'  # Server refuses to respond to request
+handler404 = 'core.views.error_404'  # Requested resource could not be found
+handler500 = 'core.views.error_500'  # Server generic error message
 

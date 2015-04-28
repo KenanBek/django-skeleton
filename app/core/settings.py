@@ -52,7 +52,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.humanize',
     'django.contrib.sitemaps',
-    'system',
+    'core',
     'account',
     'website',
     'cart',
@@ -70,7 +70,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'core.middleware.CoreMiddleware',
-    'system.middleware.SystemMiddleware',
 )
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
@@ -263,6 +262,7 @@ APPLICATION_DUMMY_DATA_COUNT = 7
 APPLICATION_FROM_EMAIL = 'Title <noreply@projectdomain.com>'
 APPLICATION_EMAIL_MANUAL_TIMEOUT = 3  # In minutes
 APPLICATION_MONITORING = DEBUG
+APPLICATION_MONITOR_STUFF_USERS = DEBUG
 
 # DJANGO SUIT
 
@@ -291,12 +291,21 @@ SUIT_CONFIG = {
     # ),
     'MENU': (
         'sites',
+        # Core
+        '-',
+        {'label': 'Core', 'icon': 'icon-th', 'models': (
+            {'model': 'core.event', 'label': 'Events'},
+            {'model': 'core.log', 'label': 'Logs'},
+            {'model': 'core.request', 'label': 'Requests'},
+        )},
+        # Account
         '-',
         {'label': 'Account', 'icon': 'icon-lock', 'models': (
             {'model': 'auth.group', 'label': 'Group'},
             {'model': 'auth.user', 'label': 'User'},
             {'model': 'account.profile', 'label': 'Profile'},
         )},
+        # Website
         '-',
         {'label': 'Website', 'icon': 'icon-th', 'models': (
             {'model': 'website.contact', 'label': 'Contacts'},
@@ -313,6 +322,7 @@ SUIT_CONFIG = {
             {'model': 'website.category', 'label': 'Categories'},
             {'model': 'website.post', 'label': 'Posts'},
         )},
+        # Cart
         '-',
         {'label': 'Cart', 'icon': 'icon-th', 'models': (
             {'model': 'cart.currency', 'label': 'Currencies'},
@@ -330,12 +340,7 @@ SUIT_CONFIG = {
             {'model': 'cart.productreview', 'label': 'Product reviews'},
             {'model': 'cart.shopreview', 'label': 'Shop reviews'},
         )},
-        '-',
-        {'label': 'System', 'icon': 'icon-th', 'models': (
-            {'model': 'system.event', 'label': 'Events'},
-            {'model': 'system.log', 'label': 'Logs'},
-            {'model': 'system.userrequest', 'label': 'User Requests'},
-        )},
+        # Others
         '-',
         {'label': 'Documentation', 'icon': 'icon-bookmark', 'url': 'https://github.com/KenanBek/django-skeleton/wiki'},
         {'label': 'Report a bug', 'icon': 'icon-comment', 'url': 'http://github.com/kenanbek/django-skeleton/issues'},

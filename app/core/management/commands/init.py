@@ -4,7 +4,7 @@ import os
 from django.core import management
 from django.core.management.base import NoArgsCommand
 from django.conf import settings
-from system.management.commands._private import CommandHelper
+from ._private import CommandHelper
 
 
 class Command(NoArgsCommand):
@@ -53,7 +53,6 @@ class Command(NoArgsCommand):
             except Exception as e:
                 self.helper.ds_print('Error on migrate, superuser and fixtures creation')
                 self.helper.ds_print('ERROR: ' + str(e))
-
 
         # NOT DEBUG: Collect static files
         if not settings.DEBUG:

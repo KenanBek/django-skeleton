@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core import management
 from django.core.management.base import NoArgsCommand
-from system.management.commands._private import CommandHelper
+from ._private import CommandHelper
 
 
 class Command(NoArgsCommand):

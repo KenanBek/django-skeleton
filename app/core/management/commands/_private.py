@@ -1,7 +1,7 @@
 import shutil
-from django.conf import settings
 
 import os
+from django.conf import settings
 from django.core import management
 
 
@@ -16,13 +16,13 @@ class CommandHelper:
         self.command.stdout.write('')
 
     def remove_migrations(self):
-        shutil.rmtree(os.path.join(self.command.base_dir, 'system', 'migrations'))
+        shutil.rmtree(os.path.join(self.command.base_dir, 'core', 'migrations'))
         shutil.rmtree(os.path.join(self.command.base_dir, 'account', 'migrations'))
         shutil.rmtree(os.path.join(self.command.base_dir, 'website', 'migrations'))
         shutil.rmtree(os.path.join(self.command.base_dir, 'cart', 'migrations'))
 
     def makemigrations_and_migrate(self):
-        management.call_command('makemigrations', 'system')
+        management.call_command('makemigrations', 'core')
         management.call_command('makemigrations', 'account')
         management.call_command('makemigrations', 'website')
         management.call_command('makemigrations', 'cart')
