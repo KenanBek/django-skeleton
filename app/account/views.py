@@ -7,7 +7,7 @@ import django.contrib.auth as django_auth
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 
-from core.decorators import anonymous_required
+from core.utils.decorators import anonymous_required
 from account import models
 from account import forms
 
