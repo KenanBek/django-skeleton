@@ -4,7 +4,7 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h2 class="sub-header">{% blocktrans %}Last Products{% endblocktrans %}</h2>
+            <h2>{% blocktrans %}Last Products{% endblocktrans %}</h2>
             {% include 'user/cart/_product_list.html' with product_list=last_products %}
         </div>
     </div>

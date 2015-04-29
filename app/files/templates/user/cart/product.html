@@ -6,7 +6,7 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h1 class="sub-header">
+            <h1>
                 {{ product_item.model }}
                 <small>{{ product_item.manufacturer.title }}</small>
             </h1>
@@ -42,7 +42,7 @@
     {% if product_item.productimage_set.count > 0 %}
         <div class="row">
             <div class="col-md-12">
-                <h3 class="page-header">{% blocktrans %}More photos{% endblocktrans %}</h3>
+                <h3>{% blocktrans %}More photos{% endblocktrans %}</h3>
             </div>
             {% for product_image in product_item.productimage_set.all %}
                 <div class="col-sm-3 col-xs-6">
@@ -54,7 +54,7 @@
     {% if product_item.video_code %}
         <div class="row">
             <div class="col-md-12">
-                <h3 class="page-header">{% blocktrans %}Video review{% endblocktrans %}</h3>
+                <h3>{% blocktrans %}Video review{% endblocktrans %}</h3>
                 <div class="embed-responsive embed-responsive-16by9">
                     {{ product_item.video_code|safe }}
                 </div>
