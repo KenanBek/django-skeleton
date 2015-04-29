@@ -382,6 +382,7 @@ THUMBNAIL_ALIASES = {
         'large': {'size': (800, 800), 'crop': True},
     },
 }
+THUMBNAIL_NAMER = 'easy_thumbnails.namers.source_hashed'
 
 # DEBUG TOOLBAR
 
