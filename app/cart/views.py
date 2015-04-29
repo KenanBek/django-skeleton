@@ -3,16 +3,19 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from django.utils.translation import ugettext_lazy as _
 
+from core.utils.decorators import log
 from cart import models
 from cart import forms
 
 
+@log
 def index(request, template='user/cart/index.html', context={}):
     last_products = models.Product.objects.filter(is_active=True)[0:25]
     context['last_products'] = last_products
     return render(request, template, context)
 
 
+@log
 def product(request, product_id, template='user/cart/product.html', context={}):
     product_item = models.Product.objects.get(pk=product_id, is_active=True)
 
@@ -52,6 +55,7 @@ def product(request, product_id, template='user/cart/product.html', context={}):
     return render(request, template, context)
 
 
+@log
 def product_review(request, product_id):
     productreview_form = forms.ProductReviewForm(request.POST or None)
 
@@ -70,6 +74,7 @@ def product_review(request, product_id):
     return redirect(reverse('cart_product', args=(product_id, )))
 
 
+@log
 def shop(request, shop_id, template='user/cart/shop.html', context={}):
     shop_item = models.Shop.objects.get(pk=shop_id, is_active=True)
     shop_products = []
@@ -101,6 +106,7 @@ def shop(request, shop_id, template='user/cart/shop.html', context={}):
     return render(request, template, context)
 
 
+@log
 def shop_review(request, shop_id):
     shopreview_form = forms.ShopReviewForm(request.POST or None)
 

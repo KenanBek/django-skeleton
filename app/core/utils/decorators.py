@@ -1,12 +1,40 @@
 import json
+import timeit
 
 import jsonpickle
 from django.core.urlresolvers import reverse
+from django.conf import settings
 from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
-from django.shortcuts import redirect
-from django.conf import settings
+
+
+def log(fn):
+    """
+    Logger decorator.
+    Logs function Executing and Executed info and total Executed Time.
+    """
+
+    def wrapper(*args, **kwargs):
+        # Get information about executing function
+        function_name = "'(%(type)s) %(module)s.%(name)s'" % \
+                        {'module': fn.__module__, 'type': fn.__class__.__name__, 'name': fn.__name__}
+        # Log about start of the function
+        settings.CORE_LOGGER.info('Start %s', function_name)
+        # Function start time
+        start = timeit.default_timer()
+        # Executing function itself
+        fn_result = fn(*args, **kwargs)
+        # Function end time
+        stop = timeit.default_timer()
+        # Calculate function executing time
+        time = stop - start
+        # Log about end of the function
+        settings.CORE_LOGGER.info('End %s in %.5f SECs', function_name, time)
+        return fn_result
+
+    return wrapper
 
 
 def anonymous_required(function):

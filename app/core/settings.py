@@ -1,11 +1,13 @@
 """
 Django settings for the project.
 """
-import os
+import logging
 
+import os
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.messages import constants as message_constants
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
@@ -22,6 +24,11 @@ ALLOWED_HOSTS = [
     'localhost'
 ]
 
+# Logging configuration
+
+DJANGO_LOGGER = logging.getLogger('django')
+APPLICATION_LOGGER = logging.getLogger('application')
+CORE_LOGGER = logging.getLogger('core')
 
 # Email configuration
 

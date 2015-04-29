@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import django.contrib.auth as django_auth
 
-from core.utils.decorators import anonymous_required
+from core.utils.decorators import log, anonymous_required
 from account import models
 from account import forms
 
@@ -16,6 +16,7 @@ def index(request, template="user/account/index.html", context={}):
     return render(request, template, context)
 
 
+@log
 @anonymous_required
 def login(request, template="user/account/login.html", context={}):
     next_url = request.GET.get('next', False)
@@ -43,6 +44,7 @@ def login(request, template="user/account/login.html", context={}):
     return render(request, template, context)
 
 
+@log
 @anonymous_required
 def register(request, template="user/account/register.html", context={}):
     user_form = forms.UserForm(request.POST or None)
@@ -79,6 +81,7 @@ def register(request, template="user/account/register.html", context={}):
     return render(request, template, context)
 
 
+@log
 @login_required
 def logout(request):
     django_auth.logout(request)
@@ -86,6 +89,7 @@ def logout(request):
     return redirect(reverse('index'))
 
 
+@log
 def modify_account(request, template="user/account/account_modify.html", context={}):
     user_form = None
     profile_form = None

@@ -8,10 +8,12 @@ from django.shortcuts import render, redirect
 from django import forms as django_forms
 import markdown2
 
+from core.utils.decorators import log
 from website import forms
 from website import logic
 
 
+@log
 def index(request, template='user/website/index.html', context={}):
     pages = logic.load_pages()
     posts = logic.load_posts()
@@ -21,11 +23,13 @@ def index(request, template='user/website/index.html', context={}):
     return render(request, template, context)
 
 
+@log
 def about(request, template='user/website/about.html', context={}):
     context['about_text'] = markdown2.markdown_path("readme.md")
     return render(request, template, context)
 
 
+@log
 def contact(request, template="user/website/contact.html", context={}):
     contact_form = forms.ContactForm(request.POST or None)
 
@@ -43,6 +47,7 @@ def contact(request, template="user/website/contact.html", context={}):
     return render(request, template, context)
 
 
+@log
 def document(request, template="user/website/contact.html", context={}):
     document_form = forms.DocumentForm(request.POST or None, request.FILES or None)
 
@@ -60,6 +65,7 @@ def document(request, template="user/website/contact.html", context={}):
     return render(request, template, context)
 
 
+@log
 def search(request, template='user/website/search.html', context={}):
     q = request.GET.get('q', False)
     search_result = logic.search(q)
@@ -70,6 +76,7 @@ def search(request, template='user/website/search.html', context={}):
     return render(request, template, context)
 
 
+@log
 def subscribe(request):
     name = request.GET.get('name', False)
     email = request.GET.get('email', False)
@@ -89,11 +96,13 @@ def subscribe(request):
     return redirect(request.META.get('HTTP_REFERER'))
 
 
+@log
 def page(request, page_slug, template='user/website/page.html', context={}):
     context['page'] = logic.get_page(page_slug)
     return render(request, template, context)
 
 
+@log
 @login_required
 def post(request, post_id, post_slug, template='user/website/post.html', context={}):
     context['post'] = logic.get_post(post_id, post_slug)
