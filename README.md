@@ -55,21 +55,30 @@ Django version: 1.7.3
 
 To install Django Skeleton on your machine run following commands:
 
+Clone the project
+
     git clone https://github.com/KenanBek/django-skeleton.git
     cd django-skeleton
-    virtualenv venv
-    .\venv\Scripts\activate
+
+Create virtual environment and install requirements
+
+    virtualenv env
+    .\env\Scripts\activate
     pip install -r requirements.txt
+
+Initialize and run the application
+
     cd app
-    python manage.py inittestdata
-
-Last command will ask you enter password for super user. Command **inittest** will create sample data. After you successfully entered required information you will be able to run application.
-
+    python manage.py init
     python manage.py runserver
+
+"python manage.py init" command will ask you to set password for administration user.
 
 Visit **http://localhost:8000** for website, **http://localhost:8000/admin** for administration.
 
 # Demo
+
+Version: 1.5
 
 Visit [Website](http://django-skeleton.bekonline.webfactional.com/) and [Admin](http://django-skeleton.bekonline.webfactional.com/admin) to try Django Skeleton on demand.
 
