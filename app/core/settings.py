@@ -16,10 +16,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # Base configuration
 
 SECRET_KEY = '=37nsotr=ct-bc5gwbbvo^@s3*w=hib%i^plnbzn8758n$4pz='
-DEBUG = True
-TEMPLATE_DEBUG = True
-JSON_DEBUG = False
 SITE_ID = 1
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+JSON_DEBUG = False
 ALLOWED_HOSTS = [
     'localhost'
 ]
@@ -68,7 +68,6 @@ INSTALLED_APPS = (
 )
 MIDDLEWARE_CLASSES = (
     'django.middleware.gzip.GZipMiddleware',  # must be at the start
-    'htmlmin.middleware.HtmlMinifyMiddleware',  # must be at the start but after gzip middleware
     'debreach.middleware.RandomCommentMiddleware',  # must be at the start but after compression middleware
     'debug_toolbar.middleware.DebugToolbarMiddleware',  # must be after encode middlewares
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -80,6 +79,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'core.middleware.CoreMiddleware',
+    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'htmlmin.middleware.MarkRequestMiddleware',
 )
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
@@ -370,7 +371,7 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-# EASY-THUMBNAILS
+# EASY THUMBNAILS
 
 THUMBNAIL_ALIASES = {
     '': {
@@ -384,7 +385,7 @@ THUMBNAIL_ALIASES = {
 
 # DEBUG TOOLBAR
 
-DEBUG_TOOLBAR_PATCH_SETTINGS = True
+DEBUG_TOOLBAR_PATCH_SETTINGS = DEBUG
 DEBUG_TOOLBAR_PANELS = (
     'debug_toolbar.panels.versions.VersionsPanel',
     'debug_toolbar.panels.timer.TimerPanel',
@@ -400,4 +401,10 @@ DEBUG_TOOLBAR_PANELS = (
     'debug_toolbar.panels.redirects.RedirectsPanel',
     'template_timings_panel.panels.TemplateTimings.TemplateTimings',
 )
+
+# HTML MIN
+
+HTML_MINIFY = not DEBUG
+EXCLUDE_FROM_MINIFYING = ('^admin/', )
+KEEP_COMMENTS_ON_MINIFYING = False
 
