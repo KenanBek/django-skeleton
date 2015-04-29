@@ -1,6 +1,5 @@
 from django.core.urlresolvers import reverse
 from django.db import models
-import slugify
 
 from core import abstracts
 from core.utils import helpers
@@ -59,7 +58,7 @@ class Widget(abstracts.ModelAbstract):
 class Page(abstracts.ModelAbstract):
     status = models.IntegerField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, editable=False)
     content = models.TextField()
     widgets = models.ManyToManyField(Widget, null=True, blank=True)
     featured_image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_website_file_name)
@@ -72,8 +71,7 @@ class Page(abstracts.ModelAbstract):
         return self.title
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify.slugify(self.title)
+        self.slug = helpers.get_slug(self.title)
         super(Page, self).save(*args, **kwargs)
 
 
@@ -82,22 +80,21 @@ class Page(abstracts.ModelAbstract):
 
 class Category(abstracts.ModelAbstract):
     title = models.CharField(max_length=32)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, editable=False)
     description = models.CharField(max_length=512, null=True, blank=True)
 
     def __str__(self):
         return self.title
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify.slugify(self.title)
+        self.slug = helpers.get_slug(self.title)
         super(Category, self).save(*args, **kwargs)
 
 
 class Post(abstracts.ModelAbstract):
     status = models.IntegerField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(editable=False)
     short_content = models.CharField(max_length=512)
     full_content = models.TextField()
     categories = models.ManyToManyField(Category)
@@ -108,8 +105,7 @@ class Post(abstracts.ModelAbstract):
         return self.title
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify.slugify(self.title)
+        self.slug = helpers.get_slug(self.title)
         super(Post, self).save(*args, **kwargs)
 
     def get_absolute_url(self):

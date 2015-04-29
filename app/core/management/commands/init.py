@@ -30,11 +30,11 @@ class Command(NoArgsCommand):
         if settings.DEBUG:
             try:
                 self.helper.add_to_print_queue('Trying to remove static, media and log files...')
-                shutil.rmtree(os.path.join(self.base_dir, 'files', 'public', 'static'))
                 shutil.rmtree(os.path.join(self.base_dir, 'files', 'public', 'media'))
                 os.remove(os.path.join(self.base_dir, 'files', 'logs', 'django.log'))
                 os.remove(os.path.join(self.base_dir, 'files', 'logs', 'application.log'))
                 os.remove(os.path.join(self.base_dir, 'files', 'logs', 'logic.log'))
+                shutil.rmtree(os.path.join(self.base_dir, 'files', 'public', 'static'))
             except Exception as e:
                 self.helper.add_to_print_queue('Error on removing static, media and log files')
                 self.helper.add_to_print_queue('ERROR: ' + str(e))

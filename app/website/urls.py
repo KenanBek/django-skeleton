@@ -16,7 +16,7 @@ urlpatterns = patterns('website.views',
     url(r'^subscribe/$', 'subscribe', name='website_subscribe'),
     # Page and Post
     url(r'^page/(?P<page_slug>[\w-]+)/$', 'page', name='website_page'),
-    url(r'^post/(?P<post_id>[0-9]+)-(?P<post_slug>[\w-]+)/$', 'post', name='website_post'),
+    url(r'^post/(?P<post_id>[0-9]+)/(?P<post_slug>[\w-]+)/$', 'post', name='website_post'),
     # Search
     url(r'^search/$', 'search', name='website_search'),
     # API

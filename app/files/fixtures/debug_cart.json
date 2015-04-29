@@ -65,7 +65,7 @@
         "fields": {
             "info": "",
             "modified_at": "2014-10-21T20:18:50.344Z",
-            "slug": "",
+            "slug": "phones",
             "added_at": "2014-10-21T20:18:50.344Z",
             "title": "Phones"
         }
@@ -76,7 +76,7 @@
         "fields": {
             "info": "",
             "modified_at": "2014-10-21T20:18:55.159Z",
-            "slug": "",
+            "slug": "tablets",
             "added_at": "2014-10-21T20:18:55.159Z",
             "title": "Tablets"
         }

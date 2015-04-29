@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-import slugify
 
 from core import abstracts
 from core.utils import helpers
@@ -38,7 +37,7 @@ class Currency(abstracts.ModelAbstract):
 
 class Manufacturer(abstracts.ModelAbstract):
     title = models.CharField(max_length=256)
-    slug = models.SlugField(null=True, blank=True)
+    slug = models.SlugField(editable=False)
     info = models.CharField(max_length=1024, null=True, blank=True)
     image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_cart_file_name)
 
@@ -46,22 +45,20 @@ class Manufacturer(abstracts.ModelAbstract):
         return self.title
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify.slugify(self.title)
+        self.slug = helpers.get_slug(self.title)
         super(Manufacturer, self).save(*args, **kwargs)
 
 
 class Category(abstracts.ModelAbstract):
     title = models.CharField(max_length=256)
-    slug = models.SlugField(null=True, blank=True)
+    slug = models.SlugField(unique=True, editable=False)
     info = models.CharField(max_length=1024, null=True, blank=True)
 
     def __str__(self):
         return self.title
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify.slugify(self.title)
+        self.slug = helpers.get_slug(self.title)
         super(Category, self).save(*args, **kwargs)
 
 
@@ -141,7 +138,7 @@ class ProductImage(abstracts.ModelAbstract):
 class Shop(abstracts.ModelAbstract):
     is_active = models.BooleanField(default=False)
     title = models.CharField(max_length=32)
-    slug = models.SlugField(unique=True, null=True, blank=True)
+    slug = models.SlugField(editable=False)
     info = models.CharField(max_length=1024, null=True, blank=True)
     image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_cart_file_name)
 
@@ -149,8 +146,7 @@ class Shop(abstracts.ModelAbstract):
         return self.title
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify.slugify(self.title)
+        self.slug = helpers.get_slug(self.title)
         super(Shop, self).save(*args, **kwargs)
 
 
