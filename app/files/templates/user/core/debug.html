@@ -1,0 +1,64 @@
+{% extends 'user/layout.html' %}
+{% load i18n %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{% trans 'Debug' %}</h1>
+            <p>
+                {% blocktrans %}Debug information.{% endblocktrans %}
+            </p>
+
+            {# Application settings #}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {% blocktrans %}Application settings{% endblocktrans %}
+                </div>
+                <div class="panel-body">
+                    <dl>
+                        {% for key, value in application_settings.items %}
+                            <dt>{{ key }}</dt>
+                            <dd>{{ value }}</dd>
+                        {% endfor %}
+                    </dl>
+                </div>
+                <div class="panel-footer">
+                    {% blocktrans %}stored application settings{% endblocktrans %}
+                </div>
+            </div>
+
+            {# Application config #}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {% blocktrans %}Application config{% endblocktrans %}
+                </div>
+                <div class="panel-body">
+                    <dl>
+                        {% for key, value in application_config.items %}
+                            <dt>{{ key }}</dt>
+                            <dd>{{ value }}</dd>
+                        {% endfor %}
+                    </dl>
+                </div>
+                <div class="panel-footer">
+                    {% blocktrans %}application specific django settings{% endblocktrans %}
+                </div>
+            </div>
+
+            {# Core config #}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {% blocktrans %}Debug{% endblocktrans %}
+                </div>
+                <div class="panel-body">
+                    {% filter force_escape|linebreaks %}
+                        {% debug %}
+                    {% endfilter %}
+                </div>
+                <div class="panel-footer">
+                    {% blocktrans %}debug information{% endblocktrans %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

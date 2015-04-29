@@ -18,14 +18,15 @@ urlpatterns = patterns('',
     url(r'^plugin/ckeditor/', include('ckeditor.urls')),
     url(r'^plugin/select/', include('django_select2.urls')),
     url(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
-    # Static
-    url(r'^$', TemplateView.as_view(template_name='user/home.html'), name='index'),
-    url(r'^about/$', TemplateView.as_view(template_name='user/home.html'), name='about'),
     # Core
+    url(r'^$', 'core.views.home', name='home'),
+    url(r'^about/$', 'core.views.about', name='about'),
     url(r'^error/400/$', 'core.views.error_400', name='error_400'),
     url(r'^error/403/$', 'core.views.error_403', name='error_403'),
     url(r'^error/404/$', 'core.views.error_404', name='error_404'),
     url(r'^error/500/$', 'core.views.error_500', name='error_500'),
+    url(r'^debug/$', 'core.views.debug', name='debug'),
+    url(r'^static_page/$', TemplateView.as_view(template_name='user/core/static_page.html'), name='static_page'),
     # Applications
     url(r'^account/', include('account.urls')),
     url(r'^website/', include('website.urls')),
