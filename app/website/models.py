@@ -23,7 +23,7 @@ ITEM_STATUS_CHOICES = (
 
 
 class Slider(abstracts.ModelAbstract):
-    status = models.CharField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
+    status = models.IntegerField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
     description = models.TextField(null=True, blank=True)
 
@@ -32,7 +32,7 @@ class Slider(abstracts.ModelAbstract):
 
 
 class Slide(abstracts.ModelAbstract):
-    status = models.CharField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
+    status = models.IntegerField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_website_file_name)
