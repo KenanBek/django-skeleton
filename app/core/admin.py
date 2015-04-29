@@ -3,6 +3,16 @@ from django.contrib import admin
 from . import models
 from . import abstracts
 
+''' Settings '''
+
+
+class SettingsAdmin(abstracts.ModelAdminAbstract):
+    list_filter = ['group', ]
+    list_display = ['key', 'value', 'group', ]
+
+
+admin.site.register(models.Settings, SettingsAdmin)
+
 ''' Event '''
 
 

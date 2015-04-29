@@ -295,6 +295,7 @@ SUIT_CONFIG = {
         # Core
         '-',
         {'label': 'Core', 'icon': 'icon-th', 'models': (
+            {'model': 'core.settings', 'label': 'Settings'},
             {'model': 'core.event', 'label': 'Events'},
             {'model': 'core.log', 'label': 'Logs'},
             {'model': 'core.request', 'label': 'Requests'},

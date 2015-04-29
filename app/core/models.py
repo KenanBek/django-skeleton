@@ -1,8 +1,10 @@
 """
 Base model classes. Used in other applications.
 """
-from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import User
 from . import abstracts
 
 LOG_LEVEL_DEBUG = 1
@@ -17,6 +19,25 @@ LOG_LEVEL_CHOICES = (
     (LOG_LEVEL_ERROR, 'Error'),
     (LOG_LEVEL_CRITICAL, 'Critical'),
 )
+
+
+class Settings(abstracts.ModelAbstract):
+    key = models.CharField(max_length=256)
+    value = models.CharField(max_length=1024)
+    group = models.CharField(max_length=256, null=True, blank=True, default='')
+
+    def clean_fields(self, exclude=None):
+        errors = {}
+        if self.key == 'groups':
+            errors['key'] = _("'groups' word is reserved.")
+        if self.group == 'groups':
+            errors['group'] = _("'groups' word is reserved.")
+        if errors:
+            raise ValidationError(errors)
+        super(Settings, self).clean_fields(exclude)
+
+    class Meta:
+        unique_together = ('group', 'key', )
 
 
 class Event(abstracts.ModelAbstract):

@@ -36,6 +36,46 @@ class EventLogger:
         self.new_log(models.LOG_LEVEL_CRITICAL, text, *args)
 
 
+class SettingsManager:
+    def __init__(self):
+        self.queryset = models.Settings.objects
+        pass
+
+    def get(self, key):
+        try:
+            return self.queryset.get(key=key)
+        except models.Settings.DoesNotExist:
+            return None
+
+    def get_by_group(self, key, group):
+        try:
+            return self.queryset.get(key=key, group=group)
+        except models.Settings.DoesNotExist:
+            return None
+
+    def get_all(self):
+        return self.queryset.all()
+
+    def get_dict(self):
+        result = {}
+
+        un_grouped_settings = self.queryset.filter(group__exact='')
+        for item in un_grouped_settings:
+            result[item.key] = item.value
+
+        grouped_settings = self.queryset.exclude(group__isnull=True).exclude(group__exact='')
+        if grouped_settings.count():
+            grouped_settings = list(grouped_settings)
+            groups_dict = {}
+            for item in grouped_settings:
+                group_values = groups_dict.get(item.group, {})
+                group_values[item.key] = item.value
+                groups_dict[item.group] = group_values
+            result['groups'] = groups_dict
+
+        return result
+
+
 class CoreLogic:
     request = None
     user = None
@@ -44,6 +84,8 @@ class CoreLogic:
         self.request = request
         if not request.user.is_anonymous():
             self.user = request.user
+
+        self.settings_manager = SettingsManager()
 
     def new_event_logger(self, title):
         event_logger = EventLogger(title, self.user)
