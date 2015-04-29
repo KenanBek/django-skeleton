@@ -15,9 +15,9 @@ urlpatterns = patterns('',
     # Admin and 3rd party applications
     url(r'^language/', include('django.conf.urls.i18n')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^ckeditor/', include('ckeditor.urls')),
-    url(r'^select2/', include('django_select2.urls')),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^plugin/ckeditor/', include('ckeditor.urls')),
+    url(r'^plugin/select/', include('django_select2.urls')),
+    url(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
     # Static
     url(r'^$', TemplateView.as_view(template_name='user/home.html'), name='index'),
     url(r'^about/$', TemplateView.as_view(template_name='user/home.html'), name='about'),

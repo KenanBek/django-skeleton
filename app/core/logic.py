@@ -4,6 +4,11 @@ from ipware.ip import get_real_ip, get_ip
 from . import models
 
 
+class CoreLogic:
+    def __init__(self, user):
+        self.user = user
+
+
 def store_user_request(request):
     if not settings.APPLICATION_MONITORING:
         return
@@ -19,9 +24,9 @@ def store_user_request(request):
     user_request.user_is_active = request.user.is_active
 
     user_request.client_name = request.META.get('USER', '')
-    user_request.client_ip = request.META.get('REMOTE_ADDR', '')
     user_request.client_agent = request.META.get('HTTP_USER_AGENT', '')
 
+    user_request.client_ip = request.META.get('REMOTE_ADDR', '')
     real_ip = get_real_ip(request)
     if real_ip is None:
         real_ip = get_ip(request)

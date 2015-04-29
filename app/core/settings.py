@@ -351,7 +351,7 @@ SUIT_CONFIG = {
 
 # CKEDITOR
 
-CKEDITOR_UPLOAD_PATH = 'ckeditor/'
+CKEDITOR_UPLOAD_PATH = 'plugin/ckeditor/'
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Full',
