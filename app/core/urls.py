@@ -26,7 +26,7 @@ urlpatterns = patterns('',
     url(r'^error/404/$', 'core.views.error_404', name='error_404'),
     url(r'^error/500/$', 'core.views.error_500', name='error_500'),
     url(r'^debug/$', 'core.views.debug', name='debug'),
-    url(r'^static_page/$', TemplateView.as_view(template_name='user/core/static_page.html'), name='static_page'),
+    url(r'^static-page/$', TemplateView.as_view(template_name='user/core/static_page.html'), name='static_page'),
     # Applications
     url(r'^account/', include('account.urls')),
     url(r'^website/', include('website.urls')),

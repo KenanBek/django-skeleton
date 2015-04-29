@@ -59,6 +59,8 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.humanize',
     'django.contrib.sitemaps',
+    'debug_toolbar',
+    'template_timings_panel',
     'core',
     'account',
     'website',
@@ -68,6 +70,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.gzip.GZipMiddleware',  # must be at the start
     'htmlmin.middleware.HtmlMinifyMiddleware',  # must be at the start but after gzip middleware
     'debreach.middleware.RandomCommentMiddleware',  # must be at the start but after compression middleware
+    'debug_toolbar.middleware.DebugToolbarMiddleware',  # must be after encode middlewares
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',  # must be before common and after session middleware
     'django.middleware.common.CommonMiddleware',
@@ -378,4 +381,23 @@ THUMBNAIL_ALIASES = {
         'large': {'size': (800, 800), 'crop': True},
     },
 }
+
+# DEBUG TOOLBAR
+
+DEBUG_TOOLBAR_PATCH_SETTINGS = True
+DEBUG_TOOLBAR_PANELS = (
+    'debug_toolbar.panels.versions.VersionsPanel',
+    'debug_toolbar.panels.timer.TimerPanel',
+    'debug_toolbar.panels.settings.SettingsPanel',
+    'debug_toolbar.panels.headers.HeadersPanel',
+    'debug_toolbar.panels.request.RequestPanel',
+    'debug_toolbar.panels.sql.SQLPanel',
+    'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+    'debug_toolbar.panels.templates.TemplatesPanel',
+    'debug_toolbar.panels.cache.CachePanel',
+    'debug_toolbar.panels.signals.SignalsPanel',
+    'debug_toolbar.panels.logging.LoggingPanel',
+    'debug_toolbar.panels.redirects.RedirectsPanel',
+    'template_timings_panel.panels.TemplateTimings.TemplateTimings',
+)
 

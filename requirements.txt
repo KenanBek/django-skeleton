@@ -3,12 +3,14 @@ django==1.7.3
 jsonpickle
 pillow
 django-suit
-django-ckeditor-updated
-django-select2
+django-ipware
 django-filter
 django-htmlmin
+django-select2
 django-debreach
-django-ipware
+django-debug-toolbar
+django-debug-toolbar-template-timings
+django-ckeditor-updated
 django_compressor
 djangorestframework
 markdown
