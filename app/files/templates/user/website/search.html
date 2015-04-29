@@ -9,9 +9,9 @@
     </div>
     <div class="col-md-12">
         <h2>{% trans "Pages" %}</h2>
-        <div class="row placeholders">
+        <div class="row">
             {% for page in pages %}
-                <div class="col-xs-6 col-sm-3 placeholder">
+                <div class="col-xs-6 col-sm-3">
                     <h4><a href="{% url 'website_page' page.slug %}">{{ page.title }}</a></h4>
                     <span class="text-muted">{{ page.modified_at }}</span>
                 </div>

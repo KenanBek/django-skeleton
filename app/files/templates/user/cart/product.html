@@ -46,7 +46,7 @@
             </div>
             {% for product_image in product_item.productimage_set.all %}
                 <div class="col-sm-3 col-xs-6">
-                    <img class="img-responsive portfolio-item" src="{{ product_image.image|thumbnail_url:'medium' }}" alt="{{ product_image.info }}" title="{{ product_image.info }}" />
+                    <img class="img-responsive" src="{{ product_image.image|thumbnail_url:'medium' }}" alt="{{ product_image.info }}" title="{{ product_image.info }}" />
                 </div>
             {% endfor %}
         </div>

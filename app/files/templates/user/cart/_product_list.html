@@ -2,7 +2,7 @@
 {% load thumbnail %}
 
 {% for product in product_list %}
-    <div class="col-md-4 portfolio-item">
+    <div class="col-md-4">
         <a href="{% url 'cart_product' product.id %}">
             {% if product.image %}
                 <img class="img-responsive" src="{{ product.image|thumbnail_url:'medium' }}" alt="{{ product.model }}" title="{{ product.model }}" />

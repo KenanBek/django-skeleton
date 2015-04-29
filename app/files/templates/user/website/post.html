@@ -4,13 +4,13 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-md-12 blog-main">
-            <div class="blog-post">
+        <div class="col-md-12">
+            <div>
                 {% if post.featured_image %}
                     <img src="{{ post.featured_image|thumbnail_url:'medium' }}" title="{{ post.title }}" />
                 {% endif %}
-                <h2 class="blog-post-title">{{ post.title }}</h2>
-                <p class="blog-post-meta">{{ post.modified_at }}</p>
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.modified_at }}</p>
                 <p>
                     {{ post.full_content|safe }}
                 </p>
