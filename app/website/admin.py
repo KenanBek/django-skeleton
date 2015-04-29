@@ -3,11 +3,11 @@ from django.contrib import admin
 from ckeditor.widgets import CKEditorWidget
 from django_select2 import fields
 
-from core import models as core_models
+from core import abstracts
 from website import models
 
 
-class WidgetAdminAbstract(core_models.ModelAdminAbstract):
+class WidgetAdminAbstract(abstracts.ModelAdminAbstract):
     list_display = ['title', 'related_page_names']
 
     def related_page_names(self, obj):
@@ -25,7 +25,7 @@ class PageAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
-class PageAdminAbstract(core_models.ModelAdminAbstract):
+class PageAdminAbstract(abstracts.ModelAdminAbstract):
     form = PageAdminForm
 
     list_filter = ['status']
@@ -46,7 +46,7 @@ class CategoryAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
-class CategoryAdminAbstract(core_models.ModelAdminAbstract):
+class CategoryAdminAbstract(abstracts.ModelAdminAbstract):
     form = CategoryAdminForm
 
     list_display = ['title', 'slug', 'related_post_names']
@@ -73,7 +73,7 @@ class PostAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
-class PostAdminAbstract(core_models.ModelAdminAbstract):
+class PostAdminAbstract(abstracts.ModelAdminAbstract):
     form = PostAdminForm
 
     list_filter = ['added_at', 'status', 'categories']
@@ -91,7 +91,7 @@ class SlideInline(admin.StackedInline):
     extra = 1
 
 
-class SliderAdminAbstract(core_models.ModelAdminAbstract):
+class SliderAdminAbstract(abstracts.ModelAdminAbstract):
     list_display = ['title', 'status']
     inlines = [SlideInline, ]
 
@@ -99,12 +99,12 @@ class SliderAdminAbstract(core_models.ModelAdminAbstract):
 # Subscriber & Document
 
 
-class SubscriberAdminAbstract(core_models.ModelAdminAbstract):
+class SubscriberAdminAbstract(abstracts.ModelAdminAbstract):
     list_filter = ['added_at', 'email']
     list_display = ['added_at', 'name', 'email']
 
 
-class DocumentAdminAbstract(core_models.ModelAdminAbstract):
+class DocumentAdminAbstract(abstracts.ModelAdminAbstract):
     list_filter = ['added_at', 'email']
     list_display = ['added_at', 'name', 'email']
 
@@ -112,7 +112,7 @@ class DocumentAdminAbstract(core_models.ModelAdminAbstract):
 # Contact
 
 
-class ContactAdminAbstract(core_models.ModelAdminAbstract):
+class ContactAdminAbstract(abstracts.ModelAdminAbstract):
     list_filter = ['added_at', 'email']
     list_display = ['added_at', 'name', 'email', 'subject']
 

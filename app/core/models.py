@@ -1,25 +1,9 @@
 """
 Base model classes. Used in other applications.
 """
+from django.contrib.auth.models import User
 from django.db import models
-from django.contrib import admin
-
-''' Abstract classes '''
-
-
-class ModelAbstract(models.Model):
-    added_at = models.DateTimeField(auto_now_add=True, editable=False, null=True)
-    modified_at = models.DateTimeField(auto_now=True, editable=False, null=True)
-
-    class Meta:
-        abstract = True
-
-
-class ModelAdminAbstract(admin.ModelAdmin):
-    pass
-
-
-''' Core entities '''
+from . import abstracts
 
 LOG_LEVEL_DEBUG = 1
 LOG_LEVEL_INFO = 2
@@ -35,19 +19,18 @@ LOG_LEVEL_CHOICES = (
 )
 
 
-class Event(ModelAbstract):
-    uuid = models.CharField(max_length=256)
+class Event(abstracts.ModelAbstract):
     title = models.CharField(max_length=256)
-    identifier = models.CharField(max_length=256, default=u"<not defined>")
+    user = models.ForeignKey(User, null=True, blank=True)
 
     def __str__(self):
-        return u"{} ({})".format(self.identifier, self.added_at.date())
+        return u"{} ({})".format(self.title, self.added_at.date())
 
     def __unicode__(self):
         return self.__str__()
 
 
-class Log(ModelAbstract):
+class Log(abstracts.ModelAbstract):
     event = models.ForeignKey(Event)
     level = models.IntegerField(choices=LOG_LEVEL_CHOICES, default=LOG_LEVEL_DEBUG)
     text = models.CharField(max_length=1024)
@@ -59,7 +42,7 @@ class Log(ModelAbstract):
         return self.__str__()
 
 
-class Request(ModelAbstract):
+class Request(abstracts.ModelAbstract):
     user_username = models.CharField(max_length=30, null=True, blank=True)
     user_is_staff = models.BooleanField(default=False)
     user_is_active = models.BooleanField(default=False)

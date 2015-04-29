@@ -1,11 +1,11 @@
-from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.forms.util import ErrorList
 from django.utils.translation import ugettext_lazy as _
+from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import django.contrib.auth as django_auth
-from django.core.urlresolvers import reverse
-from django.shortcuts import render, redirect
 
 from core.utils.decorators import anonymous_required
 from account import models

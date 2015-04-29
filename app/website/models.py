@@ -2,12 +2,12 @@ from django.core.urlresolvers import reverse
 from django.db import models
 import slugify
 
-from core import utils
-from core import models as core_models
+from core import abstracts
+from core.utils import helpers
 
 
 def get_website_file_name(instance, filename):
-    return utils.get_file_filename(instance, filename, "website")
+    return helpers.get_file_filename(instance, filename, "website")
 
 
 ''' Types '''
@@ -22,7 +22,7 @@ ITEM_STATUS_CHOICES = (
 ''' Slider '''
 
 
-class Slider(core_models.ModelAbstract):
+class Slider(abstracts.ModelAbstract):
     status = models.CharField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
     description = models.TextField(null=True, blank=True)
@@ -31,7 +31,7 @@ class Slider(core_models.ModelAbstract):
         return self.title
 
 
-class Slide(core_models.ModelAbstract):
+class Slide(abstracts.ModelAbstract):
     status = models.CharField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
     description = models.TextField(null=True, blank=True)
@@ -45,7 +45,7 @@ class Slide(core_models.ModelAbstract):
 ''' Page '''
 
 
-class Widget(core_models.ModelAbstract):
+class Widget(abstracts.ModelAbstract):
     title = models.CharField(max_length=32)
     content = models.TextField()
     featured_image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_website_file_name)
@@ -56,7 +56,7 @@ class Widget(core_models.ModelAbstract):
         return self.title
 
 
-class Page(core_models.ModelAbstract):
+class Page(abstracts.ModelAbstract):
     status = models.IntegerField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
     slug = models.SlugField(unique=True)
@@ -80,7 +80,7 @@ class Page(core_models.ModelAbstract):
 ''' Post '''
 
 
-class Category(core_models.ModelAbstract):
+class Category(abstracts.ModelAbstract):
     title = models.CharField(max_length=32)
     slug = models.SlugField(unique=True)
     description = models.CharField(max_length=512, null=True, blank=True)
@@ -94,7 +94,7 @@ class Category(core_models.ModelAbstract):
         super(Category, self).save(*args, **kwargs)
 
 
-class Post(core_models.ModelAbstract):
+class Post(abstracts.ModelAbstract):
     status = models.IntegerField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
     slug = models.SlugField(unique=True)
@@ -119,7 +119,7 @@ class Post(core_models.ModelAbstract):
 ''' Subscriber & Document '''
 
 
-class Subscriber(core_models.ModelAbstract):
+class Subscriber(abstracts.ModelAbstract):
     name = models.CharField(max_length=32)
     email = models.EmailField(unique=True)
 
@@ -127,7 +127,7 @@ class Subscriber(core_models.ModelAbstract):
         return "{0} ({1})".format(self.name, self.email)
 
 
-class Document(core_models.ModelAbstract):
+class Document(abstracts.ModelAbstract):
     name = models.CharField(max_length=32)
     email = models.EmailField()
     short_description = models.CharField(max_length=128)
@@ -140,7 +140,7 @@ class Document(core_models.ModelAbstract):
 ''' Contact '''
 
 
-class Contact(core_models.ModelAbstract):
+class Contact(abstracts.ModelAbstract):
     name = models.CharField(max_length=32)
     email = models.EmailField()
     subject = models.CharField(max_length=32)

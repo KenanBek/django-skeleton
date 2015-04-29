@@ -3,12 +3,12 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 import slugify
 
-from core import utils
-from core import models as core_models
+from core import abstracts
+from core.utils import helpers
 
 
 def get_cart_file_name(instance, filename):
-    return utils.get_file_filename(instance, filename, "profile")
+    return helpers.get_file_filename(instance, filename, "profile")
 
 
 ''' Choices '''
@@ -29,14 +29,14 @@ RATING_CHOICES = (
 ''' Base objects '''
 
 
-class Currency(core_models.ModelAbstract):
+class Currency(abstracts.ModelAbstract):
     title = models.CharField(max_length=128)
 
     def __str__(self):
         return self.title
 
 
-class Manufacturer(core_models.ModelAbstract):
+class Manufacturer(abstracts.ModelAbstract):
     title = models.CharField(max_length=256)
     slug = models.SlugField(null=True, blank=True)
     info = models.CharField(max_length=1024, null=True, blank=True)
@@ -51,7 +51,7 @@ class Manufacturer(core_models.ModelAbstract):
         super(Manufacturer, self).save(*args, **kwargs)
 
 
-class Category(core_models.ModelAbstract):
+class Category(abstracts.ModelAbstract):
     title = models.CharField(max_length=256)
     slug = models.SlugField(null=True, blank=True)
     info = models.CharField(max_length=1024, null=True, blank=True)
@@ -65,14 +65,14 @@ class Category(core_models.ModelAbstract):
         super(Category, self).save(*args, **kwargs)
 
 
-class AttributeGroup(core_models.ModelAbstract):
+class AttributeGroup(abstracts.ModelAbstract):
     title = models.CharField(max_length=256)
 
     def __str__(self):
         return self.title
 
 
-class Attribute(core_models.ModelAbstract):
+class Attribute(abstracts.ModelAbstract):
     group = models.ForeignKey(AttributeGroup)
     title = models.CharField(max_length=256)
 
@@ -83,7 +83,7 @@ class Attribute(core_models.ModelAbstract):
 ''' Product '''
 
 
-class Product(core_models.ModelAbstract):
+class Product(abstracts.ModelAbstract):
     is_active = models.BooleanField(default=False)
     category = models.ForeignKey(Category)
     manufacturer = models.ForeignKey(Manufacturer)
@@ -100,7 +100,7 @@ class Product(core_models.ModelAbstract):
         return "{0} {1} {2}".format(str(self.category), str(self.manufacturer), self.model)
 
 
-class ProductReview(core_models.ModelAbstract):
+class ProductReview(abstracts.ModelAbstract):
     is_approved = models.BooleanField(default=False)
     product = models.ForeignKey(Product)
     user = models.ForeignKey(User)
@@ -117,7 +117,7 @@ class ProductReview(core_models.ModelAbstract):
         )
 
 
-class ProductAttribute(core_models.ModelAbstract):
+class ProductAttribute(abstracts.ModelAbstract):
     product = models.ForeignKey(Product)
     attribute = models.ForeignKey(Attribute)
     value = models.CharField(max_length=128)
@@ -126,7 +126,7 @@ class ProductAttribute(core_models.ModelAbstract):
         return "".format()
 
 
-class ProductImage(core_models.ModelAbstract):
+class ProductImage(abstracts.ModelAbstract):
     product = models.ForeignKey(Product)
     image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_cart_file_name)
     info = models.CharField(max_length=1024, null=True, blank=True)
@@ -138,7 +138,7 @@ class ProductImage(core_models.ModelAbstract):
 ''' Shop '''
 
 
-class Shop(core_models.ModelAbstract):
+class Shop(abstracts.ModelAbstract):
     is_active = models.BooleanField(default=False)
     title = models.CharField(max_length=32)
     slug = models.SlugField(unique=True, null=True, blank=True)
@@ -154,7 +154,7 @@ class Shop(core_models.ModelAbstract):
         super(Shop, self).save(*args, **kwargs)
 
 
-class ShopReview(core_models.ModelAbstract):
+class ShopReview(abstracts.ModelAbstract):
     is_approved = models.BooleanField(default=False)
     shop = models.ForeignKey(Shop)
     user = models.ForeignKey(User)
@@ -171,7 +171,7 @@ class ShopReview(core_models.ModelAbstract):
         )
 
 
-class ShopProduct(core_models.ModelAbstract):
+class ShopProduct(abstracts.ModelAbstract):
     shop = models.ForeignKey(Shop)
     product = models.ForeignKey(Product)
     currency = models.ForeignKey(Currency)

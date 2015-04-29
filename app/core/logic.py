@@ -1,47 +1,87 @@
 from django.conf import settings
 from ipware.ip import get_real_ip, get_ip
-
 from . import models
 
 
-class CoreLogic:
-    def __init__(self, user):
+class EventLogger:
+    def __init__(self, title, user=None):
+        self.title = title
         self.user = user
+        event = models.Event()
+        event.title = self.title
+        event.user = self.user
+        event.save()
+        self.event = event
+
+    def new_log(self, level, text, *args):
+        log = models.Log()
+        log.event = self.event
+        log.level = level
+        log.text = text.format(*args)
+        log.save()
+
+    def new_debug_log(self, text, *args):
+        self.new_log(models.LOG_LEVEL_DEBUG, text, *args)
+
+    def new_info_log(self, text, *args):
+        self.new_log(models.LOG_LEVEL_INFO, text, *args)
+
+    def new_warning_log(self, text, *args):
+        self.new_log(models.LOG_LEVEL_WARNING, text, *args)
+
+    def new_error_log(self, text, *args):
+        self.new_log(models.LOG_LEVEL_ERROR, text, *args)
+
+    def new_critical_log(self, text, *args):
+        self.new_log(models.LOG_LEVEL_CRITICAL, text, *args)
 
 
-def store_user_request(request):
-    if not settings.APPLICATION_MONITORING:
-        return
-    if not settings.APPLICATION_MONITOR_STUFF_USERS and request.user.is_staff:
-        return
-    user_request = models.Request()
+class CoreLogic:
+    request = None
+    user = None
 
-    user_request.server_name = request.META.get('SERVER_NAME', '')
-    user_request.server_host = request.META.get('HTTP_HOST', '')
+    def __init__(self, request):
+        self.request = request
+        if not request.user.is_anonymous():
+            self.user = request.user
 
-    user_request.user_username = request.user.username
-    user_request.user_is_staff = request.user.is_staff
-    user_request.user_is_active = request.user.is_active
+    def new_event_logger(self, title):
+        event_logger = EventLogger(title, self.user)
+        return event_logger
 
-    user_request.client_name = request.META.get('USER', '')
-    user_request.client_agent = request.META.get('HTTP_USER_AGENT', '')
+    def store_request(self):
+        if not settings.APPLICATION_MONITORING:
+            return
+        if not settings.APPLICATION_MONITOR_STUFF_USERS and self.request.user.is_staff:
+            return
+        user_request = models.Request()
 
-    user_request.client_ip = request.META.get('REMOTE_ADDR', '')
-    real_ip = get_real_ip(request)
-    if real_ip is None:
-        real_ip = get_ip(request)
-    user_request.client_real_ip = real_ip
+        user_request.server_name = self.request.META.get('SERVER_NAME', '')
+        user_request.server_host = self.request.META.get('HTTP_HOST', '')
 
-    user_request.scheme = request.scheme
-    user_request.method = request.method
-    user_request.data = request.REQUEST
+        user_request.user_username = self.request.user.username
+        user_request.user_is_staff = self.request.user.is_staff
+        user_request.user_is_active = self.request.user.is_active
 
-    user_request.is_ajax = request.is_ajax()
+        user_request.client_name = self.request.META.get('USER', '')
+        user_request.client_agent = self.request.META.get('HTTP_USER_AGENT', '')
 
-    user_request.from_page = request.META.get('HTTP_REFERER', '')
-    user_request.to_page = request.path
-    user_request.to_page_query = request.META.get('QUERY_STRING', '')
+        user_request.client_ip = self.request.META.get('REMOTE_ADDR', '')
+        real_ip = get_real_ip(self.request)
+        if real_ip is None:
+            real_ip = get_ip(self.request)
+        user_request.client_real_ip = real_ip
 
-    user_request.save()
-    return user_request
+        user_request.scheme = self.request.scheme
+        user_request.method = self.request.method
+        user_request.data = self.request.REQUEST
+
+        user_request.is_ajax = self.request.is_ajax()
+
+        user_request.from_page = self.request.META.get('HTTP_REFERER', '')
+        user_request.to_page = self.request.path
+        user_request.to_page_query = self.request.META.get('QUERY_STRING', '')
+
+        user_request.save()
+        return user_request
 

@@ -1,15 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from core import utils
-from core import models as core_models
+from core import abstracts
+from core.utils import helpers
 
 
 def get_account_file_name(instance, filename):
-    return utils.get_file_filename(instance, filename, "account")
+    return helpers.get_file_filename(instance, filename, "account")
 
 
-class Profile(core_models.ModelAbstract):
+class Profile(abstracts.ModelAbstract):
     user = models.OneToOneField(User)
     website = models.URLField(null=True, blank=True)
     avatar = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_account_file_name)
