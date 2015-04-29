@@ -18,5 +18,6 @@ class Command(NoArgsCommand):
             management.call_command('collectstatic', interactive=False)
 
         # Done
-        self.stdout.write('Successfully finished.')
+        self.helper.add_to_print_queue('Successfully finished.')
+        self.helper.print_queue()
 
