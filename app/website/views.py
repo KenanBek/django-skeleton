@@ -25,7 +25,6 @@ def index(request, template='user/website/index.html', context={}):
 
 @log
 def about(request, template='user/website/about.html', context={}):
-    context['about_text'] = markdown2.markdown_path("readme.md")
     return render(request, template, context)
 
 
