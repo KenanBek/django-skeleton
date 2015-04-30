@@ -21,3 +21,14 @@ class ModelReadOnlyAdminAbstract(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         return False
 
+
+class LogicAbstract(object):
+    def __init__(self, request):
+        self.request = request
+
+    def grab_get_param(self, param):
+        return self.request.GET.get(param, None)
+
+    def grab_post_param(self, param):
+        return self.request.POST.get(param, None)
+

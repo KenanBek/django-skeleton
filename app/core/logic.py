@@ -1,9 +1,11 @@
 from django.conf import settings
 from ipware.ip import get_real_ip, get_ip
+
+from . import abstracts
 from . import models
 
 
-class EventLogger:
+class EventLogger(object):
     def __init__(self, title, user=None):
         self.title = title
         self.user = user
@@ -36,7 +38,7 @@ class EventLogger:
         self.new_log(models.LOG_LEVEL_CRITICAL, text, *args)
 
 
-class SettingsManager:
+class SettingsManager(object):
     def __init__(self):
         self.queryset = models.Settings.objects
         pass
@@ -76,12 +78,12 @@ class SettingsManager:
         return result
 
 
-class CoreLogic:
+class CoreLogic(abstracts.LogicAbstract):
     request = None
     user = None
 
     def __init__(self, request):
-        self.request = request
+        super(CoreLogic, self).__init__(request)
         if not request.user.is_anonymous():
             self.user = request.user
 

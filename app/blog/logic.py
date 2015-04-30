@@ -1,12 +1,13 @@
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
-from website import models
+from core import abstracts
+from blog import models
 
 
-class WebsiteLogic:
+class BlogLogic(abstracts.LogicAbstract):
     def __init__(self, request):
-        self.request = request
+        super(BlogLogic, self).__init__(request)
 
     def page(self, page_slug):
         return get_object_or_404(models.Page, slug=page_slug, status=models.ITEM_STATUS_PUBLISHED)

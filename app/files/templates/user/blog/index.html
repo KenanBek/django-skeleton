@@ -1,0 +1,20 @@
+{% extends 'user/layout.html' %}
+{% load i18n %}
+{% load thumbnail %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{% trans "Pages" %}</h2>
+            {% include 'user/blog/_page_list.html' with page_list=pages %}
+            <hr />
+            <a href="{% url 'blog_pages' %}" class="pull-right">{% trans 'See all pages' %}</a>
+        </div>
+        <div class="col-md-12">
+            <h2>{% trans "Posts" %}</h2>
+            {% include 'user/blog/_post_list.html' with post_list=posts %}
+            <hr />
+            <a href="{% url 'blog_posts' %}" class="pull-right">{% trans 'See also posts' %}</a>
+        </div>
+    </div>
+{% endblock %}

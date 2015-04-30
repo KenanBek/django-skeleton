@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from website.models import Widget
+from blog.models import Widget
 
 
 class AnimalTestCase(TestCase):

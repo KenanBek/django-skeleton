@@ -4,7 +4,7 @@ from ckeditor.widgets import CKEditorWidget
 from django_select2 import fields
 
 from core import abstracts
-from website import models
+from blog import models
 
 
 class WidgetAdminAbstract(abstracts.ModelAdminAbstract):

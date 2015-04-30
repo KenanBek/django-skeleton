@@ -1,7 +1,7 @@
 from django.core.urlresolvers import reverse
 from django.contrib import sitemaps
 
-from website import models as website_models
+from blog import models as blog_models
 
 
 class StaticPagesSitemap(sitemaps.Sitemap):
@@ -15,12 +15,12 @@ class StaticPagesSitemap(sitemaps.Sitemap):
         return reverse(item)
 
 
-class WebsiteSitemap(sitemaps.Sitemap):
+class BlogSitemap(sitemaps.Sitemap):
     changefreq = "hourly"
     priority = 0.8
 
     def items(self):
-        return website_models.Post.objects.filter(status=website_models.ITEM_STATUS_PUBLISHED)
+        return blog_models.Post.objects.filter(status=blog_models.ITEM_STATUS_PUBLISHED)
 
     def lastmod(self, obj):
         return obj.modified_at
@@ -28,6 +28,6 @@ class WebsiteSitemap(sitemaps.Sitemap):
 
 sitemaps_dict = {
     'static': StaticPagesSitemap,
-    'website': WebsiteSitemap
+    'blog': BlogSitemap
 }
 

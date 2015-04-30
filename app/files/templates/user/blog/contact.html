@@ -5,21 +5,21 @@
     <div class="row">
         <div class="col-md-12">
             <h1>{% blocktrans %}Contact us{% endblocktrans %}</h1>
-            {% url 'website_contact' as website_contact %}
-            {% include "user/_form.html" with form=contact_form action=website_contact method="post" %}
+            {% url 'blog_contact' as blog_contact %}
+            {% include "user/_form.html" with form=contact_form action=blog_contact method="post" %}
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <h3>{% blocktrans %}Also you can submit your application:{% endblocktrans %}</h3>
-            {% url 'website_document' as website_document %}
-            {% include "user/_form.html" with form=document_form action=website_document method="post" %}
+            {% url 'blog_document' as blog_document %}
+            {% include "user/_form.html" with form=document_form action=blog_document method="post" %}
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <h3>{% blocktrans %}And, also you can subscribe:{% endblocktrans %}</h3>
-            <form class="form-inline" role="form" action="{% url 'website_subscribe' %}" method="get">
+            <form class="form-inline" role="form" action="{% url 'blog_subscribe' %}" method="get">
                 <input id="name" name="name" type="text" class="form-control" placeholder="{% trans "Your name..." %}">
                 <input id="email" name="email" type="text" class="form-control" placeholder="{% trans "Your email..." %}">
                 <button type="submit" class="btn btn-default">{% trans "Subscribe" %}</button>

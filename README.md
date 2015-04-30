@@ -18,13 +18,13 @@ Django version: 1.7.3
     - Product and Shop user review (5 star rating system)
     - Shop news
     - Product's image and video
-- Website application
+- Blog application
     - Widgets
     - Static pages
     - Posts
     - Post categories
     - Slider
-    - Website API
+    - Blog API
 
 **Pre configured 3rd party packages:**
 

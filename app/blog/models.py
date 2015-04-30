@@ -5,8 +5,8 @@ from core import abstracts
 from core.utils import helpers
 
 
-def get_website_file_name(instance, filename):
-    return helpers.get_file_filename(instance, filename, "website")
+def get_blog_file_name(instance, filename):
+    return helpers.get_file_filename(instance, filename, "blog")
 
 
 ''' Types '''
@@ -34,7 +34,7 @@ class Slide(abstracts.ModelAbstract):
     status = models.IntegerField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
     description = models.TextField(null=True, blank=True)
-    image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_website_file_name)
+    image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_blog_file_name)
     related_slider = models.ForeignKey(Slider)
 
     def __str__(self):
@@ -47,7 +47,7 @@ class Slide(abstracts.ModelAbstract):
 class Widget(abstracts.ModelAbstract):
     title = models.CharField(max_length=32)
     content = models.TextField()
-    featured_image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_website_file_name)
+    featured_image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_blog_file_name)
     link_title = models.CharField(max_length=32, null=True, blank=True)
     link_url = models.URLField(null=True, blank=True)
 
@@ -61,7 +61,7 @@ class Page(abstracts.ModelAbstract):
     slug = models.SlugField(unique=True, editable=False)
     content = models.TextField()
     widgets = models.ManyToManyField(Widget, null=True, blank=True)
-    featured_image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_website_file_name)
+    featured_image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_blog_file_name)
     related_slider = models.ForeignKey(Slider, null=True, blank=True)
 
     def get_widgets(self):
@@ -98,7 +98,7 @@ class Post(abstracts.ModelAbstract):
     short_content = models.CharField(max_length=512)
     full_content = models.TextField()
     categories = models.ManyToManyField(Category)
-    featured_image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_website_file_name)
+    featured_image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_blog_file_name)
     related_slider = models.ForeignKey(Slider, null=True, blank=True)
 
     def __str__(self):
@@ -109,7 +109,7 @@ class Post(abstracts.ModelAbstract):
         super(Post, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('website_post', kwargs={'post_id': self.pk, 'post_slug': self.slug})
+        return reverse('blog_post', kwargs={'post_id': self.pk, 'post_slug': self.slug})
 
 
 ''' Subscriber & Document '''
@@ -127,7 +127,7 @@ class Document(abstracts.ModelAbstract):
     name = models.CharField(max_length=32)
     email = models.EmailField()
     short_description = models.CharField(max_length=128)
-    document_file = models.FileField(upload_to='website/document/')
+    document_file = models.FileField(upload_to='blog/document/')
 
     def __str__(self):
         return "'{0}' attached document with '{1}' description".format(self.name, self.short_description)

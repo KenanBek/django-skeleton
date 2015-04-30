@@ -3,7 +3,7 @@
 <div class="row">
     {% for page in page_list %}
         <div class="col-xs-6 col-sm-3">
-            <a href="{% url 'website_page' page.slug %}">
+            <a href="{% url 'blog_page' page.slug %}">
                 <img src="{{ page.featured_image|thumbnail_url:'small' }}" alt="{{ page.title }}" title="{{ page.title }}" />
                 <h4>{{ page.title }}</h4>
             </a>

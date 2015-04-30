@@ -63,7 +63,7 @@ INSTALLED_APPS = (
     'template_timings_panel',
     'core',
     'account',
-    'website',
+    'blog',
     'cart',
 )
 MIDDLEWARE_CLASSES = (
@@ -311,22 +311,22 @@ SUIT_CONFIG = {
             {'model': 'auth.user', 'label': 'User'},
             {'model': 'account.profile', 'label': 'Profile'},
         )},
-        # Website
+        # Blog
         '-',
-        {'label': 'Website', 'icon': 'icon-th', 'models': (
-            {'model': 'website.contact', 'label': 'Contacts'},
-            {'model': 'website.subscriber', 'label': 'Subscribers'},
-            {'model': 'website.document', 'label': 'Documents'},
-            {'model': 'website.slider', 'label': 'Sliders'},
-            {'model': 'website.slide', 'label': 'Slides'},
+        {'label': 'Blog', 'icon': 'icon-th', 'models': (
+            {'model': 'blog.contact', 'label': 'Contacts'},
+            {'model': 'blog.subscriber', 'label': 'Subscribers'},
+            {'model': 'blog.document', 'label': 'Documents'},
+            {'model': 'blog.slider', 'label': 'Sliders'},
+            {'model': 'blog.slide', 'label': 'Slides'},
         )},
         {'label': 'Page', 'icon': 'icon-th', 'models': (
-            {'model': 'website.widget', 'label': 'Widgets'},
-            {'model': 'website.page', 'label': 'Pages'},
+            {'model': 'blog.widget', 'label': 'Widgets'},
+            {'model': 'blog.page', 'label': 'Pages'},
         )},
         {'label': 'Post', 'icon': 'icon-th', 'models': (
-            {'model': 'website.category', 'label': 'Categories'},
-            {'model': 'website.post', 'label': 'Posts'},
+            {'model': 'blog.category', 'label': 'Categories'},
+            {'model': 'blog.post', 'label': 'Posts'},
         )},
         # Cart
         '-',

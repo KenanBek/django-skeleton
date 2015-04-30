@@ -1,22 +1,22 @@
 from django.core.exceptions import ValidationError
-from django.db import IntegrityError
-from django.utils.translation import ugettext_lazy as _
-from django.contrib import messages
 from django.core.urlresolvers import reverse
+from django.db import IntegrityError
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django import forms as django_forms
+from django.utils.translation import ugettext_lazy as _
 
 from core.utils.decorators import log
-from website import forms
-from website import logic
+from blog import forms
+from blog import logic
 
 
 @log
-def index(request, template='user/website/index.html', context={}):
-    website_logic = logic.WebsiteLogic(request)
+def index(request, template='user/blog/index.html', context={}):
+    blog_logic = logic.BlogLogic(request)
 
-    context['pages'] = website_logic.pages()
-    context['posts'] = website_logic.posts()
+    context['pages'] = blog_logic.pages()
+    context['posts'] = blog_logic.posts()
     return render(request, template, context)
 
 
@@ -24,16 +24,16 @@ def index(request, template='user/website/index.html', context={}):
 
 
 @log
-def pages(request, template='user/website/pages.html', context={}):
-    website_logic = logic.WebsiteLogic(request)
-    context['pages'] = website_logic.pages()
+def pages(request, template='user/blog/pages.html', context={}):
+    blog_logic = logic.BlogLogic(request)
+    context['pages'] = blog_logic.pages()
     return render(request, template, context)
 
 
 @log
-def page(request, page_slug, template='user/website/page.html', context={}):
-    website_logic = logic.WebsiteLogic(request)
-    context['page'] = website_logic.page(page_slug)
+def page(request, page_slug, template='user/blog/page.html', context={}):
+    blog_logic = logic.BlogLogic(request)
+    context['page'] = blog_logic.page(page_slug)
     return render(request, template, context)
 
 
@@ -41,16 +41,16 @@ def page(request, page_slug, template='user/website/page.html', context={}):
 
 
 @log
-def posts(request, template='user/website/posts.html', context={}):
-    website_logic = logic.WebsiteLogic(request)
-    context['posts'] = website_logic.posts()
+def posts(request, template='user/blog/posts.html', context={}):
+    blog_logic = logic.BlogLogic(request)
+    context['posts'] = blog_logic.posts()
     return render(request, template, context)
 
 
 @log
-def post(request, post_id, post_slug, template='user/website/post.html', context={}):
-    website_logic = logic.WebsiteLogic(request)
-    context['post'] = website_logic.post(post_id, post_slug)
+def post(request, post_id, post_slug, template='user/blog/post.html', context={}):
+    blog_logic = logic.BlogLogic(request)
+    context['post'] = blog_logic.post(post_id, post_slug)
     return render(request, template, context)
 
 
@@ -58,14 +58,14 @@ def post(request, post_id, post_slug, template='user/website/post.html', context
 
 
 @log
-def contact(request, template="user/website/contact.html", context={}):
+def contact(request, template="user/blog/contact.html", context={}):
     contact_form = forms.ContactForm(request.POST or None)
 
     if request.method == 'POST':
         if contact_form.is_valid():
             contact_form.save()
             messages.add_message(request, messages.SUCCESS, _('Your message successfully submitted.'))
-            return redirect(reverse('website_contact'))
+            return redirect(reverse('blog_contact'))
         else:
             messages.add_message(request, messages.ERROR, _('Please fix errors bellow.'))
 
@@ -76,14 +76,14 @@ def contact(request, template="user/website/contact.html", context={}):
 
 
 @log
-def document(request, template="user/website/contact.html", context={}):
+def document(request, template="user/blog/contact.html", context={}):
     document_form = forms.DocumentForm(request.POST or None, request.FILES or None)
 
     if request.method == 'POST':
         if document_form.is_valid():
             document_form.save()
             messages.add_message(request, messages.SUCCESS, _('Your application successfully submitted.'))
-            return redirect(reverse('website_contact'))
+            return redirect(reverse('blog_contact'))
         else:
             messages.add_message(request, messages.ERROR, _('Please fix errors bellow.'))
 
@@ -94,11 +94,13 @@ def document(request, template="user/website/contact.html", context={}):
 
 
 @log
-def search(request, template='user/website/search.html', context={}):
-    q = request.GET.get('q', False)
-    search_result = logic.search(q)
+def search(request, template='user/blog/search.html', context={}):
+    blog_logic = logic.BlogLogic(request)
 
-    context['q'] = q
+    term = blog_logic.grab_get_param("term")
+    search_result = blog_logic.search(term)
+
+    context['term'] = term
     context['pages'] = search_result.pages
     context['posts'] = search_result.posts
     return render(request, template, context)
@@ -106,15 +108,17 @@ def search(request, template='user/website/search.html', context={}):
 
 @log
 def subscribe(request):
-    name = request.GET.get('name', False)
-    email = request.GET.get('email', False)
+    blog_logic = logic.BlogLogic(request)
+
+    name = blog_logic.grab_get_param("name")
+    email = blog_logic.grab_get_param("email")
 
     if not name or not email:
         messages.add_message(request, messages.ERROR, _('Please enter your name and email.'))
     else:
         try:
             django_forms.EmailField().clean(email)
-            logic.subscribe(name, email)
+            blog_logic.new_subscription(name, email)
             messages.add_message(request, messages.SUCCESS, _('You successfully subscribed.'))
         except ValidationError:
             messages.add_message(request, messages.ERROR, _('Please enter correct email.'))
