@@ -32,7 +32,10 @@ class Currency(abstracts.ModelAbstract):
     title = models.CharField(max_length=128)
 
     def __str__(self):
-        return self.title
+        return u"{}".format(self.title)
+
+    def __unicode__(self):
+        return self.__str__()
 
 
 class Manufacturer(abstracts.ModelAbstract):
@@ -42,7 +45,10 @@ class Manufacturer(abstracts.ModelAbstract):
     image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_cart_file_name)
 
     def __str__(self):
-        return self.title
+        return u"{}".format(self.title)
+
+    def __unicode__(self):
+        return self.__str__()
 
     def save(self, *args, **kwargs):
         self.slug = helpers.get_slug(self.title)
@@ -55,7 +61,10 @@ class Category(abstracts.ModelAbstract):
     info = models.CharField(max_length=1024, null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return u"{}".format(self.title)
+
+    def __unicode__(self):
+        return self.__str__()
 
     def save(self, *args, **kwargs):
         self.slug = helpers.get_slug(self.title)
@@ -66,7 +75,10 @@ class AttributeGroup(abstracts.ModelAbstract):
     title = models.CharField(max_length=256)
 
     def __str__(self):
-        return self.title
+        return u"{}".format(self.title)
+
+    def __unicode__(self):
+        return self.__str__()
 
 
 class Attribute(abstracts.ModelAbstract):
@@ -74,7 +86,10 @@ class Attribute(abstracts.ModelAbstract):
     title = models.CharField(max_length=256)
 
     def __str__(self):
-        return "{0} - {1}".format(self.group.title, self.title)
+        return u"{0} - {1}".format(self.group.title, self.title)
+
+    def __unicode__(self):
+        return self.__str__()
 
 
 ''' Product '''
@@ -94,7 +109,10 @@ class Product(abstracts.ModelAbstract):
     video_code = models.CharField(max_length=1024, null=True, blank=True)
 
     def __str__(self):
-        return "{0} {1} {2}".format(str(self.category), str(self.manufacturer), self.model)
+        return u"{0}/{1}/{2}".format(self.category, self.manufacturer, self.model)
+
+    def __unicode__(self):
+        return self.__str__()
 
 
 class ProductReview(abstracts.ModelAbstract):
@@ -105,8 +123,11 @@ class ProductReview(abstracts.ModelAbstract):
     comment = models.CharField(max_length=1024)
 
     def __str__(self):
-        return "User '{0}' reviewed product '{1}' with '{2}' rating".format(str(self.user), str(self.product),
+        return u"User '{0}' reviewed product '{1}' with '{2}' rating".format(self.user, self.product,
             RATING_CHOICES[self.rating][1])
+
+    def __unicode__(self):
+        return self.__str__()
 
     class Meta:
         permissions = (
@@ -120,7 +141,10 @@ class ProductAttribute(abstracts.ModelAbstract):
     value = models.CharField(max_length=128)
 
     def __str__(self):
-        return "".format()
+        return u"Product '{}' attribute {} = {}".format(self.product, self.attribute, self.value)
+
+    def __unicode__(self):
+        return self.__str__()
 
 
 class ProductImage(abstracts.ModelAbstract):
@@ -129,7 +153,10 @@ class ProductImage(abstracts.ModelAbstract):
     info = models.CharField(max_length=1024, null=True, blank=True)
 
     def __str__(self):
-        return "Image for {0}".format(str(self.product))
+        return u"Image for '{0}' product".format(self.product)
+
+    def __unicode__(self):
+        return self.__str__()
 
 
 ''' Shop '''
@@ -143,7 +170,10 @@ class Shop(abstracts.ModelAbstract):
     image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_cart_file_name)
 
     def __str__(self):
-        return self.title
+        return u"{}".format(self.title)
+
+    def __unicode__(self):
+        return self.__str__()
 
     def save(self, *args, **kwargs):
         self.slug = helpers.get_slug(self.title)
@@ -158,8 +188,11 @@ class ShopReview(abstracts.ModelAbstract):
     comment = models.CharField(max_length=1024)
 
     def __str__(self):
-        return "User '{0}' reviewed shop '{1}' with '{2}' rating".format(str(self.user), str(self.product),
+        return u"User '{0}' reviewed shop '{1}' with '{2}' rating".format(self.user, self.product,
             RATING_CHOICES[self.rating][1])
+
+    def __unicode__(self):
+        return self.__str__()
 
     class Meta:
         permissions = (
@@ -177,6 +210,9 @@ class ShopProduct(abstracts.ModelAbstract):
     url = models.URLField(null=True, blank=True)
 
     def __str__(self):
-        return "Product '{0}' attached to '{1}' shop with '{2} {3}' price".format(str(self.product), str(self.shop),
-            self.price, self.currency.title)
+        return u"Product '{0}' attached to '{1}' shop with '{2} {3}' price".format(self.product, self.shop, self.price,
+            self.currency)
+
+    def __unicode__(self):
+        return self.__str__()
 

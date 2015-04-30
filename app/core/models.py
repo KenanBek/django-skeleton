@@ -24,6 +24,12 @@ class Settings(abstracts.ModelAbstract):
     value = models.CharField(max_length=1024)
     group = models.CharField(max_length=256, null=True, blank=True, default='')
 
+    def __str__(self):
+        return u"Settings: {} ({}) = {}".format(self.key, self.group, self.value)
+
+    def __unicode__(self):
+        return self.__str__()
+
     def clean_fields(self, exclude=None):
         errors = {}
         if self.key == 'groups':

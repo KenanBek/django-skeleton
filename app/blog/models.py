@@ -31,7 +31,10 @@ class Slider(abstracts.ModelAbstract):
     description = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return u"{}".format(self.title)
+
+    def __unicode__(self):
+        return self.__str__()
 
 
 class Slide(abstracts.ModelAbstract):
@@ -42,7 +45,10 @@ class Slide(abstracts.ModelAbstract):
     related_slider = models.ForeignKey(Slider)
 
     def __str__(self):
-        return self.title
+        return u"{}".format(self.title)
+
+    def __unicode__(self):
+        return self.__str__()
 
 
 ''' Page '''
@@ -56,7 +62,10 @@ class Widget(abstracts.ModelAbstract):
     link_url = models.URLField(null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return u"{}".format(self.title)
+
+    def __unicode__(self):
+        return self.__str__()
 
 
 class Page(abstracts.ModelAbstract):
@@ -68,11 +77,14 @@ class Page(abstracts.ModelAbstract):
     featured_image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_blog_file_name)
     related_slider = models.ForeignKey(Slider, null=True, blank=True)
 
+    def __str__(self):
+        return u"{}".format(self.title)
+
+    def __unicode__(self):
+        return self.__str__()
+
     def get_widgets(self):
         return self.widgets.all()
-
-    def __str__(self):
-        return self.title
 
     def save(self, *args, **kwargs):
         self.slug = helpers.get_slug(self.title)
@@ -88,7 +100,10 @@ class Category(abstracts.ModelAbstract):
     description = models.CharField(max_length=512, null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return u"{}".format(self.title)
+
+    def __unicode__(self):
+        return self.__str__()
 
     def save(self, *args, **kwargs):
         self.slug = helpers.get_slug(self.title)
@@ -106,7 +121,10 @@ class Post(abstracts.ModelAbstract):
     related_slider = models.ForeignKey(Slider, null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return u"{}".format(self.title)
+
+    def __unicode__(self):
+        return self.__str__()
 
     def save(self, *args, **kwargs):
         self.slug = helpers.get_slug(self.title)
@@ -124,7 +142,10 @@ class Subscriber(abstracts.ModelAbstract):
     email = models.EmailField(unique=True)
 
     def __str__(self):
-        return "{0} ({1})".format(self.name, self.email)
+        return u"{} ({})".format(self.name, self.email)
+
+    def __unicode__(self):
+        return self.__str__()
 
 
 class Document(abstracts.ModelAbstract):
@@ -134,7 +155,10 @@ class Document(abstracts.ModelAbstract):
     document_file = models.FileField(upload_to=get_blog_document_file_name)
 
     def __str__(self):
-        return "'{0}' attached document with '{1}' description".format(self.name, self.short_description)
+        return u"'{0}' attached document with '{1}' description".format(self.name, self.short_description)
+
+    def __unicode__(self):
+        return self.__str__()
 
 
 ''' Contact '''
@@ -147,5 +171,8 @@ class Contact(abstracts.ModelAbstract):
     message = models.TextField()
 
     def __str__(self):
-        return "'{0}' submit contact with '{1}' subject".format(self.name, self.subject)
+        return u"'{0}' submit contact with '{1}' subject".format(self.name, self.subject)
+
+    def __unicode__(self):
+        return self.__str__()
 
