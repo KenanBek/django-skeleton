@@ -2,11 +2,15 @@
 Django settings for the project.
 """
 import logging
-
 import os
+
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.messages import constants as message_constants
+
+
+
+
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -69,6 +73,10 @@ INSTALLED_APPS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.gzip.GZipMiddleware',  # must be at the start
     'debreach.middleware.RandomCommentMiddleware',  # must be at the start but after compression middleware
+    # Minify and Cache
+    'django.middleware.cache.UpdateCacheMiddleware',  # as high (top) as possible
+    'htmlmin.middleware.HtmlMinifyMiddleware',  # must be after UpdateCacheMiddleware
+    #
     'debug_toolbar.middleware.DebugToolbarMiddleware',  # must be after encode middlewares
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',  # must be before common and after session middleware
@@ -79,8 +87,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'core.middleware.CoreMiddleware',
-    'htmlmin.middleware.HtmlMinifyMiddleware',
-    'htmlmin.middleware.MarkRequestMiddleware',
+    # Fetch page cache and mark for minifier
+    'django.middleware.cache.FetchFromCacheMiddleware',  # must be at the end
+    'htmlmin.middleware.MarkRequestMiddleware',  # must be after FetchFromCacheMiddleware
 )
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
@@ -406,7 +415,7 @@ DEBUG_TOOLBAR_PANELS = (
 
 # HTML MIN
 
-HTML_MINIFY = not DEBUG
+HTML_MINIFY = True  # not DEBUG
 EXCLUDE_FROM_MINIFYING = ('^admin/', )
 KEEP_COMMENTS_ON_MINIFYING = False
 
