@@ -35,10 +35,10 @@ urlpatterns = patterns('',
     url(r'^favicon\.ico$', RedirectView.as_view(url=static('favicon.ico'), permanent=True), name="favicon.ico"),
     url(r'^robots\.txt$', RedirectView.as_view(url=static('robots.txt'), permanent=True), name="robots.txt"),
     url(r'^sitemap\.xml$',
-        cache_page(10000)(sitemaps_views.index),
+        cache_page(60 * 10)(sitemaps_views.index),  # cache for 10 minutes
         {'sitemaps': core_sitemaps.sitemaps_dict}),
     url(r'^sitemap-(?P<section>.+)\.xml$',
-        cache_page(10000)(sitemaps_views.sitemap),
+        cache_page(60 * 10)(sitemaps_views.sitemap),  # cache for 10 minutes
         {'sitemaps': core_sitemaps.sitemaps_dict}),
 )
 

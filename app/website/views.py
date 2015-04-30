@@ -6,7 +6,6 @@ from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from django import forms as django_forms
-import markdown2
 
 from core.utils.decorators import log
 from website import forms
