@@ -58,11 +58,6 @@ def post(request, post_id, post_slug, template='user/website/post.html', context
 
 
 @log
-def about(request, template='user/website/about.html', context={}):
-    return render(request, template, context)
-
-
-@log
 def contact(request, template="user/website/contact.html", context={}):
     contact_form = forms.ContactForm(request.POST or None)
 

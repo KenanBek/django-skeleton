@@ -10,7 +10,6 @@ api_router.register(r'posts', api.PostViewSet)
 urlpatterns = patterns('website.views',
     # General
     url(r'^index/$', 'index', name='website_index'),
-    url(r'^about/$', 'about', name='website_about'),
     url(r'^contact/$', 'contact', name='website_contact'),
     url(r'^contact/document/$', 'document', name='website_document'),
     url(r'^subscribe/$', 'subscribe', name='website_subscribe'),
