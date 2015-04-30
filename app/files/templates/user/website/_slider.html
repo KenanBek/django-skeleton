@@ -1,6 +1,6 @@
 {% load thumbnail %}
 
-<div id="application-bootstrap-carousel" class="carousel slide" data-ride="carousel" style="height: 600px;">
+<div id="application-bootstrap-carousel" class="carousel slide" data-ride="carousel">
     {# Indicators #}
     <ol class="carousel-indicators">
         {% for slide in slider.slide_set.all %}
@@ -13,7 +13,8 @@
     <div class="carousel-inner">
         {% for slide in slider.slide_set.all %}
             <div {% if forloop.counter0 == 0 %} class="item active" {% else %} class="item" {% endif %}>
-                <img src="{{ slide.image|thumbnail_url:'medium' }}" alt="{{ slide.title }}" title="{{ slide.title }}" />
+                <img src="{{ slide.image|thumbnail_url:'xxl' }}"
+                     alt="{{ slide.title }}" title="{{ slide.title }}" />
                 <div class="carousel-caption">
                     <h3>{{ slide.title }}</h3>
                     <p>{{ slide.description }}</p>

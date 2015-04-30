@@ -1,4 +1,3 @@
-from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 from django.utils.translation import ugettext_lazy as _
@@ -14,12 +13,48 @@ from website import logic
 
 @log
 def index(request, template='user/website/index.html', context={}):
-    pages = logic.load_pages()
-    posts = logic.load_posts()
+    website_logic = logic.WebsiteLogic(request)
 
-    context['pages'] = pages
-    context['posts'] = posts
+    context['pages'] = website_logic.pages()
+    context['posts'] = website_logic.posts()
     return render(request, template, context)
+
+
+''' Pages '''
+
+
+@log
+def pages(request, template='user/website/pages.html', context={}):
+    website_logic = logic.WebsiteLogic(request)
+    context['pages'] = website_logic.pages()
+    return render(request, template, context)
+
+
+@log
+def page(request, page_slug, template='user/website/page.html', context={}):
+    website_logic = logic.WebsiteLogic(request)
+    context['page'] = website_logic.page(page_slug)
+    return render(request, template, context)
+
+
+''' Posts '''
+
+
+@log
+def posts(request, template='user/website/posts.html', context={}):
+    website_logic = logic.WebsiteLogic(request)
+    context['posts'] = website_logic.posts()
+    return render(request, template, context)
+
+
+@log
+def post(request, post_id, post_slug, template='user/website/post.html', context={}):
+    website_logic = logic.WebsiteLogic(request)
+    context['post'] = website_logic.post(post_id, post_slug)
+    return render(request, template, context)
+
+
+''' Others '''
 
 
 @log
@@ -92,17 +127,4 @@ def subscribe(request):
             messages.add_message(request, messages.WARNING, _('You already have been subscribed.'))
 
     return redirect(request.META.get('HTTP_REFERER'))
-
-
-@log
-def page(request, page_slug, template='user/website/page.html', context={}):
-    context['page'] = logic.get_page(page_slug)
-    return render(request, template, context)
-
-
-@log
-@login_required
-def post(request, post_id, post_slug, template='user/website/post.html', context={}):
-    context['post'] = logic.get_post(post_id, post_slug)
-    return render(request, template, context)
 

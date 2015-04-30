@@ -379,7 +379,8 @@ THUMBNAIL_ALIASES = {
         'small': {'size': (125, 125), 'crop': True},
         'medium': {'size': (400, 400), 'crop': True},
         'normal': {'size': (600, 600), 'crop': True},
-        'large': {'size': (800, 800), 'crop': True},
+        'large': {'size': (800, 600), 'crop': True},
+        'xxl': {'size': (1024, 728), 'crop': True},
     },
 }
 THUMBNAIL_NAMER = 'easy_thumbnails.namers.source_hashed'

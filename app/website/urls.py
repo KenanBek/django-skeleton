@@ -14,8 +14,11 @@ urlpatterns = patterns('website.views',
     url(r'^contact/$', 'contact', name='website_contact'),
     url(r'^contact/document/$', 'document', name='website_document'),
     url(r'^subscribe/$', 'subscribe', name='website_subscribe'),
-    # Page and Post
+    # Pages
+    url(r'^pages/$', 'pages', name='website_pages'),
     url(r'^page/(?P<page_slug>[\w-]+)/$', 'page', name='website_page'),
+    # Posts
+    url(r'^posts/$', 'posts', name='website_posts'),
     url(r'^post/(?P<post_id>[0-9]+)/(?P<post_slug>[\w-]+)/$', 'post', name='website_post'),
     # Search
     url(r'^search/$', 'search', name='website_search'),

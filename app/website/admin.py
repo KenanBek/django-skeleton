@@ -86,7 +86,7 @@ class PostAdminAbstract(abstracts.ModelAdminAbstract):
 # Slider
 
 
-class SlideInline(admin.StackedInline):
+class SlideInline(admin.TabularInline):
     model = models.Slide
     extra = 1
 
