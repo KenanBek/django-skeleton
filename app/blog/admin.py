@@ -7,11 +7,37 @@ from core import abstracts
 from blog import models
 
 
-class WidgetAdminAbstract(abstracts.ModelAdminAbstract):
-    list_display = ['title', 'related_page_names']
+# Slider
 
-    def related_page_names(self, obj):
-        return ",\n".join([page.title for page in obj.page_set.all()])
+
+class SlideInline(admin.TabularInline):
+    model = models.Slide
+    extra = 1
+
+
+class SliderAdmin(abstracts.ModelAdminAbstract):
+    list_display = ['title', 'status']
+    inlines = [SlideInline, ]
+
+
+admin.site.register(models.Slider, SliderAdmin)
+
+
+# Page and Post actions
+
+
+def publish_item(model_admin, request, queryset):
+    queryset.update(status=models.ITEM_STATUS_PUBLISHED)
+
+
+publish_item.short_description = "Publish selected items"
+
+
+def hide_item(model_admin, request, queryset):
+    queryset.update(status=models.ITEM_STATUS_HIDDEN)
+
+
+hide_item.short_description = "Hide selected items"
 
 
 # Page
@@ -25,17 +51,30 @@ class PageAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
-class PageAdminAbstract(abstracts.ModelAdminAbstract):
+class PageAdmin(abstracts.ModelAdminAbstract):
     form = PageAdminForm
 
     list_filter = ['status']
     list_display = ['slug', 'title', 'related_widget_names', 'related_slider', 'status']
 
+    actions = [publish_item, hide_item, ]
+
     def related_widget_names(self, obj):
         return ",\n".join([widget.title for widget in obj.widgets.all()])
 
 
-# Category
+class WidgetAdmin(abstracts.ModelAdminAbstract):
+    list_display = ['title', 'related_page_names']
+
+    def related_page_names(self, obj):
+        return ",\n".join([page.title for page in obj.page_set.all()])
+
+
+admin.site.register(models.Widget, WidgetAdmin)
+admin.site.register(models.Page, PageAdmin)
+
+
+# Post
 
 
 class CategoryAdminForm(forms.ModelForm):
@@ -46,16 +85,13 @@ class CategoryAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
-class CategoryAdminAbstract(abstracts.ModelAdminAbstract):
+class CategoryAdmin(abstracts.ModelAdminAbstract):
     form = CategoryAdminForm
 
     list_display = ['title', 'slug', 'related_post_names']
 
     def related_post_names(self, obj):
         return ",\n".join([post.title for post in obj.post_set.all()])
-
-
-# Post
 
 
 class CategoryChoice(fields.AutoModelSelect2MultipleField):
@@ -73,56 +109,46 @@ class PostAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
-class PostAdminAbstract(abstracts.ModelAdminAbstract):
+class PostAdmin(abstracts.ModelAdminAbstract):
     form = PostAdminForm
 
     list_filter = ['added_at', 'status', 'categories']
     list_display = ['added_at', 'slug', 'title', 'short_content', 'related_category_names', 'related_slider', 'status']
 
+    actions = [publish_item, hide_item, ]
+
     def related_category_names(self, obj):
         return ",\n".join([category.title for category in obj.categories.all()])
 
 
-# Slider
-
-
-class SlideInline(admin.TabularInline):
-    model = models.Slide
-    extra = 1
-
-
-class SliderAdminAbstract(abstracts.ModelAdminAbstract):
-    list_display = ['title', 'status']
-    inlines = [SlideInline, ]
+admin.site.register(models.Category, CategoryAdmin)
+admin.site.register(models.Post, PostAdmin)
 
 
 # Subscriber & Document
 
 
-class SubscriberAdminAbstract(abstracts.ModelAdminAbstract):
+class SubscriberAdmin(abstracts.ModelAdminAbstract):
     list_filter = ['added_at', 'email']
     list_display = ['added_at', 'name', 'email']
 
 
-class DocumentAdminAbstract(abstracts.ModelAdminAbstract):
+class DocumentAdmin(abstracts.ModelAdminAbstract):
     list_filter = ['added_at', 'email']
     list_display = ['added_at', 'name', 'email']
+
+
+admin.site.register(models.Subscriber, SubscriberAdmin)
+admin.site.register(models.Document, DocumentAdmin)
 
 
 # Contact
 
 
-class ContactAdminAbstract(abstracts.ModelAdminAbstract):
+class ContactAdmin(abstracts.ModelAdminAbstract):
     list_filter = ['added_at', 'email']
     list_display = ['added_at', 'name', 'email', 'subject']
 
 
-admin.site.register(models.Widget, WidgetAdminAbstract)
-admin.site.register(models.Page, PageAdminAbstract)
-admin.site.register(models.Category, CategoryAdminAbstract)
-admin.site.register(models.Post, PostAdminAbstract)
-admin.site.register(models.Slider, SliderAdminAbstract)
-admin.site.register(models.Subscriber, SubscriberAdminAbstract)
-admin.site.register(models.Document, DocumentAdminAbstract)
-admin.site.register(models.Contact, ContactAdminAbstract)
+admin.site.register(models.Contact, ContactAdmin)
 

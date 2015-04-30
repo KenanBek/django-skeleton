@@ -4,6 +4,7 @@ from django.db import IntegrityError
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django import forms as django_forms
+from django.views.decorators.cache import cache_page
 from django.utils.translation import ugettext_lazy as _
 
 from core.utils.decorators import log
@@ -12,6 +13,7 @@ from blog import logic
 
 
 @log
+@cache_page(60 * 3)
 def index(request, template='user/blog/index.html', context={}):
     blog_logic = logic.BlogLogic(request)
 
