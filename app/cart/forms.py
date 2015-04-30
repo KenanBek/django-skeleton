@@ -1,6 +1,6 @@
 from django import forms
 
-from cart import models
+from . import models
 
 
 class ProductReviewForm(forms.ModelForm):

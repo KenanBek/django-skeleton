@@ -9,6 +9,10 @@ def get_blog_file_name(instance, filename):
     return helpers.get_file_filename(instance, filename, "blog")
 
 
+def get_blog_document_file_name(instance, filename):
+    return helpers.get_file_filename(instance, filename, "blog/documents")
+
+
 ''' Types '''
 
 ITEM_STATUS_PUBLISHED = 1
@@ -127,7 +131,7 @@ class Document(abstracts.ModelAbstract):
     name = models.CharField(max_length=32)
     email = models.EmailField()
     short_description = models.CharField(max_length=128)
-    document_file = models.FileField(upload_to='blog/document/')
+    document_file = models.FileField(upload_to=get_blog_document_file_name)
 
     def __str__(self):
         return "'{0}' attached document with '{1}' description".format(self.name, self.short_description)

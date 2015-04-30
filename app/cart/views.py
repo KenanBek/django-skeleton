@@ -4,8 +4,8 @@ from django.shortcuts import render, redirect
 from django.utils.translation import ugettext_lazy as _
 
 from core.utils.decorators import log
-from cart import models
-from cart import forms
+from . import models
+from . import forms
 
 
 @log

@@ -1,7 +1,7 @@
 from django import forms
 import django.contrib.auth.models as auth_models
 
-import models
+from . import models
 
 ''' Login and Registration forms '''
 

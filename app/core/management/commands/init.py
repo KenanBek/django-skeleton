@@ -4,6 +4,7 @@ import os
 from django.core import management
 from django.core.management.base import NoArgsCommand
 from django.conf import settings
+
 from ._private import CommandHelper
 
 

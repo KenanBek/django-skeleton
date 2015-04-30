@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 
 from core import abstracts
-from account.models import Profile
+from .models import Profile
 
 
 class ProfileInline(admin.StackedInline):

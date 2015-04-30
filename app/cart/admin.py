@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from ckeditor.widgets import CKEditorWidget
 
 from core import abstracts
-from cart import models
+from . import models
 
 ''' Product '''
 

@@ -8,8 +8,8 @@ from django.views.decorators.cache import cache_page
 from django.utils.translation import ugettext_lazy as _
 
 from core.utils.decorators import log
-from blog import forms
-from blog import logic
+from . import forms
+from . import logic
 
 
 @log

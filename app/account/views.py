@@ -8,8 +8,8 @@ from django.contrib.auth.decorators import login_required
 import django.contrib.auth as django_auth
 
 from core.utils.decorators import log, anonymous_required
-from account import models
-from account import forms
+from . import models
+from . import forms
 
 
 def index(request, template="user/account/index.html", context={}):

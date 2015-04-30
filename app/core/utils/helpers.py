@@ -1,9 +1,8 @@
 import datetime
-
 import uuid
-
 import os
-import slugify
+
+from slugify import slugify
 
 
 def get_file_filename(instance, filename, folder):
@@ -20,6 +19,6 @@ def get_file_filename(instance, filename, folder):
 
 
 def get_slug(title):
-    slug = slugify.slugify(unicode(title))
+    slug = slugify(unicode(title))
     return slug
 

@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from blog import models
+from . import models
 
 
 class PageSerializer(ModelSerializer):

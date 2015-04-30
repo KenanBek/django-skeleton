@@ -15,5 +15,8 @@ class Profile(abstracts.ModelAbstract):
     avatar = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_account_file_name)
 
     def __str__(self):
-        return self.user.username
+        return u"{}{}".format(self.user.username)
+
+    def __unicode__(self):
+        return self.__str__()
 

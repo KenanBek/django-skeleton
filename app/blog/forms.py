@@ -1,6 +1,6 @@
 from django import forms
 
-from blog import models
+from . import models
 
 
 class DocumentForm(forms.ModelForm):

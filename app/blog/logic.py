@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
 from core import abstracts
-from blog import models
+from . import models
 
 
 class BlogLogic(abstracts.LogicAbstract):
