@@ -8,14 +8,7 @@ from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.messages import constants as message_constants
 
-
-
-
-
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # use os.path.join(BASE_DIR, ...)
 
 # Base configuration
 
