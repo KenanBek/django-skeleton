@@ -21,7 +21,7 @@ def log(fn):
         function_name = "'(%(type)s) %(module)s.%(name)s'" % \
                         {'module': fn.__module__, 'type': fn.__class__.__name__, 'name': fn.__name__}
         # Log about start of the function
-        settings.CORE_LOGGER.info('Start %s', function_name)
+        settings.LOGIC_LOGGER.info('Start %s', function_name)
         # Function start time
         start = timeit.default_timer()
         # Executing function itself
@@ -31,7 +31,7 @@ def log(fn):
         # Calculate function executing time
         time = stop - start
         # Log about end of the function
-        settings.CORE_LOGGER.info('End %s in %.5f SECs', function_name, time)
+        settings.LOGIC_LOGGER.info('End %s in %.5f SECs', function_name, time)
         return fn_result
 
     return wrapper

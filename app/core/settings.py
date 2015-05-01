@@ -1,5 +1,5 @@
 """
-Django settings for the project.
+Default settings for the project.
 """
 import logging
 import os
@@ -25,7 +25,7 @@ ALLOWED_HOSTS = [
 
 DJANGO_LOGGER = logging.getLogger('django')
 APPLICATION_LOGGER = logging.getLogger('application')
-CORE_LOGGER = logging.getLogger('core')
+LOGIC_LOGGER = logging.getLogger('logic')
 
 # Email configuration
 
