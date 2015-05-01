@@ -309,9 +309,9 @@ SUIT_CONFIG = {
         # Account
         '-',
         {'label': 'Account', 'icon': 'icon-lock', 'models': (
-            {'model': 'auth.group', 'label': 'Group'},
             {'model': 'auth.user', 'label': 'User'},
             {'model': 'account.profile', 'label': 'Profile'},
+            {'model': 'auth.group', 'label': 'Group'},
         )},
         # Blog
         '-',
@@ -323,12 +323,12 @@ SUIT_CONFIG = {
             {'model': 'blog.slide', 'label': 'Slides'},
         )},
         {'label': 'Page', 'icon': 'icon-th', 'models': (
-            {'model': 'blog.widget', 'label': 'Widgets'},
             {'model': 'blog.page', 'label': 'Pages'},
+            {'model': 'blog.widget', 'label': 'Widgets'},
         )},
         {'label': 'Post', 'icon': 'icon-th', 'models': (
-            {'model': 'blog.category', 'label': 'Categories'},
             {'model': 'blog.post', 'label': 'Posts'},
+            {'model': 'blog.category', 'label': 'Categories'},
         )},
         # Cart
         '-',

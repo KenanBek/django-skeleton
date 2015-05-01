@@ -33,6 +33,7 @@ def pages(request, template='user/blog/pages.html', context={}):
 
 
 @log
+@cache_page(60 * 3)
 def page(request, page_slug, template='user/blog/page.html', context={}):
     blog_logic = logic.BlogLogic(request)
     context['page'] = blog_logic.page(page_slug)
@@ -50,6 +51,7 @@ def posts(request, template='user/blog/posts.html', context={}):
 
 
 @log
+@cache_page(60 * 3)
 def post(request, post_id, post_slug, template='user/blog/post.html', context={}):
     blog_logic = logic.BlogLogic(request)
     context['post'] = blog_logic.post(post_id, post_slug)
