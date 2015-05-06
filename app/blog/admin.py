@@ -9,6 +9,7 @@ from . import models
 
 
 
+
 # Slider
 
 
@@ -133,7 +134,7 @@ admin.site.register(models.Post, PostAdmin)
 class BeepAdmin(abstracts.ModelAdminAbstract):
     search_fields = ['text', ]
     list_filter = ['user', ]
-    list_display = ['text', 'user', 'modified_at']
+    list_display = ['text', 'length', 'user', 'modified_at', ]
 
 
 admin.site.register(models.Beep, BeepAdmin)

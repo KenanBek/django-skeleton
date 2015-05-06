@@ -321,6 +321,7 @@ SUIT_CONFIG = {
             {'model': 'blog.document', 'label': 'Documents'},
             {'model': 'blog.slider', 'label': 'Sliders'},
             {'model': 'blog.slide', 'label': 'Slides'},
+            {'model': 'blog.beep', 'label': 'Beeps'},
         )},
         {'label': 'Page', 'icon': 'icon-th', 'models': (
             {'model': 'blog.page', 'label': 'Pages'},

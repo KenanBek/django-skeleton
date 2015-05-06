@@ -34,7 +34,7 @@ def login(request, template="user/account/login.html", context={}):
                     if next_url:
                         return redirect(next_url)
                     else:
-                        return redirect(reverse('index'))
+                        return redirect(reverse('home'))
                 else:
                     messages.add_message(request, messages.WARNING, _('Non active user.'))
             else:

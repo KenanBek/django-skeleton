@@ -139,14 +139,21 @@ class Post(abstracts.ModelAbstract):
 
 
 class Beep(abstracts.ModelAbstract):
-    text = models.CharField(max_length=128)
+    text = models.TextField(max_length=128)
     user = models.ForeignKey(User, null=True, blank=True)
+    length = models.IntegerField(null=True, blank=True, editable=False, )
 
     def __str__(self):
-        return u"{}".format(self.title)
+        return u"{}".format(self.text)
 
     def __unicode__(self):
         return self.__str__()
+
+    def save(self, force_insert=False, force_update=False, using=None,
+            update_fields=None):
+        if (update_fields and 'text' in update_fields) or (not update_fields):
+            self.length = len(self.text)
+        super(Beep, self).save(force_insert, force_update, using, update_fields)
 
 
 ''' Subscriber & Document '''
