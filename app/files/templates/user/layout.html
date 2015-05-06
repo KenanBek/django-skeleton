@@ -26,7 +26,25 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
                 <li><a href="{% url 'home' %}">{% trans "Dashboard" %}</a></li>
-                <li><a href="{% url 'blog_index' %}">{% trans "Blog" %}</a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        {% trans "Blog" %}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="{% url 'blog_index' %}">{% trans "Dashboard" %}</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{% url 'blog_pages' %}">{% trans "Pages" %}</a></li>
+                        <li><a href="{% url 'blog_posts' %}">{% trans "Posts" %}</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{% url 'blog_beep_list' %}">{% trans "Beeps" %}</a></li>
+                        <li><a href="{% url 'blog_beep_new' %}">{% blocktrans %}New beep{% endblocktrans %}</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{% url 'blog_contact' %}">{% trans "Contact" %}</a></li>
+                    </ul>
+                </li>
+
                 <li><a href="{% url 'cart_index' %}">{% trans "Cart" %}</a></li>
             </ul>
             <form class="navbar-form navbar-right" action="{% url 'blog_search' %}" method="get">

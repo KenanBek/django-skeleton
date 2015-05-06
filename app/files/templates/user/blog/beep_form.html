@@ -3,9 +3,5 @@
 
 {% block content %}
     <h1>{% trans "Modify beep" %}</h1>
-    <form method="post">
-        {% csrf_token %}
-        {% include 'user/_form.html' with form=form %}
-        <input type="submit" value="{% trans "Submit" %}" />
-    </form>
+    {% include 'user/_form.html' with form=form %}
 {% endblock %}
