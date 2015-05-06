@@ -7,6 +7,8 @@ from core import abstracts
 from . import models
 
 
+
+
 # Slider
 
 
@@ -123,6 +125,18 @@ class PostAdmin(abstracts.ModelAdminAbstract):
 
 admin.site.register(models.Category, CategoryAdmin)
 admin.site.register(models.Post, PostAdmin)
+
+
+# Beep
+
+
+class BeepAdmin(abstracts.ModelAdminAbstract):
+    search_fields = ['text', ]
+    list_filter = ['user', ]
+    list_display = ['text', 'user', 'modified_at']
+
+
+admin.site.register(models.Beep, BeepAdmin)
 
 
 # Subscriber & Document

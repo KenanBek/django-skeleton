@@ -1,5 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.contrib.auth.models import User
 
 from core import abstracts
 from core.utils import helpers
@@ -132,6 +133,20 @@ class Post(abstracts.ModelAbstract):
 
     def get_absolute_url(self):
         return reverse('blog_post', kwargs={'post_id': self.pk, 'post_slug': self.slug})
+
+
+''' Beep '''
+
+
+class Beep(abstracts.ModelAbstract):
+    text = models.CharField(max_length=128)
+    user = models.ForeignKey(User, null=True, blank=True)
+
+    def __str__(self):
+        return u"{}".format(self.title)
+
+    def __unicode__(self):
+        return self.__str__()
 
 
 ''' Subscriber & Document '''
