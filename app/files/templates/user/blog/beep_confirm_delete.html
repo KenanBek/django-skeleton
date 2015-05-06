@@ -1,0 +1,14 @@
+{% extends 'user/layout.html' %}
+{% load i18n %}
+
+{% block content %}
+    <h1>{% trans "Delete beep" %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% blocktrans with item=object %}
+            Are you sure you want to delete "{{ item }}"?
+        {% endblocktrans %}
+        <br />
+        <input type="submit" value="{% trans "Submit" %}" />
+    </form>
+{% endblock %}

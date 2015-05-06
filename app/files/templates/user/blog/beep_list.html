@@ -1,0 +1,27 @@
+{% extends 'user/layout.html' %}
+{% load i18n %}
+
+{% block content %}
+    <h1>{% trans "Beeps" %}</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{% url 'blog_beep_new' %}" class="pull-right">{% trans "New" %}</a>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {% for item in object_list %}
+                <div class="well well-sm pull-left">
+                    <p>
+                        {{ item.text }}
+                    </p>
+                    <div>
+                        <a href="{% url "blog_beep_edit" item.id %}">{% trans "edit" %}</a>
+                        <a href="{% url "blog_beep_delete" item.id %}">{% trans "delete" %}</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

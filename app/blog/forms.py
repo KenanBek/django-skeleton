@@ -3,6 +3,12 @@ from django import forms
 from . import models
 
 
+class BeepForm(forms.ModelForm):
+    class Meta:
+        models = models.Beep
+        field = '__all__'
+
+
 class DocumentForm(forms.ModelForm):
     class Meta:
         model = models.Document

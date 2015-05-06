@@ -149,6 +149,9 @@ class Beep(abstracts.ModelAbstract):
     def __unicode__(self):
         return self.__str__()
 
+    def get_absolute_url(self):
+        return reverse('blog_beep_edit', kwargs={'pk': self.pk})
+
     def save(self, force_insert=False, force_update=False, using=None,
             update_fields=None):
         if (update_fields and 'text' in update_fields) or (not update_fields):

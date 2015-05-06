@@ -6,10 +6,47 @@ from django.contrib import messages
 from django import forms as django_forms
 from django.views.decorators.cache import cache_page
 from django.utils.translation import ugettext_lazy as _
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 
 from core.utils.decorators import log
+from . import models
 from . import forms
 from . import logic
+
+
+class BeepList(ListView):
+    template_name = "user/blog/beep_list.html"
+    model = models.Beep
+
+
+class BeepCreate(CreateView):
+    model = models.Beep
+    fields = ['text', ]
+    template_name = "user/blog/beep_form.html"
+    success_url = reverse_lazy('blog_beep_list')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(BeepCreate, self).form_valid(form)
+
+
+class BeepUpdate(UpdateView):
+    model = models.Beep
+    fields = ['text', ]
+    template_name = "user/blog/beep_form.html"
+    success_url = reverse_lazy('blog_beep_list')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(BeepUpdate, self).form_valid(form)
+
+
+class BeepDelete(DeleteView):
+    model = models.Beep
+    template_name = "user/blog/beep_confirm_delete.html"
+    success_url = reverse_lazy('blog_beep_list')
 
 
 @log
