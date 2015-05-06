@@ -10,18 +10,19 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 
+from core import abstracts
 from core.utils.decorators import log
 from . import models
 from . import forms
 from . import logic
 
 
-class BeepList(ListView):
+class BeepList(abstracts.NeverCacheMixin, ListView):
     template_name = "user/blog/beep_list.html"
     model = models.Beep
 
 
-class BeepCreate(CreateView):
+class BeepCreate(abstracts.NeverCacheMixin, CreateView):
     model = models.Beep
     fields = ['text', ]
     template_name = "user/blog/beep_form.html"
@@ -32,7 +33,7 @@ class BeepCreate(CreateView):
         return super(BeepCreate, self).form_valid(form)
 
 
-class BeepUpdate(UpdateView):
+class BeepUpdate(abstracts.NeverCacheMixin, UpdateView):
     model = models.Beep
     fields = ['text', ]
     template_name = "user/blog/beep_form.html"
@@ -43,7 +44,7 @@ class BeepUpdate(UpdateView):
         return super(BeepUpdate, self).form_valid(form)
 
 
-class BeepDelete(DeleteView):
+class BeepDelete(abstracts.NeverCacheMixin, DeleteView):
     model = models.Beep
     template_name = "user/blog/beep_confirm_delete.html"
     success_url = reverse_lazy('blog_beep_list')

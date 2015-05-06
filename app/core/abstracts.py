@@ -1,5 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.db import models
 from django.contrib import admin
+from django.views.decorators.cache import never_cache
 
 
 class ModelAbstract(models.Model):
@@ -31,4 +33,21 @@ class LogicAbstract(object):
 
     def grab_post_param(self, param):
         return self.request.POST.get(param, None)
+
+
+''' Class Based Views '''
+
+
+class NeverCacheMixin(object):
+    @classmethod
+    def as_view(cls, **initkwargs):
+        view = super(NeverCacheMixin, cls).as_view(**initkwargs)
+        return never_cache(view)
+
+
+class LoginRequiredMixin(object):
+    @classmethod
+    def as_view(cls, **initkwargs):
+        view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
+        return login_required(view)
 
