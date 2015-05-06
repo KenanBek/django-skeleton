@@ -22,3 +22,12 @@ def get_slug(title):
     slug = slugify(unicode(title))
     return slug
 
+
+def get_dict_as_request_params(d, exclude=[]):
+    result = ""
+    for i, v in enumerate(d):
+        if not (v in exclude):
+            result += "{}={}&".format(v, d.get(v))
+    result = result[0:-1] if result else ""
+    return result
+

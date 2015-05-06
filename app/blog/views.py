@@ -20,6 +20,10 @@ from . import logic
 class BeepList(abstracts.NeverCacheMixin, ListView):
     template_name = "user/blog/beep_list.html"
     model = models.Beep
+    paginate_by = 20
+
+    def get_queryset(self):
+        return models.Beep.objects.order_by('-modified_at').all()
 
 
 class BeepCreate(abstracts.NeverCacheMixin, CreateView):

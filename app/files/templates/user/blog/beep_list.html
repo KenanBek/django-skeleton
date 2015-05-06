@@ -1,6 +1,7 @@
 {% extends 'user/layout.html' %}
 {% load i18n %}
 {% load humanize %}
+{% load format %}
 
 {% block content %}
     <h1>{% trans "Beeps" %}</h1>
@@ -12,18 +13,40 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            {% for item in object_list %}
-                <div class="thumbnail pull-left" style="margin-right: 20px;">
-                    <p class="text-info">
-                        #{{ item.id }}&nbsp;{{ item.text }}
-                    </p>
-                    <span class="text-muted">{{ item.modified_at|naturaltime }}</span>
-                    <div>
-                        <a href="{% url "blog_beep_edit" item.id %}">{% trans "edit" %}</a>
-                        <a href="{% url "blog_beep_delete" item.id %}">{% trans "delete" %}</a>
+            <div class="thumbnails clearfix">
+                {% for item in object_list %}
+                    <div class="thumbnail pull-left" style="margin-right: 20px;">
+                        <p class="text-info">
+                            #{{ item.id }}&nbsp;{{ item.text }}
+                        </p>
+                        <span class="text-muted">{{ item.modified_at|naturaltime }}</span>
+                        <div>
+                            <a href="{% url "blog_beep_edit" item.id %}">{% trans "edit" %}</a>
+                            <a href="{% url "blog_beep_delete" item.id %}">{% trans "delete" %}</a>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
+            <div class="pagination">
+
+                ---
+                {{ request.GET|dict_as_request_params:"page" }}
+                ---
+
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ paginator.num_pages }}
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
         </div>
     </div>
 {% endblock %}
