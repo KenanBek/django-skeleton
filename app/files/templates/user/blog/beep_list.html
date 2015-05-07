@@ -21,6 +21,7 @@
                         </p>
                         <span class="text-muted">{{ item.modified_at|naturaltime }}</span>
                         <div>
+                            <a href="{% url "blog_beep_detail" item.id %}">{% trans "view" %}</a>
                             <a href="{% url "blog_beep_edit" item.id %}">{% trans "edit" %}</a>
                             <a href="{% url "blog_beep_delete" item.id %}">{% trans "delete" %}</a>
                         </div>

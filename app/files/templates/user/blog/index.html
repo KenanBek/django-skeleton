@@ -16,5 +16,11 @@
             <hr />
             <a href="{% url 'blog_posts' %}" class="pull-right">{% trans 'See also posts' %}</a>
         </div>
+        <div class="col-md-12">
+            <h2>{% trans "Beeps" %}</h2>
+            {% include 'user/blog/_post_list.html' with post_list=posts %}
+            <hr />
+            <a href="{% url 'blog_beep_list' %}" class="pull-right">{% trans 'See also beeps' %}</a>
+        </div>
     </div>
 {% endblock %}

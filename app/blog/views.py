@@ -6,7 +6,7 @@ from django.contrib import messages
 from django import forms as django_forms
 from django.views.decorators.cache import cache_page
 from django.utils.translation import ugettext_lazy as _
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 
@@ -48,6 +48,11 @@ class BeepUpdate(abstracts.NeverCacheMixin, UpdateView):
         return super(BeepUpdate, self).form_valid(form)
 
 
+class BeepDetail(abstracts.NeverCacheMixin, DetailView):
+    model = models.Beep
+    template_name = "user/blog/beep_detail.html"
+
+
 class BeepDelete(abstracts.NeverCacheMixin, DeleteView):
     model = models.Beep
     template_name = "user/blog/beep_confirm_delete.html"
@@ -61,6 +66,7 @@ def index(request, template='user/blog/index.html', context={}):
 
     context['pages'] = blog_logic.pages()
     context['posts'] = blog_logic.posts()
+    # context['beeps'] = blog_logic.beeps()
     return render(request, template, context)
 
 

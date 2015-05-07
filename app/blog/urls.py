@@ -12,6 +12,7 @@ beep_urlpatterns = patterns('',
     url(r'^$', views.BeepList.as_view(), name='blog_beep_list'),
     url(r'^new/$', views.BeepCreate.as_view(), name='blog_beep_new'),
     url(r'^edit/(?P<pk>\d+)/$', views.BeepUpdate.as_view(), name='blog_beep_edit'),
+    url(r'^view/(?P<pk>\d+)/$', views.BeepDetail.as_view(), name='blog_beep_detail'),
     url(r'^delete/(?P<pk>\d+)/$', views.BeepDelete.as_view(), name='blog_beep_delete'),
 )
 
