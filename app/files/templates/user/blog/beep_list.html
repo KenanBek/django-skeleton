@@ -28,14 +28,9 @@
                 {% endfor %}
             </div>
             <div class="pagination">
-
-                ---
-                {{ request.GET|dict_as_request_params:"page" }}
-                ---
-
                 <span class="step-links">
                     {% if page_obj.has_previous %}
-                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                        <a href="?page={{ page_obj.previous_page_number }}&{{ request.GET|dict_as_request_params:"page" }}">previous</a>
                     {% endif %}
 
                     <span class="current">
@@ -43,7 +38,7 @@
                     </span>
 
                     {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.next_page_number }}&{{ request.GET|dict_as_request_params:"page" }}">next</a>
                     {% endif %}
                 </span>
             </div>

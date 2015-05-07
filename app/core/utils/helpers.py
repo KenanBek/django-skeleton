@@ -23,10 +23,10 @@ def get_slug(title):
     return slug
 
 
-def get_dict_as_request_params(d, exclude=[]):
+def get_dict_as_request_params(d, exclude=None):
     result = ""
     for i, v in enumerate(d):
-        if not (v in exclude):
+        if (not exclude) or (exclude and exclude != v):
             result += "{}={}&".format(v, d.get(v))
     result = result[0:-1] if result else ""
     return result
