@@ -101,6 +101,10 @@ Configure following things if you are going to use this skeleton on your project
 - Configure application settings (settings.py)
 - Configure robots.txt and sitemaps
 
+Related articles:
+
+- [Django class-based views example with pagination](http://kenanbek.me/post/django-class-based-views-example-with-pagination/)
+
 # License
 
 Licensed under GNU GPL v3.0
