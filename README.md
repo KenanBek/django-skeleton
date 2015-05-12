@@ -9,7 +9,37 @@ Django version: 1.7.3
 
 # Features
 
-**Built in modules**:
+**Pre configured Python/Django features:**
+
+- Advanced page and data cache examples
+- Using of HTML minifiers and assets compressions
+- Database optimised Model examples
+- Robots.txt and dynamic generation of sitemaps (sitemap.xml, sitemap-website.xml, sitemap-cart.xml)
+- Advanced usage of Class Based Views with custom pagination (which additionally passes all request GET parameters to view, it might be useful for custom filter)
+- Data compression (with installed security debreach package)
+- Localization
+- Custom user authentication with user profile
+- Multiple form support
+- Model history and reversion (possibility to back to old versions of the model)
+- Management commands for initial configuration
+- Customized Django Suit based administration
+- Pre configured specific folders of Django application (fixtures, media, static, etc.)
+- Email subscription
+- Contact and Application database
+- Using thumbnail for images
+- Slider
+- Logging
+
+**Pre configured 3rd party packages:**
+
+- REST Framework
+- Guardian (object based permissions)
+- Import Export (Import and Export to and from most popular file formats such as xml, csv, etc.)
+- CKEditor (also configured to support file upload)
+- Django Select2 (Auto select for administration)
+- Easy Thumbnails
+
+**Additional applications**:
 
 - Cart application
     - Product and Shop entities
@@ -24,32 +54,8 @@ Django version: 1.7.3
     - Posts
     - Post categories
     - Slider
+    - Beep (simple twitter like model logic)
     - Blog API
-
-**Pre configured 3rd party packages:**
-
-- REST Framework
-- Guardian (object based permissions)
-- Import Export (Import and Export to and from most popular file formats such as xml, csv, etc.)
-- CKEditor (also configured to support file upload)
-- Django Select2 (Auto select for administration)
-- Easy Thumbnails
-
-**Pre configured Python/Django features:**
-
-- Data compression (with installed security debreach package)
-- Localization
-- Custom user authentication with user profile
-- Multiple form support
-- Model history and reversion (possibility to back to old versions of the model)
-- Management commands for initial configuration
-- Customized Django Suit based administration
-- Pre configured specific folders of Django application (fixtures, media, static, etc.)
-- Email subscription
-- Contact and Application database
-- Using thumbnail for images
-- Slider
-- Logging
 
 # Install
 
@@ -86,6 +92,14 @@ Superuser login and password:
 
     Login: admin
     Password: admin
+
+# Recommendations
+
+Configure following things if you are going to use this skeleton on your projects:
+
+- Configure django sites (enter correct name and address for the site)
+- Configure application settings (settings.py)
+- Configure robots.txt and sitemaps
 
 # License
 
