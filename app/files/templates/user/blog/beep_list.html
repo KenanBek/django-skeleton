@@ -31,15 +31,17 @@
             <div class="pagination">
                 <span class="step-links">
                     {% if page_obj.has_previous %}
-                        <a href="?page={{ page_obj.previous_page_number }}&{{ request.GET|dict_as_request_params:"page" }}">previous</a>
+                        <a href="?page={{ page_obj.previous_page_number }}&{{ request.GET|dict_as_request_params:"page" }}">{% trans "previous" %}</a>
                     {% endif %}
 
                     <span class="current">
-                        Page {{ page_obj.number }} of {{ paginator.num_pages }}
+                        {% blocktrans with page_number=page_obj.number page_count=paginator.num_pages %}
+                            page {{ page_number }} of {{ page_count }}
+                        {% endblocktrans %}
                     </span>
 
                     {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}&{{ request.GET|dict_as_request_params:"page" }}">next</a>
+                        <a href="?page={{ page_obj.next_page_number }}&{{ request.GET|dict_as_request_params:"page" }}">{% trans "next" %}</a>
                     {% endif %}
                 </span>
             </div>
