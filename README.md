@@ -44,10 +44,10 @@ Django version: 1.7.3
 - Cart application
     - Product and Shop entities
     - Product filter
-    - Different price for each Shop
-    - Product and Shop user review (5 star rating system)
-    - Shop news
-    - Product's image and video
+    - Different price for each Shop for the same Product
+    - User review for Product and Shop (5 star rating system)
+    - News broadcasting for the Shops
+    - Image and video media for the Product
 - Blog application
     - Widgets
     - Static pages
