@@ -17,4 +17,5 @@ markdown
 markdown2
 easy-thumbnails
 python-slugify
+python-social-auth
 

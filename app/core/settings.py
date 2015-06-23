@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'debreach',
     'compressor',
+    'social.apps.django_app.default',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -85,6 +86,7 @@ MIDDLEWARE_CLASSES = (
     'htmlmin.middleware.MarkRequestMiddleware',  # must be after FetchFromCacheMiddleware
 )
 AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.Facebook2OAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 ROOT_URLCONF = 'core.urls'
@@ -166,6 +168,8 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.i18n',
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
     'core.context.general',
     'debreach.context_processors.csrf',  # must be at the end
 )
@@ -413,3 +417,11 @@ HTML_MINIFY = True  # not DEBUG
 EXCLUDE_FROM_MINIFYING = ('^admin/', )
 KEEP_COMMENTS_ON_MINIFYING = False
 
+# SOCIAL AUTH
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email']
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1520447268200947'
+SOCIAL_AUTH_FACEBOOK_SECRET = '5b83e07a4726d9e74b82adc6cdebb95c'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']

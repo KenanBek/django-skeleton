@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^plugin/ckeditor/', include('ckeditor.urls')),
     url(r'^plugin/select/', include('django_select2.urls')),
     url(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^social/', include('social.apps.django_app.urls', namespace='social')),
     # Core
     url(r'^$', 'core.views.home', name='home'),
     url(r'^about/$', 'core.views.about', name='about'),
