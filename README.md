@@ -33,7 +33,6 @@ Django version: 1.7.3
 **Pre configured 3rd party packages:**
 
 - REST Framework
-- Guardian (object based permissions)
 - Import Export (Import and Export to and from most popular file formats such as xml, csv, etc.)
 - CKEditor (also configured to support file upload)
 - Django Select2 (Auto select for administration)
@@ -100,10 +99,6 @@ Configure following things if you are going to use this skeleton on your project
 - Configure django sites (enter correct name and address for the site)
 - Configure application settings (settings.py)
 - Configure robots.txt and sitemaps
-
-Related articles:
-
-- [Django class-based views example with pagination](http://kenanbek.me/post/django-class-based-views-example-with-pagination/)
 
 # License
 
