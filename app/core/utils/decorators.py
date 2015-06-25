@@ -1,4 +1,3 @@
-import json
 import timeit
 
 import jsonpickle
@@ -37,23 +36,7 @@ def log(fn):
     return wrapper
 
 
-def anonymous_required(function):
-    """
-    Check either user registered or not. If it is already registered user will redirect to 'INDEX'.
-    """
-
-    def wrap(request, *args, **kwargs):
-        user = request.user
-        if user.is_authenticated():
-            messages.add_message(request, messages.ERROR, _('You are already registered and logged in.'))
-            return redirect(reverse('index'))
-        else:
-            return function(request, *args, **kwargs)
-
-    return wrap
-
-
-def convert_to_json_by_jsonpickle(fn):
+def json(fn):
     """
     Gets view method response and returns it in JSON format.
     """
@@ -77,26 +60,19 @@ def convert_to_json_by_jsonpickle(fn):
     return wrapper
 
 
-def convert_to_json_by_json(fn):
+def anonymous_required(function):
     """
-    Gets view method response and returns it in JSON format.
+    Check either user registered or not. If it is already registered user will redirect to 'INDEX'.
     """
 
-    def wrapper(request, *args, **kwargs):
-        try:
-            # Executing function itself
-            fn_result = fn(request, *args, **kwargs)
-            # Prepare JSON dictionary for successful result
-            json_result = {'is_successful': True, 'data': fn_result}
-        except Exception as e:
-            # If AJAX_DEBUG is enabled raise Exception
-            if settings.JSON_DEBUG:
-                raise
-            # Else prepare JSON result object with error message
-            error_message = e.message.strip()
-            json_result = {'is_successful': False, 'message': error_message}
-        # Wrap result with JSON HTTPResponse and return
-        return HttpResponse(json.dumps(json_result), content_type='application/json')
+    def wrap(request, *args, **kwargs):
+        user = request.user
+        if user.is_authenticated():
+            messages.add_message(request, messages.ERROR, _('You are already registered and logged in.'))
+            return redirect(reverse('index'))
+        else:
+            return function(request, *args, **kwargs)
 
-    return wrapper
+    return wrap
+
 

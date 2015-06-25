@@ -13,8 +13,6 @@ django-debug-toolbar-template-timings
 django-ckeditor-updated
 django_compressor
 djangorestframework
-markdown
-markdown2
 easy-thumbnails
 python-slugify
 python-social-auth
