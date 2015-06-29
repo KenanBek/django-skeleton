@@ -15,5 +15,7 @@ django_compressor
 djangorestframework
 easy-thumbnails
 python-slugify
+requests
+python-openid
 python-social-auth
 
