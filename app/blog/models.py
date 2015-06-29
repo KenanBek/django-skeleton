@@ -72,7 +72,7 @@ class Widget(abstracts.ModelAbstract):
 class Page(abstracts.ModelAbstract):
     status = models.IntegerField(max_length=9, choices=ITEM_STATUS_CHOICES, default=ITEM_STATUS_PUBLISHED)
     title = models.CharField(max_length=32)
-    slug = models.SlugField(unique=True, editable=False)
+    slug = models.SlugField(max_length=128, unique=True, editable=False)
     content = models.TextField()
     widgets = models.ManyToManyField(Widget, null=True, blank=True)
     featured_image = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_blog_file_name)

@@ -57,7 +57,7 @@ class Manufacturer(abstracts.ModelAbstract):
 
 class Category(abstracts.ModelAbstract):
     title = models.CharField(max_length=256)
-    slug = models.SlugField(unique=True, editable=False)
+    slug = models.SlugField(max_length=128, unique=True, editable=False)
     info = models.CharField(max_length=1024, null=True, blank=True)
 
     def __str__(self):

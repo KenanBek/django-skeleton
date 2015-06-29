@@ -20,9 +20,9 @@ LOG_LEVEL_CHOICES = (
 
 
 class Settings(abstracts.ModelAbstract):
-    key = models.CharField(max_length=256)
+    key = models.CharField(max_length=128)
     value = models.CharField(max_length=1024)
-    group = models.CharField(max_length=256, null=True, blank=True, default='')
+    group = models.CharField(max_length=128, null=True, blank=True, default='')
 
     def __str__(self):
         return u"Settings: {} ({}) = {}".format(self.key, self.group, self.value)
