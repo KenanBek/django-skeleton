@@ -86,7 +86,7 @@ def register(request, template="user/account/register.html", context={}):
 def logout(request):
     django_auth.logout(request)
     messages.add_message(request, messages.SUCCESS, _('You have successfully logged out.'))
-    return redirect(reverse('index'))
+    return redirect(reverse('home'))
 
 
 @log

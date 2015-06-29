@@ -86,7 +86,9 @@ MIDDLEWARE_CLASSES = (
     'htmlmin.middleware.MarkRequestMiddleware',  # must be after FetchFromCacheMiddleware
 )
 AUTHENTICATION_BACKENDS = (
+    'social.backends.google.GoogleOAuth2',
     'social.backends.facebook.Facebook2OAuth2',
+    'social.backends.twitter.TwitterOAuth',
     'django.contrib.auth.backends.ModelBackend',
 )
 ROOT_URLCONF = 'core.urls'
@@ -115,6 +117,18 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'files/documents/development.sqlite3'),
+    }
+}
+
+# Cache
+
+CACHES = {
+    # 'default': {
+    # 'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    # 'LOCATION': 'unique-snowflake',
+    # },
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     }
 }
 
@@ -424,4 +438,14 @@ SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email']
 
 SOCIAL_AUTH_FACEBOOK_KEY = '1520447268200947'
 SOCIAL_AUTH_FACEBOOK_SECRET = '5b83e07a4726d9e74b82adc6cdebb95c'
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', ]
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '38956256843-265lpunmn73kkn4b3iliba5ittjj03gb.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '83VJcCRUc79c98QbH7F_iZXQ'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/plus.me',
+                                   'https://www.googleapis.com/auth/userinfo.email',
+                                   'https://www.googleapis.com/auth/userinfo.profile', ]
+
+SOCIAL_AUTH_TWITTER_KEY = 'V3Cot900F3GXB1HoE3SsZrEMR'
+SOCIAL_AUTH_TWITTER_SECRET = 'nTrZNRpHrEeqeviSBFl9RzDjtoOCBE9LenQNjyULBHNaugiLgz'
+

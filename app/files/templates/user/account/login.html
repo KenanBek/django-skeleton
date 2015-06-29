@@ -8,7 +8,11 @@
             {% url 'account_login' as account_login %}
             {% include "user/_form.html" with form=login_form action=account_login method="post" %}
             <p>
-                {% blocktrans %}...or register{% endblocktrans %} <a href="{% url 'account_register' %}">here</a>.
+                {% blocktrans %}or{% endblocktrans %}
+                <a href="{% url 'account_register' %}">{% trans "Register" %}</a> |
+                <a href="{% url 'social:begin' 'google-oauth2' %}">{% trans "Google" %}</a> |
+                <a href="{% url 'social:begin' 'facebook' %}">{% trans "Facebook" %}</a> |
+                <a href="{% url 'social:begin' 'twitter' %}">{% trans "Twitter" %}</a>
             </p>
         </div>
     </div>
