@@ -16,6 +16,9 @@ djangorestframework
 easy-thumbnails
 python-slugify
 six
+pyopensll
+pycrypto
+ecdsa
 oauthlib
 requests
 requests-oauthlib
