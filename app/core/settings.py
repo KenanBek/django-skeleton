@@ -446,6 +446,6 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/plus.me',
                                    'https://www.googleapis.com/auth/userinfo.email',
                                    'https://www.googleapis.com/auth/userinfo.profile', ]
 
-SOCIAL_AUTH_TWITTER_KEY = '145649895-w9ypKGb7Y39Yi8kjrvuXByWe3JcfEM6m9RlEDO2f'
-SOCIAL_AUTH_TWITTER_SECRET = 'pXQQ6vGO08xLLWlwPFEu4cbTq7RUde7GxTbhb6iT1vIyR'
+SOCIAL_AUTH_TWITTER_KEY = 'V3Cot900F3GXB1HoE3SsZrEMR'  # Consumer Key
+SOCIAL_AUTH_TWITTER_SECRET = 'nTrZNRpHrEeqeviSBFl9RzDjtoOCBE9LenQNjyULBHNaugiLgz'  # Consumer Secret
 

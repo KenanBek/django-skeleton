@@ -6,11 +6,7 @@ from django_select2 import fields
 from core import abstracts
 from . import models
 
-
-
-
-
-# Slider
+''' Slider '''
 
 
 class SlideInline(admin.TabularInline):
@@ -25,8 +21,7 @@ class SliderAdmin(abstracts.ModelAdminAbstract):
 
 admin.site.register(models.Slider, SliderAdmin)
 
-
-# Page and Post actions
+''' Page and Post actions '''
 
 
 def publish_item(model_admin, request, queryset):
@@ -42,8 +37,7 @@ def hide_item(model_admin, request, queryset):
 
 hide_item.short_description = "Hide selected items"
 
-
-# Page
+''' Page '''
 
 
 class PageAdminForm(forms.ModelForm):
@@ -76,8 +70,7 @@ class WidgetAdmin(abstracts.ModelAdminAbstract):
 admin.site.register(models.Widget, WidgetAdmin)
 admin.site.register(models.Page, PageAdmin)
 
-
-# Post
+''' Post '''
 
 
 class CategoryAdminForm(forms.ModelForm):
@@ -127,8 +120,7 @@ class PostAdmin(abstracts.ModelAdminAbstract):
 admin.site.register(models.Category, CategoryAdmin)
 admin.site.register(models.Post, PostAdmin)
 
-
-# Beep
+''' Beep '''
 
 
 class BeepAdmin(abstracts.ModelAdminAbstract):
@@ -139,8 +131,7 @@ class BeepAdmin(abstracts.ModelAdminAbstract):
 
 admin.site.register(models.Beep, BeepAdmin)
 
-
-# Subscriber & Document
+''' Subscriber & Document '''
 
 
 class SubscriberAdmin(abstracts.ModelAdminAbstract):
@@ -156,8 +147,7 @@ class DocumentAdmin(abstracts.ModelAdminAbstract):
 admin.site.register(models.Subscriber, SubscriberAdmin)
 admin.site.register(models.Document, DocumentAdmin)
 
-
-# Contact
+''' Contact '''
 
 
 class ContactAdmin(abstracts.ModelAdminAbstract):
