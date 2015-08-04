@@ -93,6 +93,7 @@ AUTHENTICATION_BACKENDS = (
 )
 ROOT_URLCONF = 'core.urls'
 WSGI_APPLICATION = 'core.wsgi.application'
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 # Auth
 
@@ -148,7 +149,7 @@ TIME_ZONE = 'Asia/Baku'
 USE_I18N = True
 USE_L10N = True
 DATE_FORMAT = 'd/m/Y'
-DATETIME_FORMAT = 'd/m/Y P'
+DATETIME_FORMAT = 'd/m/Y H:i'
 SHORT_DATE_FORMAT = 'd/m/Y'
 SHORT_DATETIME_FORMAT = 'd/m/Y P'
 DATETIME_INPUT_FORMAT = (

@@ -6,8 +6,6 @@ from ..utils import helpers
 register = template.Library()
 
 
-
-
 def empty_text(value):
     """Render 'emtpy' string if given value is empty"""
     return value if value else _('not entered')

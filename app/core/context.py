@@ -8,6 +8,6 @@ def general(request, context={}):
     context['application_config'] = settings.APPLICATION_CONFIG
     context['application_settings'] = request.core_logic.settings_manager.get_dict()
     if request.method == 'GET':
-        context['get_request_params'] = helpers.get_dict_as_request_params(request.GET)
+        context['request_get_params'] = helpers.get_dict_as_request_params(request.GET)
     return context
 
