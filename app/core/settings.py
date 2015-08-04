@@ -279,6 +279,7 @@ APPLICATION_CONFIG = {
     'title': _('Project Title'),
     'short_title': _('PT'),
     'author': 'Kenan Bek, http://kenanbek.me',
+    'header': _('Best skeleton for Django'),
     'slogan': _('Code while alive!'),
     'description': _('Project Description.'),
     'keywords': _('django, project, template, skeleton, base'),
@@ -286,7 +287,7 @@ APPLICATION_CONFIG = {
     'google_id': 'google-id',
     'facebook_id': '1520447268200947',
     'twitter_id': 'twitter-id',
-    'date_format': 'dd/mm/yyyy'
+    'date_format': 'DD/MM/YYYY HH:mm'
 }
 APPLICATION_CONTENT_COUNT = 10
 APPLICATION_CONTENT_MAXIMUM_COUNT = 20
