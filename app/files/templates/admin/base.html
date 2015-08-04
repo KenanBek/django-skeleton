@@ -27,7 +27,7 @@
     {% compress js %}
         <script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% static "admin/" %}{% endfilter %}";</script>
         <script src="{% static 'suit/js/jquery-1.8.3.min.js' %}"></script>
-        <script type="text/javascript">var Suit = { $: $.noConflict() };
+        <script type="text/javascript">var Suit = {$: $.noConflict()};
         if (!$) $ = Suit.$; </script>
         <script src="{% static 'suit/bootstrap/js/bootstrap.min.js' %}"></script>
         {% if 'SHOW_REQUIRED_ASTERISK'|suit_conf %}
@@ -101,6 +101,8 @@
                                         <a href="{{ docsroot }}">{% trans 'Documentation' %}</a>
                                         <span class="separator">|</span>
                                     {% endif %}
+                                    <a href="{% url 'moderator:index' %}">{% trans 'Moderator' %}</a>
+                                    <span class="separator">|</span>
                                     <a href="{% url 'home' %}">{% trans 'Website' %}</a>
                                     <span class="separator">|</span>
                                     <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a>
@@ -174,6 +176,7 @@
                                 {% with 'SEARCH_URL'|suit_conf as search_url %}
                                     {% if search_url %}
                                         <form class="form-search nav-quick-search" autocomplete="off" action="
+
 
 
 

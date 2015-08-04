@@ -15,8 +15,9 @@
                 {% if user.is_staff %}
                     <li class="divider"></li>
                     <li><a href="{% url 'admin:index' %}">{% trans "Administration" %}</a></li>
-                    <li><a href="{% url 'moderator_index' %}">{% trans "Moderator" %}</a></li>
+                    <li><a href="{% url 'moderator:index' %}">{% trans "Moderator" %}</a></li>
                     <li><a href="{% url 'home' %}">{% trans "Site" %}</a></li>
+                    <li><a href="{% url 'api-root' %}">{% trans "API" %}</a></li>
                 {% endif %}
                 <li class="divider"></li>
                 <li><a href="{% url 'account_logout' %}">{% trans "Logout" %}</a></li>

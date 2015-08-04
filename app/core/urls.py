@@ -28,6 +28,7 @@ urlpatterns = patterns('',
     url(r'^error/500/$', 'core.views.error_500', name='error_500'),
     url(r'^debug/$', 'core.views.debug', name='debug'),
     url(r'^static-page/$', TemplateView.as_view(template_name='user/core/static_page.html'), name='static_page'),
+    url(r'^moderator/', include('moderator.urls', namespace='moderator')),
     # Applications
     url(r'^account/', include('account.urls')),
     url(r'^blog/', include('blog.urls')),
