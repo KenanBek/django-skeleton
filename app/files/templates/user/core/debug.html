@@ -19,6 +19,8 @@
                         {% for key, value in application_settings.items %}
                             <dt>{{ key }}</dt>
                             <dd>{{ value }}</dd>
+                        {% empty %}
+                            <i>{% trans "Empty." %}</i>
                         {% endfor %}
                     </dl>
                 </div>
@@ -37,11 +39,43 @@
                         {% for key, value in application_config.items %}
                             <dt>{{ key }}</dt>
                             <dd>{{ value }}</dd>
+                        {% empty %}
+                            <i>{% trans "Empty." %}</i>
                         {% endfor %}
                     </dl>
                 </div>
                 <div class="panel-footer">
                     {% blocktrans %}application specific django settings{% endblocktrans %}
+                </div>
+            </div>
+
+            {# Session and Cookies #}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {% blocktrans %}Session and Cookies{% endblocktrans %}
+                </div>
+                <div class="panel-body">
+                    <h3>{% trans "Session" %}</h3>
+                    <dl>
+                        {% for key, value in request.session.items %}
+                            <dt>{{ key }}</dt>
+                            <dd>{{ value }}</dd>
+                        {% empty %}
+                            <i>{% trans "Empty." %}</i>
+                        {% endfor %}
+                    </dl>
+                    <h3>{% trans "Cookies" %}</h3>
+                    <dl>
+                        {% for key, value in request.COOKIES.items %}
+                            <dt>{{ key }}</dt>
+                            <dd>{{ value }}</dd>
+                        {% empty %}
+                            <i>{% trans "Empty." %}</i>
+                        {% endfor %}
+                    </dl>
+                </div>
+                <div class="panel-footer">
+                    {% blocktrans %}variables stored in current user's seesion and cookies{% endblocktrans %}
                 </div>
             </div>
 

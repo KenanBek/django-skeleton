@@ -7,10 +7,12 @@ from . import logic
 class CoreMiddleware(object):
     def process_request(self, request):
         # Set user's IP address
-        ip = get_real_ip(request)
-        if ip is None:
-            ip = get_ip(request)
-        request.user.ip = ip
+        local_ip = request.META.get('REMOTE_ADDR', '')
+        request.user.local_ip = local_ip
+        global_ip = get_real_ip(request)
+        if global_ip is None:
+            global_ip = get_ip(request)
+        request.user.global_ip = global_ip
 
         # Set CoreLogic instance
         core_logic = logic.CoreLogic(request)
