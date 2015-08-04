@@ -1,11 +1,12 @@
 #ajax-processing-container {
-    display:          none;
-    position:         fixed;
-    top:              60px;
-    right:            20px;
-    background-color: #737373;
-    color:            snow;
-    padding:          5px;
-    z-index:          9999;
+    display:             none;
+    position:            fixed;
+    top:                 60px;
+    right:               20px;
+    padding:             10px;
+    z-index:             9999;
+    background-image:    url("../img/ajax-processing.gif");
+    background-repeat:   no-repeat;
+    background-position: left top;
 }
 

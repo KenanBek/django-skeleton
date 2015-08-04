@@ -14,9 +14,7 @@ function initializeAjax() {
             if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
                 xhr.setRequestHeader("X-CSRFToken", $.cookie("csrftoken"));
             }
-            console.log("beforeSend");
         }, complete: function (jqXHR, textStatus) {
-            console.log("complete");
             initializeElements();
         }
     });
@@ -159,7 +157,7 @@ window.ajaxForm = function (f, e, i) {
 
 $(function () {
     if (!$("#ajax-processing-container").length) {
-        var ajaxProcessingContainerHtml = "<div id='ajax-processing-container'>...</div>";
+        var ajaxProcessingContainerHtml = "<div id='ajax-processing-container'>&nbsp;</div>";
         $('body').append(ajaxProcessingContainerHtml);
     }
 
