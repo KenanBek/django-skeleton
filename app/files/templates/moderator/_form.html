@@ -1,0 +1,19 @@
+{% load i18n %}
+
+<form class="form-horizontal" role="form" action="{{ action }}" method="{{ method }}" {% if form.is_multipart or forms %}enctype="multipart/form-data"{% endif %}>
+    {% csrf_token %}
+
+    {% if forms %}
+        {% for form_item in forms %}
+            {% include "moderator/_form_elements.html" with form=form_item %}
+        {%  endfor %}
+    {% else %}
+        {% include "moderator/_form_elements.html" with form=form %}
+    {% endif %}
+
+    <div class="form-group form-footer">
+        <div class="col-sm-offset-4 col-sm-8">
+            <button type="submit" class="btn btn-primary">{% trans 'Submit' %}</button>
+        </div>
+    </div>
+</form>

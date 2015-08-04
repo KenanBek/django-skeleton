@@ -1,0 +1,51 @@
+{% load i18n %}
+{% load staticfiles %}
+{% load format %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:"en" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% block title %}
+            {{ application_config.slogan }}
+        {% endblock %}
+        - {{ application_config.title }}
+    </title>
+    {% include 'moderator/layout.head.html' %}
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body>
+{% block after_body %}
+{% endblock %}
+
+{% if not windowed %}
+    {% include 'moderator/layout.navbar.html' %}
+{% endif %}
+
+<div class="container">
+    {% block container %}
+        <div class="row">
+            <div class="col-md-12">
+                {% include 'moderator/layout.messages.html' %}
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    {% endblock %}
+
+    {% if not windowed %}
+        {% include 'moderator/layout.footer.html' %}
+        <br />
+        <br />
+        <br />
+    {% endif %}
+</div>
+
+{% include 'moderator/layout.end.html' %}
+{% block scripts %}
+{% endblock %}
+</body>
+</html>

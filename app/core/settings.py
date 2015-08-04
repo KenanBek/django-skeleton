@@ -3,6 +3,7 @@ Default settings for the project.
 """
 import logging
 import os
+from datetime import datetime
 
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 from django.utils.translation import ugettext_lazy as _
@@ -279,11 +280,11 @@ APPLICATION_CONFIG = {
     'title': _('Project Title'),
     'short_title': _('PT'),
     'author': 'Kenan Bek, http://kenanbek.me',
-    'header': _('Best skeleton for Django'),
+    'header': _('Best skeleton for Django projects'),
     'slogan': _('Code while alive!'),
     'description': _('Project Description.'),
     'keywords': _('django, project, template, skeleton, base'),
-    'copyright': "&copy; 2015 <a href='http://example.com'>Example Co.</a>",
+    'copyright': "&copy; {} <a href='http://example.com'>Example Co.</a>".format(datetime.now().year),
     'google_id': 'google-id',
     'facebook_id': '1520447268200947',
     'twitter_id': 'twitter-id',

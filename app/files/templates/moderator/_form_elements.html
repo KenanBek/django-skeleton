@@ -1,0 +1,35 @@
+{% load i18n %}
+
+{# Include non field errors #}
+{% if form.non_field_errors %}
+    <div class="notification notification-red">
+        {{ form.non_field_errors }}
+    </div>
+{% endif %}
+
+{# Include the hidden fields #}
+{% for hidden in form.hidden_fields %}
+    {{ hidden }}
+{% endfor %}
+
+{# Include the visible fields #}
+{% for field in form.visible_fields %}
+    <div class="form-group">
+        <label for="{{ field.id_for_label }}" class="col-sm-4">
+            {{ field.label }}
+        </label>
+        <div class="col-sm-8">
+            {{ field }}
+            {% if field.help_text %}
+                <span class="help-block">{{ field.help_text }}</span>
+            {% endif %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    <p class="text-danger">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}
