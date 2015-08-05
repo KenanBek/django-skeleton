@@ -14,7 +14,7 @@ class Client(object):
     language_obj = None  # Instance of news.models.Language
 
 
-''' Abc '''
+''' Utils '''
 
 
 class EventLogger(object):
@@ -98,7 +98,14 @@ class SettingsManager(object):
         return result
 
 
-''' Base logical elements '''
+''' Elements '''
+
+
+class DataController(object):
+    client = None
+
+    def __init__(self, client):
+        self.client = client
 
 
 class PageLogic(object):
