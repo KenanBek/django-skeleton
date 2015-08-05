@@ -181,10 +181,6 @@ class PageLogic(object):
         user_request.save()
         return user_request
 
-    def set_language(self, code):
-        self.request.session[self.SESSION_LANGUAGE_KEY] = code
-        self.request.session.save()
-
     def get_param(self, key):
         if self.request.method == 'GET':
             return self.request.GET.get(key, None)
@@ -196,6 +192,10 @@ class PageLogic(object):
             return self.request.GET.getlist(key, None)
         else:
             return self.request.POST.getlist(key, None)
+
+    def set_language(self, code):
+        self.request.session[self.SESSION_LANGUAGE_KEY] = code
+        self.request.session.save()
 
     def new_event_logger(self, title):
         event_logger = EventLogger(title, self.client)

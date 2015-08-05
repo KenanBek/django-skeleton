@@ -19,6 +19,7 @@ class CommandHelper:
         self.command.stdout.write('')
 
     def load_fixtures(self):
+        management.call_command('loaddata', 'debug_core.json')
         management.call_command('loaddata', 'debug_account.json')
         management.call_command('loaddata', 'debug_blog.json')
         management.call_command('loaddata', 'debug_cart.json')

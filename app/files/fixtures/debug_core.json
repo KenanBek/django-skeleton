@@ -1,0 +1,24 @@
+[
+  {
+    "fields": {
+      "added_at": "2015-07-18T14:18:14.407Z",
+      "modified_at": "2015-07-18T17:28:51.257Z",
+      "code": "en",
+      "title_loc": "English",
+      "title_eng": "English"
+    },
+    "model": "core.language",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "added_at": "2015-07-18T14:18:14.407Z",
+      "modified_at": "2015-07-18T17:28:51.257Z",
+      "code": "ru",
+      "title_loc": "Русский",
+      "title_eng": "Russian"
+    },
+    "model": "core.language",
+    "pk": 2
+  }
+]

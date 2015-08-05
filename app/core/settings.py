@@ -327,6 +327,10 @@ SUIT_CONFIG = {
             {'model': 'core.event', 'label': 'Events'},
             {'model': 'core.log', 'label': 'Logs'},
             {'model': 'core.request', 'label': 'Requests'},
+
+        )},
+        {'label': 'Data', 'icon': 'icon-th', 'models': (
+            {'model': 'core.language', 'label': 'Languages'},
         )},
         # Account
         '-',

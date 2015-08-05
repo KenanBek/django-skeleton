@@ -48,3 +48,7 @@ class RequestAdmin(abstracts.ModelReadOnlyAdminAbstract):
 
 admin.site.register(models.Request, RequestAdmin)
 
+''' Language '''
+
+admin.site.register(models.Language)
+

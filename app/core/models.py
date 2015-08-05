@@ -92,3 +92,15 @@ class Request(abstracts.ModelAbstract):
     to_page = models.CharField(max_length=1024, null=True, blank=True)
     to_page_query = models.CharField(max_length=1024, null=True, blank=True)
 
+
+class Language(abstracts.ModelAbstract):
+    code = models.CharField(max_length=8)
+    title_loc = models.CharField(max_length=1024)
+    title_eng = models.CharField(max_length=1024, null=True, blank=True)
+
+    def __str__(self):
+        return u"{} ({})".format(self.title_loc, self.title_eng)
+
+    def __unicode__(self):
+        return self.__str__()
+
