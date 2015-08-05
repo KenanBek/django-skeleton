@@ -41,12 +41,14 @@ class Settings(abstracts.ModelAbstract):
         super(Settings, self).clean_fields(exclude)
 
     class Meta:
-        unique_together = ('group', 'key', )
+        unique_together = ('key', 'group', )
 
 
 class Event(abstracts.ModelAbstract):
     title = models.CharField(max_length=256)
     user = models.ForeignKey(User, null=True, blank=True)
+    client_local_ip = models.IPAddressField(null=True, blank=True)
+    client_global_ip = models.IPAddressField(null=True, blank=True)
 
     def __str__(self):
         return u"{} ({})".format(self.title, self.added_at.date())
@@ -73,8 +75,8 @@ class Request(abstracts.ModelAbstract):
     user_is_active = models.BooleanField(default=False)
 
     client_name = models.CharField(max_length=512, null=True, blank=True)
-    client_ip = models.IPAddressField(null=True, blank=True)
-    client_real_ip = models.IPAddressField(null=True, blank=True)
+    client_local_ip = models.IPAddressField(null=True, blank=True)
+    client_global_ip = models.IPAddressField(null=True, blank=True)
     client_agent = models.CharField(max_length=512, null=True, blank=True)
 
     server_name = models.CharField(max_length=512, null=True, blank=True)

@@ -37,9 +37,9 @@ admin.site.register(models.Log, LogAdmin)
 
 
 class RequestAdmin(abstracts.ModelReadOnlyAdminAbstract):
-    search_fields = ['user_username', 'client_real_ip', 'from_page', 'to_page', 'to_page_query', ]
+    search_fields = ['user_username', 'client_global_ip', 'from_page', 'to_page', 'to_page_query', ]
     list_filter = ['added_at', 'user_is_staff', 'user_is_active', 'scheme', 'method', 'is_ajax', ]
-    list_display = ['added_at', 'user_username', 'client_real_ip',
+    list_display = ['added_at', 'user_username', 'client_global_ip',
                     'user_is_staff', 'user_is_active',
                     'scheme', 'method',
                     'from_page', 'to_page', 'to_page_query',

@@ -1,17 +1,33 @@
 from django.conf import settings
 from ipware.ip import get_real_ip, get_ip
 
-from . import abstracts
 from . import models
 
 
+class Client(object):
+    local_ip = None
+    global_ip = None
+    user = None  # Instance of django.contrib.auth.models.User
+    language = None  # Language code
+    language_obj = None  # Instance of news.models.Language
+
+
+# Abc
+
+
 class EventLogger(object):
-    def __init__(self, title, user=None):
+    title = None
+    client = None
+    event = None
+
+    def __init__(self, title, client):
         self.title = title
-        self.user = user
+        self.client = client
         event = models.Event()
         event.title = self.title
-        event.user = self.user
+        event.user = self.client.user
+        event.client_local_ip = self.client.local_ip
+        event.client_global_ip = self.client.global_ip
         event.save()
         self.event = event
 
@@ -46,6 +62,8 @@ class SettingsManager(object):
     def get(self, key):
         try:
             return self.queryset.get(key=key)
+        except models.Settings.MultipleObjectsReturned:
+            return self.queryset.filter(key=key).all()
         except models.Settings.DoesNotExist:
             return None
 
@@ -78,22 +96,50 @@ class SettingsManager(object):
         return result
 
 
-class CoreLogic(abstracts.LogicAbstract):
+# Base logical elements
+
+
+class PageLogic(object):
+    SESSION_LANGUAGE_KEY = 'app_lang'
+
     request = None
-    user = None
+    client = None
+    context = None
+    settings_manager = None
 
     def __init__(self, request):
-        super(CoreLogic, self).__init__(request)
-        if not request.user.is_anonymous():
-            self.user = request.user
-
+        self.request = request
+        self._set_client()
+        self._set_context()
+        self._store_request()
         self.settings_manager = SettingsManager()
 
-    def new_event_logger(self, title):
-        event_logger = EventLogger(title, self.user)
-        return event_logger
+    def _set_client(self):
+        self.client = Client()
+        # Set local ip
+        self.client.local_ip = self.request.META.get('REMOTE_ADDR', '')
+        # Set global ip
+        self.client.global_ip = get_real_ip(self.request)
+        if self.client.global_ip is None:
+            self.client.global_ip = get_ip(self.request)
+        # Set user instance
+        self.client.user = self.request.user
+        # Set language
+        self.client.language = self.request.session.get(self.SESSION_LANGUAGE_KEY, None)
+        if not self.client.language:
+            app_lang = 'en'
+            self.request.session[self.SESSION_LANGUAGE_KEY] = app_lang
+            self.request.session.save()
+            self.client.language = app_lang
+        pass
+        # self.client.language_obj = NewsController.get_language(self.client.language)
 
-    def store_request(self):
+    def _set_context(self):
+        self.context = {
+            'client': self.client,
+        }
+
+    def _store_request(self):
         if not settings.APPLICATION_MONITORING:
             return
         if not settings.APPLICATION_MONITOR_STUFF_USERS and self.request.user.is_staff:
@@ -103,18 +149,15 @@ class CoreLogic(abstracts.LogicAbstract):
         user_request.server_name = self.request.META.get('SERVER_NAME', '')
         user_request.server_host = self.request.META.get('HTTP_HOST', '')
 
-        user_request.user_username = self.request.user.username
-        user_request.user_is_staff = self.request.user.is_staff
-        user_request.user_is_active = self.request.user.is_active
+        user_request.user_username = self.client.user.username
+        user_request.user_is_staff = self.client.user.is_staff
+        user_request.user_is_active = self.client.user.is_active
 
         user_request.client_name = self.request.META.get('USER', '')
         user_request.client_agent = self.request.META.get('HTTP_USER_AGENT', '')
 
-        user_request.client_ip = self.request.META.get('REMOTE_ADDR', '')
-        real_ip = get_real_ip(self.request)
-        if real_ip is None:
-            real_ip = get_ip(self.request)
-        user_request.client_real_ip = real_ip
+        user_request.client_local_ip = self.client.local_ip
+        user_request.client_global_ip = self.client.global_ip
 
         user_request.scheme = self.request.scheme
         user_request.method = self.request.method
@@ -128,4 +171,24 @@ class CoreLogic(abstracts.LogicAbstract):
 
         user_request.save()
         return user_request
+
+    def set_language(self, code):
+        self.request.session[self.SESSION_LANGUAGE_KEY] = code
+        self.request.session.save()
+
+    def get_param(self, key):
+        if self.request.method == 'GET':
+            return self.request.GET.get(key, None)
+        else:
+            return self.request.POST.get(key, None)
+
+    def get_params(self, key):
+        if self.request.method == 'GET':
+            return self.request.GET.getlist(key, None)
+        else:
+            return self.request.POST.getlist(key, None)
+
+    def new_event_logger(self, title):
+        event_logger = EventLogger(title, self.client)
+        return event_logger
 

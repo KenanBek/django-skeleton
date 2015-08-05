@@ -1,11 +1,11 @@
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
-from core import abstracts
+from core import logic
 from . import models
 
 
-class BlogLogic(abstracts.LogicAbstract):
+class BlogLogic(logic.PageLogic):
     def __init__(self, request):
         super(BlogLogic, self).__init__(request)
 
