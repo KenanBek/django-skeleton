@@ -1,6 +1,10 @@
+from django.core.urlresolvers import reverse
+
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.cache import cache_page
 
+from core.logic import PageLogic
 
 ''' Default pages '''
 
@@ -38,6 +42,15 @@ def error_500(request, template='user/core/error_500.html', context={}):
 
 
 ''' Core pages '''
+
+
+def language(request, code):
+    l = PageLogic(request)
+    l.set_language(code)
+    if request.META.get('HTTP_REFERER'):
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    else:
+        return HttpResponseRedirect(reverse('home'))
 
 
 def debug(request, template='user/core/debug.html', context={}):
