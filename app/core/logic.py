@@ -3,6 +3,8 @@ from ipware.ip import get_real_ip, get_ip
 
 from . import models
 
+''' Entities '''
+
 
 class Client(object):
     local_ip = None
@@ -12,7 +14,7 @@ class Client(object):
     language_obj = None  # Instance of news.models.Language
 
 
-# Abc
+''' Abc '''
 
 
 class EventLogger(object):
@@ -96,7 +98,7 @@ class SettingsManager(object):
         return result
 
 
-# Base logical elements
+''' Base logical elements '''
 
 
 class PageLogic(object):

@@ -3,8 +3,7 @@ from django.db import models
 from django.contrib import admin
 from django.views.decorators.cache import never_cache
 
-
-# Model
+''' Model '''
 
 
 class ModelAbstract(models.Model):
@@ -15,7 +14,7 @@ class ModelAbstract(models.Model):
         abstract = True
 
 
-# Admin
+''' Admin '''
 
 
 class ModelAdminAbstract(admin.ModelAdmin):
@@ -30,7 +29,7 @@ class ModelReadOnlyAdminAbstract(admin.ModelAdmin):
         return False
 
 
-# Class Based Views
+''' Class Based Views '''
 
 
 class NeverCacheMixin(object):
