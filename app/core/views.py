@@ -1,3 +1,5 @@
+from django.contrib.admin.views.decorators import staff_member_required
+
 from django.core.urlresolvers import reverse
 
 from django.http import HttpResponseRedirect
@@ -53,6 +55,7 @@ def language(request, code):
         return HttpResponseRedirect(reverse('home'))
 
 
+@staff_member_required
 def debug(request, template='user/core/debug.html', context={}):
     return render(request, template, context)
 
