@@ -120,7 +120,6 @@ class PageLogic(object):
         self.request = request
         self._set_client()
         self._set_context()
-        self._store_request()
         self.settings_manager = SettingsManager()
 
     def _set_client(self):
@@ -148,7 +147,7 @@ class PageLogic(object):
             'client': self.client,
         }
 
-    def _store_request(self):
+    def store_request(self):
         if not settings.APPLICATION_MONITORING:
             return
         if not settings.APPLICATION_MONITOR_STUFF_USERS and self.request.user.is_staff:

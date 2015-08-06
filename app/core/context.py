@@ -4,7 +4,8 @@ from core.logic import PageLogic
 from .utils import helpers
 
 
-def general(request, context={}):
+def general(request):
+    context = {}
     context['core_config'] = settings
     context['application_config'] = settings.APPLICATION_CONFIG
 
