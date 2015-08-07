@@ -29,3 +29,16 @@ class PostViewSet(viewsets.ModelViewSet):
     def pre_save(self, obj):
         obj.owner = self.request.user
 
+
+class BeepViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+    """
+    queryset = models.Beep.objects.all()
+    serializer_class = serializers.BeepSerializer
+    permission_classes = (permissions.IsAdminUser, )
+
+    def pre_save(self, obj):
+        obj.owner = self.request.user
+

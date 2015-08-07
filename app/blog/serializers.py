@@ -14,3 +14,9 @@ class PostSerializer(ModelSerializer):
         model = models.Post
         fields = ('id', 'title', 'featured_image', 'short_content', 'full_content', )
 
+
+class BeepSerializer(ModelSerializer):
+    class Meta:
+        model = models.Beep
+        fields = ('id', 'text', 'user', 'length', )
+
