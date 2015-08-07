@@ -23,6 +23,7 @@ urlpatterns = patterns('blog.views',
     url(r'^contact/$', 'contact', name='blog_contact'),
     url(r'^contact/document/$', 'document', name='blog_document'),
     url(r'^subscribe/$', 'subscribe', name='blog_subscribe'),
+    url(r'^search/$', 'search', name='blog_search'),
     # Pages
     url(r'^pages/$', 'pages', name='blog_pages'),
     url(r'^page/(?P<page_slug>[\w-]+)/$', 'page', name='blog_page'),
@@ -31,8 +32,6 @@ urlpatterns = patterns('blog.views',
     url(r'^post/(?P<post_id>[0-9]+)/(?P<post_slug>[\w-]+)/$', 'post', name='blog_post'),
     # Beep
     url(r'^beep/', include(beep_urlpatterns)),
-    # Search
-    url(r'^search/$', 'search', name='blog_search'),
     # API
     url(r'^api/', include(api_router.urls)),
 )
