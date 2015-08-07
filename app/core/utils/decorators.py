@@ -75,4 +75,3 @@ def anonymous_required(function):
 
     return wrap
 
-
