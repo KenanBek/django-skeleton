@@ -14,7 +14,7 @@ Django version: 1.7.8
 - Advanced page and data cache examples
 - Using of HTML minifiers and assets compressions
 - Database optimised Model examples
-- Robots.txt and dynamic generation of sitemaps (sitemap.xml, sitemap-website.xml, sitemap-cart.xml)
+- Robots.txt and dynamic generation of sitemaps
 - Advanced usage of Class Based Views with custom pagination (which additionally passes all request GET parameters to view, it might be useful for custom filter)
 - Data compression (with installed security debreach package)
 - Localization
@@ -40,13 +40,6 @@ Django version: 1.7.8
 
 **Additional applications**:
 
-- Cart application
-    - Product and Shop entities
-    - Product filter
-    - Different price for each Shop for the same Product
-    - User review for Product and Shop (5 star rating system)
-    - News broadcasting for the Shops
-    - Image and video media for the Product
 - Blog application
     - Widgets
     - Static pages

@@ -15,7 +15,6 @@
             <ul class="nav navbar-nav navbar-left">
                 <li><a href="{% url 'moderator:index' %}">{% trans "Dashboard" %}</a></li>
                 <li><a href="{% url 'moderator:index' %}">{% trans "Blog" %}</a></li>
-                <li><a href="{% url 'moderator:index' %}">{% trans "Cart" %}</a></li>
             </ul>
             <form class="navbar-form navbar-right" action="{% url 'home' %}" method="get">
                 <input id="term" name="term" type="text" class="form-control" placeholder="{% trans "Search..." %}" value="{{ q|default:"" }}">

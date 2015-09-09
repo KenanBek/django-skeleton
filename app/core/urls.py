@@ -33,7 +33,6 @@ urlpatterns = patterns('',
     # Applications
     url(r'^account/', include('account.urls')),
     url(r'^blog/', include('blog.urls')),
-    url(r'^cart/', include('cart.urls')),
     # SEO
     url(r'^favicon\.ico$', RedirectView.as_view(url=static('favicon.ico'), permanent=True), name="favicon.ico"),
     url(r'^robots\.txt$', RedirectView.as_view(url=static('robots.txt'), permanent=True), name="robots.txt"),

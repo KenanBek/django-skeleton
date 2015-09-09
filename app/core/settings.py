@@ -64,7 +64,6 @@ INSTALLED_APPS = (
     'moderator',
     'account',
     'blog',
-    'cart',
 )
 MIDDLEWARE_CLASSES = (
     'django.middleware.gzip.GZipMiddleware',  # must be at the start
@@ -356,24 +355,6 @@ SUIT_CONFIG = {
         {'label': 'Post', 'icon': 'icon-th', 'models': (
             {'model': 'blog.post', 'label': 'Posts'},
             {'model': 'blog.category', 'label': 'Categories'},
-        )},
-        # Cart
-        '-',
-        {'label': 'Cart', 'icon': 'icon-th', 'models': (
-            {'model': 'cart.currency', 'label': 'Currencies'},
-            {'model': 'cart.manufacturer', 'label': 'Manufactureres'},
-            {'model': 'cart.category', 'label': 'Categories'},
-            {'model': 'cart.attributegroup', 'label': 'Attribute groups'},
-            {'model': 'cart.attribute', 'label': 'Attributes'},
-        )},
-        {'label': 'Shop', 'icon': 'icon-th', 'models': (
-            {'model': 'cart.product', 'label': 'Products'},
-            {'model': 'cart.shop', 'label': 'Shops'},
-            {'model': 'cart.shopproduct', 'label': 'Shops and Products'},
-        )},
-        {'label': 'Orders', 'icon': 'icon-th', 'models': (
-            {'model': 'cart.productreview', 'label': 'Product reviews'},
-            {'model': 'cart.shopreview', 'label': 'Shop reviews'},
         )},
         # Others
         '-',

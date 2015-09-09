@@ -32,8 +32,6 @@
                         <li><a href="{% url 'blog_contact' %}">{% trans "Contact" %}</a></li>
                     </ul>
                 </li>
-
-                <li><a href="{% url 'cart_index' %}">{% trans "Cart" %}</a></li>
             </ul>
             <form class="navbar-form navbar-right" action="{% url 'blog_search' %}" method="get">
                 <input id="term" name="term" type="text" class="form-control" placeholder="{% trans "Search..." %}" value="{{ q|default:"" }}">
