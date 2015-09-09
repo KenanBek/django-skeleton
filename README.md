@@ -92,6 +92,13 @@ Configure following things if you are going to use this skeleton on your project
 - Configure django sites (enter correct name and address for the site)
 - Configure application settings (settings.py)
 - Configure robots.txt and sitemaps
+- Configure social accounts' id and urls
+- Configure buttons.js publisher id
+
+# Needs to be explained in Documentation
+
+- Organisation of User, Moderator and Administration parts
+- Structure of blocks of Templates for User and Moderator
 
 # License
 
