@@ -21,21 +21,18 @@ class SliderAdmin(abstracts.ModelAdminAbstract):
 
 admin.site.register(models.Slider, SliderAdmin)
 
-''' Page and Post actions '''
+''' Publishing actions '''
 
 
-def publish_item(model_admin, request, queryset):
-    queryset.update(status=models.ITEM_STATUS_PUBLISHED)
+class PublishingActions(object):
+    @staticmethod
+    def publish_item(model_admin, request, queryset):
+        queryset.update(status=models.ITEM_STATUS_PUBLISHED)
 
+    @staticmethod
+    def hide_item(model_admin, request, queryset):
+        queryset.update(status=models.ITEM_STATUS_HIDDEN)
 
-publish_item.short_description = "Publish selected items"
-
-
-def hide_item(model_admin, request, queryset):
-    queryset.update(status=models.ITEM_STATUS_HIDDEN)
-
-
-hide_item.short_description = "Hide selected items"
 
 ''' Page '''
 
@@ -54,7 +51,7 @@ class PageAdmin(abstracts.ModelAdminAbstract):
     list_filter = ['status']
     list_display = ['slug', 'title', 'related_widget_names', 'related_slider', 'status']
 
-    actions = [publish_item, hide_item, ]
+    actions = [PublishingActions.publish_item, PublishingActions.hide_item, ]
 
     def related_widget_names(self, obj):
         return ",\n".join([widget.title for widget in obj.widgets.all()])
@@ -111,7 +108,7 @@ class PostAdmin(abstracts.ModelAdminAbstract):
     list_filter = ['added_at', 'status', 'categories']
     list_display = ['added_at', 'slug', 'title', 'short_content', 'related_category_names', 'related_slider', 'status']
 
-    actions = [publish_item, hide_item, ]
+    actions = [PublishingActions.publish_item, PublishingActions.hide_item, ]
 
     def related_category_names(self, obj):
         return ",\n".join([category.title for category in obj.categories.all()])
