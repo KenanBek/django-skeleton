@@ -18,7 +18,7 @@
         <meta name="description" content="{{ application_config.description }}">
         <meta name="keywords" content="{{ application_config.keywords }}">
 
-        <meta property="og:author" content="{{ application_config.title }}" />
+        <meta property="og:author" content="{{ application_config.author }}" />
         <meta property="og:title" content="{{ application_config.title }}" />
         <meta property="og:description" content="{{ application_config.description }}" />
         <meta property="og:image" content="{% static 'common/img/social_cover.png' %}" />
@@ -27,7 +27,7 @@
         <meta property="fb:app_id" content="{{ application_config.facebook_id }}" />
 
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@tapdoon" />
+        <meta name="twitter:site" content="{{ application_config.twitter_account }}" />
         <meta name="twitter:title" content="{{ application_config.title }}" />
         <meta name="twitter:description" content="{{ application_config.description }}" />
         <meta name="twitter:image" content="{% static 'common/img/social_cover.png' %}" />
@@ -45,10 +45,7 @@
 {% include 'user/layout.social.html' %}
 {% block after_body %}
 {% endblock %}
-
-{% if not windowed %}
-    {% include 'user/layout.navbar.html' %}
-{% endif %}
+{% include 'user/layout.navbar.html' %}
 
 <div class="container">
     {% block container %}
