@@ -41,7 +41,8 @@
     {% endblock %}
 </head>
 
-<body>
+<body {% block body_attributes %}{% endblock %}>
+{% include 'user/layout.social.html' %}
 {% block after_body %}
 {% endblock %}
 
@@ -66,5 +67,7 @@
 </div>
 
 {% include 'user/layout.end.html' %}
+{% block end %}
+{% endblock %}
 </body>
 </html>
