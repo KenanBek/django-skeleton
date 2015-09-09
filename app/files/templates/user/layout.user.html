@@ -7,6 +7,8 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 {% if user.profile.avatar %}
                     <img src="{{ user.profile.avatar|thumbnail_url:'avatar' }}" height="20" />
+                {% else %}
+                    <img src="" data-src="holder.js/20x20?text=!">
                 {% endif %}
                 {{ user.username }}
                 <span class="caret"></span></a>
