@@ -24,6 +24,12 @@
                     <li><a href="{% url 'api-root' %}">{% trans "API" %}</a></li>
                 {% endif %}
                 <li class="divider"></li>
+                {% for language in languages %}
+                    <li {% if language.code == client.language %}class="active"{% endif %}>
+                        <a href="{% url 'language' language.code %}">{{ language }}</a>
+                    </li>
+                {% endfor %}
+                <li class="divider"></li>
                 <li><a href="{% url 'account_logout' %}">{% trans "Logout" %}</a></li>
             </ul>
         </li>

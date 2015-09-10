@@ -13,7 +13,6 @@ admin.autodiscover()
 # Root url patterns
 urlpatterns = patterns('',
     # Admin and 3rd party applications
-    url(r'^language/', include('django.conf.urls.i18n')),  # Language
     url(r'^admin/', include(admin.site.urls)),
     url(r'^plugin/ckeditor/', include('ckeditor.urls')),
     url(r'^plugin/select/', include('django_select2.urls')),
@@ -28,7 +27,7 @@ urlpatterns = patterns('',
     url(r'^error/500/$', 'core.views.error_500', name='error_500'),
     url(r'^static-page/$', TemplateView.as_view(template_name='user/core/static_page.html'), name='static_page'),
     url(r'^debug/$', 'core.views.debug', name='debug'),
-    url(r'^language/(?P<code>\w+)/$', 'core.views.language', name='language'),  # Language
+    url(r'^language/(?P<code>\w+)/$', 'core.views.language', name='language'),
     url(r'^moderator/', include('moderator.urls', namespace='moderator')),
     # Applications
     url(r'^account/', include('account.urls')),
