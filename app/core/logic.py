@@ -1,6 +1,6 @@
-import abc
-
 from django.conf import settings
+
+from django.utils.translation import check_for_language, LANGUAGE_SESSION_KEY
 from ipware.ip import get_real_ip, get_ip
 
 from . import models
@@ -61,7 +61,6 @@ class EventLogger(object):
 class SettingsManager(object):
     def __init__(self):
         self.queryset = models.Settings.objects
-        pass
 
     def get(self, key):
         try:
@@ -111,7 +110,7 @@ class DataController(object):
 
 
 class PageLogic(object):
-    SESSION_LANGUAGE_KEY = 'app_lang'
+    SESSION_APP_LANGUAGE_KEY = 'app_lang'
 
     request = None
     client = None
@@ -135,10 +134,10 @@ class PageLogic(object):
         # Set user instance
         self.client.user = self.request.user
         # Set language
-        self.client.language = self.request.session.get(self.SESSION_LANGUAGE_KEY, None)
+        self.client.language = self.request.session.get(self.SESSION_APP_LANGUAGE_KEY, None)
         if not self.client.language:
             app_lang = 'en'
-            self.request.session[self.SESSION_LANGUAGE_KEY] = app_lang
+            self.request.session[self.SESSION_APP_LANGUAGE_KEY] = app_lang
             self.request.session.save()
             self.client.language = app_lang
         pass
@@ -194,9 +193,19 @@ class PageLogic(object):
         else:
             return self.request.POST.getlist(key, None)
 
-    def set_language(self, code):
-        self.request.session[self.SESSION_LANGUAGE_KEY] = code
+    def set_language(self, response, code):
+        # Set app language
+        self.request.session[self.SESSION_APP_LANGUAGE_KEY] = code
         self.request.session.save()
+        # Set Django language
+        if code and check_for_language(code):
+            if hasattr(self.request, 'session'):
+                self.request.session[LANGUAGE_SESSION_KEY] = code
+            else:
+                response.set_cookie(settings.LANGUAGE_COOKIE_NAME, code,
+                    max_age=settings.LANGUAGE_COOKIE_AGE,
+                    path=settings.LANGUAGE_COOKIE_PATH,
+                    domain=settings.LANGUAGE_COOKIE_DOMAIN)
 
     def new_event_logger(self, title):
         event_logger = EventLogger(title, self.client)

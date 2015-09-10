@@ -97,6 +97,7 @@ class Language(abstracts.ModelAbstract):
     code = models.CharField(max_length=8)
     title_loc = models.CharField(max_length=1024)
     title_eng = models.CharField(max_length=1024, null=True, blank=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return u"{} ({})".format(self.title_loc, self.title_eng)

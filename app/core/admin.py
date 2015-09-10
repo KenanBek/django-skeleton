@@ -50,5 +50,11 @@ admin.site.register(models.Request, RequestAdmin)
 
 ''' Language '''
 
-admin.site.register(models.Language)
+
+class LanguageAdmin(abstracts.ModelAdminAbstract):
+    list_filter = ['is_active', ]
+    list_display = ['code', 'title_loc', 'title_eng', 'is_active', ]
+
+
+admin.site.register(models.Language, LanguageAdmin)
 
