@@ -99,6 +99,34 @@ class SettingsManager(object):
         return result
 
 
+class BrowserStoreManager(object):
+    DEFAULT_MAX_AGE = 604800
+    DEFAULT_EXPIRES = None
+    DEFAULT_PATH = '/'
+    DEFAULT_DOMAIN = None
+    DEFAULT_SECURE = False
+    DEFAULT_HTTPONLY = False
+
+    def __init__(self, request):
+        self.request = request
+
+    def get(self, key):
+        if hasattr(self.request, 'session'):
+            self.request.session.get(key)
+        else:
+            return self.request.COOKIES.get(key)
+
+    def set(self, key, value, response=None):
+        if hasattr(self.request, 'session'):
+            self.request.session[key] = value
+        else:
+            if response:
+                response.set_cookie(key, value,
+                    max_age=self.DEFAULT_MAX_AGE,
+                    path=self.DEFAULT_PATH,
+                    domain=self.DEFAULT_DOMAIN)
+
+
 ''' Elements '''
 
 
@@ -116,12 +144,15 @@ class PageLogic(object):
     client = None
     context = None
     settings_manager = None
+    browser_store_manager = None
 
     def __init__(self, request):
         self.request = request
         self._set_client()
         self._set_context()
+        # Initialize managers
         self.settings_manager = SettingsManager()
+        self.browser_store_manager = BrowserStoreManager(self.request)
 
     def _set_client(self):
         self.client = Client()
@@ -134,6 +165,8 @@ class PageLogic(object):
         # Set user instance
         self.client.user = self.request.user
         # Set language
+
+
         self.client.language = self.request.session.get(self.SESSION_APP_LANGUAGE_KEY, None)
         if not self.client.language:
             app_lang = 'en'
@@ -192,6 +225,9 @@ class PageLogic(object):
             return self.request.GET.getlist(key, None)
         else:
             return self.request.POST.getlist(key, None)
+
+    def get_language(self):
+        pass
 
     def set_language(self, response, code):
         # Set app language
