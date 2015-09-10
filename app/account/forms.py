@@ -39,7 +39,7 @@ class ProfileForm(forms.ModelForm):
 class ModifyUserForm(forms.ModelForm):
     class Meta:
         model = auth_models.User
-        fields = ('first_name', 'last_name', )
+        fields = ('username', 'email', 'first_name', 'last_name', )
 
 
 class ModifyProfileForm(forms.ModelForm):
