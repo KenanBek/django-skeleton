@@ -1,6 +1,7 @@
 from django.conf import settings
 
-from django.utils.translation import LANGUAGE_SESSION_KEY
+from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import LANGUAGE_SESSION_KEY, check_for_language
 from ipware.ip import get_real_ip, get_ip
 
 from . import models
@@ -113,22 +114,34 @@ class BrowserStoreManager(object):
     def __init__(self, request):
         self.request = request
 
+    def get_session_value(self, key):
+        return self.request.session.get(key)
+
+    def get_cookie_value(self, key):
+        return self.request.COOKIES.get(key)
+
     def get(self, key):
         if hasattr(self.request, 'session'):
-            self.request.session.get(key)
+            return self.get_session_value(key)
         else:
             return self.request.COOKIES.get(key)
 
+    def set_session_value(self, key, value):
+        self.request.session[key] = value
+        self.request.session.save()
+
+    def set_cookie_value(self, key, value, response):
+        response.set_cookie(key, value,
+            max_age=self.DEFAULT_MAX_AGE,
+            path=self.DEFAULT_PATH,
+            domain=self.DEFAULT_DOMAIN)
+
     def set(self, key, value, response=None):
         if hasattr(self.request, 'session'):
-            self.request.session[key] = value
-            self.request.session.save()
+            self.set_session_value(key, value)
         else:
             if response:
-                response.set_cookie(key, value,
-                    max_age=self.DEFAULT_MAX_AGE,
-                    path=self.DEFAULT_PATH,
-                    domain=self.DEFAULT_DOMAIN)
+                self.set_cookie_value(key, value, response)
 
 
 ''' Elements '''
@@ -148,6 +161,10 @@ class DataController(object):
     def get_language(code):
         return models.Language.objects.get(code=code)
 
+    @staticmethod
+    def check_for_language(code):
+        return models.Language.objects.filter(code=code).exists()
+
 
 class PageLogic(object):
     SESSION_APP_LANGUAGE_KEY = 'app_lang'
@@ -159,13 +176,17 @@ class PageLogic(object):
     settings_manager = None
     browser_store_manager = None
 
+    def _check_for_language(self, code):
+        return DataController.check_for_language(code)
+
     def __init__(self, request):
         self.request = request
-        self._set_client()
-        self._set_context()
         # Initialize managers
         self.settings_manager = SettingsManager()
         self.browser_store_manager = BrowserStoreManager(self.request)
+        # Set initial values
+        self._set_client()
+        self._set_context()
 
     def _set_client(self):
         self.client = Client()
@@ -181,7 +202,10 @@ class PageLogic(object):
         current_language_code = self.browser_store_manager.get(self.SESSION_APP_LANGUAGE_KEY)
         if not current_language_code:
             current_language_code = self.DEFAULT_LANGUAGE_CODE
-        self.set_language(current_language_code)
+        try:
+            self.set_language(current_language_code)
+        except:
+            self.set_language(self.DEFAULT_LANGUAGE_CODE)
 
     def _set_context(self):
         self.context = {
@@ -235,6 +259,8 @@ class PageLogic(object):
             return self.request.POST.getlist(key, None)
 
     def set_language(self, code, response=None):
+        if not (self._check_for_language(code) and check_for_language(code)):
+            raise Exception(_("Given language code ({}) is not correct!".format(code)))
         self.browser_store_manager.set(self.SESSION_APP_LANGUAGE_KEY, code, response=response)
         self.browser_store_manager.set(LANGUAGE_SESSION_KEY, code, response=response)
         self.client.language = code
