@@ -64,7 +64,7 @@ def language(request, code):
             next = '/'
     response = http.HttpResponseRedirect(next)
     l = PageLogic(request)
-    l.set_language(response, code)
+    l.set_language(code, response=response)
     return response
 
 

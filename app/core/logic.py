@@ -1,6 +1,6 @@
 from django.conf import settings
 
-from django.utils.translation import check_for_language, LANGUAGE_SESSION_KEY
+from django.utils.translation import LANGUAGE_SESSION_KEY
 from ipware.ip import get_real_ip, get_ip
 
 from . import models
@@ -13,7 +13,7 @@ class Client(object):
     global_ip = None
     user = None  # Instance of django.contrib.auth.models.User
     language = None  # Language code
-    language_obj = None  # Instance of news.models.Language
+    language_obj = None  # Instance of core.models.Language
 
 
 ''' Utils '''
@@ -56,6 +56,9 @@ class EventLogger(object):
 
     def new_critical_log(self, text, *args):
         self.new_log(models.LOG_LEVEL_CRITICAL, text, *args)
+
+
+''' Managers '''
 
 
 class SettingsManager(object):
@@ -119,6 +122,7 @@ class BrowserStoreManager(object):
     def set(self, key, value, response=None):
         if hasattr(self.request, 'session'):
             self.request.session[key] = value
+            self.request.session.save()
         else:
             if response:
                 response.set_cookie(key, value,
@@ -136,9 +140,18 @@ class DataController(object):
     def __init__(self, client):
         self.client = client
 
+    @staticmethod
+    def get_languages():
+        return models.Language.objects.filter(is_active=True).all()
+
+    @staticmethod
+    def get_language(code):
+        return models.Language.objects.get(code=code)
+
 
 class PageLogic(object):
     SESSION_APP_LANGUAGE_KEY = 'app_lang'
+    DEFAULT_LANGUAGE_CODE = 'en'
 
     request = None
     client = None
@@ -165,20 +178,15 @@ class PageLogic(object):
         # Set user instance
         self.client.user = self.request.user
         # Set language
-
-
-        self.client.language = self.request.session.get(self.SESSION_APP_LANGUAGE_KEY, None)
-        if not self.client.language:
-            app_lang = 'en'
-            self.request.session[self.SESSION_APP_LANGUAGE_KEY] = app_lang
-            self.request.session.save()
-            self.client.language = app_lang
-        pass
-        # self.client.language_obj = NewsController.get_language(self.client.language)
+        current_language_code = self.browser_store_manager.get(self.SESSION_APP_LANGUAGE_KEY)
+        if not current_language_code:
+            current_language_code = self.DEFAULT_LANGUAGE_CODE
+        self.set_language(current_language_code)
 
     def _set_context(self):
         self.context = {
             'client': self.client,
+            'languages': DataController.get_languages()
         }
 
     def store_request(self):
@@ -226,22 +234,11 @@ class PageLogic(object):
         else:
             return self.request.POST.getlist(key, None)
 
-    def get_language(self):
-        pass
-
-    def set_language(self, response, code):
-        # Set app language
-        self.request.session[self.SESSION_APP_LANGUAGE_KEY] = code
-        self.request.session.save()
-        # Set Django language
-        if code and check_for_language(code):
-            if hasattr(self.request, 'session'):
-                self.request.session[LANGUAGE_SESSION_KEY] = code
-            else:
-                response.set_cookie(settings.LANGUAGE_COOKIE_NAME, code,
-                    max_age=settings.LANGUAGE_COOKIE_AGE,
-                    path=settings.LANGUAGE_COOKIE_PATH,
-                    domain=settings.LANGUAGE_COOKIE_DOMAIN)
+    def set_language(self, code, response=None):
+        self.browser_store_manager.set(self.SESSION_APP_LANGUAGE_KEY, code, response=response)
+        self.browser_store_manager.set(LANGUAGE_SESSION_KEY, code, response=response)
+        self.client.language = code
+        self.client.language_obj = DataController.get_language(code)
 
     def new_event_logger(self, title):
         event_logger = EventLogger(title, self.client)
