@@ -17,7 +17,7 @@ class UserNewAdmin(UserAdmin):
 
 
 class ProfileAdminAbstract(abstracts.ModelAdminAbstract):
-    list_display = ('user', 'website', )
+    list_display = ('user', 'website', 'is_verified')
 
 
 admin.site.unregister(User)
