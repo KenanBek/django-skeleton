@@ -15,6 +15,12 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput())
 
 
+class ChangePasswordForm(forms.Form):
+    old_password = forms.CharField(widget=forms.PasswordInput())
+    new_password_1 = forms.CharField(widget=forms.PasswordInput())
+    new_password_2 = forms.CharField(widget=forms.PasswordInput())
+
+
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
 

@@ -142,6 +142,14 @@ def logout(request):
 
 
 @log
+@login_required
+def change_password(request, template="user/account/password_change.html", context={}):
+    if request.method == 'POST':
+        pass
+    return render(request, template, context)
+
+
+@log
 def modify_account(request, template="user/account/account_modify.html", context={}):
     user_form = None
     profile_form = None

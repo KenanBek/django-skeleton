@@ -1,0 +1,20 @@
+{% extends 'user/layout.html' %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Confirmed" %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{% trans 'Account activated.' %}</h1>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{% trans 'Thanks for activating your account!' %}</h2>
+        </div>
+    </div>
+{% endblock %}
