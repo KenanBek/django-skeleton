@@ -16,9 +16,9 @@ class LoginForm(forms.Form):
 
 
 class ChangePasswordForm(forms.Form):
-    old_password = forms.CharField(widget=forms.PasswordInput())
-    new_password_1 = forms.CharField(widget=forms.PasswordInput())
-    new_password_2 = forms.CharField(widget=forms.PasswordInput())
+    current_password = forms.CharField(widget=forms.PasswordInput())
+    new_password = forms.CharField(widget=forms.PasswordInput())
+    repeat_new_password = forms.CharField(widget=forms.PasswordInput())
 
 
 class RegisterForm(forms.ModelForm):

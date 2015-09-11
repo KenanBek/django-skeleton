@@ -144,8 +144,31 @@ def logout(request):
 @log
 @login_required
 def change_password(request, template="user/account/password_change.html", context={}):
+    change_password_form = None
+
     if request.method == 'POST':
-        pass
+        change_password_form = forms.ChangePasswordForm(request.POST or None)
+        if change_password_form.is_valid():
+            user = request.user
+            if change_password_form.cleaned_data['new_password'] == change_password_form.cleaned_data['repeat_new_password']:
+                if user.check_password(change_password_form.cleaned_data['current_password']):
+                    user.set_password(change_password_form.cleaned_data['new_password'])
+                    user.save()
+                    django_auth.logout(request)
+                    messages.add_message(request, messages.SUCCESS, _('You have successfully changed your password.'
+                                                                      '\nPlease, log in again.'))
+                    return redirect(reverse('home'))
+                else:
+                    messages.add_message(request, messages.ERROR, _('Current password is wrong. Please type it again.'))
+            else:
+                messages.add_message(request, messages.ERROR, _('Passwords are not matching. Please type them again.'))
+        else:
+            messages.add_message(request, messages.ERROR, _('Some errors occurred. Please fix errors bellow.'))
+    else:
+        change_password_form = forms.ChangePasswordForm()
+
+    context['change_password_form'] = change_password_form
+
     return render(request, template, context)
 
 

@@ -9,6 +9,7 @@ urlpatterns = patterns('account.views',
     url(r'^register/$', 'register', name='account_register'),
     url(r'^logout/$', 'logout', name='account_logout'),
     url(r'^modify/$', 'modify_account', name='account_modify'),
+    url(r'^change_password/$', 'change_password', name='change_password'),
     url(r'^confirm/(?P<activation_key>\w+)/', 'register_confirm', name='account_modify'),
     url(r'^change/(?P<activation_key>\w+)/', 'email_change_confirm', name='email_change_confirm'),
 )
