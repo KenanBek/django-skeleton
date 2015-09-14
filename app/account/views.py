@@ -247,7 +247,7 @@ def restore_password(request, template="user/account/password_restore.html", con
 
 def reset_password(request, activation_key, template='user/account/password_reset.html', context={}):
     reset_password_form = None
-    print activation_key
+
     password_reset_request = get_object_or_404(models.PasswordResetRequest, activation_key=activation_key)
 
     if password_reset_request.key_expires < timezone.now():
