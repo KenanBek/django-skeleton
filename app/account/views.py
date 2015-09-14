@@ -276,3 +276,41 @@ def reset_password(request, activation_key, template='user/account/password_rese
     context['reset_password_form'] = reset_password_form
 
     return render(request, template, context)
+
+
+@log
+@login_required
+def change_email(request, template="user/account/email_change.html", context={}):
+    change_email_form = None
+
+    if request.method == 'POST':
+        change_email_form = forms.ChangeEmailForm(request.POST or None)
+        if change_email_form.is_valid():
+            user = User.objects.get(id=request.user.id)
+            new_email = change_email_form.cleaned_data['email']
+            if new_email != user.email:
+                user.profile.is_verified = False
+                user.profile.save()
+                salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
+                request, created = models.EmailChangeRequest.objects.get_or_create(user=user)
+                request.new_email = new_email
+                request.activation_key = hashlib.sha1(salt+request.new_email).hexdigest()
+                request.key_expires = datetime.datetime.today() + datetime.timedelta(2)
+                request.save()
+                # Send email with activation key
+                email_subject = _('Email change confirmation')
+                email_body = _("Hey mate. To activate your new email, click this link within 48hours\n") + \
+                    APPLICATION_URL + reverse('account_email_change_confirm', args=(request.activation_key,))
+
+                send_mail(email_subject, email_body, APPLICATION_FROM_EMAIL, [request.new_email], fail_silently=False)
+                return redirect(reverse('home'))
+            else:
+                messages.add_message(request, messages.ERROR, _('Email entered is the same as your current email.'))
+        else:
+            messages.add_message(request, messages.ERROR, _('Some errors occurred. Please fix errors bellow.'))
+    else:
+        change_email_form = forms.ChangeEmailForm()
+
+    context['change_email_form'] = change_email_form
+
+    return render(request, template, context)
