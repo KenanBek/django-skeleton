@@ -11,6 +11,7 @@ import django.contrib.auth as django_auth
 import hashlib
 import datetime
 import random
+from core.settings import APPLICATION_URL, APPLICATION_FROM_EMAIL
 from django.utils import timezone
 from core.utils.decorators import log, anonymous_required
 from . import models
@@ -82,11 +83,11 @@ def register(request, template="user/account/register.html", context={}):
                 django_auth.login(request, user)
 
                 # Send email with activation key
-                email_subject = 'Account confirmation'
-                email_body = "Hey %s, thanks for signing up. To activate your account, click this link within 48hours" \
-                             "\nhttp://localhost:8000/account/confirm/%s" % (user_username, activation_key)
+                email_subject = _('Account confirmation')
+                email_body = _("Hey mate, thanks for signing up. To activate your account, click this link within 48hours\n") + \
+                    APPLICATION_URL + reverse('account_register_confirm', args=(activation_key,))
 
-                send_mail(email_subject, email_body, "noreply@tapdoon.email", [user_email], fail_silently=False)
+                send_mail(email_subject, email_body, APPLICATION_FROM_EMAIL, [user_email], fail_silently=False)
 
                 return redirect(reverse('account_index'))
         else:
@@ -223,15 +224,15 @@ def restore_password(request, template="user/account/password_restore.html", con
                 restore_password_request.save()
 
                 # Send email with activation key
-                email_subject = 'Password restore'
-                email_body = "Hey %s, forgot password? To reset your password, click this link within 48hours" \
-                             "\nhttp://localhost:8000/account/reset_password/%s" % (user.username, activation_key)
+                email_subject = _('Password restore')
+                email_body = _("Hey mate, forgot password? To reset your password, click this link within 48hours\n") +\
+                    APPLICATION_URL + reverse('account_reset_password', args=(activation_key,))
 
-                send_mail(email_subject, email_body, "noreply@tapdoon.email", [user.email], fail_silently=False)
+                send_mail(email_subject, email_body, APPLICATION_FROM_EMAIL, [user.email], fail_silently=False)
                 messages.add_message(request, messages.SUCCESS, _('Email with instructions successfully sent.'))
             except User.DoesNotExist:
                 messages.add_message(request, messages.ERROR, _('No account with specified email found!'))
-                return redirect(reverse('restore_password'))
+                return redirect(reverse('account_restore_password'))
         else:
             messages.add_message(request, messages.ERROR, _('Some errors occurred. Please fix errors bellow.'))
     else:

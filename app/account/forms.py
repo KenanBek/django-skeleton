@@ -1,5 +1,8 @@
 from django import forms
 import django.contrib.auth.models as auth_models
+from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext_lazy as _
+from core.settings import APPLICATION_URL, APPLICATION_FROM_EMAIL
 import hashlib
 import datetime
 import random
@@ -73,11 +76,11 @@ class ModifyUserForm(forms.ModelForm):
             request.key_expires = datetime.datetime.today() + datetime.timedelta(2)
             request.save()
             # Send email with activation key
-            email_subject = 'Email change confirmation'
-            email_body = "Hey %s. To activate your new email, click this link within 48hours" \
-                         "\nhttp://localhost:8000/account/change/%s" % (user.username, request.activation_key)
+            email_subject = _('Email change confirmation')
+            email_body = _("Hey mate. To activate your new email, click this link within 48hours\n") + \
+                APPLICATION_URL + reverse('account_email_change_confirm', args=(request.activation_key,))
 
-            send_mail(email_subject, email_body, "noreply@tapdoon.email", [request.new_email], fail_silently=False)
+            send_mail(email_subject, email_body, APPLICATION_FROM_EMAIL, [request.new_email], fail_silently=False)
         if commit:
             instance.save()
         return instance
