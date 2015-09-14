@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load staticfiles %}
 {% load compress %}
 
@@ -18,6 +19,6 @@
     <script src="{% static 'user/js/user.js' %}"></script>
     {# Temporary added here to show alert in every page #}
     <script type="text/javascript">
-        $.growl({"title": "Growl", "message": "This is\nDjango Skeleton."});
+        $.growl({"title": "{% trans "Django Skeleton" %}", "message": "{% trans "Welcome to website." %}"});
     </script>
 {% endcompress %}
