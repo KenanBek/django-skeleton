@@ -76,7 +76,7 @@ Visit **http://localhost:8000** for website, **http://localhost:8000/admin** for
 
 # Demo
 
-Version: 1.5
+Available version for demo: 1.5
 
 Visit [Website](http://django-skeleton.bekonline.webfactional.com/) and [Admin](http://django-skeleton.bekonline.webfactional.com/admin) to try Django Skeleton on demand.
 
