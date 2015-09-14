@@ -13,9 +13,10 @@
 {% compress css %}
     <link href="{% static 'moderator/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'common/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
+    <link href="{% static 'common/css/jquery.growl.css' %}" rel="stylesheet">
+    {# In most of cases Project.css and Moderator.css must be at the end of the list #}
     <link href="{% static 'common/css/project.css' %}" rel="stylesheet">
     <link href="{% static 'moderator/css/moderator.css' %}" rel="stylesheet">
-    <link href="{% static 'common/css/jquery.growl.css' %}" rel="stylesheet">
 {% endcompress %}
 
 {# HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries #}
