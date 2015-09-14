@@ -13,6 +13,7 @@
             {% include "user/_form.html" with form=login_form action=account_login method="post" %}
             <p>
                 {% blocktrans %}or{% endblocktrans %}
+                <a href="{% url 'restore_password' %}">{% trans "Restore password" %}</a> |
                 <a href="{% url 'account_register' %}">{% trans "Register" %}</a> |
                 <a href="{% url 'social:begin' 'google-oauth2' %}">{% trans "Google" %}</a> |
                 <a href="{% url 'social:begin' 'facebook' %}">{% trans "Facebook" %}</a> |

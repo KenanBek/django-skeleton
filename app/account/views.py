@@ -203,3 +203,75 @@ def modify_account(request, template="user/account/account_modify.html", context
 
     return render(request, template, context)
 
+
+@log
+def restore_password(request, template="user/account/password_restore.html", context={}):
+    restore_password_form = None
+
+    if request.method == 'POST':
+        restore_password_form = forms.RestorePasswordForm(request.POST or None)
+        if restore_password_form.is_valid():
+            try:
+                user = User.objects.get(email=str(restore_password_form.cleaned_data['email']))
+                salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
+                activation_key = hashlib.sha1(salt+user.email).hexdigest()
+                key_expires = datetime.datetime.today() + datetime.timedelta(2)
+
+                restore_password_request, created = models.PasswordResetRequest.objects.get_or_create(user=user)
+                restore_password_request.activation_key = activation_key
+                restore_password_request.key_expires = key_expires
+                restore_password_request.save()
+
+                # Send email with activation key
+                email_subject = 'Password restore'
+                email_body = "Hey %s, forgot password? To reset your password, click this link within 48hours" \
+                             "\nhttp://localhost:8000/account/reset_password/%s" % (user.username, activation_key)
+
+                send_mail(email_subject, email_body, "noreply@tapdoon.email", [user.email], fail_silently=False)
+                messages.add_message(request, messages.SUCCESS, _('Email with instructions successfully sent.'))
+            except User.DoesNotExist:
+                messages.add_message(request, messages.ERROR, _('No account with specified email found!'))
+                return redirect(reverse('restore_password'))
+        else:
+            messages.add_message(request, messages.ERROR, _('Some errors occurred. Please fix errors bellow.'))
+    else:
+        if request.user.is_authenticated():
+            restore_password_form = forms.RestorePasswordForm({'email': request.user.email})
+        else:
+            restore_password_form = forms.RestorePasswordForm()
+
+    context['restore_password_form'] = restore_password_form
+
+    return render(request, template, context)
+
+
+def reset_password(request, activation_key, template='user/account/password_reset.html', context={}):
+    reset_password_form = None
+    print activation_key
+    password_reset_request = get_object_or_404(models.PasswordResetRequest, activation_key=activation_key)
+
+    if password_reset_request.key_expires < timezone.now():
+        return render_to_response('user/account/confirm_expired.html')
+
+    if request.method == 'POST':
+        reset_password_form = forms.ResetPasswordForm(request.POST or None)
+        if reset_password_form.is_valid():
+            new_password = str(reset_password_form.cleaned_data['new_password'])
+            repeat_new_password = str(reset_password_form.cleaned_data['repeat_new_password'])
+            if new_password == repeat_new_password:
+                user = password_reset_request.user
+                user.set_password(new_password)
+                user.save()
+                django_auth.logout(request)
+                messages.add_message(request, messages.SUCCESS, _('You have successfully changed your password.'
+                                                                  '\nPlease, log in now.'))
+                return redirect(reverse('home'))
+
+            else:
+                messages.add_message(request, messages.ERROR, _('Passwords are not matching. Please type them again.'))
+    else:
+        reset_password_form = forms.ResetPasswordForm()
+
+    context['reset_password_form'] = reset_password_form
+
+    return render(request, template, context)

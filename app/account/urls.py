@@ -12,5 +12,7 @@ urlpatterns = patterns('account.views',
     url(r'^change_password/$', 'change_password', name='change_password'),
     url(r'^confirm/(?P<activation_key>\w+)/', 'register_confirm', name='account_modify'),
     url(r'^change/(?P<activation_key>\w+)/', 'email_change_confirm', name='email_change_confirm'),
+    url(r'^restore_password/$', 'restore_password', name='restore_password'),
+    url(r'^reset_password/(?P<activation_key>\w+)/', 'reset_password', name='reset_password'),
 )
 

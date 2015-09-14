@@ -21,6 +21,15 @@ class ChangePasswordForm(forms.Form):
     repeat_new_password = forms.CharField(widget=forms.PasswordInput())
 
 
+class ResetPasswordForm(forms.Form):
+    new_password = forms.CharField(widget=forms.PasswordInput())
+    repeat_new_password = forms.CharField(widget=forms.PasswordInput())
+
+
+class RestorePasswordForm(forms.Form):
+    email = forms.EmailField()
+
+
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
 
