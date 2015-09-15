@@ -1,5 +1,4 @@
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
 from django.forms.util import ErrorList
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render, redirect, render_to_response, get_object_or_404
