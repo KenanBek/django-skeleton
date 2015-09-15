@@ -29,6 +29,8 @@ Django version: 1.7.8
 - Using thumbnail for images
 - Slider
 - Logging
+- Switching between languages (data related and django localization)
+- User password change, restore model
 
 **Pre configured 3rd party packages:**
 

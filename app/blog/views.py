@@ -102,7 +102,7 @@ def document(request, template="user/blog/contact.html", context={}):
 def search(request, template='user/blog/search.html', context={}):
     blog_logic = logic.BlogLogic(request)
 
-    term = blog_logic.grab_get_param("term")
+    term = blog_logic.get_param("term")
     search_result = blog_logic.search(term)
 
     context['term'] = term
@@ -115,8 +115,8 @@ def search(request, template='user/blog/search.html', context={}):
 def subscribe(request):
     blog_logic = logic.BlogLogic(request)
 
-    name = blog_logic.grab_get_param("name")
-    email = blog_logic.grab_get_param("email")
+    name = blog_logic.get_param("name")
+    email = blog_logic.get_param("email")
 
     if not name or not email:
         messages.add_message(request, messages.ERROR, _('Please enter your name and email.'))

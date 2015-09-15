@@ -5,10 +5,10 @@ from .utils import helpers
 
 
 def general(request):
-    context = {}
-
-    context['core_config'] = settings
-    context['application_config'] = settings.APPLICATION_CONFIG
+    context = {
+        'core_config': settings,
+        'application_config': settings.APPLICATION_CONFIG
+    }
 
     page_logic = PageLogic(request)
     context['application_settings'] = page_logic.settings_manager.get_dict()
