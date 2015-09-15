@@ -340,6 +340,7 @@ SUIT_CONFIG = {
             {'model': 'auth.user', 'label': 'User'},
             {'model': 'account.profile', 'label': 'Profile'},
             {'model': 'auth.group', 'label': 'Group'},
+            {'model': 'account.request', 'label': 'Requests'},
         )},
         # Blog
         '-',
