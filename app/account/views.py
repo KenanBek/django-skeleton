@@ -11,6 +11,7 @@ import django.contrib.auth as django_auth
 import hashlib
 import datetime
 import random
+from account.models import REQUEST_TYPE_ACCOUNT, REQUEST_TYPE_EMAIL, REQUEST_TYPE_PASSWORD
 from core.settings import APPLICATION_URL, APPLICATION_FROM_EMAIL
 from django.utils import timezone
 from core.utils.decorators import log, anonymous_required
@@ -61,10 +62,6 @@ def register(request, template="user/account/register.html", context={}):
             user_username = user_form.cleaned_data['username']
             user_email = user_form.cleaned_data['email']
             user_password = user_form.cleaned_data['password']
-            salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
-            activation_key = hashlib.sha1(salt+user_email).hexdigest()
-            key_expires = datetime.datetime.today() + datetime.timedelta(2)
-
             user = user_form.save(commit=False)
             if user.email and User.objects.filter(email=user_email).exclude(username=user_username).count():
                 errors = user_form._errors.setdefault("email", ErrorList())
@@ -75,18 +72,18 @@ def register(request, template="user/account/register.html", context={}):
                 user.save()
                 profile = profile_form.save(commit=False)
                 profile.user = user
-                profile.activation_key = activation_key
-                profile.key_expires = key_expires
                 profile.save()
                 messages.add_message(request, messages.SUCCESS, _('You have successfully registered.'))
                 user = django_auth.authenticate(username=user_username, password=user_password)
                 django_auth.login(request, user)
-
-                # Send email with activation key
+                salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
+                activation_key = hashlib.sha1(salt+user_email).hexdigest()
+                key_expires = datetime.datetime.today() + datetime.timedelta(2)
+                models.Request.objects.create(user=user, type=REQUEST_TYPE_ACCOUNT,
+                                              activation_key=activation_key, key_expires=key_expires)
                 email_subject = _('Account confirmation')
                 email_body = _("Hey mate, thanks for signing up. To activate your account, click this link within 48hours\n") + \
-                    APPLICATION_URL + reverse('account_register_confirm', args=(activation_key,))
-
+                    APPLICATION_URL + reverse('account_request_confirm', args=(activation_key,))
                 send_mail(email_subject, email_body, APPLICATION_FROM_EMAIL, [user_email], fail_silently=False)
 
                 return redirect(reverse('account_index'))
@@ -100,38 +97,53 @@ def register(request, template="user/account/register.html", context={}):
     return render(request, template, context)
 
 
-def register_confirm(request, activation_key):
-    if request.user.is_authenticated():
-        HttpResponseRedirect('/blog/index/')
+def request_confirm(request, activation_key, template='user/account/password_reset.html', context={}):
+    user_request = get_object_or_404(models.Request, activation_key=activation_key)
 
-    user_profile = get_object_or_404(models.Profile, activation_key=activation_key)
-
-    if user_profile.key_expires < timezone.now():
-        return render_to_response('user/account/confirm_expired.html')
-
-    user_profile.is_verified = True
-    user_profile.save()
-
-    return render_to_response('user/account/confirm.html')
-
-
-def email_change_confirm(request, activation_key):
-    if request.user.is_authenticated():
-        HttpResponseRedirect('/blog/index/')
-
-    email_change_request = get_object_or_404(models.EmailChangeRequest, activation_key=activation_key)
-
-    if email_change_request.key_expires < timezone.now():
-        return render_to_response('user/account/confirm_expired.html')
-
-    user_profile = get_object_or_404(models.Profile, user=email_change_request.user)
-    user_profile.is_verified = True
-    user_profile.save()
-    user = User.objects.get(id=user_profile.user.id)
-    user.email = email_change_request.new_email
-    user.save()
-
-    return render_to_response('user/account/confirm.html')
+    if user_request.is_approved or user_request.key_expires < timezone.now():
+        return render_to_response('user/account/token_invalid.html')
+    elif user_request.type == REQUEST_TYPE_ACCOUNT:
+        profile = get_object_or_404(models.Profile, user=user_request.user)
+        profile.is_verified = True
+        profile.save()
+        user_request.is_approved = True
+        user_request.save()
+        return render_to_response('user/account/confirm.html')
+    elif user_request.type == REQUEST_TYPE_EMAIL:
+        user = User.objects.get(id=user_request.user.id)
+        user.email = user_request.str_field_1
+        user.save()
+        profile = get_object_or_404(models.Profile, user=request.user)
+        profile.is_verified = True
+        profile.save()
+        user_request.is_approved = True
+        user_request.save()
+        return render_to_response('user/account/confirm.html')
+    elif user_request.type == REQUEST_TYPE_PASSWORD:
+        if request.method == 'POST':
+            reset_password_form = forms.ResetPasswordForm(request.POST or None)
+            if reset_password_form.is_valid():
+                new_password = str(reset_password_form.cleaned_data['new_password'])
+                repeat_new_password = str(reset_password_form.cleaned_data['repeat_new_password'])
+                if new_password == repeat_new_password:
+                    user = user_request.user
+                    user.set_password(new_password)
+                    user.save()
+                    django_auth.logout(request)
+                    messages.add_message(request, messages.SUCCESS, _('You have successfully changed your password.'
+                                                                      '\nPlease, log in now.'))
+                    user_request.is_approved = True
+                    user_request.save()
+                    return redirect(reverse('home'))
+                else:
+                    messages.add_message(request, messages.ERROR, _('Passwords are not matching.'
+                                                                    '\nPlease type them again.'))
+        else:
+            reset_password_form = forms.ResetPasswordForm()
+        context['reset_password_form'] = reset_password_form
+        return render(request, template, context)
+    else:
+        return render_to_response('user/account/token_invalid.html')
 
 
 @log
@@ -160,11 +172,14 @@ def change_password(request, template="user/account/password_change.html", conte
                                                                       '\nPlease, log in again.'))
                     return redirect(reverse('home'))
                 else:
-                    messages.add_message(request, messages.ERROR, _('Current password is wrong. Please type it again.'))
+                    messages.add_message(request, messages.ERROR, _('Current password is wrong.'
+                                                                    '\nPlease type it again.'))
             else:
-                messages.add_message(request, messages.ERROR, _('Passwords are not matching. Please type them again.'))
+                messages.add_message(request, messages.ERROR, _('Passwords are not matching.'
+                                                                '\nPlease type them again.'))
         else:
-            messages.add_message(request, messages.ERROR, _('Some errors occurred. Please fix errors bellow.'))
+            messages.add_message(request, messages.ERROR, _('Some errors occurred.'
+                                                            '\nPlease fix errors bellow.'))
     else:
         change_password_form = forms.ChangePasswordForm()
 
@@ -192,7 +207,8 @@ def modify_account(request, template="user/account/account_modify.html", context
             messages.add_message(request, messages.SUCCESS, _('Your account successfully modified.'))
             return redirect(reverse('account_index'))
         else:
-            messages.add_message(request, messages.ERROR, _('Some errors occurred. Please fix errors bellow.'))
+            messages.add_message(request, messages.ERROR, _('Some errors occurred.'
+                                                            '\nPlease fix errors bellow.'))
     else:
         user = request.user
         user_form = forms.ModifyUserForm(instance=user)
@@ -218,15 +234,15 @@ def restore_password(request, template="user/account/password_restore.html", con
                 activation_key = hashlib.sha1(salt+user.email).hexdigest()
                 key_expires = datetime.datetime.today() + datetime.timedelta(2)
 
-                restore_password_request, created = models.PasswordResetRequest.objects.get_or_create(user=user)
-                restore_password_request.activation_key = activation_key
-                restore_password_request.key_expires = key_expires
-                restore_password_request.save()
+                user_request, created = models.Request.objects.update_or_create(
+                    user=user, type=REQUEST_TYPE_PASSWORD,
+                    defaults={"activation_key": hashlib.sha1(salt+user.email).hexdigest(),
+                              "key_expires": datetime.datetime.today() + datetime.timedelta(2)})
 
                 # Send email with activation key
                 email_subject = _('Password restore')
                 email_body = _("Hey mate, forgot password? To reset your password, click this link within 48hours\n") +\
-                    APPLICATION_URL + reverse('account_reset_password', args=(activation_key,))
+                    APPLICATION_URL + reverse('account_request_confirm', args=(activation_key,))
 
                 send_mail(email_subject, email_body, APPLICATION_FROM_EMAIL, [user.email], fail_silently=False)
                 messages.add_message(request, messages.SUCCESS, _('Email with instructions successfully sent.'))
@@ -234,7 +250,8 @@ def restore_password(request, template="user/account/password_restore.html", con
                 messages.add_message(request, messages.ERROR, _('No account with specified email found!'))
                 return redirect(reverse('account_restore_password'))
         else:
-            messages.add_message(request, messages.ERROR, _('Some errors occurred. Please fix errors bellow.'))
+            messages.add_message(request, messages.ERROR, _('Some errors occurred.'
+                                                            '\nPlease fix errors bellow.'))
     else:
         if request.user.is_authenticated():
             restore_password_form = forms.RestorePasswordForm({'email': request.user.email})
@@ -242,38 +259,6 @@ def restore_password(request, template="user/account/password_restore.html", con
             restore_password_form = forms.RestorePasswordForm()
 
     context['restore_password_form'] = restore_password_form
-
-    return render(request, template, context)
-
-
-def reset_password(request, activation_key, template='user/account/password_reset.html', context={}):
-    reset_password_form = None
-
-    password_reset_request = get_object_or_404(models.PasswordResetRequest, activation_key=activation_key)
-
-    if password_reset_request.key_expires < timezone.now():
-        return render_to_response('user/account/confirm_expired.html')
-
-    if request.method == 'POST':
-        reset_password_form = forms.ResetPasswordForm(request.POST or None)
-        if reset_password_form.is_valid():
-            new_password = str(reset_password_form.cleaned_data['new_password'])
-            repeat_new_password = str(reset_password_form.cleaned_data['repeat_new_password'])
-            if new_password == repeat_new_password:
-                user = password_reset_request.user
-                user.set_password(new_password)
-                user.save()
-                django_auth.logout(request)
-                messages.add_message(request, messages.SUCCESS, _('You have successfully changed your password.'
-                                                                  '\nPlease, log in now.'))
-                return redirect(reverse('home'))
-
-            else:
-                messages.add_message(request, messages.ERROR, _('Passwords are not matching. Please type them again.'))
-    else:
-        reset_password_form = forms.ResetPasswordForm()
-
-    context['reset_password_form'] = reset_password_form
 
     return render(request, template, context)
 
@@ -288,26 +273,30 @@ def change_email(request, template="user/account/email_change.html", context={})
         if change_email_form.is_valid():
             user = User.objects.get(id=request.user.id)
             new_email = change_email_form.cleaned_data['email']
+            if new_email and User.objects.filter(email=new_email).count():
+                messages.add_message(request, messages.ERROR, _('User with this Email already exists.'))
+                return redirect(reverse('account_change_email'))
             if new_email != user.email:
                 user.profile.is_verified = False
                 user.profile.save()
                 salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
-                request, created = models.EmailChangeRequest.objects.get_or_create(user=user)
-                request.new_email = new_email
-                request.activation_key = hashlib.sha1(salt+request.new_email).hexdigest()
-                request.key_expires = datetime.datetime.today() + datetime.timedelta(2)
-                request.save()
+                user_request, created = models.Request.objects.update_or_create(
+                    user=user, type=REQUEST_TYPE_EMAIL,
+                    defaults={"str_field_1": new_email,
+                              "activation_key": hashlib.sha1(salt+new_email).hexdigest(),
+                              "key_expires": datetime.datetime.today() + datetime.timedelta(2)})
                 # Send email with activation key
                 email_subject = _('Email change confirmation')
                 email_body = _("Hey mate. To activate your new email, click this link within 48hours\n") + \
-                    APPLICATION_URL + reverse('account_email_change_confirm', args=(request.activation_key,))
+                    APPLICATION_URL + reverse('account_request_confirm', args=(user_request.activation_key,))
 
-                send_mail(email_subject, email_body, APPLICATION_FROM_EMAIL, [request.new_email], fail_silently=False)
+                send_mail(email_subject, email_body, APPLICATION_FROM_EMAIL, [new_email], fail_silently=False)
                 return redirect(reverse('home'))
             else:
                 messages.add_message(request, messages.ERROR, _('Email entered is the same as your current email.'))
         else:
-            messages.add_message(request, messages.ERROR, _('Some errors occurred. Please fix errors bellow.'))
+            messages.add_message(request, messages.ERROR, _('Some errors occurred.'
+                                                            '\nPlease fix errors bellow.'))
     else:
         change_email_form = forms.ChangeEmailForm()
 
