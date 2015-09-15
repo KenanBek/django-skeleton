@@ -36,3 +36,15 @@ class EmailChangeRequest(abstracts.ModelAbstract):
     def __unicode__(self):
         return self.__str__()
 
+
+class PasswordResetRequest(abstracts.ModelAbstract):
+    user = models.OneToOneField(User)
+    activation_key = models.CharField(max_length=40, blank=True)
+    key_expires = models.DateTimeField(default=datetime.date.today())
+
+    def __str__(self):
+        return u"{}".format(self.user.username)
+
+    def __unicode__(self):
+        return self.__str__()
+
