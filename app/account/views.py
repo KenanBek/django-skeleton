@@ -77,9 +77,9 @@ def register(request, template="user/account/register.html", context={}):
                 django_auth.login(request, user)
                 salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
                 activation_key = hashlib.sha1(salt+user_email).hexdigest()
-                key_expires = datetime.datetime.today() + datetime.timedelta(2)
+                key_expires_at = datetime.datetime.today() + datetime.timedelta(2)
                 models.Request.objects.create(user=user, type=REQUEST_TYPE_ACCOUNT,
-                                              activation_key=activation_key, key_expires=key_expires)
+                                              activation_key=activation_key, key_expires_at=key_expires_at)
                 email_subject = _('Account confirmation')
                 email_body = _("Hey mate, thanks for signing up. To activate your account, click this link within 48hours\n") + \
                     APPLICATION_URL + reverse('account_request_confirm', args=(activation_key,))
@@ -99,7 +99,7 @@ def register(request, template="user/account/register.html", context={}):
 def request_confirm(request, activation_key, template='user/account/password_reset.html', context={}):
     user_request = get_object_or_404(models.Request, activation_key=activation_key)
 
-    if user_request.is_approved or user_request.key_expires < timezone.now():
+    if user_request.is_approved or user_request.key_expires_at < timezone.now():
         return render_to_response('user/account/token_invalid.html')
     elif user_request.type == REQUEST_TYPE_ACCOUNT:
         profile = get_object_or_404(models.Profile, user=user_request.user)
@@ -231,12 +231,12 @@ def restore_password(request, template="user/account/password_restore.html", con
                 user = User.objects.get(email=str(restore_password_form.cleaned_data['email']))
                 salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
                 activation_key = hashlib.sha1(salt+user.email).hexdigest()
-                key_expires = datetime.datetime.today() + datetime.timedelta(2)
+                key_expires_at = datetime.datetime.today() + datetime.timedelta(2)
 
                 user_request, created = models.Request.objects.update_or_create(
                     user=user, type=REQUEST_TYPE_PASSWORD,
                     defaults={"activation_key": hashlib.sha1(salt+user.email).hexdigest(),
-                              "key_expires": datetime.datetime.today() + datetime.timedelta(2)})
+                              "key_expires_at": datetime.datetime.today() + datetime.timedelta(2)})
 
                 # Send email with activation key
                 email_subject = _('Password restore')
@@ -283,7 +283,7 @@ def change_email(request, template="user/account/email_change.html", context={})
                     user=user, type=REQUEST_TYPE_EMAIL,
                     defaults={"str_field_1": new_email,
                               "activation_key": hashlib.sha1(salt+new_email).hexdigest(),
-                              "key_expires": datetime.datetime.today() + datetime.timedelta(2)})
+                              "key_expires_at": datetime.datetime.today() + datetime.timedelta(2)})
                 # Send email with activation key
                 email_subject = _('Email change confirmation')
                 email_body = _("Hey mate. To activate your new email, click this link within 48hours\n") + \

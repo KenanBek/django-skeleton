@@ -21,7 +21,8 @@ class ProfileAdminAbstract(abstracts.ModelAdminAbstract):
 
 
 class RequestAdmin(abstracts.ModelAdminAbstract):
-    list_display = ('user', 'type', 'is_approved', 'key_expires')
+    list_display = ('user', 'type', 'is_approved', 'key_expires_at')
+    list_filter = ('user', 'type', 'is_approved',)
 
 
 admin.site.unregister(User)
