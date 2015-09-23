@@ -289,7 +289,7 @@ APPLICATION_CONFIG = {
     'facebook_account': 'facebook.com/django-skeleton',
     'twitter_account': '@django-skeleton',
     'google_id': 'google-id',
-    'facebook_id': '1520447268200947',
+    'facebook_id': 'facebook-id',
     'twitter_id': 'twitter-id',
     'date_format': 'DD/MM/YYYY HH:mm'
 }
@@ -427,18 +427,18 @@ KEEP_COMMENTS_ON_MINIFYING = False
 # SOCIAL AUTH
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
-SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email']
+SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email', ]
 
-SOCIAL_AUTH_FACEBOOK_KEY = '1520447268200947'
-SOCIAL_AUTH_FACEBOOK_SECRET = '5b83e07a4726d9e74b82adc6cdebb95c'
+SOCIAL_AUTH_FACEBOOK_KEY = 'facebook-key'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'facebook-secret'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', ]
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '38956256843-265lpunmn73kkn4b3iliba5ittjj03gb.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '83VJcCRUc79c98QbH7F_iZXQ'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'google-key'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'google-secret'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/plus.me',
                                    'https://www.googleapis.com/auth/userinfo.email',
                                    'https://www.googleapis.com/auth/userinfo.profile', ]
 
-SOCIAL_AUTH_TWITTER_KEY = 'V3Cot900F3GXB1HoE3SsZrEMR'  # Consumer Key
-SOCIAL_AUTH_TWITTER_SECRET = 'nTrZNRpHrEeqeviSBFl9RzDjtoOCBE9LenQNjyULBHNaugiLgz'  # Consumer Secret
+SOCIAL_AUTH_TWITTER_KEY = 'twitter-key'  # Consumer Key
+SOCIAL_AUTH_TWITTER_SECRET = 'twitter-secret'  # Consumer Secret
 
