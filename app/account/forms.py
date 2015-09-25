@@ -35,7 +35,7 @@ class RegisterForm(forms.ModelForm):
 
     class Meta:
         model = auth_models.User
-        fields = ('username', 'email', 'password')
+        fields = ['username', 'email', 'password', ]
 
 
 class UserForm(forms.ModelForm):
@@ -43,13 +43,13 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = auth_models.User
-        fields = ('username', 'email', 'password', 'first_name', 'last_name')
+        fields = ['username', 'email', 'password', 'first_name', 'last_name', ]
 
 
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = models.Profile
-        fields = ('website', 'avatar')
+        fields = ['website', 'avatar', ]
 
 
 ''' User modify forms '''
@@ -58,10 +58,11 @@ class ProfileForm(forms.ModelForm):
 class ModifyUserForm(forms.ModelForm):
     class Meta:
         model = auth_models.User
-        fields = ('username', 'first_name', 'last_name', )
+        fields = ['username', 'first_name', 'last_name', ]
 
 
 class ModifyProfileForm(forms.ModelForm):
     class Meta:
         model = models.Profile
-        fields = ('website', 'avatar', )
+        fields = ['website', 'avatar', ]
+

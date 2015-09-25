@@ -5,8 +5,8 @@ from . import models
 
 class BeepForm(forms.ModelForm):
     class Meta:
-        models = models.Beep
-        field = '__all__'
+        model = models.Beep
+        fields = '__all__'
 
 
 class DocumentForm(forms.ModelForm):

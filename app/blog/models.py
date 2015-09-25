@@ -152,8 +152,7 @@ class Beep(abstracts.ModelAbstract):
     def get_absolute_url(self):
         return reverse('blog_beep_edit', kwargs={'pk': self.pk})
 
-    def save(self, force_insert=False, force_update=False, using=None,
-            update_fields=None):
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         if (update_fields and 'text' in update_fields) or (not update_fields):
             self.length = len(self.text)
         super(Beep, self).save(force_insert, force_update, using, update_fields)

@@ -15,7 +15,7 @@ class SlideInline(admin.TabularInline):
 
 
 class SliderAdmin(abstracts.ModelAdminAbstract):
-    list_display = ['title', 'status']
+    list_display = ['title', 'status', ]
     inlines = [SlideInline, ]
 
 
@@ -49,7 +49,7 @@ class PageAdmin(abstracts.ModelAdminAbstract):
     form = PageAdminForm
 
     list_filter = ['status']
-    list_display = ['slug', 'title', 'related_widget_names', 'related_slider', 'status']
+    list_display = ['slug', 'title', 'related_widget_names', 'related_slider', 'status', ]
 
     actions = [PublishingActions.publish_item, PublishingActions.hide_item, ]
 
@@ -58,7 +58,7 @@ class PageAdmin(abstracts.ModelAdminAbstract):
 
 
 class WidgetAdmin(abstracts.ModelAdminAbstract):
-    list_display = ['title', 'related_page_names']
+    list_display = ['title', 'related_page_names', ]
 
     def related_page_names(self, obj):
         return ",\n".join([page.title for page in obj.page_set.all()])
@@ -81,7 +81,7 @@ class CategoryAdminForm(forms.ModelForm):
 class CategoryAdmin(abstracts.ModelAdminAbstract):
     form = CategoryAdminForm
 
-    list_display = ['title', 'slug', 'related_post_names']
+    list_display = ['title', 'slug', 'related_post_names', ]
 
     def related_post_names(self, obj):
         return ",\n".join([post.title for post in obj.post_set.all()])
@@ -105,7 +105,7 @@ class PostAdminForm(forms.ModelForm):
 class PostAdmin(abstracts.ModelAdminAbstract):
     form = PostAdminForm
 
-    list_filter = ['added_at', 'status', 'categories']
+    list_filter = ['added_at', 'status', 'categories', ]
     list_display = ['added_at', 'slug', 'title', 'short_content', 'related_category_names', 'related_slider', 'status']
 
     actions = [PublishingActions.publish_item, PublishingActions.hide_item, ]
@@ -132,13 +132,13 @@ admin.site.register(models.Beep, BeepAdmin)
 
 
 class SubscriberAdmin(abstracts.ModelAdminAbstract):
-    list_filter = ['added_at', 'email']
-    list_display = ['added_at', 'name', 'email']
+    list_filter = ['added_at', 'email', ]
+    list_display = ['added_at', 'name', 'email', ]
 
 
 class DocumentAdmin(abstracts.ModelAdminAbstract):
-    list_filter = ['added_at', 'email']
-    list_display = ['added_at', 'name', 'email']
+    list_filter = ['added_at', 'email', ]
+    list_display = ['added_at', 'name', 'email', ]
 
 
 admin.site.register(models.Subscriber, SubscriberAdmin)
@@ -148,8 +148,8 @@ admin.site.register(models.Document, DocumentAdmin)
 
 
 class ContactAdmin(abstracts.ModelAdminAbstract):
-    list_filter = ['added_at', 'email']
-    list_display = ['added_at', 'name', 'email', 'subject']
+    list_filter = ['added_at', 'email', ]
+    list_display = ['added_at', 'name', 'email', 'subject', ]
 
 
 admin.site.register(models.Contact, ContactAdmin)

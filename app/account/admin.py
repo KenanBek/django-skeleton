@@ -13,16 +13,16 @@ class ProfileInline(admin.StackedInline):
 
 
 class UserNewAdmin(UserAdmin):
-    inlines = (ProfileInline, )
+    inlines = [ProfileInline, ]
 
 
 class ProfileAdminAbstract(abstracts.ModelAdminAbstract):
-    list_display = ('user', 'website', 'is_verified')
+    list_display = ['user', 'website', 'is_verified', ]
 
 
 class RequestAdmin(abstracts.ModelAdminAbstract):
-    list_display = ('user', 'type', 'is_approved', 'key_expires_at')
-    list_filter = ('user', 'type', 'is_approved',)
+    list_display = ['user', 'type', 'is_approved', 'key_expires_at', ]
+    list_filter = ['user', 'type', 'is_approved', ]
 
 
 admin.site.unregister(User)

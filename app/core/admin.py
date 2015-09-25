@@ -18,7 +18,7 @@ admin.site.register(models.Settings, SettingsAdmin)
 
 class EventAdmin(abstracts.ModelReadOnlyAdminAbstract):
     search_fields = ['title', 'user', ]
-    list_filter = ['added_at']
+    list_filter = ['added_at', ]
     list_display = ['added_at', 'title', 'user', 'logs', ]
 
     def logs(self, obj):
