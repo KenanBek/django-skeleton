@@ -41,7 +41,7 @@ class Settings(abstracts.ModelAbstract):
         super(Settings, self).clean_fields(exclude)
 
     class Meta:
-        unique_together = ['key', 'group', ]
+        unique_together = (('key', 'group', ),)
 
 
 class Event(abstracts.ModelAbstract):
