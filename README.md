@@ -91,6 +91,7 @@ Superuser login and password:
 
 Configure following things if you are going to use this skeleton on your projects:
 
+- Change SECRET_KEY
 - Configure django sites (enter correct name and address for the site)
 - Configure application settings (settings.py)
 - Configure robots.txt and sitemaps
