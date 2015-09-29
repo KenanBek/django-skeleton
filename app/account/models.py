@@ -22,7 +22,6 @@ def get_account_file_name(instance, filename):
 
 
 class Profile(abstracts.ModelAbstract):
-    # status = models.IntegerField(max_length=9, choices=REQUEST_TYPE_CHOICES, default=REQUEST_TYPE_ACCOUNT)
     user = models.OneToOneField(User)
     website = models.URLField(null=True, blank=True)
     avatar = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_account_file_name)
