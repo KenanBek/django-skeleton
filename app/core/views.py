@@ -4,7 +4,9 @@ from django.utils.http import is_safe_url
 from django.shortcuts import render
 from django.contrib.admin.views.decorators import staff_member_required
 
-from core.logic import PageLogic
+from core.utils.decorators import log
+from logic import PageLogic
+from . import logic
 
 ''' Default pages '''
 
@@ -12,6 +14,20 @@ from core.logic import PageLogic
 def home(request, template='user/core/home.html', context=None):
     if not context:
         context = {}
+    return render(request, template, context)
+
+
+@log
+def search(request, template='user/core/search.html', context={}):
+    page_logic = logic.PageLogic(request)
+
+    term = page_logic.get_param("term")
+    search_result = page_logic.search(term)
+
+    context['term'] = term
+    context['pages'] = search_result['pages']
+    context['posts'] = search_result['posts']
+
     return render(request, template, context)
 
 
