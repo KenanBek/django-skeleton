@@ -104,7 +104,6 @@ def request_confirm(request, activation_key, template='user/account/password_res
     elif user_request.type == REQUEST_TYPE_ACCOUNT:
         profile = get_object_or_404(models.Profile, user=user_request.user)
         profile.is_verified = True
-
         profile.save()
         user_request.is_approved = True
         user_request.save()
