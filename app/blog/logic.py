@@ -21,16 +21,7 @@ class BlogLogic(logic.PageLogic):
     def posts(self, page_number=None):
         return models.Post.objects.filter(status=models.ITEM_STATUS_PUBLISHED).order_by('-modified_at').all()
 
-    def search(self, term):
-        pages = models.Page.objects.filter(Q(title__contains=term) | Q(content__contains=term))
-        posts = models.Post.objects.filter((Q(title__contains=term)
-                                            | Q(short_content__contains=term)
-                                            | Q(full_content__contains=term))
-                                           & Q(status=models.ITEM_STATUS_PUBLISHED))
-        return {
-            "pages": pages,
-            "posts": posts
-        }
+
 
     def new_subscription(self, name, email):
         subscriber = models.Subscriber()

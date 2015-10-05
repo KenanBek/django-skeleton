@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     url(r'^debug/$', 'core.views.debug', name='debug'),
     url(r'^language/(?P<code>\w+)/$', 'core.views.language', name='language'),
     url(r'^moderator/', include('moderator.urls', namespace='moderator')),
+    url(r'^search/$', 'core.views.search', name='search'),
     # Applications
     url(r'^account/', include('account.urls')),
     url(r'^blog/', include('blog.urls')),

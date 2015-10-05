@@ -27,6 +27,7 @@ class Profile(abstracts.ModelAbstract):
     avatar = models.ImageField(max_length=1024, null=True, blank=True, upload_to=get_account_file_name)
     is_verified = models.BooleanField(default=False)
 
+
     def __str__(self):
         return u"{}".format(self.user.username)
 

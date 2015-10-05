@@ -23,7 +23,6 @@ urlpatterns = patterns('blog.views',
     url(r'^contact/$', 'contact', name='blog_contact'),
     url(r'^contact/document/$', 'document', name='blog_document'),
     url(r'^subscribe/$', 'subscribe', name='blog_subscribe'),
-    url(r'^search/$', 'search', name='blog_search'),
     # Pages
     url(r'^pages/$', 'pages', name='blog_pages'),
     url(r'^page/(?P<page_slug>[\w-]+)/$', 'page', name='blog_page'),
