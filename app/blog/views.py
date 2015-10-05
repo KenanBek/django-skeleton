@@ -15,7 +15,7 @@ from . import logic
 @log
 @cache_page(60 * 3)
 def index(request, template='user/blog/index.html', context={}):
-    blog_logic = logic.BlogLogic(request)
+    blog_logic = logic.BlogViewPage(request)
 
     context['pages'] = blog_logic.pages()
     context['posts'] = blog_logic.posts()
@@ -28,7 +28,7 @@ def index(request, template='user/blog/index.html', context={}):
 
 @log
 def pages(request, template='user/blog/pages.html', context={}):
-    blog_logic = logic.BlogLogic(request)
+    blog_logic = logic.BlogViewPage(request)
     context['pages'] = blog_logic.pages()
     return render(request, template, context)
 
@@ -36,7 +36,7 @@ def pages(request, template='user/blog/pages.html', context={}):
 @log
 @cache_page(60 * 3)
 def page(request, page_slug, template='user/blog/page.html', context={}):
-    blog_logic = logic.BlogLogic(request)
+    blog_logic = logic.BlogViewPage(request)
     context['page'] = blog_logic.page(page_slug)
     return render(request, template, context)
 
@@ -46,7 +46,7 @@ def page(request, page_slug, template='user/blog/page.html', context={}):
 
 @log
 def posts(request, template='user/blog/posts.html', context={}):
-    blog_logic = logic.BlogLogic(request)
+    blog_logic = logic.BlogViewPage(request)
     context['posts'] = blog_logic.posts()
     return render(request, template, context)
 
@@ -54,7 +54,7 @@ def posts(request, template='user/blog/posts.html', context={}):
 @log
 @cache_page(60 * 3)
 def post(request, post_id, post_slug, template='user/blog/post.html', context={}):
-    blog_logic = logic.BlogLogic(request)
+    blog_logic = logic.BlogViewPage(request)
     context['post'] = blog_logic.post(post_id, post_slug)
     return render(request, template, context)
 
@@ -100,7 +100,7 @@ def document(request, template="user/blog/contact.html", context={}):
 
 @log
 def search(request, template='user/blog/search.html', context={}):
-    blog_logic = logic.BlogLogic(request)
+    blog_logic = logic.BlogViewPage(request)
 
     term = blog_logic.get_param("term")
     search_result = blog_logic.search(term)
@@ -113,7 +113,7 @@ def search(request, template='user/blog/search.html', context={}):
 
 @log
 def subscribe(request):
-    blog_logic = logic.BlogLogic(request)
+    blog_logic = logic.BlogViewPage(request)
 
     name = blog_logic.get_param("name")
     email = blog_logic.get_param("email")

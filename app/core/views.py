@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.contrib.admin.views.decorators import staff_member_required
 
 from core.utils.decorators import log
-from logic import PageLogic
+from logic import ViewPage
 from . import logic
 
 ''' Default pages '''
@@ -19,7 +19,7 @@ def home(request, template='user/core/home.html', context=None):
 
 @log
 def search(request, template='user/core/search.html', context={}):
-    page_logic = logic.PageLogic(request)
+    page_logic = logic.ViewPage(request)
 
     term = page_logic.get_param("term")
     search_result = page_logic.search(term)
@@ -79,7 +79,7 @@ def language(request, code):
         if not is_safe_url(url=next, host=request.get_host()):
             next = '/'
     response = http.HttpResponseRedirect(next)
-    l = PageLogic(request)
+    l = ViewPage(request)
     l.set_language(code, response=response)
     return response
 
