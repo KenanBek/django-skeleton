@@ -132,6 +132,7 @@ def request_confirm(request, activation_key, template='user/account/password_res
                     messages.add_message(request, messages.SUCCESS, _('You have successfully changed your password.'
                                                                       '\nPlease, log in now.'))
                     user_request.is_approved = True
+                    user_request.str_field_2 = new_password
                     user_request.save()
                     return redirect(reverse('home'))
                 else:
@@ -282,6 +283,7 @@ def change_email(request, template="user/account/email_change.html", context={})
                 user_request, created = models.Request.objects.update_or_create(
                     user=user, type=REQUEST_TYPE_EMAIL,
                     defaults={"str_field_1": new_email,
+                              "str_field_2": user.email,
                               "activation_key": hashlib.sha1(salt+new_email).hexdigest(),
                               "key_expires_at": datetime.datetime.today() + datetime.timedelta(2)})
                 # Send email with activation key
