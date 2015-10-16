@@ -21,3 +21,11 @@ def dict_as_request_params(value, exclude):
 
 register.filter('dict_as_request_params', dict_as_request_params)
 
+
+def add_class(field, _class):
+    """Adds given class to form input control"""
+    return field.as_widget(attrs={"class": _class})
+
+
+register.filter('add_class', add_class)
+

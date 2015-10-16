@@ -5,9 +5,9 @@ from core import logic
 from . import models
 
 
-class BlogLogic(logic.PageLogic):
+class BlogViewPage(logic.ViewPage):
     def __init__(self, request):
-        super(BlogLogic, self).__init__(request)
+        super(BlogViewPage, self).__init__(request)
 
     def page(self, page_slug):
         return get_object_or_404(models.Page, slug=page_slug, status=models.ITEM_STATUS_PUBLISHED)

@@ -1,6 +1,6 @@
 from django.conf import settings
 
-from core.logic import PageLogic
+from core.logic import ViewPage
 from .utils import helpers
 
 
@@ -10,7 +10,7 @@ def general(request):
         'application_config': settings.APPLICATION_CONFIG
     }
 
-    page_logic = PageLogic(request)
+    page_logic = ViewPage(request)
     context['application_settings'] = page_logic.settings_manager.get_dict()
     for k, v in enumerate(page_logic.context):
         context[v] = page_logic.context[v]
