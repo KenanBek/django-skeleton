@@ -2,8 +2,10 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import LANGUAGE_SESSION_KEY, check_for_language
 from ipware.ip import get_real_ip, get_ip
+from django.db.models import Q
 
 from . import models
+from blog import models as blog_models
 
 ''' Entities '''
 
@@ -131,9 +133,9 @@ class BrowserStoreManager(object):
 
     def set_cookie_value(self, key, value, response):
         response.set_cookie(key, value,
-            max_age=self.DEFAULT_MAX_AGE,
-            path=self.DEFAULT_PATH,
-            domain=self.DEFAULT_DOMAIN)
+                            max_age=self.DEFAULT_MAX_AGE,
+                            path=self.DEFAULT_PATH,
+                            domain=self.DEFAULT_DOMAIN)
 
     def set(self, key, value, response=None):
         if hasattr(self.request, 'session'):
@@ -284,4 +286,17 @@ class ViewPage(object):
     def new_event_logger(self, title):
         event_logger = EventLogger(title, self.client)
         return event_logger
+
+    def search(self, term):
+        pages = blog_models.Page.objects.filter(Q(title__contains=term) | Q(content__contains=term))
+        posts = blog_models.Post.objects.filter((Q(title__contains=term)
+                                                 | Q(short_content__contains=term)
+                                                 | Q(full_content__contains=term))
+                                                & Q(status=blog_models.ITEM_STATUS_PUBLISHED))
+
+        result = {}
+        result['pages'] = pages
+        result['posts'] = posts
+
+        return result
 
