@@ -300,3 +300,34 @@ class ViewPage(object):
 
         return result
 
+from django.http import HttpResponse
+import json
+
+
+
+def search_autocomplete(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        posts = blog_models.Post.objects.filter(Q(title__contains=q))
+        results = []
+
+        for post in posts:
+            autocomplete_json = {}
+            autocomplete_json['id'] = post.id
+            autocomplete_json['label'] = post.title
+            autocomplete_json['desc'] = 'Post'
+            autocomplete_json['value'] = post.title
+            results.append(autocomplete_json)
+        pages = blog_models.Page.objects.filter(Q(title__contains=q))
+        for page in pages:
+            autocomplete_json = {}
+            autocomplete_json['id'] = page.id
+            autocomplete_json['label'] = post.title
+            autocomplete_json['desc'] = 'Page'
+            autocomplete_json['value'] = page.title
+            results.append(autocomplete_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)

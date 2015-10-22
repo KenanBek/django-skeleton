@@ -14,4 +14,3 @@ urlpatterns = patterns('account.views',
     url(r'^request_confirm/(?P<activation_key>\w+)/', 'request_confirm', name='account_request_confirm'),
     url(r'^change_email/$', 'change_email', name='account_change_email'),
 )
-

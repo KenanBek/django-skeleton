@@ -1,9 +1,8 @@
 from django import http
+from django.http import HttpResponseRedirect
 from django.views.decorators.cache import cache_page
 from django.utils.http import is_safe_url
-from django.shortcuts import render
 from django.contrib.admin.views.decorators import staff_member_required
-
 from core.utils.decorators import log
 from logic import ViewPage
 from . import logic
@@ -22,12 +21,18 @@ def search(request, template='user/core/search.html', context={}):
     page_logic = logic.ViewPage(request)
 
     term = page_logic.get_param("term")
-    search_result = page_logic.search(term)
+    term_id = page_logic.get_param("term_id")
+    term_description = page_logic.get_param("term_description")
 
+    search_result = page_logic.search(term)
     context['term'] = term
     context['pages'] = search_result['pages']
     context['posts'] = search_result['posts']
 
+    if term_description == 'Post':
+        return HttpResponseRedirect('../blog/post/' + term_id + "/" + term.lower().replace(" ", "-"))
+    if term_description == 'Page':
+        return HttpResponseRedirect('../blog/page/' + term_id + "/" + term.lower().replace(" ", "-"))
     return render(request, template, context)
 
 
@@ -90,3 +95,5 @@ def debug(request, template='user/core/debug.html', context=None):
         context = {}
     return render(request, template, context)
 
+
+from django.shortcuts import render

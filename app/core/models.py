@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
-from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
+from django.db import models
 
 from . import abstracts
 
@@ -104,4 +104,6 @@ class Language(abstracts.ModelAbstract):
 
     def __unicode__(self):
         return self.__str__()
+
+
 
