@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import LANGUAGE_SESSION_KEY, check_for_language
 from ipware.ip import get_real_ip, get_ip
@@ -133,9 +134,9 @@ class BrowserStoreManager(object):
 
     def set_cookie_value(self, key, value, response):
         response.set_cookie(key, value,
-                            max_age=self.DEFAULT_MAX_AGE,
-                            path=self.DEFAULT_PATH,
-                            domain=self.DEFAULT_DOMAIN)
+            max_age=self.DEFAULT_MAX_AGE,
+            path=self.DEFAULT_PATH,
+            domain=self.DEFAULT_DOMAIN)
 
     def set(self, key, value, response=None):
         if hasattr(self.request, 'session'):
@@ -300,9 +301,9 @@ class ViewPage(object):
 
         return result
 
+
 from django.http import HttpResponse
 import json
-
 
 
 def search_autocomplete(request):
@@ -317,6 +318,7 @@ def search_autocomplete(request):
             autocomplete_json['label'] = post.title
             autocomplete_json['desc'] = 'Post'
             autocomplete_json['value'] = post.title
+            autocomplete_json['url'] = reverse('blog_post', kwargs={'post_id': post.pk, 'post_slug': post.slug})
             results.append(autocomplete_json)
         pages = blog_models.Page.objects.filter(Q(title__contains=q))
         for page in pages:
@@ -324,6 +326,7 @@ def search_autocomplete(request):
             autocomplete_json['id'] = page.id
             autocomplete_json['label'] = post.title
             autocomplete_json['desc'] = 'Page'
+            autocomplete_json['value'] = page.title
             autocomplete_json['value'] = page.title
             results.append(autocomplete_json)
         data = json.dumps(results)
