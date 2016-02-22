@@ -1,9 +1,12 @@
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import LANGUAGE_SESSION_KEY, check_for_language
 from ipware.ip import get_real_ip, get_ip
+from django.db.models import Q
 
 from . import models
+from blog import models as blog_models
 
 ''' Entities '''
 
@@ -285,3 +288,49 @@ class ViewPage(object):
         event_logger = EventLogger(title, self.client)
         return event_logger
 
+    def search(self, term):
+        pages = blog_models.Page.objects.filter(Q(title__contains=term) | Q(content__contains=term))
+        posts = blog_models.Post.objects.filter((Q(title__contains=term)
+                                                 | Q(short_content__contains=term)
+                                                 | Q(full_content__contains=term))
+                                                & Q(status=blog_models.ITEM_STATUS_PUBLISHED))
+
+        result = {}
+        result['pages'] = pages
+        result['posts'] = posts
+
+        return result
+
+
+from django.http import HttpResponse
+import json
+
+
+def search_autocomplete(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        posts = blog_models.Post.objects.filter(Q(title__contains=q))
+        results = []
+
+        for post in posts:
+            autocomplete_json = {}
+            autocomplete_json['id'] = post.id
+            autocomplete_json['label'] = post.title
+            autocomplete_json['desc'] = 'Post'
+            autocomplete_json['value'] = post.title
+            autocomplete_json['url'] = reverse('blog_post', kwargs={'post_id': post.pk, 'post_slug': post.slug})
+            results.append(autocomplete_json)
+        pages = blog_models.Page.objects.filter(Q(title__contains=q))
+        for page in pages:
+            autocomplete_json = {}
+            autocomplete_json['id'] = page.id
+            autocomplete_json['label'] = post.title
+            autocomplete_json['desc'] = 'Page'
+            autocomplete_json['value'] = page.title
+            autocomplete_json['value'] = page.title
+            results.append(autocomplete_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)

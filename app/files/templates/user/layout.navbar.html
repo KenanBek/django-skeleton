@@ -1,5 +1,7 @@
 {% load i18n %}
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <div class="navbar navbar-inverse" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -34,9 +36,56 @@
                 </li>
             </ul>
             <form class="navbar-form navbar-right" action="{% url 'search' %}" method="get">
-                <input id="term" name="term" type="text" class="form-control" placeholder="{% trans "Search..." %}" value="{{ q|default:"" }}">
+                <input id="term" name="term" type="text" class="form-control" placeholder="{% trans "Search..." %}"
+                       value="{{ q|default:"" }}">
+                <input type="hidden" id="term_id" name="term_id" value="{{ q|default:"" }}">
+                <input id="term_description" type="hidden" name="term_description" value="{{ q|default:"" }}">
             </form>
-            {% include 'user/layout.user.html' %}
+
+            <style>
+                #term-description {
+                    margin: 0;
+                    padding: 0;
+                }
+            </style>
+            <script>
+                $(document).ready(function () {
+                    console.log("Searching ...");
+                    $(function () {
+                        $("#term").autocomplete({
+                            source: "search_autocomplete",
+                            focus: function (event, ui) {
+                                $("#term").val(ui.item.label);
+                                $("#term_id").val(ui.item.id);
+                                $("#term_description").val(ui.item.desc);
+                                return false;
+                            },
+                            change: function (event, ui) {
+                                $("#term_id").val(ui.item ? ui.item.id : "none");
+                                $("#term_description").val(ui.item ? ui.item.desc : "none");
+                                return false;
+                            },
+                            select: function (event, ui) {
+                                $("#term").val(ui.item ? ui.item.label : "none");
+                                $("#term_id").val(ui.item ? ui.item.id : "none");
+                                $("#term_description").val(ui.item ? ui.item.desc : "none");
+                                return false;
+                            }
+                        })
+                                .autocomplete("instance")._renderItem = function (ul, item) {
+                            return $("<li>")
+                                    .append("<a>" + item.label + "<br>" + "<p style='font-size:10px;'>" + item.desc + "</p></a>")
+                                    .appendTo(ul);
+                        };
+                    });
+                });
+
+            </script>
+            <br>
+            <br>
+
         </div>
+        {% include 'user/layout.user.html' %}
     </div>
+</div>
 </div>

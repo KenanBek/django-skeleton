@@ -1,9 +1,6 @@
-from django.db import models
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
-from django.utils.translation import ugettext_lazy as _
-
 from core import abstracts
 from .models import Profile, Request, REQUEST_TYPE_ACCOUNT, REQUEST_TYPE_EMAIL, REQUEST_TYPE_PASSWORD
 
@@ -64,14 +61,16 @@ class RequestActions(object):
                 message_bit = "%s requests were" % rows_updated
             model_admin.message_user(request, "%s successfully marked as approved." % message_bit)
         elif (queryset.filter(type=REQUEST_TYPE_EMAIL)):
-            if request.method == 'POST':
-                for q in queryset:
-                    q.user.email = q.user.request.str_field_1
-                    q.user.save()
-                    q.user.profile.is_verified = True
-                    q.user.profile.save()
+            for q in queryset:
+                q.user.email = q.str_field_1
+                q.user.save()
+                q.user.profile.is_verified = True
+                q.user.profile.save()
             queryset.update(is_approved=True)
         elif (queryset.filter(type=REQUEST_TYPE_PASSWORD)):
+            for q in queryset:
+                q.user.set_unusable_password()
+                q.user.save()
             queryset.update(is_approved=True)
 
 
@@ -89,23 +88,28 @@ class RequestActions(object):
             model_admin.message_user(request, "%s successfully marked as refused." % message_bit)
         elif (queryset.filter(type=REQUEST_TYPE_EMAIL)):
             for q in queryset:
-                q.user.email = models.EmailField(_('email address'), blank=True)
+                q.user.email = q.str_field_2
+                q.user.save()
                 q.user.profile.is_verified = False
                 q.user.profile.save()
             queryset.update(is_approved=False)
         elif (queryset.filter(type=REQUEST_TYPE_PASSWORD)):
+            for q in queryset:
+                q.user.set_password("12345")
+                q.user.save()
             queryset.update(is_approved=False)
 
             # rows_updated = queryset.update(is_approved=False)
-            #if rows_updated == 1:
-            #    message_bit = "1 request was"
-            #else:
-            #    message_bit = "%s requests were" % rows_updated
-            #model_admin.message_user(request, "%s successfully marked as refused." % message_bit)
+            # if rows_updated == 1:
+            # message_bit = "1 request was"
+            # else:
+            # message_bit = "%s requests were" % rows_updated
+            # model_admin.message_user(request, "%s successfully marked as refused." % message_bit)
 
 
 class RequestAdmin(abstracts.ModelAdminAbstract):
-    list_display = ['user', 'type', 'is_approved', 'key_expires_at', ]
+    list_display = ['user', 'type', 'is_approved', 'activation_key', 'str_field_1', 'str_field_2', 'dec_field_1',
+                    'dec_field_2', 'bool_field_1', 'bool_field_2', 'key_expires_at', ]
     list_filter = ['user', 'type', 'is_approved', ]
     actions = [RequestActions.approve_selected_requests, RequestActions.refuse_selected_requests]
 

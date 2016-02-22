@@ -30,6 +30,8 @@ urlpatterns = patterns('',
     url(r'^language/(?P<code>\w+)/$', 'core.views.language', name='language'),
     url(r'^moderator/', include('moderator.urls', namespace='moderator')),
     url(r'^search/$', 'core.views.search', name='search'),
+    url(r'^search_autocomplete/$', 'core.logic.search_autocomplete', name='search_autocomplete'),
+    url(r'^search/search_autocomplete/$', 'core.logic.search_autocomplete', name='search_autocomplete'),
     # Applications
     url(r'^account/', include('account.urls')),
     url(r'^blog/', include('blog.urls')),
