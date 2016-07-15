@@ -40,7 +40,7 @@ class Request(abstracts.ModelAbstract):
     type = models.SmallIntegerField(choices=REQUEST_TYPE_CHOICES)
     is_approved = models.BooleanField(default=False)
     activation_key = models.CharField(max_length=64, blank=True)
-    key_expires_at = models.DateTimeField(default=datetime.date.today())
+    key_expires_at = models.DateTimeField(auto_now_add=True)
     str_field_1 = models.CharField(max_length=64, null=True, blank=True)
     str_field_2 = models.CharField(max_length=64, null=True, blank=True)
     dec_field_1 = models.DecimalField(max_digits=9, decimal_places=2, null=True, blank=True)
